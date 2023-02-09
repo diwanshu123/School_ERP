@@ -1,23 +1,28 @@
-<mat-sidenav-container>
-    <mat-sidenav #sidenav>
-      <mat-nav-list>
-  
-        <a mat-list-item > Accounts </a>
-        <!-- <a mat-list-item [routerLink]="'/accounts'"> Accounts </a> -->
-  
-        <a mat-list-item > Create Account </a>
-        <a mat-list-item > Contacts </a>
-        <a mat-list-item > Create Contact </a>
-        <a mat-list-item > Activities </a>
-        <a mat-list-item > Create Activity </a>
-        <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
-  
-      </mat-nav-list> 
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <div style="height: 88vh;">
-  
-        <router-outlet></router-outlet>
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+<mat-list>
+  <mat-list-item routerLink="{{routes.SECTIONS}}" routerLinkActive="active">
+    <mat-icon matListItemIcon>border_all</mat-icon> Dashboard
+  </mat-list-item>
+  <mat-list-item routerLink="{{routes.ABOUTUS}}" routerLinkActive="active">
+    <mat-icon matListItemIcon>group_work</mat-icon> Admission
+  </mat-list-item>
+  <mat-list-item routerLink="{{routes.ADMISSION}}" routerLinkActive="active">
+    <mat-icon matListItemIcon>add_home</mat-icon> Attendance
+  </mat-list-item>
+
+  <mat-list-item routerLink="{{routes.NOTIFICATION}}" routerLinkActive="active">
+    <mat-icon matListItemIcon>account_balance</mat-icon> Academic
+  </mat-list-item>
+  <mat-list-item routerLink="{{routes.GALLERY}}" routerLinkActive="active">
+    <mat-icon matListItemIcon>photo_album</mat-icon>Student Details
+  </mat-list-item>
+  <mat-list-item routerLink="{{routes.CAREERS}}" routerLinkActive="active">
+    <mat-icon matListItemIcon>library_books</mat-icon> Reports
+  </mat-list-item>
+  <mat-list-item routerLink="{{routes.STUDCORNER}}" routerLinkActive="active">
+    <mat-icon matListItemIcon>co_present</mat-icon> Student Accounting
+  </mat-list-item>
+  <mat-list-item routerLink="{{routes.PUBLIC_MEND}}" routerLinkActive="active">
+    <mat-icon matListItemIcon>document_scanner</mat-icon> Reception
+  </mat-list-item>
+</mat-list>
+

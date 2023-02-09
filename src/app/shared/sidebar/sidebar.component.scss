@@ -1,0 +1,7 @@
+@import "src/app/themes/variables";
+
+/** Material Theme Overrides **/
+.mdc-list-item--with-leading-icon .mdc-list-item__start {
+  margin-right: 16px;
+  color: $color-primary;
+}
