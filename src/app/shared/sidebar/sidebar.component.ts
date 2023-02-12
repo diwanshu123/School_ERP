@@ -9,5 +9,6 @@ import { routes } from 'src/app/constants/routes';
 export class SidebarComponent {
 
   public routes: typeof routes = routes;
+  isSubMenuOpen: boolean;
 
 }

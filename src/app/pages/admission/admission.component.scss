@@ -1,0 +1,61 @@
+@import "src/app/themes/variables";
+
+fieldset {
+  border: 1px solid $color-primary;
+  padding: 16px;
+  border-radius: 30px;
+}
+
+legend {
+  float: unset;
+  width: unset;
+  padding: 0 8px;
+  color: $color-primary;
+  font-weight: bold;
+}
+
+.upload-cont-row {
+  padding: 0 24px;
+
+  .upload-cont {
+    width: 120px;
+    height: 120px;
+    border: 1px dashed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border-color: $color-primary;
+
+    i {
+      font-size: 32pt;
+      color: $color-primary;
+    }
+  }
+}
+
+.profile-cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-primary;
+
+  h2 {
+    padding-right: 32px;
+  }
+
+  i {
+    font-size: 60pt;
+  }
+}
+
+button {
+  i {
+    color: $color-secondary;
+  }
+}
+
+button.btn-success {
+  background: $color-success!important;
+}
+

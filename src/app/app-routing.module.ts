@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'admission',
-    component: AdmissionComponent
+    loadChildren: () => import('./pages/admission/admission.module').then( m => m.AdmissionModule)
   }
 ];
 

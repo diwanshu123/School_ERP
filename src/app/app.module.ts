@@ -9,14 +9,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
-import { AdmissionComponent } from './pages/admission/admission.component';
 import { SharedModule } from "./shared/shared.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
-        AppComponent,
-        AdmissionComponent
+        AppComponent
     ],
     providers: [],
     bootstrap: [AppComponent],

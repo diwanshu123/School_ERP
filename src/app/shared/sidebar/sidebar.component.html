@@ -2,17 +2,29 @@
   <mat-list-item routerLink="{{routes.SECTIONS}}" routerLinkActive="active">
     <mat-icon matListItemIcon>border_all</mat-icon> Dashboard
   </mat-list-item>
-  <mat-list-item routerLink="{{routes.ABOUTUS}}" routerLinkActive="active">
+  <mat-list-item (click)="isSubMenuOpen=!isSubMenuOpen">
     <mat-icon matListItemIcon>group_work</mat-icon> Admission
   </mat-list-item>
-  <mat-list-item routerLink="{{routes.ADMISSION}}" routerLinkActive="active">
+  <!--Sub Menu-->
+    <div>
+      <mat-list-item class="sub-menu" [routerLink]="routes.C_ADMISSION" routerLinkActive="active">
+        Create Admission
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.CAT_ADMISSION" routerLinkActive="active">
+        Category
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.MUL_ADMISSION" routerLinkActive="active">
+        Multiple Import
+      </mat-list-item>
+    </div>
+  <mat-list-item>
     <mat-icon matListItemIcon>add_home</mat-icon> Attendance
   </mat-list-item>
 
-  <mat-list-item routerLink="{{routes.NOTIFICATION}}" routerLinkActive="active">
+  <mat-list-item>
     <mat-icon matListItemIcon>account_balance</mat-icon> Academic
   </mat-list-item>
-  <mat-list-item routerLink="{{routes.GALLERY}}" routerLinkActive="active">
+  <mat-list-item>
     <mat-icon matListItemIcon>photo_album</mat-icon>Student Details
   </mat-list-item>
   <mat-list-item routerLink="{{routes.CAREERS}}" routerLinkActive="active">

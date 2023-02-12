@@ -1,8 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { HttpClientModule } from '@angular/common/http';
-
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -12,6 +8,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -20,8 +17,7 @@ import { RouterModule } from '@angular/router';
     SidebarComponent
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
+    CommonModule,
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
