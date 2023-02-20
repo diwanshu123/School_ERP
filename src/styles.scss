@@ -10,6 +10,13 @@ html, body {
   margin: 0;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .collapsing {
+      transition-property: height, visibility;
+      transition-duration: .35s;
+  }
+}
+
 .f-heading {
   color: $color-primary;
   h4 {

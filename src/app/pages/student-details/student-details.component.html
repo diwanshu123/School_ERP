@@ -1,64 +1,125 @@
 <app-layout>
-    <div class="container p-5">
-        <div class="row ">
-            <div class="row pb-3">
-        <div class="mb-5">
-            <div class="f-heading">
-                <h4>
-                    <i class="fa-solid fa-file-import"></i>
-            Multiple Import
-                </h4>
-            </div>
-       
-            <div  class="col-12 col-md-5 mt-4">
-            <div class="row pb-3">
-                <div class="col-6">
-                    <div class="form-group">
-                        <label>Class</label>
-                        <input type="text" class="form-control">
-                    </div>
-                </div>
+  <div class="container p-5">
 
-                <div class="col-6">
-                    <div class="form-group">
-                        <label>Section</label>
-                        <input type="text" class="form-control">
-                    </div>
-                </div>
-            </div>
-            </div>
+    <div class="profile-cont">
+      <div class="profile-pic-cont">
+        <div class="profile-pic">
+          <img src="" alt="">
         </div>
-        <div class="mb-5">
-            <fieldset>
-                <legend>Select CSV File</legend>
-                <div class="row upload-cont-row">
-                    <div class="col-2">
-                        <div class="upload-cont">
-                            <i class="fa-solid fa-plus"></i>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
+      </div>
+      <div class="stud-name">
+        <h2>Radika</h2>
+      </div>
+      <div class="stud-bio">
+        <p class="position-relative d-flex">
+          Class: 7 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Section:A
+          <br>
+          Reg No.:XYZ-101
+          <br>
+          Roll No.:04
+          <br>
+          21-07-2002
+          <br>
+          98888-77777
+          <br>
+          radhika7a@school.com
+          <br>
+          123, XYZ Street, Delhi
+        </p>
+      </div>
+      <div class="align-self-end">
+        <div class="attendance">
+          <i class="fa-solid fa-cube"></i><p>Avg. Att.: 28</p>
         </div>
-
-      
-
-        <div class="mb">
-            <div class="import-btn">
-            <button class="btn btn-lg ">
-                Import <i class="fa-solid fa-file-import"></i></button>
-        </div>
-        </div>
-        </div>
-        </div>
-<!-- <div class="row-6">
-<div class="col-12 col-md-7 mt-4">
-    <div class="paragraph">
-        hi this is left side 
+      </div>
     </div>
-</div>
-</div> -->
 
 
+      <div class="prof-header border bg-light mt-5" data-bs-toggle="collapse" data-bs-target="#basicDetails" aria-expanded="false">
+        <p><i class="fa fa-user" aria-hidden="true"></i> Basic Details</p>
+      </div>
+
+      <div class="prof-header border bg-light mt-2" data-bs-toggle="collapse" data-bs-target="#fees" aria-expanded="false">
+        <p><i class="fa fa-briefcase" aria-hidden="true"></i> Fees</p>
+      </div>
+
+      <div class="prof-header border bg-light mt-2" data-bs-toggle="collapse" data-bs-target="#promHistory" aria-expanded="false">
+        <p><i class="fa fa-briefcase" aria-hidden="true"></i> Promotion History</p>
+      </div>
+
+      <div class="collapse" id="promHistory">
+        <table class="table table-bordered mt-4">
+          <thead class="mt-2" style="background-color:#876aa6;">
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">First</th>
+                  <th scope="col">Last</th>
+                  <th scope="col">Handle</th>
+                  <th scope="col">Handle</th>
+                  <th scope="col">Handle</th>
+                  <th scope="col">Handle</th>
+                  <th scope="col">Handle</th>
+                  <th scope="col">Handle</th>
+
+
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+
+
+              </tr>
+              <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                  <td>@fat</td>
+                  <td>@fat</td>
+                  <td>@fat</td>
+                  <td>@fat</td>
+
+                  <td>@fat</td>
+
+              </tr>
+              <tr>
+                  <th scope="row">3</th>
+                  <td>Larry the Bird</td>
+                  <td>@twitter</td>
+                  <td>@twitter</td>
+                  <td>@fat</td>
+                  <td>@fat</td>
+                  <td>@twitter</td>
+
+                  <td>@twitter</td>
+                  <td>@twitter</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+
+    <div class="prof-header border bg-light mt-2" data-bs-toggle="collapse" data-bs-target="#bookIssue" aria-expanded="false">
+      <p><i class="fa fa-briefcase" aria-hidden="true"></i> Book Issue</p>
     </div>
+    <div class="prof-header border bg-light mt-2" data-bs-toggle="collapse" data-bs-target="#result" aria-expanded="false">
+      <p><i class="fa fa-briefcase" aria-hidden="true"></i> Exam Result</p>
+    </div>
+    <div class="prof-header border bg-light mt-2" data-bs-toggle="collapse" data-bs-target="#parentInfo" aria-expanded="false">
+      <p><i class="fa fa-briefcase" aria-hidden="true"></i> Parent Information</p>
+    </div>
+    <div class="prof-header border bg-light mt-2" data-bs-toggle="collapse" data-bs-target="#docs" aria-expanded="false">
+      <p><i class="fa fa-briefcase" aria-hidden="true"></i> Documents</p>
+    </div>
+  </div>
 </app-layout>
+
+

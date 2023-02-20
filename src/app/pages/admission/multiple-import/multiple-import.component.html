@@ -1,187 +1,68 @@
 <app-layout>
-    <div class="container p-5">
+  <div class="container p-5">
+    <div class="mb-5">
+      <div class="f-heading">
+        <h4>
+          <i class="fa-solid fa-graduation-cap"></i>
+          Multiple Report
+        </h4>
+      </div>
 
-        <fieldset>
-            <div class="row">
-
-
-                <div class="col-6">
-
-                    <div class="img-head">
-                        <img src="../../../../assest/1st.png" alt="">
-
-                        <h3>Radhika</h3>
-
-                    </div>
-
-                </div>
-                <div class="col-6">
-
-                    <div class="stud-info">
-                        <p> Class:7 Section A</p>
-                        <p>Reg.No: xyz-01</p>
-                        <p>ROll No:04</p>
-                        <p>21-07-2002</p>
-                        <p>32544536-5484</p>
-                        <p>radhika@gmail.com</p>
-                        <p>123,xyz streat, delhi</p>
-
-                    </div>
-                </div>
-
-
-
-
+      <div class="row py-3">
+        <div class="col-6">
+          <div class="row pb-3">
+            <div class="col-6">
+              <div class="form-group">
+                <label>Class</label>
+                <input type="text" class="form-control">
+              </div>
             </div>
-        </fieldset>
+            <div class="col-6">
+              <div class="form-group">
+                <label>Section</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
 
-
-
-        <div class="row border  bg-light mt-5 basic">
-            <i class="fa fa-user" aria-hidden="true"></i> Basic Details
+          <div class="row pb-3">
+            <div class="col-12">
+              <div class="form-group">
+                <label>Select CSV File</label>
+                <div class="uploads">
+                  <div class="upload-cont">
+                    <i class="fa-solid fa-plus"></i>
+                  </div>
+                  <p class="pt-3 text-center">Drag and drop a file here or click</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mb-5 text-center">
+            <button class="btn btn-lg">Import <i class="fa-solid fa-file-import"></i></button>
+          </div>
         </div>
 
-
-
-
-
-        <div class="row border bg-light mt-2 ">
-
-            <i class="fa fa-briefcase" aria-hidden="true"></i> Fees
-
-
+        <div class="col-6 intruct-col">
+          <p>Instructions:</p>
+          <ol>
+            <li> Download the first sample file.</li>
+            <li> Open the downloaded 'csv' file and carefully fill the details of the student.</li>
+            <li> The date you are trying to enter the "Birthday" and "Admission Date" column make sure the date format is
+                yyyy-mm-dd (2023-01-14).
+            </li>
+            <li> Do not import the duplicate "Roll Number" and "Register No".</li>
+            <li> For student "Gender" use Male, Female value.</li>
+            <li> If enable Automatically Generate login details, leave the "username" and "password" columns blank.</li>
+            <li> The Category name comes from another table, so for the "Category", enter Category ID (can be found on the
+                  category page) .
+            </li>
+            <li> If a parent is existing / if you want to use the same parent information for multiple students only
+                enter the "Guardian Username" and leave other columns blank.
+            </li>
+          </ol>
         </div>
-
-        <div class="row border bg-light mt-2 ">
-
-            <i class="fa fa-briefcase" aria-hidden="true"></i> Promotion History
-        </div>
-        <table class="table table-bordered mt-4 ">
-            <thead class="mt-2" style="background-color:#876aa6;">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                    <th scope="col">Handle</th>
-                    <th scope="col">Handle</th>
-                    <th scope="col">Handle</th>
-                    <th scope="col">Handle</th>
-                    <th scope="col">Handle</th>
-
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-
-
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>@fat</td>
-                    <td>@fat</td>
-                    <td>@fat</td>
-                    <td>@fat</td>
-
-                    <td>@fat</td>
-
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry the Bird</td>
-                    <td>@twitter</td>
-                    <td>@twitter</td>
-                    <td>@fat</td>
-                    <td>@fat</td>
-                    <td>@twitter</td>
-
-                    <td>@twitter</td>
-                    <td>@twitter</td>
-                </tr>
-            </tbody>
-        </table>
-        <!-- <table class="table" style="margin-top: 10px;">
-        <thead>
-            <tr>
-              <th scope="col" class="border-top-0 border-right border-bottom-0">#</th>
-              <th scope="col" class="border-top-0 border-right border-bottom-0">First</th>
-              <th scope="col" class="border-top-0 border-right border-bottom-0">Last</th>
-              <th scope="col" class="border-top-0 border-right border-bottom-0 border-right-0">Handle</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td scope="row" class="border-right border-bottom-0">1</td>
-              <td class="border-right border-bottom-0"> Mark</td>
-              <td class="border-right border-bottom-0">Otto</td>
-              <td class="border-right border-bottom-0 border-right-0">@mdo</td>
-            </tr>
-            <tr>
-              <td scope="row" class="border-right border-bottom-0">1</td>
-              <td class="border-right border-bottom-0"> Mark</td>
-              <td class="border-right border-bottom-0">Otto</td>
-              <td class="border-right border-bottom-0 border-right-0">@mdo</td>
-            </tr>
-            <tr>
-              <td scope="row" class="border-right border-bottom-0">1</td>
-              <td class="border-right border-bottom-0"> Mark</td>
-              <td class="border-right border-bottom-0">Otto</td>
-              <td class="border-right border-bottom-0 border-right-0">@mdo</td>
-            </tr>
-          </tbody>
-        </table> -->
-
-        <div class="row border bg-light mt-2 ">
-
-            <i class="fa fa-briefcase" aria-hidden="true"></i> Fees
-
-
-        </div>
-        <div class="row border bg-light mt-2 ">
-
-            <i class="fa fa-briefcase" aria-hidden="true"></i> Fees
-
-
-        </div>
-        <div class="row border bg-light mt-2 ">
-
-            <i class="fa fa-briefcase" aria-hidden="true"></i> Fees
-
-
-        </div>
-        <div class="row border bg-light mt-2 ">
-
-            <i class="fa fa-briefcase" aria-hidden="true"></i> Fees
-
-
-        </div>
-
-
-
-        <!-- <div class="row " >
-    <div class="tale-header">
-
-     
-
+      </div>
     </div>
-</div>
-      -->
-
-
-
-
-    </div>
+  </div>
 </app-layout>

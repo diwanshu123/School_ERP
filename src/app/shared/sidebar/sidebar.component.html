@@ -21,12 +21,20 @@
     <mat-icon matListItemIcon>add_home</mat-icon> Attendance
   </mat-list-item>
 
-  <mat-list-item> 
+  <mat-list-item>
     <mat-icon matListItemIcon>account_balance</mat-icon> Academic
   </mat-list-item>
   <mat-list-item>
-    <mat-icon matListItemIcon  [routerLink]="routes.STUDNT_DETAILS" routerLinkActive="active" >photo_alum</mat-icon>Student Details
+    <mat-icon matListItemIcon>photo_alum</mat-icon>Student Details
   </mat-list-item>
+  <div>
+    <mat-list-item class="sub-menu" [routerLink]="routes.STUDNT_DETAILS" routerLinkActive="active">
+      Student List
+    </mat-list-item>
+    <mat-list-item class="sub-menu" [routerLink]="routes.CAT_ADMISSION" routerLinkActive="active">
+      Login Deactivate
+    </mat-list-item>
+  </div>
   <mat-list-item routerLink="{{routes.CAREERS}}" routerLinkActive="active">
     <mat-icon matListItemIcon>library_books</mat-icon> Reports
   </mat-list-item>
