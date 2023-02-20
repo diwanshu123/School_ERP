@@ -11,10 +11,12 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import { SharedModule } from "./shared/shared.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { StudentDetailsComponent } from './pages/student-details/student-details.component';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        // StudentDetailsComponent
     ],
     providers: [],
     bootstrap: [AppComponent],

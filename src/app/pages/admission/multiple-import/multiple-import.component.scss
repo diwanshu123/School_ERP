@@ -1,0 +1,128 @@
+@import "src/app/themes/variables";
+
+fieldset {
+  border: 1px solid $color-primary;
+  padding: 16px;
+  border-radius: 20px;
+  width: 1235px;
+  height: 202px;
+  margin-left: -11;
+  background-color: #876aa6;
+  z-index: 1;
+
+}
+.stud-info{
+  position: absolute;
+  margin-left: 200px;
+
+}
+p{
+   margin-top: 20px;
+  color: white;
+  font-size: 14px;
+  margin-top: -13%;
+}
+
+.img-head{
+  position: absolute;
+  border: solid;
+  height: 265px;
+  width: 172px;
+  margin-left: 15%;
+  transform: translateY(-20%);
+  border-radius: 20px;
+  z-index: 2;
+  // transform: translateX(-60%);
+
+
+
+}
+h3{
+  margin-left: 190px;
+  color: white;
+  margin-top: 35px;
+}
+.basic-details{
+  margin-top: 30px;
+  height: auto;
+
+  
+}
+.basic{
+  display: flex;
+  padding: 0%;
+}
+
+// .sect-header {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   gap: 40px;
+//   padding: 1rem 5rem 1rem 15rem;
+//   margin: 10rem 0;
+//   background-color: rebeccapurple;
+//   border-radius: 10px;
+// }
+
+// .header-user {
+//   display: flex;
+//   justify-content: center;
+//   gap: 30px;
+// }
+
+// .image-container {
+//   position: relative;
+//   width: 225px;
+//   height: 100%;
+// }
+
+// .user-image {
+//   position: absolute;
+//   top: 50%;
+//   left: 0;
+//   transform: translateY(-50%);
+
+//   height: 300px;
+//   width: 225px;
+//   padding: 5px;
+//   border-radius: 5px;
+//   overflow: hidden;
+
+//   background-color: white;
+//   box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+// }
+
+// .user-image > img {
+//   width: 100%;
+//   height: 100%;
+// }
+
+// .user-name {
+//   color: white;
+// }
+
+// .header-info {
+//   padding: 0 15px;
+//   border-left: 2px solid palegoldenrod;
+//   display: grid;
+//   gap: 10px;
+// }
+
+// .row {
+//   color: #fff;
+//   font-weight: 600;
+//   display: flex;
+//   align-items: center;
+//   gap: 50px;
+// }
+
+// .row.between {
+//   justify-content: space-between;
+// }
+
+// .badge {
+//   padding: 0.3em 1.2em;
+//   border-radius: 5px;
+//   text-align: center;
+//   background-color: #fff;
+//   color: #000;
+// }
