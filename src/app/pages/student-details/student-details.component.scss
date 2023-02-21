@@ -76,3 +76,39 @@
     }
   };
 }
+
+.f-heading h4 {
+  font-size: 14pt;
+}
+
+.profile-cont-basic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-primary;
+
+  h2 {
+    padding-right: 32px;
+  }
+
+  i {
+    font-size: 60pt;
+  }
+}
+
+table thead {
+  background-color: $color-primary;
+  color: #FFFFFF;
+}
+
+table thead th:first-child{
+  border-radius:10px 0 0 10px;
+}
+
+table thead th:last-child{
+  border-radius:0 10px 10px 0;
+}
+
+table tbody td {
+  border-width: 1px;
+}
