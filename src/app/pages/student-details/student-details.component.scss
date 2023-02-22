@@ -112,3 +112,62 @@ table thead th:last-child{
 table tbody td {
   border-width: 1px;
 }
+
+.eng-sub{
+  height: 45px;
+  width: 100px;
+  border-radius: 8px;
+  margin-left: -145px;
+  text-align: center;
+  
+}
+.phy-sub{
+  height: 45px;
+  width: 100px;
+  border-radius: 8px;
+  margin-left: -220px;
+  text-align: center;
+
+}
+.math-sub{
+  height: 45px;
+  width: 100px;
+  border-radius: 8px;
+  margin-left: -220px;
+  text-align: center;
+
+
+}
+.chem-sub{
+  height: 45px;
+  width: 100px;
+  border-radius: 8px;
+  margin-left: -218px;
+  text-align: center;
+
+}
+.bio-sub{
+  height: 45px;
+  width: 100px;
+  border-radius: 8px;
+  margin-left: -215px;
+  text-align: center;
+
+}
+.scrol{
+  height: 45px;
+  width: 20px;
+  color: yellow;
+}
+.scrolZ{
+  height: 45px;
+  width: 20px;
+  color: yellow; 
+  margin-left: -209px;
+}
+.blueLine{
+// border: #760fe3;
+border: solid;
+
+height: 5px;
+}
