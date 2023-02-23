@@ -1,118 +1,5 @@
 @import "src/app/themes/variables";
 
-.profile-cont {
-
-  .profile-pic-cont {
-    position: relative;
-    width: 200px;
-
-    .profile-pic {
-      height: 240px;
-      width: 200px;
-      background: #FFFFFF;
-      border: 2px solid $color-primary;
-      border-radius: 10px;
-      position: absolute;
-      margin-top: -43px;
-      left: 60px;
-    }
-  }
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-around;
-  border: 1px solid $color-primary;
-  padding: 16px;
-  border-radius: 20px;
-  background-color: #876aa6;
-  z-index: 1;
-  max-height: 200px;
-
-  .stud-name h2, .stud-bio p, .attendance i {
-    color: #FFFFFF;
-  }
-
-  .stud-bio p::before {
-    content: "";
-    width: 2px;
-    background-color: $color-secondary;
-    margin-right: 16px;
-  }
-
-  .stud-bio p, .attendance p {
-    font-size: 11pt;
-    margin: 0;
-  }
-
-  .attendance {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    i {
-      padding-right: 8px;
-    }
-
-    p {
-      background: #FFFFFF;
-      color: $color-primary;
-      padding: 2px 8px;
-      border-radius: 10px;
-    }
-  }
-}
-
-.prof-header {
-  padding: 16px;
-  border-radius: 10px;
-  cursor: pointer;
-
-  p {
-    margin: 0;
-
-    i {
-      padding-right: 8px;
-      color: $color-primary;
-    }
-  };
-}
-
-.f-heading h4 {
-  font-size: 14pt;
-}
-
-.profile-cont-basic {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: $color-primary;
-
-  h2 {
-    padding-right: 32px;
-  }
-
-  i {
-    font-size: 60pt;
-  }
-}
-
-table thead {
-  background-color: $color-primary;
-  color: #FFFFFF;
-}
-
-table thead th:first-child{
-  border-radius:10px 0 0 10px;
-}
-
-table thead th:last-child{
-  border-radius:0 10px 10px 0;
-}
-
-table tbody td {
-  border-width: 1px;
-}
-
 .subjects-cont {
   display: flex;
   align-items: center;
@@ -136,46 +23,179 @@ table tbody td {
       height: 50px;
       margin: 0 16px;
     }
+
   }
 
   .subject-list {
     button {
       background-color: #dee2e6!important;
       color: black!important;
-      width: 130px;
+      width: 58px;
       height: 45px;
+      margin-right: 13px;
+    }
+    .btnA{
+      width: 25px;
+      background-color: yellow!important;
+      border-radius: 5px;
+      border: yellow !important;
     }
   }
 }
 
-.marks-table-cont {
-  border-radius: 10px;
+.f-heading h4{
+  font-size: 12pt;
+}
 
-  .title {
-    border-radius: 10px;
+.students-cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  i {
+    padding: 0 8px;
   }
+
+  .input-group {
+    span {
+      border-top-left-radius: 30px;
+      border-bottom-left-radius: 30px;
+    }
+
+    input {
+      border-top-right-radius: 30px;
+      border-bottom-right-radius: 30px;
+    }
+  }
+}
+
+.f-heading.students {
+  margin: 40px 0;
+  flex: 0 0 70%;
+}
+
+.teach-topInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.teach-imgBox {
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  overflow: hidden;
+
+  img {
+      width: 50px;
+      height: 100%;
+      object-fit: cover;
+  }
+}
+
+.teach-nameInfo {
+  max-width: calc(100% - 50px);
+  padding-left: 10px;
+
+  h5 {
+    margin-bottom: 0px;
+  }
+
+  p {margin-top: 0px; margin-bottom: 0px;}
+}
+
+.teach-profInfoCard {
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 8px 16px;
+  margin-top: 15px;
+}
+
+.teach-profInfoCard ul {
+  list-style-type: none;
+  padding-left: 0px;
+  margin-bottom: 0px;
+}
+
+.teach-profInfoCard ul li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 
   p {
     margin: 0;
-    padding: 8px;
-    font-weight: 600;
+  }
+}
+
+.teach-profInfoCard ul li:nth-of-type(2) {
+  p:last-child {
+    color: #05a60d;
+  }
+}
+
+.teach-profInfoCard ul li:nth-of-type(4) {
+  p:last-child {
+    color: #e0120b;
+  }
+}
+
+.teach-profInfoCard ul li .teach-profInfo-label {
+  flex: 0 0 calc(100% - 40px);
+  position: relative;
+  &:after {content: ':'; position: absolute; right: 0px;}
+}
+
+.stud-info {
+    display: flex;
+    align-items: center;
+
+  .teach-imgBoxTwo {
+    height: 120px;
+    border-radius: 10px;
+    border: 2px solid $color-primary;
+    overflow: hidden;
+    margin: 8px 0;
+
+    img {
+      width: 100px;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
-  .title::after {
-    content: "";
-    display: block;
-    border-bottom: 5px solid $color-primary;
-  }
+  .teach-nameInfoTwo {
+    padding-left: 8px;
+    flex: auto;
 
-  table thead {
-    color: black;
-  }
+    h5 {
+      color: $color-primary;
+    }
 
-  table thead th:first-child{
-    border-radius: 0;
-  }
+    h5, p {
+      margin: 0;
+    }
 
-  table thead th:last-child{
-    border-radius: 0;
+    p {
+      font-size: 10pt;
+    }
+
+    .attendance {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      i {
+        padding-right: 8px;
+      }
+
+      p {
+        font-size: 8pt;
+        background: $color-primary;
+        color: #FFFFFF;
+        padding: 2px 8px;
+        border-radius: 10px;
+      }
+    }
   }
 }

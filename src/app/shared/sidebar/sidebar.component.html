@@ -22,16 +22,16 @@
   </mat-list-item>
 
   <mat-list-item>
-    <mat-icon matListItemIcon>account_balance</mat-icon> Academic 
+    <mat-icon matListItemIcon>account_balance</mat-icon> Academic
   </mat-list-item>
-  <mat-list-item>
-    <mat-icon matListItemIcon [routerLink]="routes.STUDNT_DETAIL" routerLinkActive="active">photo_alum</mat-icon>Student Details
+  <mat-list-item matListItemIcon [routerLink]="routes.STUDNT_DETAIL" routerLinkActive="active">
+    <mat-icon matListItemIcon>photo_alum</mat-icon>Student Details
   </mat-list-item>
   <div>
-    <mat-list-item class="sub-menu" [routerLink]="routes.STUDNT_DETAILS" routerLinkActive="active">
+    <mat-list-item class="sub-menu" [routerLink]="routes.STUDNT_LIST" routerLinkActive="active">
       Student List
     </mat-list-item>
-    <mat-list-item class="sub-menu" [routerLink]="routes.STUDNT_DETAIL" routerLinkActive="active">
+    <mat-list-item class="sub-menu">
       Login Deactivate
     </mat-list-item>
   </div>
