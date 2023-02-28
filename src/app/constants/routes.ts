@@ -11,6 +11,9 @@ export enum routes {
   STUDNT_LIST ='/student-details/student-list',
   STUDNT_DETAIL='/student-details',
   STUDNT_INFO='/student-details/student-info',
-
+  EMP_LIST='/employee/list',
+  EMP_DEPT='/employee/department',
+  EMP_DES='/employee/designation',
+  EMP_ADD='/employee/add',
   LOGIN = '/login'
 }

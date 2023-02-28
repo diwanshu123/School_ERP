@@ -1,0 +1,67 @@
+<app-layout>
+  <div class="container p-4">
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+      <mat-tab label="Admin">
+        <div class="pt-4">
+          <div class="top-options">
+            <div class="search-area">
+              <div class="input-group pe-3">
+                <input type="search" class="form-control" placeholder="Search here...">
+                <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+              </div>
+              <div class="options">
+                <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
+                <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
+                <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
+                <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
+                <button class="btn"><img src="assets/icons/opt-print.svg"></button>
+              </div>
+            </div>
+
+            <div class="add-emp">
+              <button class="btn">
+                <i class="fa-solid fa-user-plus"></i>
+                Add Employee
+              </button>
+            </div>
+          </div>
+
+          <table class="table mt-3">
+            <thead>
+              <tr>
+                <th scope="col"><input type="checkbox" class="form-check-input"></th>
+                <th scope="col">SL</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Name</th>
+                <th scope="col">Branch</th>
+                <th scope="col">Staff Id</th>
+                <th scope="col">Designation</th>
+                <th scope="col">Department</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row"><input type="checkbox" class="form-check-input"></td>
+                <td>#001234</td>
+                <td>-</td>
+                <td>Fanny Siregar</td>
+                <td>College</td>
+                <td>1111</td>
+                <td>Principal</td>
+                <td>Science</td>
+                <td>email-telephone</td>
+                <td>Edit-Delete</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </mat-tab>
+      <mat-tab label="Teacher">Content 2</mat-tab>
+      <mat-tab label="Accountant">Content 3</mat-tab>
+      <mat-tab label="Librarian">Content 3</mat-tab>
+      <mat-tab label="Receptionist">Content 3</mat-tab>
+    </mat-tab-group>
+  </div>
+</app-layout>

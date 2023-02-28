@@ -35,6 +35,23 @@
       Login Deactivate
     </mat-list-item>
   </div>
+  <mat-list-item>
+    <mat-icon matListItemIcon>photo_alum</mat-icon>Employees
+  </mat-list-item>
+  <div>
+    <mat-list-item class="sub-menu" [routerLink]="routes.EMP_LIST" routerLinkActive="active">
+      Employee Lists
+    </mat-list-item>
+    <mat-list-item class="sub-menu" [routerLink]="routes.EMP_DEPT" routerLinkActive="active">
+      Add Department
+    </mat-list-item>
+    <mat-list-item class="sub-menu" [routerLink]="routes.EMP_DES" routerLinkActive="active">
+      Add Designation
+    </mat-list-item>
+    <mat-list-item class="sub-menu" [routerLink]="routes.EMP_ADD" routerLinkActive="active">
+      Add Employee
+    </mat-list-item>
+  </div>
   <mat-list-item routerLink="{{routes.CAREERS}}" routerLinkActive="active">
     <mat-icon matListItemIcon>library_books</mat-icon> Reports
   </mat-list-item>
