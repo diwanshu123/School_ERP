@@ -1,3 +1,5 @@
+@import "src/app/themes/variables";
+
 .top-options {
   display: flex;
   justify-content: space-between;
@@ -35,5 +37,38 @@
       background-color: #FFFFFF!important;
       color: #717579!important;
     }
+  }
+}
+
+.btn.emp-info {
+  width: 48px;
+  height: 48px;
+  background-color:#E6D3FA!important;
+  border-radius: 16px;
+
+  i {
+    color: $color-primary;
+    font-size: 14pt;
+  }
+}
+
+.btn.emp-edit {
+  width: 40px;
+  height: 40px;
+  background-color:transparent!important;
+  border-color: $color-primary;
+  border-radius: 16px;
+
+  i {
+    color: $color-primary;
+  }
+}
+
+.btn.emp-edit:last-child {
+  background-color:#F44336!important;
+  border-color: #F44336;
+
+  i {
+    color: #FFFFFF;
   }
 }
