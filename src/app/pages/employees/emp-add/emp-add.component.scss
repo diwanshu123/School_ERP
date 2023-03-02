@@ -1,0 +1,38 @@
+@import "src/app/themes/variables";
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+.upload-cont {
+  height: 200px;
+  border: 1px solid #77838F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    color:#C4C4C4;
+    margin: 0;
+
+    i {
+      font-size: 32pt;
+    }
+  }
+}
+
+.modal {
+  h6 {
+    color: $color-primary;
+  }
+
+  ol {
+    color: #77838F;
+    font-weight: 400;
+  }
+
+  .modal-dialog {
+    max-width: 80%;
+  }
+}
