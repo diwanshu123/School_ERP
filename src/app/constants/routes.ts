@@ -15,5 +15,13 @@ export enum routes {
   EMP_DEPT='/employee/department',
   EMP_DES='/employee/designation',
   EMP_ADD='/employee/add',
+  CERT_TEMP='/cert/template',
+  CERT_STUD='/cert/student',
+  CERT_EMP='/cert/employee',
+  MARKS_ENTRY='/marks/entry',
+  GRADE_RANGE='/marks/grade',
+  WORK_LIST='/homework/list',
+  WORK_NEW='/homework/list/add',
+  EVAL_REPORT='/homework/report',
   LOGIN = '/login'
 }

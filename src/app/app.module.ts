@@ -11,10 +11,16 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import { SharedModule } from "./shared/shared.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CertificateComponent } from './pages/certificate/certificate.component';
+import { MarksComponent } from './pages/marks/marks.component';
+import { HomeworkComponent } from './pages/homework/homework.component';
 
 @NgModule({
     declarations: [
-      AppComponent
+      AppComponent,
+      CertificateComponent,
+      MarksComponent,
+      HomeworkComponent
     ],
     providers: [],
     bootstrap: [AppComponent],

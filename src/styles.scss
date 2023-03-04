@@ -5,6 +5,7 @@
 @import "../fontawesome-6.2.1/scss/solid.scss";
 @import "../fontawesome-6.2.1/scss/brands.scss";
 @import "src/app/themes/variables";
+@import '~quill/dist/quill.snow.css';
 
 html, body {
   margin: 0;
@@ -80,4 +81,88 @@ button {
 
 .mat-mdc-tab:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline {
   border-color: $color-primary;
+}
+
+.mat-mdc-tab-body-content {
+  overflow: hidden!important;
+}
+
+
+.tab-container {
+  .top-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .search-area {
+      display: flex;
+      align-items: center;
+
+      .input-group {
+        max-width: 350px;
+        height: 50px;
+
+        input {
+          border-top-left-radius: 20px;
+          border-bottom-left-radius: 20px;
+          border-right: 0;
+        }
+
+        span {
+          border-top-right-radius: 20px;
+          border-bottom-right-radius: 20px;
+          background-color: #FFFFFF;
+          border-left: 0;
+        }
+      }
+    }
+
+    .options {
+      flex: 1 0 auto;
+
+      button {
+        width: 50px;
+        height: 50px;
+        background-color: #FFFFFF!important;
+        color: #717579!important;
+      }
+    }
+  }
+
+  .btn.emp-info {
+    width: 48px;
+    height: 48px;
+    background-color:#E6D3FA!important;
+    border-radius: 16px;
+
+    i {
+      color: $color-primary;
+      font-size: 14pt;
+    }
+  }
+
+  .btn.emp-edit {
+    width: 40px;
+    height: 40px;
+    background-color:transparent!important;
+    border-color: $color-primary;
+    border-radius: 16px;
+
+    i {
+      color: $color-primary;
+    }
+  }
+
+  .btn.emp-edit:last-child {
+    background-color:#F44336!important;
+    border-color: #F44336;
+
+    i {
+      color: #FFFFFF;
+    }
+  }
+}
+
+quill-editor {
+  display: block!important;
 }

@@ -52,6 +52,42 @@
       Add Employee
     </mat-list-item>
   </div>
+  <mat-list-item>
+    <mat-icon matListItemIcon>photo_alum</mat-icon>Certificate
+  </mat-list-item>
+  <div>
+    <mat-list-item class="sub-menu" [routerLink]="routes.CERT_TEMP" routerLinkActive="active">
+      Certificate Template
+    </mat-list-item>
+    <mat-list-item class="sub-menu" [routerLink]="routes.CERT_STUD" routerLinkActive="active">
+      Generate Student
+    </mat-list-item>
+    <mat-list-item class="sub-menu" [routerLink]="routes.CERT_EMP" routerLinkActive="active">
+      Generate Employee
+    </mat-list-item>
+  </div>
+  <mat-list-item>
+    <mat-icon matListItemIcon>photo_alum</mat-icon>Exam Master
+  </mat-list-item>
+  <div>
+    <mat-list-item class="sub-menu" [routerLink]="routes.MARKS_ENTRY" routerLinkActive="active">
+      Marks Entries
+    </mat-list-item>
+    <mat-list-item class="sub-menu" [routerLink]="routes.GRADE_RANGE" routerLinkActive="active">
+      Grades Range
+    </mat-list-item>
+  </div>
+  <mat-list-item>
+    <mat-icon matListItemIcon>photo_alum</mat-icon>Homework
+  </mat-list-item>
+  <div>
+    <mat-list-item class="sub-menu" [routerLink]="routes.WORK_LIST" routerLinkActive="active">
+      Homework
+    </mat-list-item>
+    <mat-list-item class="sub-menu" [routerLink]="routes.EVAL_REPORT" routerLinkActive="active">
+      Evaluation Report
+    </mat-list-item>
+  </div>
   <mat-list-item routerLink="{{routes.CAREERS}}" routerLinkActive="active">
     <mat-icon matListItemIcon>library_books</mat-icon> Reports
   </mat-list-item>

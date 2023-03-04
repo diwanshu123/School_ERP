@@ -18,6 +18,18 @@ const routes: Routes = [
   {
     path: 'employee',
     loadChildren: () => import('./pages/employees/employees.module').then( m => m.EmployeesModule)
+  },
+  {
+    path: 'cert',
+    loadChildren: () => import('./pages/certificate/certificate.module').then( m => m.CertificateModule)
+  },
+  {
+    path: 'marks',
+    loadChildren: () => import('./pages/marks/marks.module').then( m => m.MarksModule)
+  },
+  {
+    path: 'homework',
+    loadChildren: () => import('./pages/homework/homework.module').then( m => m.HomeworkModule)
   }
 ];
 

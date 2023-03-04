@@ -1,0 +1,61 @@
+<app-layout>
+  <div class="container p-4">
+    <div class="row mt-5 mb-3">
+      <div class="col-4">
+        <label class="form-label">Exam *</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="col-4 offset-4">
+        <label class="form-label">Class *</label>
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="row mt-5 mb-3">
+      <div class="col-4">
+        <label class="form-label">Section *</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="col-4 offset-4">
+        <label class="form-label">Subject *</label>
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="text-end mb-5">
+      <button class="btn">Save</button>
+    </div>
+
+    <p class="table-heading">Marks Entries</p>
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th scope="col">SL</th>
+          <th scope="col">Student Name</th>
+          <th scope="col">Category</th>
+          <th scope="col">Register No.</th>
+          <th scope="col">Roll</th>
+          <th scope="col">Is Absent</th>
+          <th scope="col">Practical (40)</th>
+          <th scope="col">Written (60)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>#001234</td>
+          <td>Fanny Siregar</td>
+          <td>General</td>
+          <td>111111</td>
+          <td>11</td>
+          <td>
+            <input class="form-check-input check" type="checkbox">
+          </td>
+          <td>
+            <input class="form-control marks" type="number">
+          </td>
+          <td>
+            <input class="form-control marks" type="number">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</app-layout>

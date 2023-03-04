@@ -2,7 +2,7 @@
   <div class="container p-4">
     <div class="tab-container">
       <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-        <mat-tab label="Admin">
+        <mat-tab label="Grade List">
           <div class="pt-4">
             <div class="top-options">
               <div class="search-area">
@@ -18,44 +18,28 @@
                   <button class="btn"><img src="assets/icons/opt-print.svg"></button>
                 </div>
               </div>
-
-              <div class="add-emp">
-                <button class="btn">
-                  <i class="fa-solid fa-user-plus"></i>
-                  Add Employee
-                </button>
-              </div>
             </div>
 
             <table class="table mt-3">
               <thead>
                 <tr>
-                  <th scope="col"><input type="checkbox" class="form-check-input"></th>
                   <th scope="col">SL</th>
-                  <th scope="col">Photo</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Branch</th>
-                  <th scope="col">Staff Id</th>
-                  <th scope="col">Designation</th>
-                  <th scope="col">Department</th>
-                  <th scope="col">Contact</th>
+                  <th scope="col">Grade Name</th>
+                  <th scope="col">Grade Point</th>
+                  <th scope="col">Min Percentage</th>
+                  <th scope="col">Max Percentage</th>
+                  <th scope="col">Remarks</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td scope="row"><input type="checkbox" class="form-check-input"></td>
                   <td>#001234</td>
-                  <td>-</td>
-                  <td>Fanny Siregar</td>
-                  <td>College</td>
-                  <td>1111</td>
-                  <td>Principal</td>
-                  <td>Science</td>
-                  <td>
-                    <button class="btn emp-info me-1"><i class="fa-solid fa-envelope"></i></button>
-                    <button class="btn emp-info ms-1"><i class="fa-solid fa-phone"></i></button>
-                  </td>
+                  <td>A-</td>
+                  <td>5.0</td>
+                  <td>50%</td>
+                  <td>100%</td>
+                  <td>Excellent!</td>
                   <td>
                     <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
                     <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
@@ -65,10 +49,37 @@
             </table>
           </div>
         </mat-tab>
-        <mat-tab label="Teacher">Content 2</mat-tab>
-        <mat-tab label="Accountant">Content 3</mat-tab>
-        <mat-tab label="Librarian">Content 3</mat-tab>
-        <mat-tab label="Receptionist">Content 3</mat-tab>
+        <mat-tab label="Create Grade">
+          <div class="row mt-5 mb-3">
+            <div class="col-4">
+              <label class="form-label">Name *</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-4 offset-4">
+              <label class="form-label">Grade Point *</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="row mt-5 mb-3">
+            <div class="col-4">
+              <label class="form-label">Min Percentage *</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-4 offset-4">
+              <label class="form-label">Max Percentage *</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Remarks</label>
+            <textarea class="form-control" rows="3"></textarea>
+          </div>
+
+          <div class="text-end mb-3">
+            <button class="btn">Save</button>
+          </div>
+        </mat-tab>
       </mat-tab-group>
     </div>
   </div>
