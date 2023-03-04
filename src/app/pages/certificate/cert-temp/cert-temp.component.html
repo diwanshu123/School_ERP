@@ -1,0 +1,150 @@
+<app-layout>
+  <div class="container p-4">
+    <div class="tab-container">
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab label="Certificate List">
+          <div class="pt-4">
+            <div class="top-options">
+              <div class="search-area">
+                <div class="input-group pe-3">
+                  <input type="search" class="form-control" placeholder="Search here...">
+                  <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+                <div class="options">
+                  <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-print.svg"></button>
+                </div>
+              </div>
+
+              <div class="add-emp">
+                <button class="btn">
+                  <i class="fa-solid fa-user-plus"></i>
+                  Add Employee
+                </button>
+              </div>
+            </div>
+
+            <table class="table mt-3">
+              <thead>
+                <tr>
+                  <th scope="col"><input type="checkbox" class="form-check-input"></th>
+                  <th scope="col">SL</th>
+                  <th scope="col">Photo</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Branch</th>
+                  <th scope="col">Staff Id</th>
+                  <th scope="col">Designation</th>
+                  <th scope="col">Department</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td scope="row"><input type="checkbox" class="form-check-input"></td>
+                  <td>#001234</td>
+                  <td>-</td>
+                  <td>Fanny Siregar</td>
+                  <td>College</td>
+                  <td>1111</td>
+                  <td>Principal</td>
+                  <td>Science</td>
+                  <td>
+                    <button class="btn emp-info me-1"><i class="fa-solid fa-envelope"></i></button>
+                    <button class="btn emp-info ms-1"><i class="fa-solid fa-phone"></i></button>
+                  </td>
+                  <td>
+                    <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
+                    <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-tab>
+        <mat-tab label="Add Certificate">
+
+          <div class="mt-5">
+            <div class="row mb-3">
+              <div class="col-4">
+                <label class="form-label">Certificate Name *</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-4">
+                <label class="form-label">Applicable User *</label>
+                <input type="text" class="form-control" placeholder="Layout Width (mm)">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Page Layout *</label>
+              <input type="text" class="form-control">
+            </div>
+
+            <div class="row mb-3">
+              <label class="form-label">User Photo Style *</label>
+              <div class="col-4">
+                <input type="text" class="form-control" placeholder="Square">
+              </div>
+              <div class="col-4 offset-4">
+                <input type="text" class="form-control" placeholder="Photo Size (px)">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="form-label">Layout Spacing *</label>
+              <div class="col-4">
+                <input type="text" class="form-control" placeholder="Top Space (px)">
+              </div>
+              <div class="col-4 offset-4">
+                <input type="text" class="form-control" placeholder="Bottom Space (px)">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-4">
+                <input type="text" class="form-control" placeholder="Right Space (px)">
+              </div>
+              <div class="col-4 offset-4">
+                <input type="text" class="form-control" placeholder="Left Space (px)">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-4">
+                <label class="form-label">Signature Image</label>
+                <input type="text" class="form-control" placeholder="Layout Width (mm)">
+              </div>
+
+              <div class="col-4">
+                <label class="form-label">Logo Image</label>
+                <input type="text" class="form-control" placeholder="Layout Width (mm)">
+              </div>
+
+              <div class="col-4">
+                <label class="form-label">Background Image</label>
+                <input type="text" class="form-control" placeholder="Layout Width (mm)">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Certificate Content</label>
+              <quill-editor></quill-editor>
+            </div>
+
+            <div class="text-end">
+              <button class="btn">Save</button>
+            </div>
+          </div>
+
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</app-layout>

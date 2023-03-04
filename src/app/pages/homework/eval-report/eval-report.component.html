@@ -1,0 +1,54 @@
+<app-layout>
+  <div class="container tab-container p-4">
+    <div class="row mt-5 mb-3">
+      <div class="col-4">
+        <label class="form-label">Class *</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="col-4">
+        <label class="form-label">Section *</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="col-4">
+        <label class="form-label">Subject *</label>
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="text-end mb-5">
+      <button class="btn">Filter</button>
+    </div>
+
+    <p class="table-heading">Evaluation Report</p>
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th scope="col">SL</th>
+          <th scope="col">Subject</th>
+          <th scope="col">Class</th>
+          <th scope="col">Section</th>
+          <th scope="col">Date of Homework</th>
+          <th scope="col">Date of Submission</th>
+          <th scope="col">Complete/Incomplete</th>
+          <th scope="col">Total Student</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>#001234</td>
+          <td>Maths</td>
+          <td>Six</td>
+          <td>A</td>
+          <td>111111111</td>
+          <td>11</td>
+          <td></td>
+          <td></td>
+          <td>
+            <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
+            <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</app-layout>
