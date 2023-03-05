@@ -2,21 +2,27 @@
   <mat-list-item routerLink="{{routes.SECTIONS}}" routerLinkActive="active">
     <mat-icon matListItemIcon>border_all</mat-icon> Dashboard
   </mat-list-item>
-  <mat-list-item (click)="isSubMenuOpen=!isSubMenuOpen">
-    <mat-icon matListItemIcon>group_work</mat-icon> Admission
-  </mat-list-item>
-  <!--Sub Menu-->
-    <div>
-      <mat-list-item class="sub-menu" [routerLink]="routes.C_ADMISSION" routerLinkActive="active">
+
+  <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/admission') ? true : false">
+    <mat-expansion-panel-header>
+      <mat-list-item [ngClass]="currentUrl.includes('/admission') ? 'active' : ''">
+        <mat-icon matListItemIcon>group_work</mat-icon> Admission
+      </mat-list-item>
+    </mat-expansion-panel-header>
+    <!--Sub Menu-->
+    <div class="sub-menu-cont">
+      <mat-list-item class="sub-menu" [routerLink]="routes.C_ADMISSION" routerLinkActive="sub-active">
         Create Admission
       </mat-list-item>
-      <mat-list-item class="sub-menu" [routerLink]="routes.CAT_ADMISSION" routerLinkActive="active">
+      <mat-list-item class="sub-menu" [routerLink]="routes.CAT_ADMISSION" routerLinkActive="sub-active">
         Category
       </mat-list-item>
-      <mat-list-item class="sub-menu" [routerLink]="routes.MUL_ADMISSION" routerLinkActive="active">
+      <mat-list-item class="sub-menu" [routerLink]="routes.MUL_ADMISSION" routerLinkActive="sub-active">
         Multiple Import
       </mat-list-item>
     </div>
+  </mat-expansion-panel>
+
   <mat-list-item>
     <mat-icon matListItemIcon>add_home</mat-icon> Attendance
   </mat-list-item>
@@ -24,70 +30,102 @@
   <mat-list-item>
     <mat-icon matListItemIcon>account_balance</mat-icon> Academic
   </mat-list-item>
-  <mat-list-item matListItemIcon [routerLink]="routes.STUDNT_DETAIL" routerLinkActive="active">
-    <mat-icon matListItemIcon>photo_alum</mat-icon>Student Details
-  </mat-list-item>
-  <div>
-    <mat-list-item class="sub-menu" [routerLink]="routes.STUDNT_LIST" routerLinkActive="active">
-      Student List
-    </mat-list-item>
-    <mat-list-item class="sub-menu">
-      Login Deactivate
-    </mat-list-item>
-  </div>
-  <mat-list-item>
-    <mat-icon matListItemIcon>photo_alum</mat-icon>Employees
-  </mat-list-item>
-  <div>
-    <mat-list-item class="sub-menu" [routerLink]="routes.EMP_LIST" routerLinkActive="active">
-      Employee Lists
-    </mat-list-item>
-    <mat-list-item class="sub-menu" [routerLink]="routes.EMP_DEPT" routerLinkActive="active">
-      Add Department
-    </mat-list-item>
-    <mat-list-item class="sub-menu" [routerLink]="routes.EMP_DES" routerLinkActive="active">
-      Add Designation
-    </mat-list-item>
-    <mat-list-item class="sub-menu" [routerLink]="routes.EMP_ADD" routerLinkActive="active">
-      Add Employee
-    </mat-list-item>
-  </div>
-  <mat-list-item>
-    <mat-icon matListItemIcon>photo_alum</mat-icon>Certificate
-  </mat-list-item>
-  <div>
-    <mat-list-item class="sub-menu" [routerLink]="routes.CERT_TEMP" routerLinkActive="active">
-      Certificate Template
-    </mat-list-item>
-    <mat-list-item class="sub-menu" [routerLink]="routes.CERT_STUD" routerLinkActive="active">
-      Generate Student
-    </mat-list-item>
-    <mat-list-item class="sub-menu" [routerLink]="routes.CERT_EMP" routerLinkActive="active">
-      Generate Employee
-    </mat-list-item>
-  </div>
-  <mat-list-item>
-    <mat-icon matListItemIcon>photo_alum</mat-icon>Exam Master
-  </mat-list-item>
-  <div>
-    <mat-list-item class="sub-menu" [routerLink]="routes.MARKS_ENTRY" routerLinkActive="active">
-      Marks Entries
-    </mat-list-item>
-    <mat-list-item class="sub-menu" [routerLink]="routes.GRADE_RANGE" routerLinkActive="active">
-      Grades Range
-    </mat-list-item>
-  </div>
-  <mat-list-item>
-    <mat-icon matListItemIcon>photo_alum</mat-icon>Homework
-  </mat-list-item>
-  <div>
-    <mat-list-item class="sub-menu" [routerLink]="routes.WORK_LIST" routerLinkActive="active">
-      Homework
-    </mat-list-item>
-    <mat-list-item class="sub-menu" [routerLink]="routes.EVAL_REPORT" routerLinkActive="active">
-      Evaluation Report
-    </mat-list-item>
-  </div>
+
+  <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/student-details') ? true : false">
+    <mat-expansion-panel-header>
+      <mat-list-item matListItemIcon [routerLink]="routes.STUDNT_DETAIL" routerLinkActive="active">
+        <mat-icon matListItemIcon>photo_alum</mat-icon>Student Details
+      </mat-list-item>
+    </mat-expansion-panel-header>
+    <!--Sub Menu-->
+    <div class="sub-menu-cont">
+      <mat-list-item class="sub-menu" [routerLink]="routes.STUDNT_LIST" routerLinkActive="sub-active">
+        Student List
+      </mat-list-item>
+      <mat-list-item class="sub-menu">
+        Login Deactivate
+      </mat-list-item>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/employee/') ? true : false">
+    <mat-expansion-panel-header>
+      <mat-list-item [ngClass]="currentUrl.includes('/employee/') ? 'active' : ''">
+        <mat-icon matListItemIcon>photo_alum</mat-icon>Employees
+      </mat-list-item>
+    </mat-expansion-panel-header>
+    <!--Sub Menu-->
+    <div class="sub-menu-cont">
+      <mat-list-item class="sub-menu" [routerLink]="routes.EMP_LIST" routerLinkActive="sub-active">
+        Employee Lists
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.EMP_DEPT" routerLinkActive="sub-active">
+        Add Department
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.EMP_DES" routerLinkActive="sub-active">
+        Add Designation
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.EMP_ADD" routerLinkActive="sub-active">
+        Add Employee
+      </mat-list-item>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/cert') ? true : false">
+    <mat-expansion-panel-header>
+      <mat-list-item [ngClass]="currentUrl.includes('/cert') ? 'active' : ''">
+        <mat-icon matListItemIcon>photo_alum</mat-icon>Certificate
+      </mat-list-item>
+    </mat-expansion-panel-header>
+    <!--Sub Menu-->
+    <div class="sub-menu-cont">
+      <mat-list-item class="sub-menu" [routerLink]="routes.CERT_TEMP" routerLinkActive="sub-active">
+        Certificate Template
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.CERT_STUD" routerLinkActive="sub-active">
+        Generate Student
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.CERT_EMP" routerLinkActive="sub-active">
+        Generate Employee
+      </mat-list-item>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/marks') ? true : false">
+    <mat-expansion-panel-header>
+      <mat-list-item [ngClass]="currentUrl.includes('/marks') ? 'active' : ''">
+        <mat-icon matListItemIcon>photo_alum</mat-icon>Exam Master
+      </mat-list-item>
+    </mat-expansion-panel-header>
+    <!--Sub Menu-->
+    <div class="sub-menu-cont">
+      <mat-list-item class="sub-menu" [routerLink]="routes.MARKS_ENTRY" routerLinkActive="sub-active">
+        Marks Entries
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.GRADE_RANGE" routerLinkActive="sub-active">
+        Grades Range
+      </mat-list-item>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/homework') ? true : false">
+    <mat-expansion-panel-header>
+      <mat-list-item [ngClass]="currentUrl.includes('/homework') ? 'active' : ''">
+        <mat-icon matListItemIcon>photo_alum</mat-icon>Homework
+      </mat-list-item>
+    </mat-expansion-panel-header>
+    <!--Sub Menu-->
+    <div class="sub-menu-cont">
+      <mat-list-item class="sub-menu" [routerLink]="routes.WORK_LIST" routerLinkActive="sub-active">
+        Homework
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.EVAL_REPORT" routerLinkActive="sub-active">
+        Evaluation Report
+      </mat-list-item>
+    </div>
+  </mat-expansion-panel>
+
+
   <mat-list-item routerLink="{{routes.CAREERS}}" routerLinkActive="active">
     <mat-icon matListItemIcon>library_books</mat-icon> Reports
   </mat-list-item>

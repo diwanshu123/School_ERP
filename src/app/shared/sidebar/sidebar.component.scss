@@ -6,6 +6,20 @@
   color: $color-primary;
 }
 
-.sub-menu {
-  padding-left: 60px;
+.sub-menu-cont {
+  position: relative;
+
+  .sub-menu {
+    padding-left: 60px;
+  }
+}
+
+.sub-menu-cont::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  bottom: 10px;
+  right: auto;
+  border: 2px solid $color-primary;
 }

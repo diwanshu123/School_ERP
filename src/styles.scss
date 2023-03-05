@@ -72,6 +72,14 @@ button {
 
   .mdc-list-item__primary-text {
     color: #FFFFFF;
+    font-weight: 600;
+  }
+}
+
+.mat-mdc-list-item.sub-active {
+  .mdc-list-item__primary-text {
+    color: $color-primary;
+    font-weight: 600;
   }
 }
 
@@ -85,6 +93,15 @@ button {
 
 .mat-mdc-tab-body-content {
   overflow: hidden!important;
+}
+
+.mat-expansion-panel {
+  box-shadow: none!important;
+  background: unset;
+}
+
+.mat-expansion-panel-header, .mat-expansion-panel-body {
+  padding: 0!important;
 }
 
 
