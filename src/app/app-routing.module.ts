@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'homework',
     loadChildren: () => import('./pages/homework/homework.module').then( m => m.HomeworkModule)
+  },
+  {
+    path: 'bulk',
+    loadChildren: () => import('./pages/bulk-sms/bulk-sms.module').then( m => m.BulkSmsModule)
   }
 ];
 

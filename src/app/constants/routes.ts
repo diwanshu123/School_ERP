@@ -23,5 +23,11 @@ export enum routes {
   WORK_LIST='/homework/list',
   WORK_NEW='/homework/list/add',
   EVAL_REPORT='/homework/report',
+  BULK_SEND_SMS='/bulk/send-sms',
+  BULK_SMS_REPORT='/bulk/sms-report',
+  BULK_SMS_TEMP='/bulk/sms-temp',
+  BULK_EMAIL_TEMP='/bulk/email-temp',
+  BULK_STUD_BIRTH='/bulk/stud-birth',
+  BULK_STAFF_BIRTH='/bulk/staff-birth',
   LOGIN = '/login'
 }

@@ -65,6 +65,12 @@ button {
   cursor: pointer!important;
 }
 
+.mdc-list-item__content, .mdc-list-item__primary-text {
+  text-overflow: unset !important;
+  white-space: normal !important;
+  overflow: unset !important;
+}
+
 .mat-mdc-list-item.active {
   background: linear-gradient(230deg, $color-primary 0%, #FFFFFF 130%);
   border-top-right-radius: 30px;

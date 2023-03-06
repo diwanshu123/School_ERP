@@ -19,16 +19,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     providers: [],
     bootstrap: [AppComponent],
     imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        AppRoutingModule,
-        MatToolbarModule,
-        MatSidenavModule,
-        MatButtonModule,
-        MatIconModule,
-        SharedModule
+      BrowserModule,
+      BrowserAnimationsModule,
+      AppRoutingModule,
+      HttpClientModule,
+      AppRoutingModule,
+      MatToolbarModule,
+      MatSidenavModule,
+      MatButtonModule,
+      MatIconModule,
+      SharedModule
     ]
 })
 export class AppModule { }

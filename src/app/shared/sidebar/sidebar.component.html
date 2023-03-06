@@ -125,6 +125,35 @@
     </div>
   </mat-expansion-panel>
 
+  <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/bulk') ? true : false">
+    <mat-expansion-panel-header>
+      <mat-list-item [ngClass]="currentUrl.includes('/bulk') ? 'active' : ''">
+        <mat-icon matListItemIcon>photo_alum</mat-icon>Bulk SMS and Email
+      </mat-list-item>
+    </mat-expansion-panel-header>
+    <!--Sub Menu-->
+    <div class="sub-menu-cont">
+      <mat-list-item class="sub-menu" [routerLink]="routes.BULK_SEND_SMS" routerLinkActive="sub-active">
+        Send SMS / Email
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.BULK_SMS_REPORT" routerLinkActive="sub-active">
+        SMS / Email Report
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.BULK_SMS_TEMP" routerLinkActive="sub-active">
+        SMS Template
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.BULK_EMAIL_TEMP" routerLinkActive="sub-active">
+        Email Template
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.BULK_STUD_BIRTH" routerLinkActive="sub-active">
+        Student Birthday Wishes
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.BULK_STAFF_BIRTH" routerLinkActive="sub-active">
+        Staff Birthday Wishes
+      </mat-list-item>
+    </div>
+  </mat-expansion-panel>
+
 
   <mat-list-item routerLink="{{routes.CAREERS}}" routerLinkActive="active">
     <mat-icon matListItemIcon>library_books</mat-icon> Reports

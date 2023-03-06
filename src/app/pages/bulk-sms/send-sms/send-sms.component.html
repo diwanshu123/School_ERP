@@ -1,0 +1,56 @@
+<app-layout>
+  <div class="container p-4">
+    <div class="tab-container">
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab label="SMS">
+          <div class="pt-4">
+            <div class="row mt-5 mb-3">
+              <div class="col-4">
+                <label class="form-label">Campaign Name *</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-4 offset-4">
+                <label class="form-label">Template *</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Message *</label>
+              <textarea class="form-control" rows="6"></textarea>
+            </div>
+
+            <div class="row mt-5 mb-3">
+              <div class="col-4">
+                <label class="form-label">SMS Gateway *</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-4 offset-4">
+                <label class="form-label">Type *</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+
+            <div class="row mt-5 mb-3">
+              <div class="col-4">
+                <label class="form-label">Schedule Date *</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-4 offset-4">
+                <label class="form-label">Schedule Time *</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+
+            <div class="text-end mb-3">
+              <button class="btn">Save</button>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Email">
+
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</app-layout>
