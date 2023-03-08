@@ -27,9 +27,34 @@
     <mat-icon matListItemIcon>add_home</mat-icon> Attendance
   </mat-list-item>
 
-  <mat-list-item>
-    <mat-icon matListItemIcon>account_balance</mat-icon> Academic
-  </mat-list-item>
+  <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/academic') ? true : false">
+    <mat-expansion-panel-header>
+      <mat-list-item [ngClass]="currentUrl.includes('/academic') ? 'active' : ''">
+        <mat-icon matListItemIcon>account_balance</mat-icon>Academic
+      </mat-list-item>
+    </mat-expansion-panel-header>
+    <!--Sub Menu-->
+    <div class="sub-menu-cont">
+      <mat-list-item class="sub-menu" [routerLink]="routes.ACADE_CLASS" routerLinkActive="sub-active">
+        Control Classes
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.ACADE_ASSIGN" routerLinkActive="sub-active">
+        Assign Class Teacher
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.ACADE_SUB" routerLinkActive="sub-active">
+        Subject
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.ACADE_CLASS_ASSIGN" routerLinkActive="sub-active">
+        Class Assign
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.ACADE_CLASS_SCH" routerLinkActive="sub-active">
+        Class Schedule
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.ACADE_TEACHER_SCH" routerLinkActive="sub-active">
+        Teacher Schedule
+      </mat-list-item>
+    </div>
+  </mat-expansion-panel>
 
   <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/student-details') ? true : false">
     <mat-expansion-panel-header>
@@ -154,15 +179,58 @@
     </div>
   </mat-expansion-panel>
 
+  <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/transport') ? true : false">
+    <mat-expansion-panel-header>
+      <mat-list-item [ngClass]="currentUrl.includes('/transport') ? 'active' : ''">
+        <mat-icon matListItemIcon>photo_alum</mat-icon>Transport
+      </mat-list-item>
+    </mat-expansion-panel-header>
+    <!--Sub Menu-->
+    <div class="sub-menu-cont">
+      <mat-list-item class="sub-menu" [routerLink]="routes.TRANS_ROUTE" routerLinkActive="sub-active">
+        Route Master
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.TRANS_VEHICLE" routerLinkActive="sub-active">
+        Vehicle Master
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.TRANS_STOP" routerLinkActive="sub-active">
+        Stop Page
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.TRANS_ASSIGN" routerLinkActive="sub-active">
+        Assign Vehicle
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.TRANS_REPORT" routerLinkActive="sub-active">
+        Allocation Report
+      </mat-list-item>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/reception') ? true : false">
+    <mat-expansion-panel-header>
+      <mat-list-item [ngClass]="currentUrl.includes('/reception') ? 'active' : ''">
+        <mat-icon matListItemIcon>photo_alum</mat-icon>Reception
+      </mat-list-item>
+    </mat-expansion-panel-header>
+    <!--Sub Menu-->
+    <div class="sub-menu-cont">
+      <mat-list-item class="sub-menu" [routerLink]="routes.RECEP_ENQUIRY" routerLinkActive="sub-active">
+        Admission Enquiry
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.RECEP_CALLLOG" routerLinkActive="sub-active">
+        Call Log
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.RECEP_VISITORLOG" routerLinkActive="sub-active">
+        Visitor Log
+      </mat-list-item>
+    </div>
+  </mat-expansion-panel>
+
 
   <mat-list-item routerLink="{{routes.CAREERS}}" routerLinkActive="active">
     <mat-icon matListItemIcon>library_books</mat-icon> Reports
   </mat-list-item>
   <mat-list-item routerLink="{{routes.STUDCORNER}}" routerLinkActive="active">
     <mat-icon matListItemIcon>co_present</mat-icon> Student Accounting
-  </mat-list-item>
-  <mat-list-item routerLink="{{routes.PUBLIC_MEND}}" routerLinkActive="active">
-    <mat-icon matListItemIcon>document_scanner</mat-icon> Reception
   </mat-list-item>
 </mat-list>
 

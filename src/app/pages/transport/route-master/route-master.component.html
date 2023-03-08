@@ -1,0 +1,80 @@
+<app-layout>
+  <div class="container p-4">
+    <div class="tab-container">
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab label="Route List">
+          <div class="pt-4">
+            <div class="top-options">
+              <div class="search-area">
+                <div class="input-group pe-3">
+                  <input type="search" class="form-control" placeholder="Search here...">
+                  <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+                <div class="options">
+                  <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-print.svg"></button>
+                </div>
+              </div>
+            </div>
+
+            <table class="table mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">SL</th>
+                  <th scope="col">Route Name</th>
+                  <th scope="col">Start Place</th>
+                  <th scope="col">Stop Place</th>
+                  <th scope="col">Remarks</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#001234</td>
+                  <td>Max ABC</td>
+                  <td>january-month-fees</td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
+                    <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-tab>
+        <mat-tab label="Create Route">
+          <div class="my-5">
+            <div class="mb-3">
+              <label class="form-label">Route Name *</label>
+              <input type="text" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Start Place *</label>
+              <input type="text" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Stop Place *</label>
+              <input type="text" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Remarks *</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+
+          <div class="text-end mb-3">
+            <button class="btn">Save</button>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</app-layout>

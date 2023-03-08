@@ -1,0 +1,149 @@
+<app-layout>
+  <div class="container p-4">
+    <div class="tab-container">
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab label="Enquiry List">
+          <div class="pt-4">
+            <div class="top-options">
+              <div class="search-area">
+                <div class="input-group pe-3">
+                  <input type="search" class="form-control" placeholder="Search here...">
+                  <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+                <div class="options">
+                  <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-print.svg"></button>
+                </div>
+              </div>
+            </div>
+
+            <table class="table mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">SL</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Mobile No.</th>
+                  <th scope="col">Guardian</th>
+                  <th scope="col">Reference</th>
+                  <th scope="col">Enquiry Date</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#001234</td>
+                  <td>Max ABC</td>
+                  <td>january-month-fees</td>
+                  <td>january-month-fees</td>
+                  <td>january-month-fees</td>
+                  <td>january-month-fees</td>
+                  <td></td>
+                  <td>
+                    <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
+                    <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-tab>
+        <mat-tab label="Add Enquiry">
+          <div class="my-5">
+            <div class="mb-3">
+              <label class="form-label">Name *</label>
+              <input type="text" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Gender *</label>
+              <input type="text" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Date Of Birth *</label>
+              <input type="text" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Previous School</label>
+              <input type="text" class="form-control">
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-4">
+                <label class="form-label">Father Name *</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-4 offset-4">
+                <label class="form-label">Mother Name *</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-4">
+                <label class="form-label">Mobile No. *</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-4 offset-4">
+                <label class="form-label">E-mail *</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Address</label>
+              <textarea class="form-control" rows="5"></textarea>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-4">
+                <label class="form-label">No. Of Child</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-4 offset-4">
+                <label class="form-label">Assigned *</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-4">
+                <label class="form-label">Reference</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-4 offset-4">
+                <label class="form-label">Response *</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Note</label>
+              <input type="text" class="form-control">
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-4">
+                <label class="form-label">Date</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-4 offset-4">
+                <label class="form-label">Class Apply For *</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+
+          <div class="text-end mb-3">
+            <button class="btn">Save</button>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</app-layout>

@@ -1,0 +1,124 @@
+<app-layout>
+  <div class="container tab-container p-4">
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+      <mat-tab label="Class">
+        <div class="row mt-5 mb-3">
+          <h6>Create Class</h6>
+          <div class="col-4">
+            <label class="form-label">Name *</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="col-4">
+            <label class="form-label">Class Numeric *</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="col-4">
+            <label class="form-label">Section *</label>
+            <input type="text" class="form-control">
+          </div>
+        </div>
+        <div class="text-end mb-5">
+          <button class="btn">Save</button>
+        </div>
+
+        <h6 class="table-heading mb-3">Class List</h6>
+        <div class="top-options">
+          <div class="search-area">
+            <div class="input-group pe-3">
+              <input type="search" class="form-control" placeholder="Search here...">
+              <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+            <div class="options">
+              <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
+              <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
+              <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
+              <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
+              <button class="btn"><img src="assets/icons/opt-print.svg"></button>
+            </div>
+          </div>
+        </div>
+        <table class="table mt-3">
+          <thead>
+            <tr>
+              <th scope="col">SL</th>
+              <th scope="col">Branch</th>
+              <th scope="col">Class Named</th>
+              <th scope="col">Class Numerice</th>
+              <th scope="col">Section</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#001234</td>
+              <td>Six</td>
+              <td>A</td>
+              <td>111111111</td>
+              <td>11</td>
+              <td>
+                <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
+                <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-tab>
+
+      <mat-tab label="Section">
+        <div class="row mt-5 mb-3">
+          <div class="col-4">
+            <label class="form-label">Name *</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="col-4 offset-4">
+            <label class="form-label">Capacity *</label>
+            <input type="text" class="form-control">
+          </div>
+        </div>
+        <div class="text-end mb-5">
+          <button class="btn">Save</button>
+        </div>
+
+        <h6 class="table-heading mb-3">Section List</h6>
+        <div class="top-options">
+          <div class="search-area">
+            <div class="input-group pe-3">
+              <input type="search" class="form-control" placeholder="Search here...">
+              <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+            <div class="options">
+              <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
+              <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
+              <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
+              <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
+              <button class="btn"><img src="assets/icons/opt-print.svg"></button>
+            </div>
+          </div>
+        </div>
+        <table class="table mt-3">
+          <thead>
+            <tr>
+              <th scope="col">SL</th>
+              <th scope="col">Branch</th>
+              <th scope="col">Section Name</th>
+              <th scope="col">Capacity</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#001234</td>
+              <td>Six</td>
+              <td>A</td>
+              <td>111111111</td>
+              <td>
+                <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
+                <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</app-layout>
