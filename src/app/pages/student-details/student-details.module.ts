@@ -7,6 +7,7 @@ import { StudentDetailsComponent } from './student-details.component';
 import { StudentMainComponent } from './student-main/student-main.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import { StudentInfoComponent } from './student-info/student-info.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { StudentInfoComponent } from './student-info/student-info.component';
   imports: [
     CommonModule,
     StudentDetailsRoutingModule,
-    SharedModule
+    SharedModule,
+    MatSelectModule
   ]
 })
 export class StudentDetailsModule { }

@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./student-list.component.scss']
 })
 export class StudentListComponent {
+  selected = 'sdfh';
+  selectedSSection="hey"
 
 }
