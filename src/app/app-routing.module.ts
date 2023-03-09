@@ -34,6 +34,18 @@ const routes: Routes = [
   {
     path: 'bulk',
     loadChildren: () => import('./pages/bulk-sms/bulk-sms.module').then( m => m.BulkSmsModule)
+  },
+  {
+    path: 'transport',
+    loadChildren: () => import('./pages/transport/transport.module').then( m => m.TransportModule)
+  },
+  {
+    path: 'reception',
+    loadChildren: () => import('./pages/reception/reception.module').then( m => m.ReceptionModule)
+  },
+  {
+    path: 'academic',
+    loadChildren: () => import('./pages/academic/academic.module').then( m => m.AcademicModule)
   }
 ];
 
