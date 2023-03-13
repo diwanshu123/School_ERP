@@ -2,14 +2,14 @@
     <div class="container p-4">
         <div class="tab-container">
             <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-                <mat-tab label="Fine List">
+                <mat-tab label="Templete List">
                     <div class="pt-4">
                       <div class="top-options">
                         <div class="search-area">
                           <div class="input-group pe-3">
                             <input type="search" class="form-control" placeholder="Search here...">
-                            <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
-                          </div>
+                        </div>
+                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
                           <div class="options">
                             <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
                             <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
@@ -25,35 +25,31 @@
                       <table class="table mt-3">
                         <thead>
                           <tr>
-                            <!-- <th scope="col"><input type="checkbox" class="form-check-input"></th> -->
+                            <th scope="col"><input type="checkbox" class="form-check-input"></th>
                             <th scope="col">SL</th>
                    
-                            <th scope="col"> Group Name</th>
+                            <th scope="col">Branch</th>
                
-                            <th scope="col">Fine Type Name</th>
-                            <th scope="col">Fine type</th>
+                            <th scope="col">Salary Grades</th>
+                            <th scope="col">Basic Salary</th>
 
-                            <th scope="col">Fine Value</th>
-                            <th scope="col">Late Fee Frequency</th>
-                            <th scope="col">Action</th>
-
+                            <th scope="col">OverTime Rate(per hour)</th>
+                            <th scope="col">Action </th>
 
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <!-- <td scope="row"><input type="checkbox" class="form-check-input"></td> -->
+                            <td scope="row"><input type="checkbox" class="form-check-input"></td>
                             <td>#001234</td>
                          
                           
                             <td>College</td>
-                            <td>College</td>
-                            <td>College</td>
-                     
-
                       
                             <td>Principal</td>
                             <td>Science</td>
+                            <td>Science</td>
+
                          
                             <td>
                               <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
@@ -64,26 +60,14 @@
                       </table>
                     </div>
                   </mat-tab>
-                  <mat-tab label="Add Fine ">
+                  <mat-tab label="Create Templete">
                     <div class="container">
-                        <div class="mb-3 py-2">
-                            <label class="form-label">Group Name*</label>
+                        <div class="mb-3 py-5">
+                            <label class="form-label">Name*</label>
                             <input type="text" class="form-control">
                           </div>
-                          <div class="mb-3 py-2">
-                            <label class="form-label">Fees Type*</label>
-                            <input type="text" class="form-control">
-                          </div>
-                          <div class="mb-3 py-2">
-                            <label class="form-label">Fine Type*</label>
-                            <input type="text" class="form-control">
-                          </div>
-                          <div class="mb-3 py-2">
-                            <label class="form-label">Fine value*</label>
-                            <input type="text" class="form-control">
-                          </div>
-                          <div class="mb-3 py-2">
-                            <label class="form-label">Late Fee Frequency*</label>
+                          <div class="mb-3 py-4">
+                            <label class="form-label">Description*</label>
                             <input type="text" class="form-control">
                           </div>
                           <div class="text-end">

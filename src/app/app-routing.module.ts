@@ -50,7 +50,11 @@ const routes: Routes = [
   {
     path: 'student-acconting',
     loadChildren: () => import('./pages/strudent-accounting/student-accounting.module').then( m => m.StudentAccountingModule)
-  }
+  },
+  {
+    path: 'human-resource',
+    loadChildren: () => import('./pages/human-ressource/human-ressource.module').then( m => m.HumanRessourceModule)
+  },
 ];
 
 @NgModule({

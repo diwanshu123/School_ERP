@@ -96,10 +96,10 @@
     </div>
   </mat-expansion-panel>
   <!-- reception -->
-  <mat-expansion-panel hideToggle="true">
+  <mat-expansion-panel hideToggle="true"  hideToggle="true" [expanded]="currentUrl.includes('/student-acconting') ? true : false">
     <mat-expansion-panel-header>
-      <mat-list-item>
-        <mat-icon matListItemIcon>photo_alum</mat-icon>Student Accouting
+      <mat-list-item [ngClass]="currentUrl.includes('/student-acconting') ? 'active' : ''">
+        <mat-icon matListItemIcon>photo_alum</mat-icon>Student Acconting
       </mat-list-item>
     </mat-expansion-panel-header>
     
@@ -239,6 +239,24 @@
       </mat-list-item>
     </div>
   </mat-expansion-panel>
+
+  <!-- Human resourcea -->
+  <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/human-resource') ? true : false">
+    <mat-expansion-panel-header>
+      <mat-list-item [ngClass]="currentUrl.includes('/human-resource') ? 'active' : ''">
+        <mat-icon matListItemIcon>photo_alum</mat-icon>Human Ressource  
+      </mat-list-item>
+    </mat-expansion-panel-header>
+    <!--Sub Menu-->
+    <div class="sub-menu-cont">
+      <mat-list-item class="sub-menu" [routerLink]="routes.HR_SAL_TEMP" routerLinkActive="sub-active">
+        Salary Templete
+      </mat-list-item>
+
+     
+    </div>
+  </mat-expansion-panel>
+  <!--  -->
 
   <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/reception') ? true : false">
     <mat-expansion-panel-header>

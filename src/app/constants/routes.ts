@@ -52,6 +52,7 @@ export enum routes {
   INVOI ="/student-acconting/invoice/invoice-collect-paid",
   STUD_DUE_FEES_INVOI ="/student-acconting/due-fees-invoice",
   STUD_FEES_REMAINDER ="/student-acconting/fees-remainder",
+  HR_SAL_TEMP="/human-resource/salary-templete",
 
 
 
