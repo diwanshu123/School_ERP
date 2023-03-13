@@ -11,10 +11,12 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import { SharedModule } from "./shared/shared.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HumanRessourceComponent } from './pages/human-ressource/human-ressource.component';
 
 @NgModule({
     declarations: [
       AppComponent,
+      HumanRessourceComponent,
     ],
     providers: [],
     bootstrap: [AppComponent],

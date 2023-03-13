@@ -46,6 +46,10 @@ const routes: Routes = [
   {
     path: 'academic',
     loadChildren: () => import('./pages/academic/academic.module').then( m => m.AcademicModule)
+  },
+  {
+    path: 'student-acconting',
+    loadChildren: () => import('./pages/strudent-accounting/student-accounting.module').then( m => m.StudentAccountingModule)
   }
 ];
 

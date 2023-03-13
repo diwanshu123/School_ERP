@@ -44,5 +44,18 @@ export enum routes {
   ACADE_CLASS_SCH='/academic/class-schedule',
   ACADE_CLASS_SCH_ADD='/academic/class-schedule/add',
   ACADE_TEACHER_SCH='/academic/teacher-schedule',
+  STUD_ACCOUNTING='/student-acconting/fees-type',
+  STUD_FEES_GROUP='/student-acconting/fees-group',
+  STUD_FINE_SETUP='/student-acconting/fine-setup',
+  STUD_FESS_ALLOC='/student-acconting/fees-allocation',
+  STUD_FESS_PAY_INVOI ="/student-acconting/fees-pay-invoice",
+  INVOI ="/student-acconting/invoice/invoice-collect-paid",
+  STUD_DUE_FEES_INVOI ="/student-acconting/due-fees-invoice",
+  STUD_FEES_REMAINDER ="/student-acconting/fees-remainder",
+
+
+
+
+
   LOGIN = '/login'
 }

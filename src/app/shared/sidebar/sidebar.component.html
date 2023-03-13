@@ -95,6 +95,41 @@
       </mat-list-item>
     </div>
   </mat-expansion-panel>
+  <!-- reception -->
+  <mat-expansion-panel hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-list-item>
+        <mat-icon matListItemIcon>photo_alum</mat-icon>Student Accouting
+      </mat-list-item>
+    </mat-expansion-panel-header>
+    
+    <!--Sub Menu-->
+    <div class="sub-menu-cont">
+      <mat-list-item class="sub-menu" [routerLink]="routes.STUD_ACCOUNTING" routerLinkActive="sub-active">
+      Fees Type
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.STUD_FEES_GROUP" routerLinkActive="sub-active">
+        Fees Group
+        </mat-list-item>
+        <mat-list-item class="sub-menu" [routerLink]="routes.STUD_FINE_SETUP" routerLinkActive="sub-active">
+          Fine Setup
+          </mat-list-item>
+          <mat-list-item class="sub-menu" [routerLink]="routes.STUD_FESS_ALLOC" routerLinkActive="sub-active">
+          Fees Allocation
+            </mat-list-item>
+            <mat-list-item class="sub-menu" [routerLink]="routes.STUD_FESS_PAY_INVOI" routerLinkActive="sub-active">
+              Fees Pay/Invoice
+                </mat-list-item>
+                <mat-list-item class="sub-menu" [routerLink]="routes.STUD_DUE_FEES_INVOI" routerLinkActive="sub-active">
+                Dues Fess/Invoice
+                    </mat-list-item>
+                    <mat-list-item class="sub-menu" [routerLink]="routes.STUD_FEES_REMAINDER" routerLinkActive="sub-active">
+                    Fees Remainder
+                          </mat-list-item>
+     
+    </div>
+  </mat-expansion-panel>
+
 
   <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/cert') ? true : false">
     <mat-expansion-panel-header>

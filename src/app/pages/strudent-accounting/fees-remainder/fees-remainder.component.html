@@ -1,0 +1,90 @@
+<app-layout>
+    <div class="container p-4">
+      <div class="tab-container">
+
+
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+            <mat-tab label="Remainder List">
+              <div class="pt-4">
+                <div class="top-options">
+                  <div class="search-area">
+                    <div class="input-group pe-3">
+                      <input type="search" class="form-control" placeholder="Search here...">
+                      <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    </div>
+                    <div class="options">
+                      <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
+                      <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
+                      <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
+                      <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
+                      <button class="btn"><img src="assets/icons/opt-print.svg"></button>
+                    </div>
+                  </div>
+    
+                 
+                </div>
+    
+                <table class="table mt-3">
+                  <thead>
+                    <tr>
+                        <!-- <th scope="col"><input type="checkbox" class="form-check-input"></th> -->
+                        <th scope="col">SL</th>
+                        <th scope="col">Frequency</th>
+                        <th scope="col">Days</th>
+                        <th scope="col">Notify</th>
+                     
+                        <th scope="col">Action</th>
+                      
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <!-- <td scope="row"><input type="checkbox" class="form-check-input"></td> -->
+                        <td>#001234</td>
+                        <td>-</td>
+                        <td>Fanny Siregar</td>
+                        <td>College</td>
+                        <td>1111</td>
+                      
+                      
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+            </mat-tab>
+            <mat-tab label="Add Remainder">
+                <div class="container">
+                    <div class="mb-3 py-2">
+                        <label class="form-label"> Frequency*</label>
+                        <input type="text" class="form-control">
+                      </div>
+                      <div class="mb-3 py-2">
+                        <label class="form-label">Days *</label>
+                        <input type="text" class="form-control">
+                      </div>
+                      <div class="mb-3 py-2">
+                        <label class="form-label">Message</label>
+                        <input type="text" class="form-control">
+                      </div>
+                      <p>Notify</p>
+                      <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Student</label>
+                      </div>
+                      <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Guardian</label>
+                      </div>
+                      <div class="but-save">
+                        <button class="rouded-pill">save</button>
+                        </div>
+                
+                </div>
+              </mat-tab>
+        </mat-tab-group>
+        
+        </div>
+    </div>
+
+
+      </app-layout>
