@@ -53,6 +53,19 @@ export enum routes {
   STUD_DUE_FEES_INVOI ="/student-acconting/due-fees-invoice",
   STUD_FEES_REMAINDER ="/student-acconting/fees-remainder",
   HR_SAL_TEMP="/human-resource/salary-templete",
+  HR_SAL_ASSIGN="/human-resource/salary-assign",
+  HR_SAL_PAYMENT="/human-resource/salary-payment",
+  HR_ADVAN_SALARY="/human-resource/advance-salary",
+
+  HR_MAN_APP="/human-resource/manage-application",
+  HR_LEAVE_CAT="/human-resource/leave-category",
+  HR_LEAVE_APP="/human-resource/leave-app",
+  HR_LEAVE_MAN_APP="/human-resource/leave-manage-app",
+
+
+
+
+
 
 
 

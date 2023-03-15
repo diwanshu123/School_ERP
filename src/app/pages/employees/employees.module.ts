@@ -8,6 +8,9 @@ import { EmpDeptComponent } from './emp-dept/emp-dept.component';
 import { EmpDesgComponent } from './emp-desg/emp-desg.component';
 import { EmpAddComponent } from './emp-add/emp-add.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxFileDropModule } from 'ngx-file-drop';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import {MatTabsModule} from '@angular/material/tabs';
     CommonModule,
     EmployeesRoutingModule,
     MatTabsModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    HttpClientModule,
+    NgxFileDropModule
   ]
 })
 export class EmployeesModule { }

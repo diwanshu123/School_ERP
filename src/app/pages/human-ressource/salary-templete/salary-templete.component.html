@@ -62,17 +62,62 @@
                   </mat-tab>
                   <mat-tab label="Create Templete">
                     <div class="container">
-                        <div class="mb-3 py-5">
-                            <label class="form-label">Name*</label>
-                            <input type="text" class="form-control">
+                        <div class="row mb-3">
+                            <div class="col-4 py-3">
+                                <label class="form-label">Salary Grade *</label>
+                                <input type="text" class="form-control">
+                              </div>
+                              <div class="row mb-3">
+                                <div class="col-4">
+                                  <label class="form-label">Basic Salary *</label>
+                                  <input type="text" class="form-control">
+                                </div>
+                                <div class="col-4 offset-4">
+                                    <label class="form-label">OverTime Rate per Hour *</label>
+                                    <input type="text" class="form-control">
+                                  </div>
+                              
+                              </div>
+                              
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4 py-3">
+                              <label class="form-label py-4"> <strong>  Allowances</strong></label> <br>
+                              <label class="form-label">Name of Allowances *</label>
+                              <input type="text" class="form-control"> <br>
+                              <label class="form-label">Amount *</label>
+                              <input type="text" class="form-control"><br>
+                              <div class="text-end">
+                                <button class="btn">Add Rows</button>
+                              </div>
+                            </div>
+                            <div class="col-4 offset-4 py-3">
+                                <label class="form-label py-4"> <strong>  Deductions</strong></label><br>
+                                <label class="form-label">Name of Allowances *</label>
+                                <input type="text" class="form-control"><br>
+                                <label class="form-label">Amount *</label>
+                                <input type="text" class="form-control"><br>
+                                <div class="text-end">
+                                    <button class="btn">Add Rows</button>
+                                  </div>
+
+                                  <!--  -->
+                                  <label class="form-label py-4"> <strong>  Salary Details</strong></label><br>
+                                  <label class="form-label">Basic Salary *</label>
+                                  <input type="text" class="form-control"><br>
+                                  <label class="form-label"> Total Amount *</label>
+                                  <input type="text" class="form-control"><br>
+                                  <label class="form-label">Total Deducation  *</label>
+                                  <input type="text" class="form-control"><br>
+                                  <label class="form-label">Net Salary *</label>
+                                  <input type="text" class="form-control"><br>
+
+                              </div>
+                              
+                          
                           </div>
-                          <div class="mb-3 py-4">
-                            <label class="form-label">Description*</label>
-                            <input type="text" class="form-control">
-                          </div>
-                          <div class="text-end">
-                            <button class="btn">Save</button>
-                          </div>
+                          
+                          
                     </div>
                 </mat-tab>
 
