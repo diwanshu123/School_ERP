@@ -165,6 +165,50 @@
       <mat-list-item class="sub-menu" [routerLink]="routes.GRADE_RANGE" routerLinkActive="sub-active">
         Grades Range
       </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.MARKS_EXAM_TERM" routerLinkActive="sub-active">
+        Exam Term 
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.DIST" routerLinkActive="sub-active">
+      Disturbution
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.EXAM_SETUP" routerLinkActive="sub-active">
+        Exam Setup
+        </mat-list-item>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/report') ? true : false">
+    <mat-expansion-panel-header>
+      <mat-list-item [ngClass]="currentUrl.includes('/report') ? 'active' : ''">
+        <mat-icon matListItemIcon>photo_alum</mat-icon>Reports
+      </mat-list-item>
+    </mat-expansion-panel-header>
+    <!--Sub Menu-->
+    <div class="sub-menu-cont">
+      <mat-list-item class="sub-menu" [routerLink]="routes.REP_STUD_ST_REP" routerLinkActive="sub-active">
+     Student Strength Report
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.REP_STUD_adm_REP" routerLinkActive="sub-active">
+      Admission Details Reports
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.REP_INACTIVE_ST_REP" routerLinkActive="sub-active">
+      Inactive Student Report
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.REP_STUD_FESSCONS_REP" routerLinkActive="sub-active">
+      Fess Consession Report
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.REP_STUD_CLASS_TEACH_REP" routerLinkActive="sub-active">
+     Class Teacher List
+        </mat-list-item>
+        <mat-list-item class="sub-menu" [routerLink]="routes.REP_STUD_SUB_TEACH_REP" routerLinkActive="sub-active">
+          Subject Teacher List
+          </mat-list-item>
+          <mat-list-item class="sub-menu" [routerLink]="routes.REP_STUD_ATTEN_REP" routerLinkActive="sub-active">
+          Student Attendance
+            </mat-list-item>
+            <mat-list-item class="sub-menu" [routerLink]="routes.EXAM_SETUP" routerLinkActive="sub-active">
+              Exam Setup
+              </mat-list-item>
     </div>
   </mat-expansion-panel>
 

@@ -1,0 +1,117 @@
+<app-layout>
+    <div class="container p-4">
+        <div class="tab-container">
+            <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+                <mat-tab label="Exam List">
+                    <div class="pt-4">
+                      <div class="top-options">
+                        <div class="search-area">
+                          <div class="input-group pe-3">
+                            <input type="search" class="form-control" placeholder="Search here...">
+                            <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                          </div>
+                          <div class="options">
+                            <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
+                            <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
+                            <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
+                            <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
+                            <button class="btn"><img src="assets/icons/opt-print.svg"></button>
+                          </div>
+                        </div>
+          
+                       
+                      </div>
+          
+                      <table class="table mt-3">
+                        <thead>
+                          <tr>
+                            <!-- <th scope="col"><input type="checkbox" class="form-check-input"></th> -->
+                            <th scope="col">SL</th>
+                   
+                            <th scope="col"> Exam Name</th>
+               
+                            <th scope="col">Exam Type </th>
+                            <th scope="col">Term</th>
+
+                            <th scope="col"> Mark Disturbution</th>
+                            <th scope="col">Remarks</th>
+                            <th scope="col">Action</th>
+
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <!-- <td scope="row"><input type="checkbox" class="form-check-input"></td> -->
+                            <td>#001234</td>
+                         
+                          
+                            <td>College</td>
+                            <td>College</td>
+                            <td>College</td>
+                     
+
+                      
+                            <td>Principal</td>
+                            <td>Science</td>
+                         
+                            <td>
+                              <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
+                              <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </mat-tab>
+                  <mat-tab label="Create Exam ">
+                    <div class="container">
+                        <div class="mb-2 col-md-5 py-2 offset-3">
+                            <label class="form-label"> Name*</label>
+                            <input type="text" class="form-control">
+                          </div>
+                          <div class="mb-3 col-md-5 offset-3 py-2">
+                            <p>Term<sup class="red">*</sup></p>
+                            <select class="form-select rounded-pill" aria-label="Default select example">
+                                <option selected>Select</option>
+                                <option value="1">Select</option>
+                                <option value="2">Six</option>
+                                <option value="3">Seven</option>
+                            </select>
+                          </div>
+                          <div class="mb-3 py-2 offset-3 col-md-5">
+                            <label for="type">Exam type<sup class="red">*</sup></label> 
+                            <select id="type" class="form-select rounded-pill" aria-label="Default select example">
+                                <option selected>Select</option>
+                                <option value="1">Select</option>
+                                <option value="2">Six</option>
+                                <option value="3">Seven</option>
+                            </select>
+                          </div>
+                          <div class="mb-3  col-md-5 offset-3 py-2">
+                            <p>Marks Disturbution<sup class="red">*</sup></p>
+                            <select class="form-select rounded-pill" aria-label="Default select example">
+                                <!-- <option selected>Select</option> -->
+                                <option value="1">Select</option>
+                                <option value="2">Six</option>
+                                <option value="3">Seven</option>
+                            </select>
+                          </div>
+                          <div class="mb-3  col-md-5 offset-3 py-">
+                          
+                                <label for="exampleFormControlTextarea1" class="form-label">Remarks</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        
+                          </div>
+                          <div class="text-end offset-4" >
+                            <button class="btn">Save</button>
+                          </div>
+                    </div>
+                </mat-tab>
+
+  </mat-tab-group>
+            </div>
+
+        </div>
+    
+    </app-layout>

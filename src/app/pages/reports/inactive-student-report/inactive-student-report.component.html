@@ -1,0 +1,101 @@
+<app-layout>
+    <div class="container p-4">
+      <div class="row mt-5 mb-3">
+        <div class="col-4">
+            <label for="type"> Class<sup class="red">*</sup></label> 
+            <select id="type" class="form-select " aria-label="Default select example">
+                <option selected>Select</option>
+                <option value="1">Select</option>
+                <option value="2">Six</option>
+                <option value="3">Seven</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <!-- <label class="form-label">Section *</label> -->
+            <label for="type"> Section<sup class="red">*</sup></label> 
+            <select id="type" class="form-select " aria-label="Default select example">
+                <option selected>Select</option>
+                <option value="1">Online</option>
+                <option value="2">offline</option>
+           
+            </select>
+        </div>
+        <div class="col-4">
+            <label class="form-label">Date *</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
+                <input type="text" class="form-control">
+              </div>
+        </div>
+      </div>
+      <div class="row mt-5 mb-3">
+        <div class="col-4">
+            <label for="type"> Status<sup class="red">*</sup></label> 
+            <select id="type" class="form-select " aria-label="Default select example">
+                <!-- <option selected>Select</option> -->
+                <option value="1">Passed </option>
+                <option value="2">DropOut</option>
+           
+            </select>
+        </div>
+        <!-- <div class="col-4 offset-4">
+            <label for="type"> Status<sup class="red">*</sup></label> 
+            <select id="type" class="form-select " aria-label="Default select example">
+                <option selected>Select</option>
+                <option value="1">Paid</option>
+                <option value="2">Pending</option>
+                <option value="3">In progress</option>
+            </select>
+        </div> -->
+      </div>
+      <div class="text-end mb-5">
+        <button class="btn">Filter</button>
+      </div>
+  
+      <!-- <p class="table-heading">Marks Entries</p> -->
+      <table class="table mt-3">
+        <thead>
+          <tr>
+            <th scope="col"><input type="checkbox" class="form-check-input"></th>
+            <th scope="col">SL</th>
+   
+            
+            <th scope="col">Student Name </th>
+            <th scope="col">Class</th>
+            <th scope="col">Section</th>
+
+            <th scope="col">Year</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+
+
+            <!-- <th scope="col">Action </th> -->
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="row"><input type="checkbox" class="form-check-input"></td>
+            <td>#001234</td>
+         
+          
+            <td>College</td>
+      
+            <td>Principal</td>
+            <td>Science</td>
+            <td>Science</td>
+            <td>Science</td>
+
+
+
+         
+            <td>
+              <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
+              <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </app-layout>
+  

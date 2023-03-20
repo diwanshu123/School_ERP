@@ -1,0 +1,22 @@
+@import "src/app/themes/variables";
+.btn.emp-edit {
+    width: 40px;
+    height: 40px;
+    background-color:transparent!important;
+    border-color: $color-primary;
+    border-radius: 16px;
+  
+    i {
+      color: $color-primary;
+    }
+  }
+  
+  .btn.emp-edit:last-child {
+    background-color:#F44336!important;
+    border-color: #F44336;
+  
+    i {
+      color: #FFFFFF;
+    }
+  }
+  

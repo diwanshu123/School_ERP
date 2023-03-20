@@ -12,11 +12,13 @@ import {MatButtonModule} from '@angular/material/button';
 import { SharedModule } from "./shared/shared.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HumanRessourceComponent } from './pages/human-ressource/human-ressource.component';
+import { ReportsComponent } from './pages/reports/reports.component';
 
 @NgModule({
     declarations: [
       AppComponent,
       HumanRessourceComponent,
+      ReportsComponent,
     ],
     providers: [],
     bootstrap: [AppComponent],

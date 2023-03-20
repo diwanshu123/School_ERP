@@ -19,6 +19,10 @@ export enum routes {
   CERT_STUD='/cert/student',
   CERT_EMP='/cert/employee',
   MARKS_ENTRY='/marks/entry',
+  MARKS_EXAM_TERM='/marks/exam-term',
+  DIST='/marks/disturbution',
+  EXAM_SETUP='/marks/exam-setup',
+
   GRADE_RANGE='/marks/grade',
   WORK_LIST='/homework/list',
   WORK_NEW='/homework/list/add',
@@ -61,6 +65,23 @@ export enum routes {
   HR_LEAVE_CAT="/human-resource/leave-category",
   HR_LEAVE_APP="/human-resource/leave-app",
   HR_LEAVE_MAN_APP="/human-resource/leave-manage-app",
+
+  REP_STUD_ST_REP="/report/stud-strength",
+  REP_STUD_adm_REP="/report/adm-detail",
+  REP_INACTIVE_ST_REP="/report/inactive-stud",
+  REP_STUD_FESSCONS_REP="/report/fees-cons",
+  REP_STUD_CLASS_TEACH_REP="/report/class-teacher-list",
+  REP_STUD_SUB_TEACH_REP="/report/sub-teacher-list",
+
+  REP_STUD_ATTEN_REP="/report/student-attendence",
+  // REP_STUD_ST_REP="/report/stud-strength",
+  // REP_STUD_ST_REP="/report/stud-strength",
+
+  // REP_STUD_ST_REP="/report/stud-strength",
+
+
+
+
 
 
 

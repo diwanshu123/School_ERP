@@ -1,0 +1,142 @@
+<app-layout>
+    <div class="container p-4">
+      <div class="row mt-5 mb-3">
+        <div class="col-4">
+            <label for="type"> Class<sup class="red">*</sup></label> 
+            <select id="type" class="form-select " aria-label="Default select example">
+                <option selected>Select</option>
+                <option value="1">Select</option>
+                <option value="2">Six</option>
+                <option value="3">Seven</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <!-- <label class="form-label">Section *</label> -->
+            <label for="type"> Section<sup class="red">*</sup></label> 
+            <select id="type" class="form-select " aria-label="Default select example">
+                <option selected>Select</option>
+                <option value="1">Online</option>
+                <option value="2">offline</option>
+           
+            </select>
+        </div>
+        <div class="col-4">
+            <label class="form-label">Month *</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
+                <input type="text" class="form-control">
+              </div>
+        </div>
+      </div>
+      <!-- <div class="row mt-5 mb-3">
+        <div class="col-4">
+            <label for="type"> Status<sup class="red">*</sup></label> 
+            <select id="type" class="form-select " aria-label="Default select example">
+            
+                <option value="1">Passed </option>
+                <option value="2">DropOut</option>
+           
+            </select>
+        </div>
+     
+      </div> -->
+      <div class="text-end mb-5">
+        <button class="btn">Filter</button>
+      </div>
+
+<div class="tab-container">
+    <div class="pt-4">
+        <div class="row">
+            <p class="col-4 py-2" ><b>Attendence Report </b></p>
+            <div class="label col-4  offset-4" style="border: solid" >
+                
+                <label for="">Present</label>
+              
+
+
+            </div>
+        
+
+        </div>
+      
+
+
+<!-- <div class="container p-4"> -->
+ 
+<div class="top-options">
+    <div class="search-area">
+      <div class="input-group pe-3">
+        <input type="search" class="form-control" placeholder="Search here...">
+        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+      </div>
+      <div class="options">
+        <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
+        <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
+        <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
+        <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
+        <button class="btn"><img src="assets/icons/opt-print.svg"></button>
+      </div>
+    </div>
+    </div>
+</div>
+<!-- </div> -->
+<!-- </div> -->
+
+
+
+
+<!--  -->
+
+
+
+
+
+
+<!--  -->
+<table class="table mt-3">
+<thead>
+<tr>
+  <th scope="col">Student</th>
+  <th scope="col"> Class</th>
+  <th scope="col">Section</th>
+  <th scope="col">Registration</th>
+  <th scope="col">Roll</th>
+  <!-- <th scope="col">Gender</th> -->
+  <th scope="col">Mobile No.</th>
+  <th scope="col">Fee Group</th>
+  <th scope="col"> Status</th>
+  <th scope="col"> Action </th>
+
+
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>#001234</td>
+  <td>Fanny Siregar</td>
+  <td>General</td>
+  <td>111111</td>
+  <td>11</td>
+  <td>11</td>
+
+  <td>11</td>
+
+  <td><button class="rounded-pill" routerLinkActive="sub-active">Unpaid</button></td>
+  <td><button class="rounded-pill">Collect</button></td>
+
+
+
+ 
+</tr>
+</tbody>
+</table>
+</div>
+
+   
+        
+      
+    </div>
+
+
+
+</app-layout>

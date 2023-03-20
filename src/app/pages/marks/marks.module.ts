@@ -6,12 +6,18 @@ import { MarkEntryComponent } from './mark-entry/mark-entry.component';
 import { GradeRangeComponent } from './grade-range/grade-range.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ExamTermComponent } from './exam-term/exam-term.component';
+import { DisturbutionComponent } from './disturbution/disturbution.component';
+import { ExamSetupComponent } from './exam-setup/exam-setup.component';
 
 
 @NgModule({
   declarations: [
     MarkEntryComponent,
-    GradeRangeComponent
+    GradeRangeComponent,
+    ExamTermComponent,
+    DisturbutionComponent,
+    ExamSetupComponent
   ],
   imports: [
     CommonModule,
