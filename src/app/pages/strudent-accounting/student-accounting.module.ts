@@ -14,6 +14,7 @@ import { InvoiceCollectPaidComponent } from './fees-pay-invoice/invoice-collect-
 import { DueFeesInvoiceComponent } from './due-fees-invoice/due-fees-invoice.component';
 import { FeesRemainderComponent } from './fees-remainder/fees-remainder.component';
 
+import { FormsModule,ReactiveFormsModule  }   from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FeesRemainderComponent } from './fees-remainder/fees-remainder.componen
     MatTabsModule,
     StudentAccountingRoutingModule,
     SharedModule,
+    FormsModule, ReactiveFormsModule
     
   ]
 })

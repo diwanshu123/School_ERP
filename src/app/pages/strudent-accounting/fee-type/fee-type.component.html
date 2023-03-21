@@ -24,8 +24,8 @@
           
                       <table class="table mt-3">
                         <thead>
-                          <tr>
-                            <!-- <th scope="col"><input type="checkbox" class="form-check-input"></th> -->
+                          <tr >
+                         
                             <th scope="col">SL</th>
                    
                             <th scope="col">Name</th>
@@ -37,15 +37,19 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <!-- <td scope="row"><input type="checkbox" class="form-check-input"></td> -->
-                            <td>#001234</td>
+                          <tr *ngFor = "let list of feeTypeLi; let i = index" >
+                          
+                            <td>{{i +1}}</td>
                          
                           
-                            <td>College</td>
+                            <!-- <td>{{list['feeTypes']['name']}}</td> -->
+                            <!-- <td [textContent]="list"></td> -->
+
+                            <!-- <td>{{list.name}}</td> -->
+
                       
-                            <td>Principal</td>
-                            <td>Science</td>
+                            <td></td>
+                            <td></td>
                          
                             <td>
                               <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
@@ -58,18 +62,26 @@
                   </mat-tab>
                   <mat-tab label="Add Fees Type">
                     <div class="container">
+                      <form [formGroup]="feeTypeForm" >
                         <div class="mb-3 py-5">
                             <label class="form-label">Name*</label>
-                            <input type="text" class="form-control">
+                            <input type="text" formControlName= "name" class="form-control">
                           </div>
                           <div class="mb-3 py-4">
                             <label class="form-label">Description*</label>
-                            <input type="text" class="form-control">
+                            <input type="text" formControlName="description" class="form-control">
                           </div>
+                          <!-- <div class="text-end">
+                            <button class="btn"  [disabled]="isLoading || !feeTypeForm.valid" 
+                              >  <span *ngIf="isLoading" class="spinner-border text-light" role="status"></span>
+                            <span *ngIf="!isLoading">Save</span></button>
+                          </div> -->
                           <div class="text-end">
-                            <button class="btn">Save</button>
+                            <button class="btn" (click)="addFeeType"> Save</button>
                           </div>
+                        </form>
                     </div>
+                
                 </mat-tab>
 
   </mat-tab-group>
