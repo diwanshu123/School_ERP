@@ -6,6 +6,7 @@
 @import "../fontawesome-6.2.1/scss/brands.scss";
 @import "src/app/themes/variables";
 @import '~quill/dist/quill.snow.css';
+@import 'ngx-toastr/toastr';
 
 html, body {
   margin: 0;

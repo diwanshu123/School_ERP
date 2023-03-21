@@ -3,54 +3,51 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable, throwError  } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  private apiBaseUrl= 'http://localhost:8080/api/v1'
-  
   constructor(private httpClient: HttpClient) { }
-  
+
 // Exam Master
   createExam(name: any, description: any): Observable<any> {
-    return this.httpClient.post(this.apiBaseUrl + '/exam' + name,description);
+    return this.httpClient.post(environment.apiBaseUrl + '/exam' + name,description);
   }
 
   getAllExam(): Observable<any> {
-    return this.httpClient.get(this.apiBaseUrl +'/exam/all' ).pipe(catchError(this.errorHandler));;
+    return this.httpClient.get(environment.apiBaseUrl +'/exam/all' ).pipe(catchError(this.errorHandler));;
   }
 
-
-
-
-  // certificate 
+  // certificate
   getCertificate(): Observable<any> {
-    return this.httpClient.get(this.apiBaseUrl +'/certificate/all' ).pipe(catchError(this.errorHandler));;
+    return this.httpClient.get(environment.apiBaseUrl +'/certificate/all' ).pipe(catchError(this.errorHandler));;
   }
 
   //feeType
   addFeeType(postData: FormData): Observable<any> {
-    return this.httpClient.post(this.apiBaseUrl +'/feeType', postData ).pipe(catchError(this.errorHandler));;
+    return this.httpClient.post(environment.apiBaseUrl +'/feeType', postData ).pipe(catchError(this.errorHandler));;
   }
-   feeTypeList(){
-    return this.httpClient.get(this.apiBaseUrl +'/feeType/all/' ).pipe(catchError(this.errorHandler));;
 
-   }
+  feeTypeList(){
+  return this.httpClient.get(environment.apiBaseUrl +'/feeType/all/' ).pipe(catchError(this.errorHandler));;
+  }
 
 
   errorHandler(error: {
     error: {
-        message: string;
+        messge: string;
     };status: any;message: any;
 }) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
-        errorMessage = error.error.message;
+        errorMessage = error.error.messge;
     } else {
-        errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        errorMessage = `${error.error.messge}`;
     }
+    console.log(error)
     return throwError(errorMessage);
 }
 

@@ -13,6 +13,7 @@ import { SharedModule } from "./shared/shared.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HumanRessourceComponent } from './pages/human-ressource/human-ressource.component';
 import { ReportsComponent } from './pages/reports/reports.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
     declarations: [
@@ -32,7 +33,8 @@ import { ReportsComponent } from './pages/reports/reports.component';
       MatSidenavModule,
       MatButtonModule,
       MatIconModule,
-      SharedModule
+      SharedModule,
+      ToastrModule.forRoot({positionClass: 'toast-center-center'})
     ]
 })
 export class AppModule { }

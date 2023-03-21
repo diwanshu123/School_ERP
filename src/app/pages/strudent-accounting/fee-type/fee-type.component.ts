@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -10,46 +11,45 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class FeeTypeComponent {
   feeTypeForm: FormGroup;
-  feetype: any
- 
-  feeTypeLi: Array<Object> = [];
+  feeTypes: any[] = [];
   isLoading: boolean;
-  constructor(private api: ApiService,) { }
 
-  // private toast: ToastrService 
-  ngOnInit(): void {
-  
-
+  constructor(private api: ApiService, private toastr: ToastrService)
+  {
     this.feeTypeForm = new FormGroup({
       name: new FormControl(null, [Validators.required]),
       description: new FormControl(null, [Validators.required]),
     });
-this.feeTypeList();
   }
 
+  ngOnInit(): void {
+    this.feeTypeList();
+  }
 
-  addFeeType(){ 
+  addFeeType()
+  {
     console.log("clicked,", this.feeTypeForm.value);
-     this.isLoading = true
-     this.feetype = ['feeTypes']
-     this.api.addFeeType(this.feeTypeForm.value).subscribe((res)=>{
+    this.isLoading = true;
+    let postData = this.feeTypeForm.value;
+    postData['code'] = postData.name;
+    this.api.addFeeType(postData).subscribe((res)=>{
+      this.isLoading = false;
       console.log(res, "first res");
-      
+      this.toastr.success(res.message, "Fee add success");
     },
-    
-    // (err) => {
-    //   this.isLoading = false;
-    //   this.toast.error(null, err.error.message);
-    //   console.error(err);
-    // }
+    (err) => {
+      this.isLoading = false;
+      this.toastr.error(err, "Fee add failed");
+      console.error(err);
+    }
     )
   }
- 
-  feeTypeList(){
-    this.api.feeTypeList().subscribe((res: any)=> { 
-      this.feeTypeLi = res
-      console.log(this.feeTypeLi);
-      
+
+  feeTypeList()
+  {
+    this.api.feeTypeList().subscribe((res: any)=> {
+      this.feeTypes = res.feeTypes;
+      console.log(res);
     })
   }
 
