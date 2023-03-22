@@ -13,8 +13,10 @@ import { FeesPayInvoiceComponent } from './fees-pay-invoice/fees-pay-invoice.com
 import { InvoiceCollectPaidComponent } from './fees-pay-invoice/invoice-collect-paid/invoice-collect-paid.component';
 import { DueFeesInvoiceComponent } from './due-fees-invoice/due-fees-invoice.component';
 import { FeesRemainderComponent } from './fees-remainder/fees-remainder.component';
+import {MatTableModule} from '@angular/material/table';
 
 import { FormsModule,ReactiveFormsModule  }   from '@angular/forms';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { FormsModule,ReactiveFormsModule  }   from '@angular/forms';
     MatTabsModule,
     StudentAccountingRoutingModule,
     SharedModule,
-    FormsModule, ReactiveFormsModule
+    FormsModule, ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule
     
   ]
 })

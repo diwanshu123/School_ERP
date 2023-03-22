@@ -26,7 +26,7 @@ export class ApiService {
     return this.httpClient.get(environment.apiBaseUrl +'/certificate/all' ).pipe(catchError(this.errorHandler));;
   }
 
-  //feeType
+  //Student Accounting 
   addFeeType(postData: FormData): Observable<any> {
     return this.httpClient.post(environment.apiBaseUrl +'/feeType', postData ).pipe(catchError(this.errorHandler));;
   }
@@ -34,6 +34,16 @@ export class ApiService {
   feeTypeList(){
   return this.httpClient.get(environment.apiBaseUrl +'/feeType/all/' ).pipe(catchError(this.errorHandler));;
   }
+  feeTypeGroup(){
+    return this.httpClient.get(environment.apiBaseUrl +'/feeGroup/all/' ).pipe(catchError(this.errorHandler));;
+    }
+    
+    addFineSetup(postData: FormData): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl +'/fineSetup', postData ).pipe(catchError(this.errorHandler));;
+    }
+    fineSetupList(){
+      return this.httpClient.get(environment.apiBaseUrl +'/fineSetup/all/' ).pipe(catchError(this.errorHandler));;
+      }
 
 
   errorHandler(error: {

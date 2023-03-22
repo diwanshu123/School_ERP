@@ -26,11 +26,11 @@
                         <thead>
                           <tr>
                             <!-- <th scope="col"><input type="checkbox" class="form-check-input"></th> -->
-                            <th scope="col">SL</th>
+                            <th scope="col">SNo</th>
                    
                             <th scope="col"> Group Name</th>
                
-                            <th scope="col">Fine Type Name</th>
+                            <th scope="col">Fee Type Name</th>
                             <th scope="col">Fine type</th>
 
                             <th scope="col">Fine Value</th>
@@ -41,19 +41,20 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
+                          <tr  *ngFor="let fine of fines; let i= index">
                             <!-- <td scope="row"><input type="checkbox" class="form-check-input"></td> -->
-                            <td>#001234</td>
+                            <td>{{i+1}}</td>
                          
-                          
-                            <td>College</td>
-                            <td>College</td>
-                            <td>College</td>
+                          <td>{{fine.groupName}}</td>
+                           
+                           <td>fee type</td>
+                            <!-- <td *ngFor="let name of fines.feeType">{{name.name}}</td> -->
+                            <td>{{fine.fineType}}</td>
                      
 
                       
-                            <td>Principal</td>
-                            <td>Science</td>
+                            <td>{{fine.fineValue}}</td>
+                            <td>{{fine.lateFeeFrequency}}</td>
                          
                             <td>
                               <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
@@ -62,33 +63,44 @@
                           </tr>
                         </tbody>
                       </table>
+                      <mat-paginator [length]="100"
+                      [pageSize]="10"
+                      #paginator
+                      [pageSizeOptions]="[ 10, 25, 100]"
+                      aria-label="Select page">
+        </mat-paginator>
                     </div>
                   </mat-tab>
                   <mat-tab label="Add Fine ">
                     <div class="container">
+                      <form [formGroup]="fineSetupForm" (ngSubmit)="addFineSetup()" >
                         <div class="mb-3 py-2">
                             <label class="form-label">Group Name*</label>
-                            <input type="text" class="form-control">
+                            <input type="text" formControlName="group_name" class="form-control">
                           </div>
                           <div class="mb-3 py-2">
                             <label class="form-label">Fees Type*</label>
-                            <input type="text" class="form-control">
+                            <input type="text"  formControlName= "feeType"class="form-control">
                           </div>
                           <div class="mb-3 py-2">
                             <label class="form-label">Fine Type*</label>
-                            <input type="text" class="form-control">
+                            <input type="text" formControlName= "fineType" class="form-control">
                           </div>
                           <div class="mb-3 py-2">
                             <label class="form-label">Fine value*</label>
-                            <input type="text" class="form-control">
+                            <input type="text" formControlName="fineValue" class="form-control">
                           </div>
                           <div class="mb-3 py-2">
                             <label class="form-label">Late Fee Frequency*</label>
-                            <input type="text" class="form-control">
+                            <input type="text" formControlName="lateFeeFrequency" class="form-control">
                           </div>
                           <div class="text-end">
-                            <button class="btn">Save</button>
+                            <button type="submit" class="btn" [disabled]="isLoading || !fineSetupForm.valid">
+                              <span *ngIf="isLoading" class="spinner-border text-light"></span>
+                              <span *ngIf="!isLoading">Save</span>
+                            </button>
                           </div>
+                          </form>
                     </div>
                 </mat-tab>
 
