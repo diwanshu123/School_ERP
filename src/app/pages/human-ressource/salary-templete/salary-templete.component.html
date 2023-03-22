@@ -18,39 +18,29 @@
                             <button class="btn"><img src="assets/icons/opt-print.svg"></button>
                           </div>
                         </div>
-          
-                       
+
+
                       </div>
-          
+
                       <table class="table mt-3">
                         <thead>
                           <tr>
                             <th scope="col"><input type="checkbox" class="form-check-input"></th>
                             <th scope="col">SL</th>
-                   
-                            <th scope="col">Branch</th>
-               
                             <th scope="col">Salary Grades</th>
                             <th scope="col">Basic Salary</th>
-
                             <th scope="col">OverTime Rate(per hour)</th>
                             <th scope="col">Action </th>
 
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
+                          <tr *ngFor="let salary of salaries; index as i">
                             <td scope="row"><input type="checkbox" class="form-check-input"></td>
-                            <td>#001234</td>
-                         
-                          
-                            <td>College</td>
-                      
-                            <td>Principal</td>
-                            <td>Science</td>
-                            <td>Science</td>
-
-                         
+                            <td>{{i+1}}</td>
+                            <td>{{salary.salaryGrade}}</td>
+                            <td>{{salary.basicSalary}}</td>
+                            <td>{{salary.overTimeRatePerHr}}</td>
                             <td>
                               <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
                               <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
@@ -61,69 +51,86 @@
                     </div>
                   </mat-tab>
                   <mat-tab label="Create Templete">
-                    <div class="container">
-                        <div class="row mb-3">
-                            <div class="col-4 py-3">
-                                <label class="form-label">Salary Grade *</label>
-                                <input type="text" class="form-control">
-                              </div>
-                              <div class="row mb-3">
-                                <div class="col-4">
-                                  <label class="form-label">Basic Salary *</label>
-                                  <input type="text" class="form-control">
+                    <form [formGroup]="salaryForm" (ngSubmit)="addSalaryTemplate()">
+                      <div class="container">
+                          <div class="row mb-3">
+                              <div class="col-4 py-3">
+                                  <label class="form-label">Salary Grade *</label>
+                                  <input type="text" class="form-control" formControlName="salaryGrade">
                                 </div>
-                                <div class="col-4 offset-4">
-                                    <label class="form-label">OverTime Rate per Hour *</label>
-                                    <input type="text" class="form-control">
+                                <div class="row mb-3">
+                                  <div class="col-4">
+                                    <label class="form-label">Basic Salary *</label>
+                                    <input type="number" class="form-control" formControlName="basicSalary" (blur)="updateDetails()">
                                   </div>
-                              
-                              </div>
-                              
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-4 py-3">
-                              <label class="form-label py-4"> <strong>  Allowances</strong></label> <br>
-                              <label class="form-label">Name of Allowances *</label>
-                              <input type="text" class="form-control"> <br>
-                              <label class="form-label">Amount *</label>
-                              <input type="text" class="form-control"><br>
-                              <div class="text-end">
-                                <button class="btn">Add Rows</button>
-                              </div>
-                            </div>
-                            <div class="col-4 offset-4 py-3">
-                                <label class="form-label py-4"> <strong>  Deductions</strong></label><br>
-                                <label class="form-label">Name of Allowances *</label>
-                                <input type="text" class="form-control"><br>
-                                <label class="form-label">Amount *</label>
-                                <input type="text" class="form-control"><br>
-                                <div class="text-end">
-                                    <button class="btn">Add Rows</button>
-                                  </div>
-
-                                  <!--  -->
-                                  <label class="form-label py-4"> <strong>  Salary Details</strong></label><br>
-                                  <label class="form-label">Basic Salary *</label>
-                                  <input type="text" class="form-control"><br>
-                                  <label class="form-label"> Total Amount *</label>
-                                  <input type="text" class="form-control"><br>
-                                  <label class="form-label">Total Deducation  *</label>
-                                  <input type="text" class="form-control"><br>
-                                  <label class="form-label">Net Salary *</label>
-                                  <input type="text" class="form-control"><br>
-
-                              </div>
-                              
-                          
+                                  <div class="col-4 offset-4">
+                                      <label class="form-label">OverTime Rate per Hour *</label>
+                                      <input type="number" class="form-control" formControlName="overTimeRatePerHr">
+                                    </div>
+                                </div>
                           </div>
-                          
-                          
-                    </div>
+                          <div class="row mb-2">
+                              <div class="col-4 py-3" formArrayName="allowances">
+                                <label class="form-label py-4"> <strong>  Allowances</strong></label> <br>
+                                <ng-container *ngFor="let allowancesField of allowancesFields.controls; index as i" [formGroupName]="i">
+                                  <label class="form-label d-flex justify-content-between align-items-center">
+                                    Name of Allowance *
+                                    <i *ngIf="i > 0" class="fa-solid fa-trash-can" style="color: #F44336; cursor: pointer;"
+                                      (click)="allowancesFields.removeAt(i)"></i>
+                                  </label>
+                                  <input type="text" class="form-control" formControlName="name"> <br>
+                                  <label class="form-label">Amount *</label>
+                                  <input type="number" class="form-control" formControlName="amount" (blur)="updateDetails()"><br>
+                                </ng-container>
+                                <div class="text-end">
+                                  <button type="button" class="btn" (click)="addAllowancesField()">Add Rows</button>
+                                </div>
+                              </div>
+                              <div class="col-4 offset-4 py-3">
+                                <ng-container formArrayName="deductions">
+                                  <label class="form-label py-4"> <strong>  Deductions</strong></label><br>
+                                  <ng-container *ngFor="let deductionField of deductionsFields.controls; index as i" [formGroupName]="i">
+                                    <label class="form-label d-flex justify-content-between align-items-center">
+                                      Name of Deduction *
+                                      <i *ngIf="i > 0" class="fa-solid fa-trash-can" style="color: #F44336; cursor: pointer;"
+                                        (click)="deductionsFields.removeAt(i)"></i>
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="name"><br>
+                                    <label class="form-label">Amount *</label>
+                                    <input type="number" class="form-control" formControlName="amount" (blur)="updateDetails()"><br>
+                                  </ng-container>
+                                  <div class="text-end">
+                                      <button type="button" class="btn" (click)="addDeductionsField()">Add Rows</button>
+                                  </div>
+                                </ng-container>
+
+                                    <!--  -->
+                                    <label class="form-label py-4"> <strong>  Salary Details</strong></label><br>
+                                    <label class="form-label">Basic Salary *</label>
+                                    <input type="text" class="form-control" formControlName="basicSal"><br>
+                                    <label class="form-label"> Total Allowance *</label>
+                                    <input type="text" class="form-control" formControlName="totalAllowance"><br>
+                                    <label class="form-label">Total Deduction  *</label>
+                                    <input type="text" class="form-control" formControlName="totalDeduction"><br>
+                                    <label class="form-label">Net Salary *</label>
+                                    <input type="text" class="form-control" formControlName="netSal"><br>
+
+                                </div>
+                            </div>
+
+                            <div class="text-end">
+                              <button type="submit" class="btn" [disabled]="isLoading || !salaryForm.valid">
+                                <span *ngIf="isLoading" class="spinner-border text-light"></span>
+                                <span *ngIf="!isLoading">Save</span>
+                              </button>
+                            </div>
+                      </div>
+                  </form>
                 </mat-tab>
 
   </mat-tab-group>
             </div>
 
         </div>
-    
+
     </app-layout>

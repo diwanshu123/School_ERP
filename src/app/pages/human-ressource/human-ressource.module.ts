@@ -12,6 +12,7 @@ import { ManageApplicationComponent } from './manage-application/manage-applicat
 import { LeaveCategoryComponent } from './leave-category/leave-category.component';
 import { LeaveApplicationComponent } from './leave-application/leave-application.component';
 import { LeaveManageApplicationComponent } from './leave-manage-application/leave-manage-application.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { LeaveManageApplicationComponent } from './leave-manage-application/leav
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     HumanRessourceRoutingModule,
     SharedModule,
     MatTabsModule
