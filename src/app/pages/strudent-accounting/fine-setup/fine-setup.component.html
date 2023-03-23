@@ -51,7 +51,7 @@
                             <!-- <td *ngFor="let name of fines.feeType">{{name.name}}</td> -->
                             <td>{{fine.fineType}}</td>
                      
-<td>  <button mat-raised-button tabindex="-1" type="button" color="warn" (click)='moveToSelectedTab("Add Fine")' [queryParams]="{Add Fine}">Move to Tab 2</button></td>
+
                       
                             <td>{{fine.fineValue}}</td>
                             <td>{{fine.lateFeeFrequency}}</td>
@@ -71,7 +71,7 @@
         </mat-paginator>
                     </div>
                   </mat-tab>
-                  <mat-tab label="Add Fine">
+                  <mat-tab label="Add Fine ">
                     <div class="container">
                       <form [formGroup]="fineSetupForm" (ngSubmit)="addFineSetup()" >
                         <div class="mb-3 py-2">

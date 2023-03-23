@@ -67,16 +67,16 @@ export class FineSetupComponent {
    
   }
   
-moveToSelectedTab(tabName: string) {
-  console.log(tabName);
+// moveToSelectedTab(tabName: string) {
+//   console.log(tabName);
 
   
-  for (let i =0; i< document.querySelectorAll('.mat-tab-label-content').length; i++) {
-      if ((<HTMLElement>document.querySelectorAll('.mat-tab-label-content')[i]).innerText == tabName) {
-        (<HTMLElement>document.querySelectorAll('.mat-tab-label')[i]).click();
-      }
-    }
-}
+//   for (let i =0; i< document.querySelectorAll('.mat-tab-label-content').length; i++) {
+//       if ((<HTMLElement>document.querySelectorAll('.mat-tab-label-content')[i]).innerText == tabName) {
+//         (<HTMLElement>document.querySelectorAll('.mat-tab-label')[i]).click();
+//       }
+//     }
+// }
 edit(fine : Object) :void{
   console.log("fine",  fine);
   
