@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,  } from '@angular/core';
+
 import { ApiService } from 'src/app/services/api.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -11,10 +12,12 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./fine-setup.component.scss']
 })
 export class FineSetupComponent {
+  selectedTabIndex: number = 0;
   fineSetupForm: FormGroup;
   fines: any[] = [];
   feeType: any[] = [];
   isLoading: boolean;
+
 
   constructor(private api: ApiService, 
     private toastr: ToastrService,
@@ -48,6 +51,10 @@ export class FineSetupComponent {
       this.isLoading = false;
       console.log(res, "first res");
       this.toastr.success(res.message, "Fee add success");
+      if(res.value){
+      this.router.navigate(['student-acconting/fine-setup']);
+
+      }
     },
     (err) => {
       this.isLoading = false;
@@ -55,11 +62,34 @@ export class FineSetupComponent {
       console.error(err);
     }
     )
-    if(this.isLoading=true){
-      this.router.navigate(['student-acconting/fine-setup']);
-    }
-  }
+  
 
+   
+  }
+  
+// moveToSelectedTab(tabName: string) {
+//   console.log(tabName);
+
+  
+//   for (let i =0; i< document.querySelectorAll('.mat-tab-label-content').length; i++) {
+//       if ((<HTMLElement>document.querySelectorAll('.mat-tab-label-content')[i]).innerText == tabName) {
+//         (<HTMLElement>document.querySelectorAll('.mat-tab-label')[i]).click();
+//       }
+//     }
+// }
+edit(fine : Object) :void{
+  console.log("fine",  fine);
+  
+
+}
+
+changeTab(event: any){
+  console.log(event);
+  
+  console.log(event.tab.label);
+  
+
+}
   fineSetupList()
   {
     this.api.fineSetupList().subscribe((res: any)=> {
@@ -79,5 +109,6 @@ export class FineSetupComponent {
 
     
   // }
+  
 
 }
