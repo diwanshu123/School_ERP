@@ -31,6 +31,10 @@
                             <th scope="col">Name</th>
 
                             <th scope="col">Fee Code</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Due Date</th>
+
+
                             <th scope="col">Discription</th>
                             <th scope="col">Action</th>
                           </tr>
@@ -43,6 +47,10 @@
 
                             <td>{{fee.name}}</td>
                             <td>{{fee.code}}</td>
+                            <td>{{fee.amount}}</td>
+                            <td>{{fee.dueDate}}</td>
+
+
 
                             <td>{{fee.description}}</td>
 
@@ -57,7 +65,7 @@
                       </table>
                     </div>
                   </mat-tab>
-                  <mat-tab label="Add Fees Type">
+                  <!-- <mat-tab label="Add Fees Type">
                     <div class="container">
                       <form [formGroup]="feeTypeForm" (ngSubmit)="addFeeType()">
                         <div class="my-3">
@@ -68,11 +76,7 @@
                             <label class="form-label">Description*</label>
                             <input type="text" formControlName="description" class="form-control">
                           </div>
-                          <!-- <div class="text-end">
-                            <button class="btn"  [disabled]="isLoading || !feeTypeForm.valid"
-                              >  <span *ngIf="isLoading" class="spinner-border text-light" role="status"></span>
-                            <span *ngIf="!isLoading">Save</span></button>
-                          </div> -->
+                         
                           <div class="text-end">
                             <button type="submit" class="btn" [disabled]="isLoading || !feeTypeForm.valid">
                               <span *ngIf="isLoading" class="spinner-border text-light"></span>
@@ -80,7 +84,87 @@
                             </button>
                           </div>
                         </form>
-                    </div>
+                    </div> -->
+                    <mat-tab label="Add Fee Type">
+                      <div class="container">
+                        <form [formGroup]="feeTypeForm" (ngSubmit)="addFeeType()">
+                          <div class="mb-3 py-5">
+                              <label class="form-label">Name*</label>
+                              <input type="text" formControlName="name" class="form-control">
+                            </div>
+                            <div class="mb-3 py-2">
+                              <label class="form-label">Description*</label>
+                              <input type="text" formControlName="description" class="form-control">
+                            </div>
+  
+                            <!--  -->
+                            <div class="col-12">
+                              <div class="row">
+                                  <div class="col">
+              
+                                  </div>
+                                
+                                <div class="col-12">
+                                  <div class="row">
+                                      <div class="col-12 ">
+                                          <table class="table mt-3">
+                                              <thead>
+                                                <tr>
+                                                  <th scope="col"><input type="checkbox" class="form-check-input"></th>
+                                                  <th scope="col">SL</th>
+                                         
+                                                  <th scope="col">Fees Type</th>
+                                     
+                                                  <th scope="col">Due Date</th>
+                                                  <th scope="col">Amount</th>
+                      
+                                             
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                <tr *ngFor="let fee of feeTypes; let i = index">
+                                                  <td scope="row"><input type="checkbox" class="form-check-input"></td>
+                                                  <td>{{i+1}}</td>
+                                               
+                                                
+                                                  <td>{{fee.name}}</td>
+                                            
+                                                  <td>
+                                                    <input matInput class="form-control" [matDatepicker]="picker"
+                                                     placeholder="dd-mm-yyyy" formControlName="dueDate" >
+                                                <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
+                                                </td>
+                                                  <td><input formControlName ="amount" type="number" placeholder="0.00"></td>
+  
+                                                </tr>
+                                              </tbody>
+                                            </table> 
+                                           
+                                            
+                                                     
+                                                                 
+                                          </div> 
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                          <mat-paginator [length]="100"
+                          [pageSize]="10"
+                          #paginator
+                          [pageSizeOptions]="[ 10, 25, 100]"
+                          aria-label="Select page">
+            </mat-paginator>
+                            <!--  -->
+                            <div class="text-end">
+                              <button type="submit"> Save</button> 
+                        
+                            </div>
+                          </form>
+                     
+                          </div>
+                   
+  
 
                 </mat-tab>
 

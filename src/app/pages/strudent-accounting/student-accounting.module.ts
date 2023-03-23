@@ -17,6 +17,11 @@ import {MatTableModule} from '@angular/material/table';
 
 import { FormsModule,ReactiveFormsModule  }   from '@angular/forms';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatMomentDateModule, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
+
+
 
 @NgModule({
   declarations: [
@@ -37,7 +42,11 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     SharedModule,
     FormsModule, ReactiveFormsModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatMomentDateModule
+     
     
   ]
 })

@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 
+
 @Component({
   selector: 'app-fee-type',
   templateUrl: './fee-type.component.html',
@@ -19,6 +20,10 @@ export class FeeTypeComponent {
     this.feeTypeForm = new FormGroup({
       name: new FormControl(null, [Validators.required]),
       description: new FormControl(null, [Validators.required]),
+      amount: new FormControl(null, [Validators.required]),
+      dueDate: new FormControl(null, [Validators.required]),
+
+
     });
   }
 

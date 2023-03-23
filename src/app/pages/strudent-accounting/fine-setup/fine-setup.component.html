@@ -28,7 +28,7 @@
                             <!-- <th scope="col"><input type="checkbox" class="form-check-input"></th> -->
                             <th scope="col">SNo</th>
                    
-                            <th scope="col"> Group Name</th>
+                            <!-- <th scope="col"> Group Name</th> -->
                
                             <th scope="col">Fee Type Name</th>
                             <th scope="col">Fine type</th>
@@ -45,20 +45,20 @@
                             <!-- <td scope="row"><input type="checkbox" class="form-check-input"></td> -->
                             <td>{{i+1}}</td>
                          
-                          <td>{{fine.groupName}}</td>
+                          <!-- <td>{{fine.groupName}}</td> -->
                            
                            <td>fee type</td>
                             <!-- <td *ngFor="let name of fines.feeType">{{name.name}}</td> -->
                             <td>{{fine.fineType}}</td>
                      
-
+<td>  <button mat-raised-button tabindex="-1" type="button" color="warn" (click)='moveToSelectedTab("Add Fine")' [queryParams]="{Add Fine}">Move to Tab 2</button></td>
                       
                             <td>{{fine.fineValue}}</td>
                             <td>{{fine.lateFeeFrequency}}</td>
                          
                             <td>
-                              <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
-                              <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+                              <button class="btn emp-edit me-1" (click)="edit(fine)" ><i class="fa-solid fa-pencil"></i></button>
+                              <button class="btn emp-edit ms-1" ><i class="fa-solid fa-trash-can"></i></button>
                             </td>
                           </tr>
                         </tbody>
@@ -71,11 +71,11 @@
         </mat-paginator>
                     </div>
                   </mat-tab>
-                  <mat-tab label="Add Fine ">
+                  <mat-tab label="Add Fine">
                     <div class="container">
                       <form [formGroup]="fineSetupForm" (ngSubmit)="addFineSetup()" >
                         <div class="mb-3 py-2">
-                            <label class="form-label">Group Name*</label>
+                            <label class="form-label">Group Name</label>
                             <input type="text" formControlName="group_name" class="form-control">
                           </div>
                           <div class="mb-3 py-2">
