@@ -1,0 +1,39 @@
+@import "src/app/themes/variables";
+
+button.btn.btn-danger {
+  background-color: #dc3545!important;
+}
+
+.salary-table {
+  .salaryTemp-title, .table-title {
+    color: $color-primary;
+    font-weight: 700;
+  }
+
+  .salaryTemp-title-val, table td {
+    color: #77838F;
+  }
+
+  table thead th {
+    background-color: $color-primary;
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+
+  table.salary-details {
+    tbody tr:not(:last-child) th {
+      color: $color-primary;
+    }
+
+    tbody tr:last-child {
+      background-color: $color-primary;
+    }
+
+    tbody tr:last-child {
+      th,td {
+        color: #FFFFFF;
+      }
+    }
+  }
+}
+

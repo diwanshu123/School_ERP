@@ -49,8 +49,20 @@ export class ApiService {
       return this.httpClient.get(environment.apiBaseUrl +'/salary/all').pipe(catchError(this.errorHandler));
     }
 
+    getSalaryTemplateById(id: string): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl +'/salary/receipt/' + id).pipe(catchError(this.errorHandler));
+    }
+
     addSalary(postData: any): Observable<any> {
       return this.httpClient.post(environment.apiBaseUrl +'/salary', postData).pipe(catchError(this.errorHandler));
+    }
+
+    updateSalary(postData: any): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl +'/salary', postData).pipe(catchError(this.errorHandler));
+    }
+
+    deleteSalary(id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/salary/' + id).pipe(catchError(this.errorHandler));
     }
 
   errorHandler(error: {

@@ -7,12 +7,17 @@ import { LeaveManageApplicationComponent } from './leave-manage-application/leav
 import { ManageApplicationComponent } from './manage-application/manage-application.component';
 import { SalaryAssignComponent } from './salary-assign/salary-assign.component';
 import { SalaryPaymentComponent } from './salary-payment/salary-payment.component';
+import { SalaryEditComponent } from './salary-templete/salary-edit/salary-edit.component';
 import { SalaryTempleteComponent } from './salary-templete/salary-templete.component';
 
 const routes: Routes = [
   {
     path: 'salary-templete',
     component: SalaryTempleteComponent
+  },
+  {
+    path: 'salary-templete/:id',
+    component: SalaryEditComponent
   },
   {
     path: 'salary-assign',

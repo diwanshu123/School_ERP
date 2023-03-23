@@ -1,38 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'app-salary-templete',
-  templateUrl: './salary-templete.component.html',
-  styleUrls: ['./salary-templete.component.scss']
+  selector: 'app-salary-edit',
+  templateUrl: './salary-edit.component.html',
+  styleUrls: ['./salary-edit.component.scss']
 })
-export class SalaryTempleteComponent implements OnInit {
+export class SalaryEditComponent {
 
   isLoading: boolean;
   salaryForm: FormGroup;
-  salaries: any[] = [];
-  selectedSal: any;
+  salary: any;
+  templateId: string
 
-  constructor(private api: ApiService, private toastr: ToastrService)
+  constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute)
   {
+    route.params.subscribe(param => {
+      if(param['id']) {
+        this.templateId = param['id'];
+        this.getSalaryTemplateById();
+      }
+    });
+
     this.salaryForm = new FormGroup({
       salaryGrade: new FormControl(null, [Validators.required]),
       basicSalary: new FormControl(null, [Validators.required]),
       overTimeRatePerHr: new FormControl(0),
-      allowances: new FormArray([
-        new FormGroup({
-          name:  new FormControl(null, [Validators.required]),
-          amount: new FormControl(0, [Validators.required])
-        })
-      ]),
-      deductions: new FormArray([
-        new FormGroup({
-          name:  new FormControl(null, [Validators.required]),
-          amount: new FormControl(0, [Validators.required])
-        })
-      ]),
+      allowances: new FormArray([]),
+      deductions: new FormArray([]),
       basicSal: new FormControl({value: 0, disabled: true}),
       totalAllowance: new FormControl({value: 0, disabled: true}),
       totalDeduction: new FormControl({value: 0, disabled: true}),
@@ -40,14 +38,13 @@ export class SalaryTempleteComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-    this.getSalaryTemplates()
-  }
+  ngOnInit(): void {}
 
-  getSalaryTemplates()
+  getSalaryTemplateById()
   {
-    this.api.getSalaryTemplates().subscribe(resp => {
-      this.salaries = resp.feeGroups;
+    this.api.getSalaryTemplateById(this.templateId).subscribe(resp => {
+      this.salary = resp.salary;
+      this.patchFormData();
     })
   }
 
@@ -79,6 +76,29 @@ export class SalaryTempleteComponent implements OnInit {
     )
   }
 
+  patchFormData()
+  {
+    this.salaryForm.patchValue({
+      salaryGrade: this.salary.salaryGrade,
+      basicSalary: this.salary.basicSalary,
+      overTimeRatePerHr: this.salary.overTimeRatePerHr,
+      basicSal: this.salary.basicSalary,
+      totalAllowance: this.salary.totalAllowance,
+      totalDeduction: this.salary.totalDeductions,
+      netSal: this.salary.netSalary
+    });
+
+    this.salary.allowances.forEach((allow: any, i: number) => {
+      this.addAllowancesField();
+      this.allowancesFields.at(i).patchValue({name: allow.name, amount: allow.amount});
+    });
+
+    this.salary.deductions.forEach((deduc: any, i: number) => {
+      this.addDeductionsField();
+      this.deductionsFields.at(i).patchValue({name: deduc.name, amount: deduc.amount});
+    });
+  }
+
   updateDetails()
   {
     let basicSal, totalAllowance = 0, totalDeduction = 0, netAmount = 0;
@@ -103,33 +123,18 @@ export class SalaryTempleteComponent implements OnInit {
     })
   }
 
-  addSalaryTemplate()
+  updateSalaryTemplate()
   {
     this.isLoading = true;
-    this.api.addSalary(this.salaryForm.value).subscribe(resp => {
+    let postData = this.salaryForm.value;
+    postData["salaryId"] = this.templateId;
+    this.api.updateSalary(postData).subscribe(resp => {
       this.isLoading = false;
-      this.salaryForm.reset();
-      this.toastr.success(resp.message, "Salary template add success");
-      this.getSalaryTemplates();
+      this.toastr.success(resp.message, "Salary template update success");
     },
     (err) => {
       this.isLoading = false;
-      this.toastr.error(err, "Salary template add failed");
-      console.error(err);
-    })
-  }
-
-  deleteSalary()
-  {
-    this.isLoading = true;
-    this.api.deleteSalary(this.selectedSal._id).subscribe(resp => {
-      console.log(resp);
-      this.isLoading = false;
-      document.getElementById('modalDismissBtn')?.click();
-      this.getSalaryTemplates();
-    },
-    (err) => {
-      this.isLoading = false;
+      this.toastr.error(err, "Salary template update failed");
       console.error(err);
     })
   }

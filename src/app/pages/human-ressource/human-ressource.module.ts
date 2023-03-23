@@ -13,6 +13,7 @@ import { LeaveCategoryComponent } from './leave-category/leave-category.componen
 import { LeaveApplicationComponent } from './leave-application/leave-application.component';
 import { LeaveManageApplicationComponent } from './leave-manage-application/leave-manage-application.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SalaryEditComponent } from './salary-templete/salary-edit/salary-edit.component';
 
 
 @NgModule({
@@ -24,14 +25,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     ManageApplicationComponent,
     LeaveCategoryComponent,
     LeaveApplicationComponent,
-    LeaveManageApplicationComponent
+    LeaveManageApplicationComponent,
+    SalaryEditComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     HumanRessourceRoutingModule,
     SharedModule,
-    MatTabsModule
+    MatTabsModule,
   ]
 })
 export class HumanRessourceModule { }
