@@ -65,6 +65,19 @@ export class ApiService {
       return this.httpClient.delete(environment.apiBaseUrl +'/salary/' + id).pipe(catchError(this.errorHandler));
     }
 
+    getAllEmployees(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl + '/employee/all').pipe(catchError(this.errorHandler));
+    }
+
+    updateEmpSal(postData: any): Observable<any> {
+      const salaryData = {
+        salaryGrades: postData
+      }
+
+      return this.httpClient.put(environment.apiBaseUrl + '/employee/salaryGrade', salaryData).pipe(catchError(this.errorHandler));
+    }
+
+
   errorHandler(error: {
     error: {
         messge: string;

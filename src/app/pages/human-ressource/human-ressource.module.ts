@@ -12,7 +12,7 @@ import { ManageApplicationComponent } from './manage-application/manage-applicat
 import { LeaveCategoryComponent } from './leave-category/leave-category.component';
 import { LeaveApplicationComponent } from './leave-application/leave-application.component';
 import { LeaveManageApplicationComponent } from './leave-manage-application/leave-manage-application.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SalaryEditComponent } from './salary-templete/salary-edit/salary-edit.component';
 
 
@@ -30,6 +30,7 @@ import { SalaryEditComponent } from './salary-templete/salary-edit/salary-edit.c
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     HumanRessourceRoutingModule,
     SharedModule,
