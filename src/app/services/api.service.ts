@@ -77,6 +77,26 @@ export class ApiService {
       return this.httpClient.put(environment.apiBaseUrl + '/employee/salaryGrade', salaryData).pipe(catchError(this.errorHandler));
     }
 
+    getLeaveCategory(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl + '/leavesCategory/all').pipe(catchError(this.errorHandler));
+    }
+
+    getDesignaions(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl + '/designation/all').pipe(catchError(this.errorHandler));
+    }
+
+    addLeave(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl +'/leavesCategory', postData).pipe(catchError(this.errorHandler));
+    }
+
+    updateLeave(postData: any): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl +'/leavesCategory', postData).pipe(catchError(this.errorHandler));
+    }
+
+    deleteLeave(id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/leavesCategory/' + id).pipe(catchError(this.errorHandler));
+    }
+
 
   errorHandler(error: {
     error: {
