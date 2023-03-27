@@ -68,7 +68,9 @@ export class ApiService {
     getAllEmployees(): Observable<any> {
       return this.httpClient.get(environment.apiBaseUrl + '/employee/all').pipe(catchError(this.errorHandler));
     }
-
+    fineSetupListById(id: string){
+      return this.httpClient.get(environment.apiBaseUrl +'/fineSetup/all/' + id).pipe(catchError(this.errorHandler));
+    }
     updateEmpSal(postData: any): Observable<any> {
       const salaryData = {
         salaryGrades: postData

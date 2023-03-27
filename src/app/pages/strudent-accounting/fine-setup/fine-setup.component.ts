@@ -26,7 +26,7 @@ export class FineSetupComponent {
     )
   {
     this.fineSetupForm = new FormGroup({
-      // group_name: new FormControl(null, [Validators.required]),
+      group_name: new FormControl(null, [Validators.required]),
       feeType: new FormControl(null, [Validators.required]),
       fineType: new FormControl(null, [Validators.required]),
       fineValue: new FormControl(null, [Validators.required]),

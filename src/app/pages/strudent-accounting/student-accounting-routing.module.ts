@@ -6,6 +6,7 @@ import { FeesAllocationComponent } from './fees-allocation/fees-allocation.compo
 import { FeesGroupComponent } from './fees-group/fees-group.component';
 import { FeesPayInvoiceComponent } from './fees-pay-invoice/fees-pay-invoice.component';
 import { FeesRemainderComponent } from './fees-remainder/fees-remainder.component';
+import { EditComponent } from './fine-setup/edit/edit.component';
 import { FineSetupComponent } from './fine-setup/fine-setup.component';
 
 const routes: Routes = [
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'fine-setup',
     component: FineSetupComponent
+  },
+  {
+    path: 'fine-setup/:id',
+    component: EditComponent
   },
   {
     path: 'fees-allocation',

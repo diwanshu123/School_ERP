@@ -7,7 +7,7 @@ import { ApiService } from 'src/app/services/api.service';
 @Component({
   selector: 'app-salary-edit',
   templateUrl: './salary-edit.component.html',
-  styleUrls: ['./salary-edit.component.scss']
+  styleUrls: ['./salary-edit.component.scss'] 
 })
 export class SalaryEditComponent {
 
