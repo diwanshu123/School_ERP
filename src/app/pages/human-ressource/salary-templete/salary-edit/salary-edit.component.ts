@@ -7,7 +7,7 @@ import { ApiService } from 'src/app/services/api.service';
 @Component({
   selector: 'app-salary-edit',
   templateUrl: './salary-edit.component.html',
-  styleUrls: ['./salary-edit.component.scss']
+  styleUrls: ['./salary-edit.component.scss'] 
 })
 export class SalaryEditComponent {
 
@@ -30,7 +30,7 @@ export class SalaryEditComponent {
       basicSalary: new FormControl(null, [Validators.required]),
       overTimeRatePerHr: new FormControl(0),
       allowances: new FormArray([]),
-      deductions: new FormArray([]),
+       deductions: new FormArray([]),
       basicSal: new FormControl({value: 0, disabled: true}),
       totalAllowance: new FormControl({value: 0, disabled: true}),
       totalDeduction: new FormControl({value: 0, disabled: true}),
@@ -87,6 +87,10 @@ export class SalaryEditComponent {
       totalDeduction: this.salary.totalDeductions,
       netSal: this.salary.netSalary
     });
+    console.log(this
+      .salaryForm.value
+      );
+    
 
     this.salary.allowances.forEach((allow: any, i: number) => {
       this.addAllowancesField();

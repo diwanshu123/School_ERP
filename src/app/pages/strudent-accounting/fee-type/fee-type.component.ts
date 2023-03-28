@@ -14,6 +14,7 @@ export class FeeTypeComponent {
   feeTypeForm: FormGroup;
   feeTypes: any[] = [];
   isLoading: boolean;
+  selectedfee: any;
 
   constructor(private api: ApiService, private toastr: ToastrService)
   {
@@ -30,7 +31,20 @@ export class FeeTypeComponent {
   ngOnInit(): void {
     this.feeTypeList();
   }
-
+  deleteFine()
+  {
+    this.isLoading = true;
+    this.api.deleteFeeType(this.selectedfee._id).subscribe(resp => {
+      console.log(resp);
+      this.isLoading = false;
+      document.getElementById('modalDismissBtn')?.click();
+      this.feeTypeList();
+    },
+    (err) => {
+      this.isLoading = false;
+      console.error(err);
+    })
+  }
   addFeeType()
   {
     console.log("clicked,", this.feeTypeForm.value);
