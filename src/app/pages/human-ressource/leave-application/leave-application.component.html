@@ -10,61 +10,41 @@
                             <input type="search" class="form-control" placeholder="Search here...">
                             <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
                           </div>
-                          <!-- <div class="options">
-                            <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
-                            <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
-                            <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
-                            <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
-                            <button class="btn"><img src="assets/icons/opt-print.svg"></button>
-                          </div> -->
                         </div>
-          
-                       
                       </div>
-          
+
                       <table class="table mt-3">
                         <thead>
                           <tr>
-                            <th scope="col"><input type="checkbox" class="form-check-input"></th>
                             <th scope="col">SL</th>
-                   
-                            <th scope="col"> Application</th>
-               
-                            <th scope="col">Leave Category  </th>
+                            <th scope="col"> Applicant</th>
+                            <th scope="col">Leave Category</th>
                             <th scope="col">Date of Start</th>
                             <th scope="col">Date of End</th>
-
-
                             <th scope="col">Days </th>
                             <th scope="col">Apply Date</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
-
-
-
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td scope="row"><input type="checkbox" class="form-check-input"></td>
-                            <td>#001234</td>
-                         
-                          
-                            <td>College</td>
-                            <td>College</td>
-                            <td>College</td>
-                            <td>College</td>
-                            <td>College</td>
-
-                     
-
-                      
-                            <td>Principal</td>
-                            <td><button  class="badge rounded-pill">Accepted</button></td>
-                         
+                          <tr *ngFor="let leave of leaveApps; index as i">
+                            <td>{{i + 1}}</td>
+                            <td>{{leave.employee.name}}</td>
+                            <td>{{leave.leaveType.name}}</td>
+                            <td>{{leave.fromDate | date}}</td>
+                            <td>{{leave.toDate | date}}</td>
+                            <td>{{leave.days}}</td>
+                            <td>-</td>
+                            <td><button  class="badge rounded-pill">{{leave.status}}</button></td>
                             <td>
-                              <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
-                              <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+                              <button class="btn emp-edit me-1">
+                                <i class="fa-solid fa-pencil"></i>
+                              </button>
+                              <button class="btn emp-edit ms-1" data-bs-toggle="modal" data-bs-target="#deletePrompt"
+                                (click)="selectedLeave=leave;">
+                                <i class="fa-solid fa-trash-can"></i>
+                              </button>
                             </td>
                           </tr>
                         </tbody>
@@ -72,38 +52,99 @@
                     </div>
                   </mat-tab>
                   <mat-tab label="Leave Request ">
-                    <div class="container">
-                        <div class="mb-3 py-2">
-                            <div class="py-4">
-                                <h6>Add Leave Category</h6>
+                    <form [formGroup]="leaveForm" (ngSubmit)="addLeaveRequest()">
+                      <div class="container">
+                          <div class="mb-3 py-2">
+                              <div class="py-4">
+                                  <h6>Add Leave Category</h6>
+                              </div>
+                              <div>
+                                <label class="form-label">Employee *</label>
+                                <select class="form-select" formControlName="employee">
+                                  <option disabled value="select">Select</option>
+                                  <option *ngFor="let emp of employees" [value]="emp._id">{{emp.name}}</option>
+                                </select>
+                              </div>
                             </div>
-                         
-                            <label class="form-label">Leave  Type*</label>
-                            <input type="text" class="form-control">
-                          </div>
-                          <label class="form-label">Date *</label>
-                          <div class="input-group">
-                            <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-                            <input type="text" class="form-control">
-                          </div>
-                          <div class="mb-3 py-2">
-                            <label class="form-label">Reason*</label>
-                            <input type="text" class="form-control">
-                          </div>
-                          <div class="mb-3 py-2">
-                            <label class="form-label">Attachment*</label>
-                            <input type="text" class="form-control">
-                          </div>
-                       
-                          <div class="text-end">
-                            <button class="btn">Save</button>
-                          </div>
-                    </div>
+
+                            <div class="mb-3">
+                              <label class="form-label">Leave Type*</label>
+                              <select class="form-select" formControlName="leaveType">
+                                <option disabled value="select">Select</option>
+                                <option *ngFor="let leave of leaveCats" [value]="leave._id">{{leave.name}}</option>
+                              </select>
+                            </div>
+
+                            <div class="mb-3">
+                              <label class="form-label">Date *</label>
+                              <div class="input-group flex-nowrap">
+                                <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
+                                <mat-date-range-input [rangePicker]="picker" class="date-picker-input" (click)="picker.open()">
+                                  <input matStartDate readonly placeholder="mm/dd/yyyy" formControlName="fromDate">
+                                  <input matEndDate readonly placeholder="mm/dd/yyyy" formControlName="toDate">
+                                </mat-date-range-input>
+                              </div>
+                              <mat-date-range-picker #picker></mat-date-range-picker>
+                            </div>
+
+                            <div class="mb-3 py-2">
+                              <label class="form-label">Reason*</label>
+                              <input type="text" class="form-control" formControlName="reason">
+                            </div>
+                            <div class="mb-3 py-2">
+                              <label class="form-label">Attachment*</label>
+                              <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event)">
+                                <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                                    <ng-container *ngIf="!fileData">
+                                      Drag and drop or
+                                      <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()">Browse Files</a>
+                                    </ng-container>
+                                    <ng-container *ngIf="fileData">
+                                      {{fileData.name}}
+                                      <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="fileData=null">
+                                        Remove
+                                      </a>
+                                    </ng-container>
+                                </ng-template>
+                              </ngx-file-drop>
+                            </div>
+
+                            <div class="text-end">
+                              <button class="btn" [disabled]="isLoading || !leaveForm.valid
+                                || leaveForm.get('employee')?.value == 'select'
+                                || leaveForm.get('leaveType')?.value == 'select'">
+                                <span *ngIf="isLoading" class="spinner-border text-light"></span>
+                                <span *ngIf="!isLoading">Save</span>
+                              </button>
+                            </div>
+                      </div>
+                    </form>
                 </mat-tab>
 
   </mat-tab-group>
             </div>
 
         </div>
-    
+
     </app-layout>
+
+<!---Modal for delete---->
+<div class="modal fade" id="deletePrompt">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Leave Request</h5>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this leave request?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="modalDismissBtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" [disabled]="isLoading" (click)="deleteLeave()">
+          <span *ngIf="isLoading" class="spinner-border text-light"></span>
+          <span *ngIf="!isLoading">Delete</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

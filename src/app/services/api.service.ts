@@ -97,6 +97,18 @@ export class ApiService {
       return this.httpClient.delete(environment.apiBaseUrl +'/leavesCategory/' + id).pipe(catchError(this.errorHandler));
     }
 
+    getLeaveApplication(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl + '/leavesRequest/all').pipe(catchError(this.errorHandler));
+    }
+
+    addLeaveRequest(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl + '/leavesRequest', postData).pipe(catchError(this.errorHandler));
+    }
+
+    deleteLeaveRequest(id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/leavesRequest/' + id).pipe(catchError(this.errorHandler));
+    }
+
 
   errorHandler(error: {
     error: {

@@ -14,6 +14,9 @@ import { LeaveApplicationComponent } from './leave-application/leave-application
 import { LeaveManageApplicationComponent } from './leave-manage-application/leave-manage-application.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SalaryEditComponent } from './salary-templete/salary-edit/salary-edit.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { NgxFileDropModule } from 'ngx-file-drop';
 
 
 @NgModule({
@@ -35,6 +38,9 @@ import { SalaryEditComponent } from './salary-templete/salary-edit/salary-edit.c
     HumanRessourceRoutingModule,
     SharedModule,
     MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxFileDropModule
   ]
 })
 export class HumanRessourceModule { }
