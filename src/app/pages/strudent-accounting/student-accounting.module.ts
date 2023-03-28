@@ -21,6 +21,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatMomentDateModule, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 import { EditComponent } from './fine-setup/edit/edit.component';
+import { FeeTypeEditComponent } from './fee-type/fee-type-edit/fee-type-edit.component';
+
 
 
 
@@ -36,7 +38,8 @@ import { EditComponent } from './fine-setup/edit/edit.component';
     InvoiceCollectPaidComponent,
     DueFeesInvoiceComponent,
     FeesRemainderComponent,
-    EditComponent
+    EditComponent,
+    FeeTypeEditComponent
   ],
   imports: [
     CommonModule,

@@ -69,7 +69,10 @@ export class ApiService {
       return this.httpClient.get(environment.apiBaseUrl + '/employee/all').pipe(catchError(this.errorHandler));
     }
     fineSetupListById(id: string){
-      return this.httpClient.get(environment.apiBaseUrl +'/fineSetup/all/' + id).pipe(catchError(this.errorHandler));
+      return this.httpClient.get(environment.apiBaseUrl +'/fineSetup/' + id).pipe(catchError(this.errorHandler));
+    }
+    feeTypeListByid(id: string){
+      return this.httpClient.get(environment.apiBaseUrl +'/feeType/' + id).pipe(catchError(this.errorHandler));
     }
     updateEmpSal(postData: any): Observable<any> {
       const salaryData = {
@@ -78,7 +81,12 @@ export class ApiService {
 
       return this.httpClient.put(environment.apiBaseUrl + '/employee/salaryGrade', salaryData).pipe(catchError(this.errorHandler));
     }
-
+    deleteFineSetup(id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/fineSetup/' + id).pipe(catchError(this.errorHandler));
+    }
+    deleteFeeType(id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/feeType/' + id).pipe(catchError(this.errorHandler));
+    }
     getLeaveCategory(): Observable<any> {
       return this.httpClient.get(environment.apiBaseUrl + '/leavesCategory/all').pipe(catchError(this.errorHandler));
     }

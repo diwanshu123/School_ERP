@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DueFeesInvoiceComponent } from './due-fees-invoice/due-fees-invoice.component';
+import { FeeTypeEditComponent } from './fee-type/fee-type-edit/fee-type-edit.component';
 import { FeeTypeComponent } from './fee-type/fee-type.component';
 import { FeesAllocationComponent } from './fees-allocation/fees-allocation.component';
 import { FeesGroupComponent } from './fees-group/fees-group.component';
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'fees-type',
     component: FeeTypeComponent
+  },
+  {
+    path: 'fees-type/:id',
+    component: FeeTypeEditComponent
   },
   {
     path: 'fees-group',

@@ -17,7 +17,9 @@ export class EditComponent {
   salary: any;
   templateId: string
   fineSetupForm: FormGroup;
-  fine: any
+
+  fineSetup: any
+
   constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute){
 
     route.params.subscribe(param => {
@@ -38,31 +40,38 @@ export class EditComponent {
   }
 
   ngOnInit(): void {
-    this.patchFormData()
-    this.getFineTemplateById()
+    // this.patchFormData()
+    // this.getFineTemplateById()
   }
-  // fines:any
-  fines: any[] = [];
+  
+
   getFineTemplateById()
   {
     console.log(this
       .templateId);
     
     this.api.fineSetupListById(this.templateId).subscribe(resp => {
-      // this.fine = resp.fines;
+      this.fineSetup = resp;
+      console.log("this.finesetup", resp);
+      
       this.patchFormData();
     })
   }
-
-
+  resp:any
   patchFormData(){
     this.fineSetupForm.patchValue({
       // group_name: this.fines.group_name,
-      feeType:  this.fine.feeType,
-      fineType:  this.fine.fineType,
-      fineValue: this.fine.fineValue,
-      lateFeeFrequency:  this.fine.lateFeeFrequency
+      feeType:  this.fineSetup.feeType,
+      fineType:  this.fineSetup.fineType,
+      fineValue: this.fineSetup.fineValue,
+      lateFeeFrequency:  this.fineSetup.lateFeeFrequency
+      
     })
+   
+    
   }
+
+ 
+
 
 }

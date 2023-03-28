@@ -17,6 +17,7 @@ export class FineSetupComponent {
   fines: any[] = [];
   feeType: any[] = [];
   isLoading: boolean;
+  selectedfine: any;
 
 
   constructor(private api: ApiService, 
@@ -99,16 +100,20 @@ changeTab(event: any){
     })
     // this.feeTypeFineSetup();
   }
-  // feeTypeFineSetup()
-  // {
-  //   this.api.fineSetupList().subscribe((res: any)=> {
-  //     this.feeType= res.feeType
-      
-  //     console.log(res, "feeTypesGroup");
-  //   })
-
-    
-  // }
+  deleteFine()
+  {
+    this.isLoading = true;
+    this.api.deleteFineSetup(this.selectedfine._id).subscribe(resp => {
+      console.log(resp);
+      this.isLoading = false;
+      document.getElementById('modalDismissBtn')?.click();
+      this.fineSetupList();
+    },
+    (err) => {
+      this.isLoading = false;
+      console.error(err);
+    })
+  }
   
 
 }
