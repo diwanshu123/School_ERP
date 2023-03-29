@@ -115,6 +115,10 @@ export class ApiService {
       return this.httpClient.post(environment.apiBaseUrl + '/leavesRequest', postData).pipe(catchError(this.errorHandler));
     }
 
+    updateLeaveRequestStatus(postData: any): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl + '/leavesRequest/status', postData).pipe(catchError(this.errorHandler));
+    }
+
     deleteLeaveRequest(id: string): Observable<any> {
       return this.httpClient.delete(environment.apiBaseUrl +'/leavesRequest/' + id).pipe(catchError(this.errorHandler));
     }

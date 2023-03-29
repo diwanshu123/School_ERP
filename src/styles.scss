@@ -111,6 +111,10 @@ button {
   padding: 0!important;
 }
 
+.cdk-overlay-container {
+  z-index: 10000;
+}
+
 
 .tab-container {
   .top-options {
