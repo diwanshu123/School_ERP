@@ -1,0 +1,73 @@
+<app-layout>
+    <div class="container p-4">
+        <div class="tab-container">
+            <nav mat-tab-nav-bar mat-stretch-tabs="false" mat-align-tabs="start" selectedIndex="2" [tabPanel]="tabPanel">
+                <a mat-tab-link routerLink="../">Exam  List</a>
+                <a mat-tab-link [active]="true">Edit Exam </a>
+            </nav> 
+            <mat-tab-nav-panel #tabPanel>
+
+                <div class="container">
+                    <form [formGroup]="examForm" >
+                        <div class="container">
+                      
+                          
+                            <div class="mb-2 col-md-5 py-2 offset-3">
+                                <label class="form-label"> Name*</label>
+                                <input type="text" formControlName="name" class="form-control">
+                              </div>
+                              <div class="mb-3 col-md-5 offset-3 py-2">
+                                <label class="form-label">Term *</label>
+                                <select class="form-select" formControlName="term">
+                                  <option disabled value="select">Select</option>
+                                  <option *ngFor="let designation of examTerms" [value]="designation._id">
+                                    {{designation.name}}
+                                  </option>
+                                </select>
+                              </div> 
+                              <div class="mb-3 py-2 offset-3 col-md-5">
+                                <label class="form-label">Exam Type *</label>
+                                <select class="form-select" formControlName="examtype">
+                                  <option disabled value="select">Select</option>
+                                  <option *ngFor="let exam of exams" [value]="exam.examtype">
+                                    {{exam.examtype}}
+                                  </option>
+                               
+      
+                                </select>
+                              </div>
+                              <!-- this will chnge -->
+                              <div class="mb-3  col-md-5 offset-3 py-2">
+                                <label class="form-label">Marks Disturbutions *</label>
+                                <select class="form-select" formControlName="marksDistribution">
+                                  <option disabled value="select">Select</option>
+                                  <option *ngFor="let exam of marksDistributions"  [value]="exam._id">
+                                    {{exam.name}}
+                                  </option>
+                            
+                                </select>
+                              </div>
+                              <div class="mb-3  col-md-5 offset-3 py-">
+                              
+                                    <label for="exampleFormControlTextarea1" class="form-label">Remarks</label>
+                                    <textarea formControlName="remarks" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            
+                              </div>
+                              <div class="text-end offset-4" >
+                                <button type="submit" class="btn" [disabled]="isLoading || !examForm.valid">
+                                  <span *ngIf="isLoading" class="spinner-border text-light"></span>
+                                  <span *ngIf="!isLoading">Update</span>
+                                </button>
+                              </div>
+                             
+                        </div>
+                      </form>
+                  </div>
+
+            </mat-tab-nav-panel>
+
+
+
+        </div>
+    </div>
+           </app-layout>

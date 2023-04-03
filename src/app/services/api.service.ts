@@ -13,12 +13,50 @@ export class ApiService {
   constructor(private httpClient: HttpClient) { }
 
 // Exam Master
-  createExam(name: any, description: any): Observable<any> {
-    return this.httpClient.post(environment.apiBaseUrl + '/exam' + name,description);
+  createExam(postData: FormData): Observable<any> {
+    return this.httpClient.post(environment.apiBaseUrl + '/exam' , postData);
+  }
+  createExamTerm(postData: FormData): Observable<any> {
+    return this.httpClient.post(environment.apiBaseUrl + '/examTerm' , postData);
+  }
+  createGrades(postData: FormData): Observable<any> {
+    return this.httpClient.post(environment.apiBaseUrl + '/grade' , postData);
+  }
+  marksDistribution(postData: FormData): Observable<any> {
+    return this.httpClient.post(environment.apiBaseUrl + '/marksDistribution' , postData);
+  }
+  
+  updateMarksDistribution(postData: any): Observable<any> {
+    return this.httpClient.put(environment.apiBaseUrl +'/marksDistribution', postData).pipe(catchError(this.errorHandler));
+  }
+  updateExamTerm(postData: any): Observable<any> {
+    return this.httpClient.put(environment.apiBaseUrl +'/examTerm', postData).pipe(catchError(this.errorHandler)); 
+  }
+  deleteMarksDistribution(id: string): Observable<any> {
+    return this.httpClient.delete(environment.apiBaseUrl +'/marksDistribution/' + id).pipe(catchError(this.errorHandler));
+  }
+  deleteExamTerm(id: string): Observable<any> {
+    return this.httpClient.delete(environment.apiBaseUrl +'/examTerm/' + id).pipe(catchError(this.errorHandler));
+  }
+  deleteGrade(id: string): Observable<any> {
+    return this.httpClient.delete(environment.apiBaseUrl +'/grade/' + id).pipe(catchError(this.errorHandler));
   }
 
+
+  getExamTerms(): Observable<any> {
+    return this.httpClient.get(environment.apiBaseUrl +'/examTerm/all' ).pipe(catchError(this.errorHandler));
+  }
   getAllExam(): Observable<any> {
     return this.httpClient.get(environment.apiBaseUrl +'/exam/all' ).pipe(catchError(this.errorHandler));
+  }
+  getAllMarksDistubutions(): Observable<any> {
+    return this.httpClient.get(environment.apiBaseUrl +'/marksDistribution/all' ).pipe(catchError(this.errorHandler));
+  }
+  getAllGrades(): Observable<any> {
+    return this.httpClient.get(environment.apiBaseUrl +'/grade/all' ).pipe(catchError(this.errorHandler));
+  }
+  updateExam(postData: any): Observable<any> {
+    return this.httpClient.put(environment.apiBaseUrl +'/exam', postData).pipe(catchError(this.errorHandler));
   }
 
   // certificate

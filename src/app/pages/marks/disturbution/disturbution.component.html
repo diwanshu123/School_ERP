@@ -2,15 +2,20 @@
     <div class="container p-4">
       <div class="row">
         <div class="col-6 px-4">
+          <form [formGroup]="disturbutionForm" (ngSubmit)="addDist()" >
           <h5 class="mb-4"> Add Marks Disturbution</h5>
           <div class="mb-3">
             <label class="form-label"> Name *</label>
-            <input type="text" class="form-control">
+            <input type="text" formControlName= "name" class="form-control">
           </div>
   
           <div class="text-end">
-            <button class="btn">Save</button>
+            <button type="submit" class="btn" [disabled]="isLoading || !disturbutionForm.valid">
+              <span *ngIf="isLoading" class="spinner-border text-light"></span>
+              <span *ngIf="!isLoading">Save</span>
+            </button>
           </div>
+          </form>
         </div>
         <div class="col-6 px-4">
           <h5 class="mb-4">Marks Disturbution  List</h5>
@@ -19,28 +24,26 @@
               <tr>
                 <th scope="col">SL</th>
                 <th scope="col">Name</th>
-                <!-- <th scope="col">Branch</th> -->
+              
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Dawud Khan</td>
+              <tr *ngFor="let dist of marksDistributions;  index as i">
+                <td>{{i+1}}</td>
+                <td>{{dist.name}}</td>
             <td>
-                  <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
-                  <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+              <button class="btn emp-edit me-1" data-bs-toggle="modal" data-bs-target="#editLeave"
+              (click)="patchDistForm(dist)">
+              <i class="fa-solid fa-pencil"></i>
+            </button>
+                 
+                  <button class="btn emp-edit ms-1" data-bs-toggle="modal" data-bs-target="#deletePrompt"
+                  (click)="selectedDist=dist"><i class="fa-solid fa-trash-can"></i></button>
                 </td>
               </tr>
   
-              <tr>
-                <td>2</td>
-                <td>Dawud Khan</td>
-              <td>
-                  <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
-                  <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
-                </td>
-              </tr>
+           
             </tbody>
           </table>
         </div>
@@ -48,3 +51,57 @@
     </div>
   </app-layout>
   
+
+  
+<!-- Modal for editing  -->
+<div class="modal fade" id="editLeave">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Exam  Disturbutions</h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editDistForm">
+          <div class="mb-3">
+            <label class="form-label"> Name *</label>
+            <input type="text" class="form-control" formControlName="name">
+          </div>
+      
+         
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button id="editModalDismissBtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" [disabled]="isLoading ||
+          !editDistForm.valid || editDistForm.get('dist')?.value == 'select'"  (click)="updateDist()"> 
+          <span *ngIf="isLoading" class="spinner-border text-light"></span>
+          <span *ngIf="!isLoading">Update</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!---Modal for delete---->
+<div class="modal fade" id="deletePrompt">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Exam Disturbution</h5>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete ?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="modalDismissBtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" [disabled]="isLoading" (click)="deleteDist()">
+          <span *ngIf="isLoading"  class="spinner-border text-light"></span>
+          <span *ngIf="!isLoading">Delete</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

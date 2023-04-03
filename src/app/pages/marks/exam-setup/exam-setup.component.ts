@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
 
@@ -9,22 +11,127 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./exam-setup.component.scss']
 })
 export class ExamSetupComponent {
-  allExam: any
-  constructor(private api: ApiService, ) { }
+  exams: any
+  examForm:  FormGroup
+  isLoading: boolean;
+  examTerms: any;
+  marksDistributions: any;
+  selectedLeave: any;
+  selectedExam: any;
+  constructor(private api: ApiService,private toastr: ToastrService  ) {
+    this.examForm =  new FormGroup ({
+      name: new FormControl(null, [Validators.required]),
+      term: new FormControl(null, [Validators.required]),
+      examtype: new FormControl(null, [Validators.required]),
+      marksDistribution: new FormControl(null, [Validators.required]),
+      remarks: new FormControl(null, [Validators.required]),
 
 
+    })
+
+ 
+
+  }
+  exam:any
   ngOnInit(): void {
     this.getAllExam()
+    this.getExamTerms()
+    this.getMarksDiturbution()
+    this.getAllExam()
+    // this.patchLeaveForm(this.exam)
 
+  }
+
+  addExams()
+  {
+    console.log(this.examForm.value);
+    
+    this.isLoading = true;
+    this.api.createExam(this.examForm.value).subscribe(resp => {
+      console.log(resp);
+      
+      this.isLoading = false;
+
+      this.toastr.success(resp.message, "exams  add success");
+      this.getAllExam();
+    ;
+    },
+    (err) => {
+      this.isLoading = false;
+      this.toastr.error(err, "exams  add failed");
+      console.error(err);
+    })
+  }
+  deleteExams()
+  {
+    this.isLoading = true;
+    this.api.deleteLeave(this.selectedLeave._id).subscribe(resp => {
+      console.log(resp);
+      this.isLoading = false;
+      document.getElementById('modalDismissBtn')?.click();
+
+    },
+    (err) => {
+      this.isLoading = false;
+      console.error(err);
+    })
+  }
+
+  getExamTerms()
+  {
+    this.api.getExamTerms().subscribe(resp => {
+      this.examTerms = resp.examTerms;
+      console.log(this.examTerms, "exam terms");
+      
+      this.mapExamTerm();
+    });
+  }
+
+  mapExamTerm()
+  {
+
+    
+    // this.examTerms.forEach(exam => {
+    //   exam["designationDetail"] = this.examTerms.find(d => d._id == exam.term);
+    // });
+  
+    
   }
   getAllExam(){
     console.log("this");
     
     this.api.getAllExam().subscribe((res)=>{
-      this.allExam = res.data
-      console.log(res, "first res");
+      this.exams = res.exams
+      console.log(this.exams, "first res");
       
     })
+  }
+  getMarksDiturbution(){
+    console.log("this");
+    
+    this.api.getAllMarksDistubutions().subscribe((res)=>{
+      this.marksDistributions = res.marksDistributions
+      console.log(this.marksDistributions, "first res");
+      
+    })
+  }
+
+  
+  patchLeaveForm(exam: any)
+  {
+    console.log(exam);
+    
+
+    this.selectedExam = exam;
+    this.examForm.patchValue({
+      examId: exam._id,
+      name: exam.name,
+      term: exam.term,
+      examtype: exam.examtype,
+      marksDistribution: exam.marksDistribution,
+      remarks: exam.remarks
+
+    });
   }
 
 }

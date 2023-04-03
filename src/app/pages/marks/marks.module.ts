@@ -9,6 +9,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ExamTermComponent } from './exam-term/exam-term.component';
 import { DisturbutionComponent } from './disturbution/disturbution.component';
 import { ExamSetupComponent } from './exam-setup/exam-setup.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ExamSetupEditComponent } from './exam-setup/exam-setup-edit/exam-setup-edit.component';
+
+
 
 
 @NgModule({
@@ -17,13 +21,19 @@ import { ExamSetupComponent } from './exam-setup/exam-setup.component';
     GradeRangeComponent,
     ExamTermComponent,
     DisturbutionComponent,
-    ExamSetupComponent
+    ExamSetupComponent,
+    ExamSetupEditComponent
   ],
   imports: [
     CommonModule,
     MarksRoutingModule,
     MatTabsModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+   
+    
+ 
   ]
 })
 export class MarksModule { }

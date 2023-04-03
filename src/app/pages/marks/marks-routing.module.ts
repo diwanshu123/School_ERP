@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DisturbutionComponent } from './disturbution/disturbution.component';
+import { ExamSetupEditComponent } from './exam-setup/exam-setup-edit/exam-setup-edit.component';
 import { ExamSetupComponent } from './exam-setup/exam-setup.component';
 import { ExamTermComponent } from './exam-term/exam-term.component';
 import { GradeRangeComponent } from './grade-range/grade-range.component';
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'exam-setup',
     component: ExamSetupComponent
+  },
+  {
+    path: 'exam-setup/:id',
+    component: ExamSetupEditComponent
   },
 
 ];

@@ -3,7 +3,12 @@
     <div class="row mt-5 mb-3">
       <div class="col-4">
         <label class="form-label">Exam *</label>
-        <input type="text" class="form-control">
+        <select class="form-select" formControlName="examId">
+          <option disabled value="select">Select</option>
+          <option *ngFor="let exam of exams" [value]="exam._id">
+            {{exam.name}}
+          </option>
+        </select>
       </div>
       <div class="col-4 offset-4">
         <label class="form-label">Class *</label>
