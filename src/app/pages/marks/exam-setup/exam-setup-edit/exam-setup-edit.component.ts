@@ -7,6 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { EmpAddComponent } from 'src/app/pages/employees/emp-add/emp-add.component';
 import { ApiService } from 'src/app/services/api.service';
 
+import { map , tap} from "rxjs/operators";
+
 @Component({
   selector: 'app-exam-setup-edit',
   templateUrl: './exam-setup-edit.component.html',
@@ -20,6 +22,8 @@ export class ExamSetupEditComponent {
   marksDistributions: any;
   selectedLeave: any;
   examId:  string
+
+  naviData: string ;
 
   constructor(private api: ApiService,private toastr: ToastrService ,private route: ActivatedRoute)  {
     
@@ -40,6 +44,14 @@ export class ExamSetupEditComponent {
 exam:any
   ngOnInit(): void {
     this.patchLeaveForm(this.exam)
+
+    this.route.queryParams
+    .pipe(
+      map(para => para['data'] || 'None')
+      )
+    .subscribe(v => {
+      this.naviData = v;
+    });
 
   }
 

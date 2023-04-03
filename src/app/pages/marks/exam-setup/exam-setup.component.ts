@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -18,7 +19,8 @@ export class ExamSetupComponent {
   marksDistributions: any;
   selectedLeave: any;
   selectedExam: any;
-  constructor(private api: ApiService,private toastr: ToastrService  ) {
+  inputData: string ;
+  constructor(private api: ApiService,private toastr: ToastrService ,private route: Router ) {
     this.examForm =  new FormGroup ({
       name: new FormControl(null, [Validators.required]),
       term: new FormControl(null, [Validators.required]),
@@ -61,6 +63,15 @@ export class ExamSetupComponent {
       this.toastr.error(err, "exams  add failed");
       console.error(err);
     })
+  }
+  // nav extra
+  nvativeToSecForm() {
+    let naviData: NavigationExtras = {
+      queryParams: { data: this.inputData },
+    };
+    console.log(this.inputData);
+
+    this.route.navigate(['marks/exam-setup/:id'], naviData);
   }
   deleteExams()
   {

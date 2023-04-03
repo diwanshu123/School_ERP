@@ -13,6 +13,7 @@ export class GradeRangeComponent {
   gradeForm : FormGroup
   grade: any;
   selectedGrade: any;
+  grades:any ;
 
 
   
@@ -38,6 +39,8 @@ export class GradeRangeComponent {
 addGrade() { 
  
   this.isLoading = true;
+  console.log(this.gradeForm.value);
+  
   this.api.createGrades(this.gradeForm.value).subscribe(resp => {
     console.log(resp);
     
@@ -56,8 +59,8 @@ addGrade() {
 
 getAllGrade(){
   this.api.getAllGrades().subscribe((res)=>{
-    this.grade = res.grade
-    console.log(this.grade, "first res");
+    this.grades = res.grades
+    console.log(this.grades, "grade res");
     
   })
 }
@@ -67,6 +70,7 @@ deleteGrade(){
     console.log(res);
     this.isLoading = false;
     document.getElementById('modalDismissBtn')?.click();
+ 
 
   },
   (err) => {

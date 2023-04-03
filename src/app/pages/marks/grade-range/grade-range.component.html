@@ -33,17 +33,18 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>#001234</td>
-                  <td>A-</td>
-                  <td>5.0</td>
-                  <td>50%</td>
-                  <td>100%</td>
-                  <td>Excellent!</td>
+                <tr *ngFor="let grade of grades; index as i">
+                  <td>{{i+1}}</td>
+                  <td>{{grade.name}}</td>
+                  <td>{{grade.gradePoint}}</td>
+                  <td>{{grade.minPercentage}}</td>
+                  <td>{{grade.maxPercentage}}</td>
+                  <td>{{grade.remarks}}</td>
                   <td>
-                    <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
+                    <button class="btn emp-edit me-1"  [routerLink]="'./' + grade._id" ><i class="fa-solid fa-pencil"></i></button>
+
                     <button class="btn emp-edit ms-1" data-bs-toggle="modal" data-bs-target="#deletePrompt"
-                          ><i class="fa-solid fa-trash-can"></i></button>
+                    (click)="selectedGrade=grade"  ><i class="fa-solid fa-trash-can"></i></button>
                   </td>
                 </tr>
               </tbody>
