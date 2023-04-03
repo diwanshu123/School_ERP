@@ -1,0 +1,44 @@
+<app-layout>
+  <div class="container p-4">
+      <div class="tab-container">
+          <nav mat-tab-nav-bar mat-stretch-tabs="false" mat-align-tabs="start" selectedIndex="2" [tabPanel]="tabPanel">
+              <a mat-tab-link routerLink="../">Route List</a>
+              <a mat-tab-link [active]="true">Edit Route</a>
+          </nav>
+
+          <mat-tab-nav-panel #tabPanel>
+            <form [formGroup]="routeForm" (ngSubmit)="updateRoute()">
+              <div class="my-5">
+                <div class="mb-3">
+                  <label class="form-label">Route Name *</label>
+                  <input type="text" class="form-control" formControlName="routeName">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Start Place *</label>
+                  <input type="text" class="form-control" formControlName="startPlace">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Stop Place *</label>
+                  <input type="text" class="form-control" formControlName="stopPlace">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Remarks</label>
+                  <input type="text" class="form-control" formControlName="remarks">
+                </div>
+              </div>
+
+              <div class="text-end mb-3">
+                <button class="btn" [disabled]="isLoading || !routeForm.valid">
+                  <span *ngIf="isLoading" class="spinner-border text-light"></span>
+                  <span *ngIf="!isLoading">Save</span>
+                </button>
+              </div>
+            </form>
+          </mat-tab-nav-panel>
+      </div>
+  </div>
+</app-layout>
+

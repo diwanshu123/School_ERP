@@ -34,7 +34,7 @@ import { ToastrModule } from 'ngx-toastr';
       MatButtonModule,
       MatIconModule,
       SharedModule,
-      ToastrModule.forRoot({positionClass: 'toast-center-center'})
+      ToastrModule.forRoot({positionClass: 'toast-center-center'}),
     ]
 })
 export class AppModule { }

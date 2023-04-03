@@ -25,12 +25,12 @@ export class ApiService {
   marksDistribution(postData: FormData): Observable<any> {
     return this.httpClient.post(environment.apiBaseUrl + '/marksDistribution' , postData);
   }
-  
+
   updateMarksDistribution(postData: any): Observable<any> {
     return this.httpClient.put(environment.apiBaseUrl +'/marksDistribution', postData).pipe(catchError(this.errorHandler));
   }
   updateExamTerm(postData: any): Observable<any> {
-    return this.httpClient.put(environment.apiBaseUrl +'/examTerm', postData).pipe(catchError(this.errorHandler)); 
+    return this.httpClient.put(environment.apiBaseUrl +'/examTerm', postData).pipe(catchError(this.errorHandler));
   }
   deleteMarksDistribution(id: string): Observable<any> {
     return this.httpClient.delete(environment.apiBaseUrl +'/marksDistribution/' + id).pipe(catchError(this.errorHandler));
@@ -159,6 +159,74 @@ export class ApiService {
 
     deleteLeaveRequest(id: string): Observable<any> {
       return this.httpClient.delete(environment.apiBaseUrl +'/leavesRequest/' + id).pipe(catchError(this.errorHandler));
+    }
+
+    // Transport Routes
+    getAllRoutes(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl + '/route/all').pipe(catchError(this.errorHandler));
+    }
+
+    addRoute(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl + '/route', postData).pipe(catchError(this.errorHandler));
+    }
+
+    updateRoute(routeId: string, postData: any): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl + '/route/' + routeId, postData).pipe(catchError(this.errorHandler));
+    }
+
+    deleteRoute(id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/route/' + id).pipe(catchError(this.errorHandler));
+    }
+
+    // Transport Vehicles
+    getAllVehicles(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl + '/vehicle/all').pipe(catchError(this.errorHandler));
+    }
+
+    addVehicle(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl + '/vehicle', postData).pipe(catchError(this.errorHandler));
+    }
+
+    updateVehicle(vehicleId: string, postData: any): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl + '/vehicle/' + vehicleId, postData).pipe(catchError(this.errorHandler));
+    }
+
+    deleteVehicle(id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/vehicle/' + id).pipe(catchError(this.errorHandler));
+    }
+
+    // Transport Stop Pages
+    getAllStopPages(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl + '/stoppage/all').pipe(catchError(this.errorHandler));
+    }
+
+    addStopPage(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl + '/stoppage', postData).pipe(catchError(this.errorHandler));
+    }
+
+    updateStopPage(stopId: string, postData: any): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl + '/stoppage/' + stopId, postData).pipe(catchError(this.errorHandler));
+    }
+
+    deleteStopPage(id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/stoppage/' + id).pipe(catchError(this.errorHandler));
+    }
+
+    // Transport Assign Vehicle
+    getAllVehicleAssigns(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl + '/vehicleroute/all').pipe(catchError(this.errorHandler));
+    }
+
+    assignVehicle(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl + '/vehicleroute', postData).pipe(catchError(this.errorHandler));
+    }
+
+    updateAssignVehicle(stopId: string, postData: any): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl + '/vehicleroute/' + stopId, postData).pipe(catchError(this.errorHandler));
+    }
+
+    deleteAssignVehicle(id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/vehicleroute/' + id).pipe(catchError(this.errorHandler));
     }
 
 

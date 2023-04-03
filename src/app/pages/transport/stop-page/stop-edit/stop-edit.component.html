@@ -1,0 +1,40 @@
+<app-layout>
+  <div class="container p-4">
+      <div class="tab-container">
+          <nav mat-tab-nav-bar mat-stretch-tabs="false" mat-align-tabs="start" selectedIndex="2" [tabPanel]="tabPanel">
+              <a mat-tab-link routerLink="../">Vehicle List</a>
+              <a mat-tab-link [active]="true">Edit Vehicle</a>
+          </nav>
+
+          <mat-tab-nav-panel #tabPanel>
+            <form [formGroup]="stopForm" (ngSubmit)="updateStopPage()">
+              <div class="my-5">
+                <div class="mb-3">
+                  <label class="form-label">Stop Page *</label>
+                  <input type="text" class="form-control" formControlName="stoppageName">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Stop Time *</label>
+                  <!-- <input type="time" class="form-control" formControlName="stopTime"> -->
+                  <input class="form-control" [ngxTimepicker]="fullTime" [format]="24" readonly formControlName="stopTime">
+                  <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Route Fare *</label>
+                  <input type="text" class="form-control" formControlName="routeFare">
+                </div>
+              </div>
+
+              <div class="text-end mb-3">
+                <button class="btn" [disabled]="isLoading || !stopForm.valid">
+                  <span *ngIf="isLoading" class="spinner-border text-light"></span>
+                  <span *ngIf="!isLoading">Save</span>
+                </button>
+              </div>
+            </form>
+          </mat-tab-nav-panel>
+      </div>
+  </div>
+</app-layout>

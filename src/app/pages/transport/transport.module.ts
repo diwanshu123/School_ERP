@@ -9,6 +9,15 @@ import { AssignVehicleComponent } from './assign-vehicle/assign-vehicle.componen
 import { ReportComponent } from './report/report.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouteEditComponent } from './route-master/route-edit/route-edit.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { VehicleEditComponent } from './vehicle-master/vehicle-edit/vehicle-edit.component';
+import { StopEditComponent } from './stop-page/stop-edit/stop-edit.component';
+import { AssignEditComponent } from './assign-vehicle/assign-edit/assign-edit.component';
+import { ExpenseReportComponent } from './expense-report/expense-report.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 
 @NgModule({
@@ -17,13 +26,22 @@ import { MatTabsModule } from '@angular/material/tabs';
     VehicleMasterComponent,
     StopPageComponent,
     AssignVehicleComponent,
-    ReportComponent
+    ReportComponent,
+    RouteEditComponent,
+    VehicleEditComponent,
+    StopEditComponent,
+    AssignEditComponent,
+    ExpenseReportComponent
   ],
   imports: [
     CommonModule,
     TransportRoutingModule,
     MatTabsModule,
-    SharedModule
+    ReactiveFormsModule,
+    SharedModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule
   ]
 })
 export class TransportModule { }

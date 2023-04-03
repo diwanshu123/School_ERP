@@ -102,7 +102,7 @@
         <mat-icon matListItemIcon>photo_alum</mat-icon>Student Acconting
       </mat-list-item>
     </mat-expansion-panel-header>
-    
+
     <!--Sub Menu-->
     <div class="sub-menu-cont">
       <mat-list-item class="sub-menu" [routerLink]="routes.STUD_ACCOUNTING" routerLinkActive="sub-active">
@@ -126,7 +126,7 @@
                     <mat-list-item class="sub-menu" [routerLink]="routes.STUD_FEES_REMAINDER" routerLinkActive="sub-active">
                     Fees Remainder
                           </mat-list-item>
-     
+
     </div>
   </mat-expansion-panel>
 
@@ -166,7 +166,7 @@
         Grades Range
       </mat-list-item>
       <mat-list-item class="sub-menu" [routerLink]="routes.MARKS_EXAM_TERM" routerLinkActive="sub-active">
-        Exam Term 
+        Exam Term
       </mat-list-item>
       <mat-list-item class="sub-menu" [routerLink]="routes.DIST" routerLinkActive="sub-active">
       Disturbution
@@ -280,7 +280,10 @@
       </mat-list-item>
       <mat-list-item class="sub-menu" [routerLink]="routes.TRANS_REPORT" routerLinkActive="sub-active">
         Allocation Report
-      </mat-list-item> 
+      </mat-list-item>
+      <mat-list-item class="sub-menu" [routerLink]="routes.TRANS_EXPENSE" routerLinkActive="sub-active">
+        Expense Report
+      </mat-list-item>
     </div>
   </mat-expansion-panel>
 
@@ -288,7 +291,7 @@
   <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/human-resource') ? true : false">
     <mat-expansion-panel-header>
       <mat-list-item [ngClass]="currentUrl.includes('/human-resource') ? 'active' : ''">
-        <mat-icon matListItemIcon>photo_alum</mat-icon>Human Ressource  
+        <mat-icon matListItemIcon>photo_alum</mat-icon>Human Ressource
       </mat-list-item>
     </mat-expansion-panel-header>
     <!--Sub Menu-->
@@ -306,7 +309,7 @@
         My Application
       </mat-list-item>
       <mat-list-item class="sub-menu" [routerLink]="routes.HR_MAN_APP" routerLinkActive="sub-active">
-     Manage Application 
+     Manage Application
       </mat-list-item>
       <mat-list-item class="sub-menu" [routerLink]="routes.HR_LEAVE_CAT" routerLinkActive="sub-active">
       Leave Category
@@ -318,7 +321,7 @@
           Leave/Manage Application
           </mat-list-item>
 
-     
+
     </div>
   </mat-expansion-panel>
   <!--  -->

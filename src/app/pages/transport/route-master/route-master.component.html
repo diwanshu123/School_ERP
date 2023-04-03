@@ -32,15 +32,20 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>#001234</td>
-                  <td>Max ABC</td>
-                  <td>january-month-fees</td>
-                  <td></td>
-                  <td></td>
+                <tr *ngFor="let route of routes; index as i">
+                  <td>{{i + 1}}</td>
+                  <td>{{route.routeName}}</td>
+                  <td>{{route.startPlace}}</td>
+                  <td>{{route.stopPlace}}</td>
+                  <td>{{route.remarks}}</td>
                   <td>
-                    <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
-                    <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+                    <button class="btn emp-edit me-1" (click)="editRoute(route)">
+                      <i class="fa-solid fa-pencil"></i>
+                    </button>
+                    <button class="btn emp-edit ms-1" data-bs-toggle="modal" data-bs-target="#deletePrompt"
+                      (click)="selectedRoute=route;">
+                      <i class="fa-solid fa-trash-can"></i>
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -48,33 +53,60 @@
           </div>
         </mat-tab>
         <mat-tab label="Create Route">
-          <div class="my-5">
-            <div class="mb-3">
-              <label class="form-label">Route Name *</label>
-              <input type="text" class="form-control">
+          <form [formGroup]="routeForm" (ngSubmit)="addRoute()">
+            <div class="my-5">
+              <div class="mb-3">
+                <label class="form-label">Route Name *</label>
+                <input type="text" class="form-control" formControlName="routeName">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Start Place *</label>
+                <input type="text" class="form-control" formControlName="startPlace">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Stop Place *</label>
+                <input type="text" class="form-control" formControlName="stopPlace">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Remarks</label>
+                <input type="text" class="form-control" formControlName="remarks">
+              </div>
             </div>
 
-            <div class="mb-3">
-              <label class="form-label">Start Place *</label>
-              <input type="text" class="form-control">
+            <div class="text-end mb-3">
+              <button class="btn" [disabled]="isLoading || !routeForm.valid">
+                <span *ngIf="isLoading" class="spinner-border text-light"></span>
+                <span *ngIf="!isLoading">Save</span>
+              </button>
             </div>
-
-            <div class="mb-3">
-              <label class="form-label">Stop Place *</label>
-              <input type="text" class="form-control">
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">Remarks *</label>
-              <input type="text" class="form-control">
-            </div>
-          </div>
-
-          <div class="text-end mb-3">
-            <button class="btn">Save</button>
-          </div>
+          </form>
         </mat-tab>
       </mat-tab-group>
     </div>
   </div>
 </app-layout>
+
+
+<!---Modal for delete---->
+<div class="modal fade" id="deletePrompt">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Route</h5>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this route?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="modalDismissBtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" [disabled]="isLoading" (click)="deleteRoute()">
+          <span *ngIf="isLoading" class="spinner-border text-light"></span>
+          <span *ngIf="!isLoading">Delete</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

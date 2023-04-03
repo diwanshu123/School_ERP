@@ -1,0 +1,48 @@
+<app-layout>
+  <div class="container p-4">
+      <div class="tab-container">
+          <nav mat-tab-nav-bar mat-stretch-tabs="false" mat-align-tabs="start" selectedIndex="2" [tabPanel]="tabPanel">
+              <a mat-tab-link routerLink="../">Assign List</a>
+              <a mat-tab-link [active]="true">Edit Assign</a>
+          </nav>
+
+          <mat-tab-nav-panel #tabPanel>
+            <form [formGroup]="vAssignForm" (ngSubmit)="updateAssignVehicle()">
+              <div class="my-5">
+                <div class="mb-3">
+                  <label class="form-label">Transport Route *</label>
+                  <select class="form-select" formControlName="route">
+                    <option disabled value="select">Select</option>
+                    <option *ngFor="let route of routes" [value]="route._id">{{route.routeName}}</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Stop Page *</label>
+                  <select class="form-select" formControlName="stoppage">
+                    <option disabled value="select">Select</option>
+                    <option *ngFor="let stop of stopPages" [value]="stop._id">{{stop.stoppageName}}</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Vehicle *</label>
+                  <select class="form-select" formControlName="vehicle">
+                    <option disabled value="select">Select</option>
+                    <option *ngFor="let vehicle of vehicles" [value]="vehicle._id">{{vehicle.vehicleNo}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="text-end mb-3">
+                <button class="btn" [disabled]="isLoading || vAssignForm.get('route')?.value == 'select'
+                  || vAssignForm.get('stoppage')?.value == 'select' || vAssignForm.get('vehicle')?.value == 'select'">
+                  <span *ngIf="isLoading" class="spinner-border text-light"></span>
+                  <span *ngIf="!isLoading">Save</span>
+                </button>
+              </div>
+            </form>
+          </mat-tab-nav-panel>
+      </div>
+  </div>
+</app-layout>

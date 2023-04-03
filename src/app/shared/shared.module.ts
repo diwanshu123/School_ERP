@@ -25,7 +25,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatButtonModule,
     MatIconModule,
     MatExpansionModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [],
   exports: [
