@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
 import { EmpAddComponent } from 'src/app/pages/employees/emp-add/emp-add.component';
@@ -24,53 +24,91 @@ export class ExamSetupEditComponent {
   examId:  string
 
   naviData: string ;
+  editRoute: any;
+  
+  routeId: string;
 
-  constructor(private api: ApiService,private toastr: ToastrService ,private route: ActivatedRoute)  {
-    
+
+
+  constructor(private api: ApiService,private toastr: ToastrService ,
+    private route: ActivatedRoute, 
+    private router: Router)  {
+  
     route.params.subscribe(param => {
-      if(param['id']) {
-        this.examId = param['id'];
-       
+      if(router.getCurrentNavigation()?.extras.state) {
+        this.editRoute = router.getCurrentNavigation()?.extras.state?.['data'];
+        this.examId = this.editRoute._id;
+        console.log(this.editRoute);
+        
+        this.createForm()
+      
       }
     });
-    this.examForm =  new FormGroup ({
-      name: new FormControl(null, [Validators.required]),
-      term: new FormControl(null, [Validators.required]),
-      examtype: new FormControl(null, [Validators.required]),
-      marksDistribution: new FormControl(null, [Validators.required]),
-      remarks: new FormControl(null, [Validators.required]),
-  })
   }
+
+  
+  
 exam:any
   ngOnInit(): void {
-    this.patchLeaveForm(this.exam)
+    this.getAllExam()
+    this.getMarksDiturbution()
+    this.getExamTerms()
 
-    this.route.queryParams
-    .pipe(
-      map(para => para['data'] || 'None')
-      )
-    .subscribe(v => {
-      this.naviData = v;
-    });
+   }
 
-  }
+createForm(){
+  this.examForm =  new FormGroup ({
+    name: new FormControl(this.editRoute.name, [Validators.required]),
+    term: new FormControl(this.editRoute.term, [Validators.required]),
+    examtype: new FormControl(this.editRoute.examtype, [Validators.required]),
+    marksDistribution : new FormControl(this.editRoute.marksDistribution, [Validators.required]),
+    remarks: new FormControl(this.editRoute.remarks, [Validators.required]),
+   
 
 
-
-  patchLeaveForm(exam: any)
-  {
-    console.log(exam);
     
+})
+}
+getExamTerms()
+{
+  this.api.getExamTerms().subscribe(resp => {
+    this.examTerms = resp.examTerms;
+    console.log(this.examTerms, "exam terms");
+    
+  
+  });
+}
+getAllExam(){
+  console.log("this");
+  
+  this.api.getAllExam().subscribe((res)=>{
+    this.exams = res.exams
+    console.log(this.exams, "first res");
+    
+  })
+}
+getMarksDiturbution(){
+  console.log("this");
+  
+  this.api.getAllMarksDistubutions().subscribe((res)=>{
+    this.marksDistributions = res.marksDistributions
+    console.log(this.marksDistributions, "first res");
+    
+  })
+}
 
-    this.selectedLeave = exam;
-    // this.examForm.patchValue({
-    //   leavesCategoryId: leave._id,
-    //   name: leave.name,
-    //   term: leave.term,
-    //   examtype: leave.examtype,
-    //   marksDistribution: leave.marksDistribution,
-    //   remarks: leave.days
 
-  //   });
-  }
+update()
+{
+  this.isLoading = true;
+  this.api.updateExam( this.examForm.value).subscribe(resp => {
+    this.isLoading = false;
+    this.toastr.success(resp.message, "exam update success");
+  },
+  (err) => {
+    this.isLoading = false;
+    this.toastr.error(err, "exam update failed");
+  });
+}
+
 }

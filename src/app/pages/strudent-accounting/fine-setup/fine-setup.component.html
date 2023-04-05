@@ -48,7 +48,7 @@
                          
                           <!-- <td>{{fine.groupName}}</td> -->
                            
-                           <td>fee type</td>
+                           <td>{{fine.feeType?.name}}</td>
                             <!-- <td *ngFor="let name of fines.feeType">{{name.name}}</td> -->
                             <td>{{fine.fineType}}</td>
                      
@@ -58,7 +58,7 @@
                             <td>{{fine.lateFeeFrequency}}</td>
                          
                             <td>
-                              <button class="btn emp-edit me-1" (click)="edit(fine)" [routerLink]="'./' + fine._id" ><i class="fa-solid fa-pencil"></i></button>
+                              <button class="btn emp-edit me-1" (click)="editFine(fine)" [routerLink]="'./' + fine._id" ><i class="fa-solid fa-pencil"></i></button>
                            
                                <button class="btn emp-edit ms-1" data-bs-toggle="modal" data-bs-target="#deletePrompt"
                                (click)="selectedfine=fine">

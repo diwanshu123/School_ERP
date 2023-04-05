@@ -8,7 +8,7 @@
             <mat-tab-nav-panel #tabPanel>
 
                 <div class="container">
-                    <form [formGroup]="examForm" >
+                    <form [formGroup]="examForm"  (ngSubmit)="update()">
                         <div class="container">
                       
                           

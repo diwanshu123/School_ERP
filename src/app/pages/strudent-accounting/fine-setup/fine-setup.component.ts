@@ -4,7 +4,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { MatPaginator } from '@angular/material/paginator';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-fine-setup',
@@ -18,6 +18,7 @@ export class FineSetupComponent {
   feeType: any[] = [];
   isLoading: boolean;
   selectedfine: any;
+  selectedFine: any;
 
 
   constructor(private api: ApiService, 
@@ -113,6 +114,18 @@ changeTab(event: any){
       this.isLoading = false;
       console.error(err);
     })
+  }
+
+  editFine(route: any)
+  {
+    this.selectedFine = route;
+    const navExtras: NavigationExtras = {
+      state: {
+        data: this.selectedFine
+      }
+    };
+
+    this.router.navigate(["/student-acconting/fine-setup/", this.selectedFine._id], navExtras);
   }
   
 

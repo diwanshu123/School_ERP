@@ -8,7 +8,7 @@
             <mat-tab-nav-panel #tabPanel>
 
                  <div class="container">
-                        <form [formGroup]="feeTypeForm">
+                        <form [formGroup]="feeTypeForm" (ngSubmit)="update()">
                   
 
                           <div class="mb-3 py-5">
@@ -79,9 +79,11 @@
                           aria-label="Select page">
             </mat-paginator>
                             <!--  -->
-                            <div class="text-end">
-                              <button type="submit"> Update</button> 
-                        
+                            <div class="text-end mb-3">
+                              <button class="btn" [disabled]="isLoading || !feeTypeForm.valid">
+                                <span *ngIf="isLoading" class="spinner-border text-light"></span>
+                                <span *ngIf="!isLoading">Save</span>
+                              </button>
                             </div>
                           </form>
                      

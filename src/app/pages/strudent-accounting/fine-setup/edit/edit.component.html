@@ -8,7 +8,7 @@
             <mat-tab-nav-panel #tabPanel>
 
                 <div class="container">
-                    <form [formGroup]="fineSetupForm" >
+                    <form [formGroup]="fineSetupForm"  (ngSubmit)="update()">
 
 
                       <div class="mb-3 py-2">
@@ -32,10 +32,10 @@
                           <input type="text" formControlName="lateFeeFrequency" class="form-control">
                         </div>
                         <div class="text-end">
-                          <!-- <button type="submit" class="btn" [disabled]="isLoading || !fineSetupForm.valid">
+                          <button type="submit" class="btn" [disabled]="isLoading || !fineSetupForm.valid">
                             <span *ngIf="isLoading" class="spinner-border text-light"></span>
                             <span *ngIf="!isLoading">Save</span>
-                          </button> -->
+                          </button>
                         </div>
                         </form>
                   </div>

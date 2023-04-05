@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -10,11 +11,45 @@ import { ApiService } from 'src/app/services/api.service';
 export class MarkEntryComponent {
 
   exams: any
-  constructor(private api: ApiService,private toastr: ToastrService  ) {}
+  marksEntryForm: FormGroup;
+  isLoading: boolean;
+  constructor(private api: ApiService,private toastr: ToastrService  ) {
+
+    this.marksEntryForm =  new FormGroup ({
+      examId: new FormControl(null, [Validators.required]),
+      subject: new FormControl(null, [Validators.required]),
+      studentId: new FormControl(null, [Validators.required]),
+      practical: new FormControl(null, [Validators.required]),
+      written: new FormControl(null, [Validators.required]),
+
+
+    })
+  }
 
 
   ngOnInit(): void {
   this.getAllExam()
+}
+
+
+createMarks(){
+  console.log(this.marksEntryForm.value);
+    
+  this.isLoading = true;
+  this.api.createMarksEntry(this.marksEntryForm.value).subscribe(resp => {
+    console.log(resp);
+    
+    this.isLoading = false;
+
+    this.toastr.success(resp.message, "marksEntryForm  add success");
+    this.getAllExam();
+  ;
+  },
+  (err) => {
+    this.isLoading = false;
+    this.toastr.error(err, "marksEntryForm  add failed");
+    console.error(err);
+  })
 }
   getAllExam(){
     console.log("this");

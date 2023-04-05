@@ -19,6 +19,11 @@ export class GradeRangeComponent {
   
 
   constructor(private api: ApiService,private toastr: ToastrService  ) {
+    
+  }
+
+
+  ngOnInit(): void {
     this.gradeForm =  new FormGroup ({
       name: new FormControl(null, [Validators.required]),
       gradePoint: new FormControl(null, [Validators.required]),
@@ -28,10 +33,6 @@ export class GradeRangeComponent {
 
 
     })
-  }
-
-
-  ngOnInit(): void {
     this.getAllGrade()
  
 }

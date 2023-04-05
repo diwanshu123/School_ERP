@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/services/api.service';
 
 
 
+
 @Component({
   selector: 'app-exam-setup',
   templateUrl: './exam-setup.component.html',
@@ -20,6 +21,7 @@ export class ExamSetupComponent {
   selectedLeave: any;
   selectedExam: any;
   inputData: string ;
+  selectedRoute: any;
   constructor(private api: ApiService,private toastr: ToastrService ,private route: Router ) {
     this.examForm =  new FormGroup ({
       name: new FormControl(null, [Validators.required]),
@@ -127,22 +129,21 @@ export class ExamSetupComponent {
     })
   }
 
-  
-  patchLeaveForm(exam: any)
+  editRoute(route: any)
   {
-    console.log(exam);
-    
+    this.selectedRoute = route;
+    const navExtras: NavigationExtras = {
+      state: {
+        data: this.selectedRoute
+        
+      }
+      
+    };
+    console.log(this.selectedRoute);
 
-    this.selectedExam = exam;
-    this.examForm.patchValue({
-      examId: exam._id,
-      name: exam.name,
-      term: exam.term,
-      examtype: exam.examtype,
-      marksDistribution: exam.marksDistribution,
-      remarks: exam.remarks
 
-    });
+    this.route.navigate(["/marks/exam-setup/", this.selectedRoute._id], navExtras);
   }
+
 
 }

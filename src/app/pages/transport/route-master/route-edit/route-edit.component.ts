@@ -7,10 +7,10 @@ import { ApiService } from 'src/app/services/api.service';
 @Component({
   selector: 'app-route-edit',
   templateUrl: './route-edit.component.html',
-  styleUrls: ['./route-edit.component.scss']
+  styleUrls: ['./route-edit.component.scss'] 
 })
 export class RouteEditComponent implements OnInit {
-
+ 
   routeId: string;
   editRoute: any;
   routeForm: FormGroup;
@@ -27,12 +27,16 @@ export class RouteEditComponent implements OnInit {
       if(router.getCurrentNavigation()?.extras.state) {
         this.editRoute = router.getCurrentNavigation()?.extras.state?.['data'];
         this.routeId = this.editRoute._id;
+       
+        
         this.createForm();
       }
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 
   createForm()
   {

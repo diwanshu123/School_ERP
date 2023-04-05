@@ -22,6 +22,9 @@ export class ApiService {
   createGrades(postData: FormData): Observable<any> {
     return this.httpClient.post(environment.apiBaseUrl + '/grade' , postData);
   }
+  createMarksEntry(postData: FormData): Observable<any> {
+    return this.httpClient.post(environment.apiBaseUrl + '/marks' , postData);
+  }
   marksDistribution(postData: FormData): Observable<any> {
     return this.httpClient.post(environment.apiBaseUrl + '/marksDistribution' , postData);
   }
@@ -56,7 +59,7 @@ export class ApiService {
     return this.httpClient.get(environment.apiBaseUrl +'/grade/all' ).pipe(catchError(this.errorHandler));
   }
   updateExam(postData: any): Observable<any> {
-    return this.httpClient.put(environment.apiBaseUrl +'/exam', postData).pipe(catchError(this.errorHandler));
+    return this.httpClient.put(environment.apiBaseUrl +'/exam/', postData).pipe(catchError(this.errorHandler));
   }
 
   // certificate
@@ -172,6 +175,9 @@ export class ApiService {
 
     updateRoute(routeId: string, postData: any): Observable<any> {
       return this.httpClient.put(environment.apiBaseUrl + '/route/' + routeId, postData).pipe(catchError(this.errorHandler));
+    }
+    updateFine(fineSetupId: string, postData: any): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl + '/fineSetup/' + fineSetupId, postData).pipe(catchError(this.errorHandler));
     }
 
     deleteRoute(id: string): Observable<any> {
