@@ -41,7 +41,7 @@
                   <td>{{grade.maxPercentage}}</td>
                   <td>{{grade.remarks}}</td>
                   <td>
-                    <button class="btn emp-edit me-1"  [routerLink]="'./' + grade._id" ><i class="fa-solid fa-pencil"></i></button>
+                    <button class="btn emp-edit me-1" (click)="editGrade(grade)"  ><i class="fa-solid fa-pencil"></i></button>
 
                     <button class="btn emp-edit ms-1" data-bs-toggle="modal" data-bs-target="#deletePrompt"
                     (click)="selectedGrade=grade"  ><i class="fa-solid fa-trash-can"></i></button>
@@ -77,6 +77,8 @@
           <div class="mb-3">
             <label class="form-label">Remarks</label>
             <textarea class="form-control" formControlName="remarks" rows="3"></textarea>
+            <input type="text" formControlName="remarks"class="form-control">
+
           </div>
 
           <div class="text-end mb-3">

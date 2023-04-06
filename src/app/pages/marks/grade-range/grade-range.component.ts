@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -14,16 +15,12 @@ export class GradeRangeComponent {
   grade: any;
   selectedGrade: any;
   grades:any ;
+  selectedGarde: any;
 
 
   
 
-  constructor(private api: ApiService,private toastr: ToastrService  ) {
-    
-  }
-
-
-  ngOnInit(): void {
+  constructor(private api: ApiService,private toastr: ToastrService ,  private router: Router ) {
     this.gradeForm =  new FormGroup ({
       name: new FormControl(null, [Validators.required]),
       gradePoint: new FormControl(null, [Validators.required]),
@@ -33,7 +30,13 @@ export class GradeRangeComponent {
 
 
     })
+    
+  }
+
+
+  ngOnInit(): void {
     this.getAllGrade()
+  
  
 }
 
@@ -48,14 +51,26 @@ addGrade() {
     this.isLoading = false;
 
     this.toastr.success(resp.message, "exams  add success");
-  
-  ;
   },
   (err) => {
     this.isLoading = false;
     this.toastr.error(err, "exams  add failed");
     console.error(err);
   })
+}
+
+editGrade(data: any){
+
+ {
+    this.selectedGarde = data;
+    const navExtras: NavigationExtras = {
+      state: {
+        data: this.selectedGarde
+      }
+    };
+
+    this.router.navigate(["/marks/grade-edit/", this.selectedGarde._id], navExtras);
+  }
 }
 
 getAllGrade(){

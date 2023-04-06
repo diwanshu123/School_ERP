@@ -26,7 +26,7 @@ export class ExamSetupEditComponent {
   naviData: string ;
   editRoute: any;
   
-  routeId: string;
+  term: string;
 
 
 
@@ -38,7 +38,10 @@ export class ExamSetupEditComponent {
       if(router.getCurrentNavigation()?.extras.state) {
         this.editRoute = router.getCurrentNavigation()?.extras.state?.['data'];
         this.examId = this.editRoute._id;
+        this.term = this.editRoute.term?._id
         console.log(this.editRoute);
+        console.log(this.term);
+
         
         this.createForm()
       
@@ -101,7 +104,7 @@ getMarksDiturbution(){
 update()
 {
   this.isLoading = true;
-  this.api.updateExam( this.examForm.value).subscribe(resp => {
+  this.api.updateExam(this.examId,this.term,  this.examForm.value).subscribe(resp => {
     this.isLoading = false;
     this.toastr.success(resp.message, "exam update success");
   },

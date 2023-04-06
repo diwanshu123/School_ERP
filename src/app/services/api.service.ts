@@ -58,13 +58,17 @@ export class ApiService {
   getAllGrades(): Observable<any> {
     return this.httpClient.get(environment.apiBaseUrl +'/grade/all' ).pipe(catchError(this.errorHandler));
   }
-  updateExam(postData: any): Observable<any> {
-    return this.httpClient.put(environment.apiBaseUrl +'/exam/', postData).pipe(catchError(this.errorHandler));
+ 
+  updateExam(examId: string,term: string, postData: any): Observable<any> {
+    return this.httpClient.put(environment.apiBaseUrl + '/exam/' + examId,term, postData).pipe(catchError(this.errorHandler));
   }
-
   // certificate
   getCertificate(): Observable<any> {
     return this.httpClient.get(environment.apiBaseUrl +'/certificate/all' ).pipe(catchError(this.errorHandler));
+  }
+
+  createCertificate(postData: FormData): Observable<any> {
+    return this.httpClient.post(environment.apiBaseUrl + '/certificate' , postData);
   }
 
   //Student Accounting
@@ -175,6 +179,9 @@ export class ApiService {
 
     updateRoute(routeId: string, postData: any): Observable<any> {
       return this.httpClient.put(environment.apiBaseUrl + '/route/' + routeId, postData).pipe(catchError(this.errorHandler));
+    }
+    updategrade(gradeId: string, postData: any): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl + '/grade/' + gradeId, postData).pipe(catchError(this.errorHandler));
     }
     updateFine(fineSetupId: string, postData: any): Observable<any> {
       return this.httpClient.put(environment.apiBaseUrl + '/fineSetup/' + fineSetupId, postData).pipe(catchError(this.errorHandler));
