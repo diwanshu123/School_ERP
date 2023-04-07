@@ -25,15 +25,15 @@ export class ExamSetupEditComponent {
 
   naviData: string ;
   editRoute: any;
-  
+
   term: string;
 
 
 
   constructor(private api: ApiService,private toastr: ToastrService ,
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private router: Router)  {
-  
+
     route.params.subscribe(param => {
       if(router.getCurrentNavigation()?.extras.state) {
         this.editRoute = router.getCurrentNavigation()?.extras.state?.['data'];
@@ -42,21 +42,20 @@ export class ExamSetupEditComponent {
         console.log(this.editRoute);
         console.log(this.term);
 
-        
+
         this.createForm()
-      
+
       }
     });
   }
 
-  
-  
+
+
 exam:any
   ngOnInit(): void {
     this.getAllExam()
     this.getMarksDiturbution()
     this.getExamTerms()
-
    }
 
 createForm(){
@@ -66,10 +65,6 @@ createForm(){
     examtype: new FormControl(this.editRoute.examtype, [Validators.required]),
     marksDistribution : new FormControl(this.editRoute.marksDistribution, [Validators.required]),
     remarks: new FormControl(this.editRoute.remarks, [Validators.required]),
-   
-
-
-    
 })
 }
 getExamTerms()
@@ -77,26 +72,26 @@ getExamTerms()
   this.api.getExamTerms().subscribe(resp => {
     this.examTerms = resp.examTerms;
     console.log(this.examTerms, "exam terms");
-    
-  
+
+
   });
 }
 getAllExam(){
   console.log("this");
-  
+
   this.api.getAllExam().subscribe((res)=>{
     this.exams = res.exams
     console.log(this.exams, "first res");
-    
+
   })
 }
 getMarksDiturbution(){
   console.log("this");
-  
+
   this.api.getAllMarksDistubutions().subscribe((res)=>{
     this.marksDistributions = res.marksDistributions
     console.log(this.marksDistributions, "first res");
-    
+
   })
 }
 
@@ -104,7 +99,8 @@ getMarksDiturbution(){
 update()
 {
   this.isLoading = true;
-  this.api.updateExam(this.examId,this.term,  this.examForm.value).subscribe(resp => {
+
+  this.api.updateExam(this.examId, this.examForm.value).subscribe(resp => {
     this.isLoading = false;
     this.toastr.success(resp.message, "exam update success");
   },

@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavigationExtras, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxFileDropEntry } from 'ngx-file-drop';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'app-cert-temp',
-  templateUrl: './cert-temp.component.html',
-  styleUrls: ['./cert-temp.component.scss']
+  selector: 'app-cert-edit',
+  templateUrl: './cert-edit.component.html',
+  styleUrls: ['./cert-edit.component.scss']
 })
-export class CertTempComponent {
+export class CertEditComponent {
 
   certiForm: FormGroup
-  certi: any[] = [];
+  certi: any;
   students: any[] = [];
   employees: any[] = [];
   selectedCert: any;
@@ -22,40 +22,30 @@ export class CertTempComponent {
   logoImg: any;
   backImg: any;
 
-  constructor(private api: ApiService, private toastr: ToastrService, private router: Router) {
-    this.certiForm =  new FormGroup ({
-      name: new FormControl(null, [Validators.required]),
-      certType: new FormControl('select', [Validators.required]),
-      userId: new FormControl('select', [Validators.required]),
-      pageLayout: new FormControl('select', [Validators.required]),
-      userPhotoStyle: new FormControl('select', [Validators.required]),
-      userPhotoSize: new FormControl(null, [Validators.required]),
-      top:  new FormControl(null, [Validators.required]),
-      bottom: new FormControl(null, [Validators.required]),
-      right: new FormControl(null, [Validators.required]),
-      left: new FormControl(null, [Validators.required]),
-      content: new FormControl(null, [Validators.required]),
-    });
-   }
-
-  ngOnInit(): void
+  constructor(
+    private api: ApiService,
+    private toastr: ToastrService,
+    private route: ActivatedRoute,
+    private router: Router
+  )
   {
-    this.getCertificates();
-    this.getAllStudents();
-    this.getAllEmployees();
+    route.params.subscribe(param => {
+      if(router.getCurrentNavigation()?.extras.state) {
+        this.certi = router.getCurrentNavigation()?.extras.state?.['data'];
+        this.createForm();
+      }
+    });
   }
 
-  getCertificates()
-  {
-    this.api.getCertificate().subscribe((res)=>{
-      this.certi = res.certificates
-    });
+  ngOnInit(): void {
+    this.getAllStudents();
   }
 
   getAllStudents()
   {
     this.api.getAllStudents().subscribe((resp) => {
       this.students = resp.students;
+      this.getAllEmployees();
     })
   }
 
@@ -63,7 +53,25 @@ export class CertTempComponent {
   {
     this.api.getAllEmployees().subscribe((resp) => {
       this.employees = resp.employees;
+      this.createForm();
     })
+  }
+
+  createForm()
+  {
+    this.certiForm =  new FormGroup ({
+      name: new FormControl(this.certi.name, [Validators.required]),
+      certType: new FormControl(this.certi.name, [Validators.required]),
+      userId: new FormControl(this.certi.name, [Validators.required]),
+      pageLayout: new FormControl(this.certi.pageLayout, [Validators.required]),
+      userPhotoStyle: new FormControl(this.certi.userPhotoStyle, [Validators.required]),
+      userPhotoSize: new FormControl(this.certi.userPhotoSize, [Validators.required]),
+      top:  new FormControl(this.certi.layout.top, [Validators.required]),
+      bottom: new FormControl(this.certi.layout.bottom, [Validators.required]),
+      right: new FormControl(this.certi.layout.right, [Validators.required]),
+      left: new FormControl(this.certi.layout.left, [Validators.required]),
+      content: new FormControl(this.certi.layout.top, [Validators.required]),
+    });
   }
 
   onFilesDropped(files: NgxFileDropEntry[], imgType: string)
@@ -135,38 +143,11 @@ export class CertTempComponent {
 
       this.isLoading = false;
 
-      this.toastr.success(resp.message, "Certificate add success");
-      this.getCertificates();
+      this.toastr.success(resp.message, "Certificate update success");
     },
     (err) => {
       this.isLoading = false;
-      this.toastr.error(err, "Certificate add failed");
-      console.error(err);
-    })
-  }
-
-  editCert(cert: any)
-  {
-    const navExtras: NavigationExtras = {
-      state: {
-        data: cert
-      }
-    };
-
-    this.router.navigate(["/cert/template/", cert._id], navExtras);
-  }
-
-  deleteCertificate()
-  {
-    this.isLoading = true;
-    this.api.deleteCertificate(this.selectedCert._id).subscribe(resp => {
-      console.log(resp);
-      this.isLoading = false;
-      document.getElementById('modalDismissBtn')?.click();
-      this.getCertificates();
-    },
-    (err) => {
-      this.isLoading = false;
+      this.toastr.error(err, "Certificate update failed");
       console.error(err);
     })
   }

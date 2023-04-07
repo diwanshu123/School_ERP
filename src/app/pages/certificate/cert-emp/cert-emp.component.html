@@ -2,16 +2,16 @@
   <div class="container p-4">
     <div class="row mt-5 mb-3">
       <div class="col-4">
-        <label class="form-label">Class</label>
-        <input type="text" class="form-control">
+        <label class="form-label">Role</label>
+        <input type="text" class="form-control" [(ngModel)]="filter.role">
       </div>
       <div class="col-4 offset-4">
         <label class="form-label">Template</label>
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" [(ngModel)]="filter.template">
       </div>
     </div>
     <div class="text-end mb-5">
-      <button class="btn">Filter</button>
+      <button class="btn" (click)="getCertificates()">Filter</button>
     </div>
 
     <p class="table-heading">Employee List</p>
@@ -27,13 +27,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>#001234</td>
-          <td>Fanny Siregar</td>
-          <td>College</td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr *ngFor="let cert of certi; index as i">
+          <td>{{i + 1}}</td>
+          <td>{{cert.applicableEmployee.name}}</td>
+          <td>{{cert.applicableEmployee._id | slice:-7}}</td>
+          <td>{{cert.applicableEmployee.department.name}}</td>
+          <td>{{cert.applicableEmployee.designation.name}}</td>
+          <td>{{cert.applicableEmployee.number}}</td>
         </tr>
       </tbody>
     </table>

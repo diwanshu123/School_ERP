@@ -9,7 +9,7 @@
                           <div class="input-group pe-3">
                             <input type="search" class="form-control" placeholder="Search here...">
                             <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
-                            
+
                           </div>
                           <div class="options">
                             <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
@@ -19,18 +19,18 @@
                             <button class="btn"><img src="assets/icons/opt-print.svg"></button>
                           </div>
                         </div>
-          
-                       
+
+
                       </div>
-          
+
                       <table class="table mt-3">
                         <thead>
                           <tr>
                             <!-- <th scope="col"><input type="checkbox" class="form-check-input"></th> -->
                             <th scope="col">SNo</th>
-                   
+
                             <!-- <th scope="col"> Group Name</th> -->
-               
+
                             <th scope="col">Fee Type Name</th>
                             <th scope="col">Fine type</th>
 
@@ -45,21 +45,21 @@
                           <tr  *ngFor="let fine of fines; let i= index">
                             <!-- <td scope="row"><input type="checkbox" class="form-check-input"></td> -->
                             <td>{{i+1}}</td>
-                         
+
                           <!-- <td>{{fine.groupName}}</td> -->
-                           
+
                            <td>{{fine.feeType?.name}}</td>
                             <!-- <td *ngFor="let name of fines.feeType">{{name.name}}</td> -->
                             <td>{{fine.fineType}}</td>
-                     
 
-                      
+
+
                             <td>{{fine.fineValue}}</td>
                             <td>{{fine.lateFeeFrequency}}</td>
-                         
+
                             <td>
                               <button class="btn emp-edit me-1" (click)="editFine(fine)" [routerLink]="'./' + fine._id" ><i class="fa-solid fa-pencil"></i></button>
-                           
+
                                <button class="btn emp-edit ms-1" data-bs-toggle="modal" data-bs-target="#deletePrompt"
                                (click)="selectedfine=fine">
                                <i class="fa-solid fa-trash-can"></i>
@@ -79,17 +79,20 @@
                   <mat-tab label="Add Fine ">
                     <div class="container">
                       <form [formGroup]="fineSetupForm" (ngSubmit)="addFineSetup()" >
-                        <div class="mb-3 py-2">
-                            <label class="form-label">Group Name</label>
-                            <input type="text" formControlName="group_name" class="form-control">
-                          </div>
                           <div class="mb-3 py-2">
                             <label class="form-label">Fees Type*</label>
-                            <input type="text"  formControlName= "feeType"class="form-control">
+                            <select class="form-select" formControlName="feeType">
+                              <option disabled value="select">Select</option>
+                              <option *ngFor="let fType of feeType" [value]="fType._id">{{fType.name}}</option>
+                            </select>
                           </div>
                           <div class="mb-3 py-2">
                             <label class="form-label">Fine Type*</label>
-                            <input type="text" formControlName= "fineType" class="form-control">
+                            <select class="form-select" formControlName="fineType">
+                              <option disabled value="select">Select</option>
+                              <option value="Fixed Amount">Fixed Amount</option>
+                              <option value="Percentage">Percentage</option>
+                            </select>
                           </div>
                           <div class="mb-3 py-2">
                             <label class="form-label">Fine value*</label>
@@ -97,10 +100,20 @@
                           </div>
                           <div class="mb-3 py-2">
                             <label class="form-label">Late Fee Frequency*</label>
-                            <input type="text" formControlName="lateFeeFrequency" class="form-control">
+                            <select class="form-select" formControlName="lateFeeFrequency">
+                              <option disabled value="select">Select</option>
+                              <option value="Fixed">Fixed</option>
+                              <option value="Daily">Daily</option>
+                              <option value="Weekly">Weekly</option>
+                              <option value="Monthly">Monthly</option>
+                              <option value="Annually">Annually</option>
+                            </select>
                           </div>
                           <div class="text-end">
-                            <button type="submit" class="btn" [disabled]="isLoading || !fineSetupForm.valid">
+                            <button type="submit" class="btn" [disabled]="isLoading || !fineSetupForm.valid
+                              || fineSetupForm.get('feeType')?.value == 'select'
+                              || fineSetupForm.get('fineType')?.value == 'select'
+                              || fineSetupForm.get('lateFeeFrequency')?.value == 'select'">
                               <span *ngIf="isLoading" class="spinner-border text-light"></span>
                               <span *ngIf="!isLoading">Save</span>
                             </button>
@@ -113,7 +126,7 @@
             </div>
 
         </div>
-    
+
     </app-layout>
 <!-- delete model -->
     <div class="modal fade" id="deletePrompt">
@@ -135,4 +148,3 @@
         </div>
       </div>
     </div>
-    

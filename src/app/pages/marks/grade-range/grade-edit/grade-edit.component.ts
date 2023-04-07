@@ -28,8 +28,6 @@ export class GradeEditComponent {
       if(router.getCurrentNavigation()?.extras.state) {
         this.editGrade = router.getCurrentNavigation()?.extras.state?.['data'];
         this.gradeId = this.editGrade._id;
-       
-        
         this.createForm();
       }
     });
@@ -42,9 +40,6 @@ export class GradeEditComponent {
       minPercentage: new FormControl(this.editGrade.minPercentage, [Validators.required]),
       maxPercentage: new FormControl(this.editGrade.maxPercentage, [Validators.required]),
       remarks: new FormControl(this.editGrade.remarks, [Validators.required]),
-
-   
-
     });
   }
 

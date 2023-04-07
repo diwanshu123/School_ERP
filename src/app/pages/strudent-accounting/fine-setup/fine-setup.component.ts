@@ -21,18 +21,17 @@ export class FineSetupComponent {
   selectedFine: any;
 
 
-  constructor(private api: ApiService, 
+  constructor(private api: ApiService,
     private toastr: ToastrService,
     private router: Router,
-    
+
     )
   {
     this.fineSetupForm = new FormGroup({
-      group_name: new FormControl(null, [Validators.required]),
-      feeType: new FormControl(null, [Validators.required]),
-      fineType: new FormControl(null, [Validators.required]),
+      feeType: new FormControl('select', [Validators.required]),
+      fineType: new FormControl('select', [Validators.required]),
       fineValue: new FormControl(null, [Validators.required]),
-      lateFeeFrequency: new FormControl(null, [Validators.required]),
+      lateFeeFrequency: new FormControl('select', [Validators.required]),
 
 
     });
@@ -40,7 +39,8 @@ export class FineSetupComponent {
 
   ngOnInit(): void {
     this.fineSetupList()
-   
+    this.getFeeTypes();
+
   }
 
   addFineSetup()
@@ -53,10 +53,7 @@ export class FineSetupComponent {
       this.isLoading = false;
       console.log(res, "first res");
       this.toastr.success(res.message, "Fee add success");
-      if(res.value){
-      this.router.navigate(['student-acconting/fine-setup']);
-
-      }
+      this.fineSetupList();
     },
     (err) => {
       this.isLoading = false;
@@ -64,15 +61,12 @@ export class FineSetupComponent {
       console.error(err);
     }
     )
-  
-
-   
   }
-  
+
 // moveToSelectedTab(tabName: string) {
 //   console.log(tabName);
 
-  
+
 //   for (let i =0; i< document.querySelectorAll('.mat-tab-label-content').length; i++) {
 //       if ((<HTMLElement>document.querySelectorAll('.mat-tab-label-content')[i]).innerText == tabName) {
 //         (<HTMLElement>document.querySelectorAll('.mat-tab-label')[i]).click();
@@ -81,26 +75,32 @@ export class FineSetupComponent {
 // }
 edit(fine : Object) :void{
   console.log("fine",  fine);
-  
-
 }
 
 changeTab(event: any){
   console.log(event);
-  
+
   console.log(event.tab.label);
-  
+
 
 }
   fineSetupList()
   {
     this.api.fineSetupList().subscribe((res: any)=> {
       this.fines = res.fines;
-    
+
       console.log(res, "fineSetup");
     })
     // this.feeTypeFineSetup();
   }
+
+  getFeeTypes()
+  {
+    this.api.feeTypeList().subscribe(resp => {
+      this.feeType = resp.feeTypes;
+    })
+  }
+
   deleteFine()
   {
     this.isLoading = true;
@@ -127,6 +127,6 @@ changeTab(event: any){
 
     this.router.navigate(["/student-acconting/fine-setup/", this.selectedFine._id], navExtras);
   }
-  
+
 
 }

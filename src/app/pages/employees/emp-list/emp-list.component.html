@@ -1,7 +1,7 @@
 <app-layout>
   <div class="container p-4">
     <div class="tab-container">
-      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" (selectedTabChange)="filterEmployee($event)">
         <mat-tab label="Admin">
           <div class="pt-4">
             <div class="top-options">
@@ -30,32 +30,27 @@
             <table class="table mt-3">
               <thead>
                 <tr>
-                  <!-- <th scope="col"><input type="checkbox" class="form-check-input"></th> -->
                   <th scope="col">SL</th>
                   <th scope="col">Photo</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Branch</th>
                   <th scope="col">Staff Id</th>
+                  <th scope="col">Name</th>
                   <th scope="col">Designation</th>
                   <th scope="col">Department</th>
+                  <th scope="col">Email</th>
                   <th scope="col">Contact</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <!-- <td scope="row"><input type="checkbox" class="form-check-input"></td> -->
-                  <td>#001234</td>
+                <tr *ngFor="let employee of filteredEmp; index as i">
+                  <td>{{i + 1}}</td>
                   <td>-</td>
-                  <td>Fanny Siregar</td>
-                  <td>College</td>
-                  <td>1111</td>
-                  <td>Principal</td>
-                  <td>Science</td>
-                  <td>
-                    <button class="btn emp-info me-1"><i class="fa-solid fa-envelope"></i></button>
-                    <button class="btn emp-info ms-1"><i class="fa-solid fa-phone"></i></button>
-                  </td>
+                  <td>{{employee._id | slice:-7}}</td>
+                  <td>{{employee.name}}</td>
+                  <td>{{employee.designation?.name}}</td>
+                  <td>{{employee.department?.name}}</td>
+                  <td>{{employee.email}}</td>
+                  <td>{{employee.number}}</td>
                   <td>
                     <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
                     <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
@@ -66,418 +61,236 @@
           </div>
         </mat-tab>
         <mat-tab label="Teacher">
-        <div class="pt-4">
-          <div class="top-options">
-            <div class="search-area">
-              <div class="input-group pe-3">
-                <input type="search" class="form-control" placeholder="Search here...">
-                <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+          <div class="pt-4">
+            <div class="top-options">
+              <div class="search-area">
+                <div class="input-group pe-3">
+                  <input type="search" class="form-control" placeholder="Search here...">
+                  <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+                <div class="options">
+                  <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-print.svg"></button>
+                </div>
               </div>
-              <div class="options">
-                <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
-                <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
-                <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
-                <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
-                <button class="btn"><img src="assets/icons/opt-print.svg"></button>
+
+              <div class="add-emp">
+                <button class="btn">
+                  <i class="fa-solid fa-user-plus"></i>
+                  Add Employee
+                </button>
               </div>
             </div>
-       
 
-            <div class="add-emp">
-              <button class="btn">
-                <i class="fa-solid fa-user-plus"></i>
-                Add Teacher
-              </button>
-            </div>
-
-      
+            <table class="table mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">SL</th>
+                  <th scope="col">Photo</th>
+                  <th scope="col">Staff Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Designation</th>
+                  <th scope="col">Department</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let employee of filteredEmp; index as i">
+                  <td>{{i + 1}}</td>
+                  <td>-</td>
+                  <td>{{employee._id | slice:-7}}</td>
+                  <td>{{employee.name}}</td>
+                  <td>{{employee.designation?.name}}</td>
+                  <td>{{employee.department?.name}}</td>
+                  <td>{{employee.email}}</td>
+                  <td>{{employee.number}}</td>
+                  <td>
+                    <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
+                    <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-
-          <div class="col-12">
-            <div class="row">
-                <div class="col">
-
-                </div>
-                <!-- <div class="col">
-                    <div class="input-group rounded pb-3">
-                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                            aria-describedby="search-addon" />
-
-                    </div>
-                </div> -->
-                <div class="teacher-table py-3">
-              <div class="col-12">
-                <div class="row">
-                    <div class="col-12 ">
-                        <table class="table table-bordered">
-                            <thead class="bg-gray">
-                              <tr>
-                                <!-- <th scope="col"> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th> -->
-                                <th scope="col">S.No</th>
-                                <th scope="col">Photo</th>
-                                <th scope="col">Branch</th>
-                                <th scope="col">Staff ID</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Designation</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Mobile No</th>
-                               
-                                <th scope="col">Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <!-- <th scope="row"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th> -->
-                                <td style="width: 8%;">1</td>
-
-                                <td class="text-center" ><img class="image" src="../../../../assets/images/girl.jpeg" alt=""></td>
-                                <td>Willian Vincent</td>
-                                <td>Six</td>
-                                <td>A</td>
-                                <td>RSM-00004</td>
-                                <td>1</td>
-                                <td>22</td>
-                                <td>
-                                  <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
-                                  <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
-                                </td>
-                      
-                              </tr>
-                              <tr>
-                                <!-- <th scope="row"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th> -->
-                                <td style="width: 8%;">1</td>
-                                <td class="text-center" style="width: 15%;"><img class="image" src="../../../../assets/images/class.jpeg" alt=""></td>
-                                <td>Tahlia Prior</td>
-                                <td>Six</td> 
-                                <td>A</td>
-                                <td>RSM-00006</td>
-                                <td>6</td>
-                                <td>27</td>
-                              
-                                <td>
-                                  <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
-                                  <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
-                                </td>
-                              </tr>
-                             
-                             
-                            </tbody>
-                          </table>
-                    </div>
-                </div>
-              </div>
-            </div>
-        </div>
-      </div>
-        </div>
-      </mat-tab>
-      <!-- Account tant -->
+        </mat-tab>
         <mat-tab label="Accountant">
-
-        
-            <div class="pt-4">
-              <div class="top-options">
-                <div class="search-area">
-                  <div class="input-group pe-3">
-                    <input type="search" class="form-control" placeholder="Search here...">
-                    <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
-                  </div>
-                  <div class="options">
-                    <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
-                    <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
-                    <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
-                    <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
-                    <button class="btn"><img src="assets/icons/opt-print.svg"></button>
-                  </div>
+          <div class="pt-4">
+            <div class="top-options">
+              <div class="search-area">
+                <div class="input-group pe-3">
+                  <input type="search" class="form-control" placeholder="Search here...">
+                  <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
                 </div>
-           
-    
-                <div class="add-emp">
-                  <button class="btn">
-                    <i class="fa-solid fa-user-plus"></i>
-                    Add Accountant
-                  </button>
+                <div class="options">
+                  <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-print.svg"></button>
                 </div>
-    
-          
               </div>
-    
-              <div class="col-12">
-                <div class="row">
-                    <div class="col">
-    
-                    </div>
-                  
-                    <div class="teacher-table py-3">
-                  <div class="col-12">
-                    <div class="row">
-                        <div class="col-12 ">
-                            <table class="table table-bordered">
-                                <thead class="bg-gray">
-                                  <tr>
-                                    <!-- <th scope="col"> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th> -->
-                                    <th scope="col">S.No</th>
-                                    <th scope="col">Photo</th>
-                                    <th scope="col">Branch</th>
-                                    <th scope="col">Staff ID</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Designation</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Mobile No</th>
-                                   
-                                    <th scope="col">Action</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <!-- <th scope="row"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th> -->
-                                    <td style="width: 8%;">1</td>
-    
-                                    <td class="text-center" ><img class="image" src="../../../../assets/images/girl.jpeg" alt=""></td>
-                                    <td>Willian Vincent</td>
-                                    <td>Six</td>
-                                    <td>A</td>
-                                    <td>RSM-00004</td>
-                                    <td>1</td>
-                                    <td>22</td>
-                              
-                                    
-                                    <td>
-                                      <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
-                                      <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <!-- <th scope="row"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th> -->
-                                    <td style="width: 8%;">1</td>
-                                    <td class="text-center" style="width: 15%;"><img class="image" src="../../../../assets/images/class.jpeg" alt=""></td>
-                                    <td>Tahlia Prior</td>
-                                    <td>Six</td> 
-                                    <td>A</td>
-                                    <td>RSM-00006</td>
-                                    <td>6</td>
-                                    <td>27</td>
-                                    <td>
-                                      <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
-                                      <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
-                                    </td>
-                                  </tr>
-                                 
-                                 
-                                </tbody>
-                              </table>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </div>
-            </div>
-     
 
+              <div class="add-emp">
+                <button class="btn">
+                  <i class="fa-solid fa-user-plus"></i>
+                  Add Employee
+                </button>
+              </div>
+            </div>
+
+            <table class="table mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">SL</th>
+                  <th scope="col">Photo</th>
+                  <th scope="col">Staff Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Designation</th>
+                  <th scope="col">Department</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let employee of filteredEmp; index as i">
+                  <td>{{i + 1}}</td>
+                  <td>-</td>
+                  <td>{{employee._id | slice:-7}}</td>
+                  <td>{{employee.name}}</td>
+                  <td>{{employee.designation?.name}}</td>
+                  <td>{{employee.department?.name}}</td>
+                  <td>{{employee.email}}</td>
+                  <td>{{employee.number}}</td>
+                  <td>
+                    <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
+                    <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </mat-tab>
         <mat-tab label="Librarian">
-
-       
-            <div class="pt-4">
-              <div class="top-options">
-                <div class="search-area">
-                  <div class="input-group pe-3">
-                    <input type="search" class="form-control" placeholder="Search here...">
-                    <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
-                  </div>
-                  <div class="options">
-                    <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
-                    <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
-                    <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
-                    <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
-                    <button class="btn"><img src="assets/icons/opt-print.svg"></button>
-                  </div>
+          <div class="pt-4">
+            <div class="top-options">
+              <div class="search-area">
+                <div class="input-group pe-3">
+                  <input type="search" class="form-control" placeholder="Search here...">
+                  <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
                 </div>
-           
-    
-                <div class="add-emp">
-                  <button class="btn">
-                    <i class="fa-solid fa-user-plus"></i>
-                    Add Librarian
-                  </button>
+                <div class="options">
+                  <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-print.svg"></button>
                 </div>
-    
-          
               </div>
-    
-              <div class="col-12">
-                <div class="row">
-                    <div class="col">
-    
-                    </div>
-                  
-                    <div class="teacher-table py-3">
-                  <div class="col-12">
-                    <div class="row">
-                        <div class="col-12 ">
-                            <table class="table table-bordered">
-                                <thead class="bg-gray">
-                                  <tr>
-                                    <!-- <th scope="col"> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th> -->
-                                    <th scope="col">S.No</th>
-                                    <th scope="col">Photo</th>
-                                    <th scope="col">Branch</th>
-                                    <th scope="col">Staff ID</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Designation</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Mobile No</th>
-                                   
-                                    <th scope="col">Action</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <!-- <th scope="row"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th> -->
-                                    <td style="width: 8%;">1</td>
-    
-                                    <td class="text-center" ><img class="image" src="../../../../assets/images/girl.jpeg" alt=""></td>
-                                    <td>Willian Vincent</td>
-                                    <td>Six</td>
-                                    <td>A</td>
-                                    <td>RSM-00004</td>
-                                    <td>1</td>
-                                    <td>22</td>
-                                    <td>
-                                      <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
-                                      <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <!-- <th scope="row"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th> -->
-                                    <td style="width: 8%;">1</td>
-                                    <td class="text-center" style="width: 15%;"><img class="image" src="../../../../assets/images/class.jpeg" alt=""></td>
-                                    <td>Tahlia Prior</td>
-                                    <td>Six</td> 
-                                    <td>A</td>
-                                    <td>RSM-00006</td>
-                                    <td>6</td>
-                                    <td>27</td>
-                                    <td>
-                                      <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
-                                      <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
-                                    </td>
-                                  </tr>
-                                 
-                                 
-                                </tbody>
-                              </table>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </div>
-            </div>
-     
 
+              <div class="add-emp">
+                <button class="btn">
+                  <i class="fa-solid fa-user-plus"></i>
+                  Add Employee
+                </button>
+              </div>
+            </div>
+
+            <table class="table mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">SL</th>
+                  <th scope="col">Photo</th>
+                  <th scope="col">Staff Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Designation</th>
+                  <th scope="col">Department</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let employee of filteredEmp; index as i">
+                  <td>{{i + 1}}</td>
+                  <td>-</td>
+                  <td>{{employee._id | slice:-7}}</td>
+                  <td>{{employee.name}}</td>
+                  <td>{{employee.designation?.name}}</td>
+                  <td>{{employee.department?.name}}</td>
+                  <td>{{employee.email}}</td>
+                  <td>{{employee.number}}</td>
+                  <td>
+                    <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
+                    <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </mat-tab>
         <mat-tab label="Receptionist">
-     
-            <div class="pt-4">
-              <div class="top-options">
-                <div class="search-area">
-                  <div class="input-group pe-3">
-                    <input type="search" class="form-control" placeholder="Search here...">
-                    <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
-                  </div>
-                  <div class="options">
-                    <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
-                    <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
-                    <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
-                    <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
-                    <button class="btn"><img src="assets/icons/opt-print.svg"></button>
-                  </div>
+          <div class="pt-4">
+            <div class="top-options">
+              <div class="search-area">
+                <div class="input-group pe-3">
+                  <input type="search" class="form-control" placeholder="Search here...">
+                  <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
                 </div>
-           
-    
-                <div class="add-emp">
-                  <button class="btn">
-                    <i class="fa-solid fa-user-plus"></i>
-                    Add Receptionist
-                  </button>
+                <div class="options">
+                  <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-print.svg"></button>
                 </div>
-    
-          
               </div>
-    
-              <div class="col-12">
-                <div class="row">
-                    <div class="col">
-    
-                    </div>
-                  
-                    <div class="teacher-table py-3">
-                  <div class="col-12">
-                    <div class="row">
-                        <div class="col-12 ">
-                            <table class="table table-bordered">
-                                <thead class="bg-gray">
-                                  <tr>
-                                    <!-- <th scope="col"> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th> -->
-                                    <th scope="col">S.No</th>
-                                    <th scope="col" style="width: 8%;">Photo</th>
-                                    <th scope="col">Branch</th>
-                                    <th scope="col">Staff ID</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Designation</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Mobile No</th>
-                                   
-                                    <th scope="col">Action</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <!-- <th scope="row"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th> -->
-                                    <td style="width: 8%;">1</td>
-    
-                                    <td class="text-center" ><img class="image" src="../../../../assets/images/girl.jpeg" alt=""></td>
-                                    <td>Willian Vincent</td>
-                                    <td>Six</td>
-                                    <td>A</td>
-                                    <td>RSM-00004</td>             
-                                    <td>1</td>
-                                    <td>22</td>
-                                    <td>
-                                      <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
-                                      <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <!-- <th scope="row"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th> -->
-                                    <td style="width: 8%;">1</td>
-                                    <td class="text-center" style="width: 15%;"><img class="image" src="../../../../assets/images/class.jpeg" alt=""></td>
-                                    <td>Tahlia Prior</td>
-                                    <td>Six</td> 
-                                    <td>A</td>
-                                    <td>RSM-00006</td>
-                                    <td>6</td>
-                                    <td>27</td>
-                                    <td>
-                                      <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
-                                      <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
-                                    </td>
-                                  </tr>
-                                 
-                                 
-                                </tbody>
-                              </table>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </div>
-            </div>
-         
 
+              <div class="add-emp">
+                <button class="btn">
+                  <i class="fa-solid fa-user-plus"></i>
+                  Add Employee
+                </button>
+              </div>
+            </div>
+
+            <table class="table mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">SL</th>
+                  <th scope="col">Photo</th>
+                  <th scope="col">Staff Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Designation</th>
+                  <th scope="col">Department</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let employee of filteredEmp; index as i">
+                  <td>{{i + 1}}</td>
+                  <td>-</td>
+                  <td>{{employee._id | slice:-7}}</td>
+                  <td>{{employee.name}}</td>
+                  <td>{{employee.designation?.name}}</td>
+                  <td>{{employee.department?.name}}</td>
+                  <td>{{employee.email}}</td>
+                  <td>{{employee.number}}</td>
+                  <td>
+                    <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
+                    <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </mat-tab>
       </mat-tab-group>
     </div>

@@ -4,14 +4,14 @@
             <nav mat-tab-nav-bar mat-stretch-tabs="false" mat-align-tabs="start" selectedIndex="2" [tabPanel]="tabPanel">
                 <a mat-tab-link routerLink="../">Exam  List</a>
                 <a mat-tab-link [active]="true">Edit Exam </a>
-            </nav> 
+            </nav>
             <mat-tab-nav-panel #tabPanel>
 
                 <div class="container">
-                    <form [formGroup]="examForm"  (ngSubmit)="update()">
+                    <form [formGroup]="examForm" (ngSubmit)="update()">
                         <div class="container">
-                      
-                          
+
+
                             <div class="mb-2 col-md-5 py-2 offset-3">
                                 <label class="form-label"> Name*</label>
                                 <input type="text" formControlName="name" class="form-control">
@@ -24,7 +24,7 @@
                                     {{designation.name}}
                                   </option>
                                 </select>
-                              </div> 
+                              </div>
                               <div class="mb-3 py-2 offset-3 col-md-5">
                                 <label class="form-label">Exam Type *</label>
                                 <select class="form-select" formControlName="examtype">
@@ -32,8 +32,8 @@
                                   <option *ngFor="let exam of exams" [value]="exam.examtype">
                                     {{exam.examtype}}
                                   </option>
-                               
-      
+
+
                                 </select>
                               </div>
                               <!-- this will chnge -->
@@ -44,14 +44,14 @@
                                   <option *ngFor="let exam of marksDistributions"  [value]="exam._id">
                                     {{exam.name}}
                                   </option>
-                            
+
                                 </select>
                               </div>
                               <div class="mb-3  col-md-5 offset-3 py-">
-                              
+
                                     <label for="exampleFormControlTextarea1" class="form-label">Remarks</label>
                                     <textarea formControlName="remarks" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            
+
                               </div>
                               <div class="text-end offset-4" >
                                 <button type="submit" class="btn" [disabled]="isLoading || !examForm.valid">
@@ -59,7 +59,7 @@
                                   <span *ngIf="!isLoading">Update</span>
                                 </button>
                               </div>
-                             
+
                         </div>
                       </form>
                   </div>

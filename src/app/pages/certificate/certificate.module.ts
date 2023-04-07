@@ -8,22 +8,26 @@ import { CertEmpComponent } from './cert-emp/cert-emp.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { QuillModule } from 'ngx-quill';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxFileDropModule } from 'ngx-file-drop';
+import { CertEditComponent } from './cert-edit/cert-edit.component';
 
 @NgModule({
   declarations: [
     CertTempComponent,
     CertStudComponent,
-    CertEmpComponent
+    CertEmpComponent,
+    CertEditComponent
   ],
   imports: [
     CommonModule,
     CertificateRoutingModule,
     MatTabsModule,
     ReactiveFormsModule,
-
     QuillModule.forRoot(),
-    SharedModule
+    SharedModule,
+    NgxFileDropModule,
+    FormsModule
   ]
 })
 export class CertificateModule { }

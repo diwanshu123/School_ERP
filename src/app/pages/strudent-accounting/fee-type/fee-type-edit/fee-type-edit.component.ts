@@ -21,13 +21,13 @@ export class FeeTypeEditComponent {
     private route: ActivatedRoute,
     private router: Router)
   {
-   
+
     route.params.subscribe(param => {
       if(router.getCurrentNavigation()?.extras.state) {
         this.editfee = router.getCurrentNavigation()?.extras.state?.['data'];
         this.fineSetupId = this.editfee._id;
-       
-        
+
+
         this.craeteForm();
       }
     });
@@ -42,20 +42,20 @@ craeteForm(){
     dueDate: new FormControl(this.editfee.dueDate, [Validators.required]),
 
 
-    
+
 
   });
 }
 update(){
 
   this.isLoading = true;
-  this.api.updateRoute(this.fineSetupId, this.feeTypeForm.value).subscribe(resp => {
+  this.api.updateFeeType(this.fineSetupId, this.feeTypeForm.value).subscribe(resp => {
     this.isLoading = false;
-    this.toastr.success(resp.message, "Route update success");
+    this.toastr.success(resp.message, "Fine type update success");
   },
   (err) => {
     this.isLoading = false;
-    this.toastr.error(err, "Route update failed");
+    this.toastr.error(err, "Fee type update failed");
   });
 
 
@@ -63,11 +63,11 @@ update(){
   getFeeTemplateById()
   {
     console.log(this.templateId);
-    
+
     this.api.feeTypeListByid(this.templateId).subscribe(resp => {
       this.feeType = resp;
       console.log("this.finesetup", resp);
-      
+
       this.patchFormData();
     })
   }
@@ -78,10 +78,10 @@ update(){
       fineType:  this.feeType.fineType,
       fineValue: this.feeType.fineValue,
       lateFeeFrequency:  this.feeType.lateFeeFrequency
-      
+
     })
-   
-    
+
+
   }
 
 }

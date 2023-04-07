@@ -3,19 +3,19 @@
     <div class="row mt-5 mb-3">
       <div class="col-4">
         <label class="form-label">Class</label>
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" [(ngModel)]="filter.class">
       </div>
       <div class="col-4">
         <label class="form-label">Section</label>
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" [(ngModel)]="filter.section">
       </div>
       <div class="col-4">
         <label class="form-label">Template</label>
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" [(ngModel)]="filter.template">
       </div>
     </div>
     <div class="text-end mb-5">
-      <button class="btn">Filter</button>
+      <button class="btn" (click)="getCertificates()">Filter</button>
     </div>
 
     <table class="table mt-3">
@@ -30,13 +30,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>#001234</td>
-          <td>Fanny Siregar</td>
-          <td>College</td>
+        <tr *ngFor="let cert of certi; index as i">
+          <td>{{i + 1}}</td>
+          <td>{{cert.applicableStudent.firstName + ' ' + cert.applicableStudent.lastName}}</td>
           <td></td>
+          <td>{{cert.applicableStudent.registerNo}}</td>
           <td></td>
-          <td></td>
+          <td>{{cert.applicableStudent.number}}</td>
         </tr>
       </tbody>
     </table>

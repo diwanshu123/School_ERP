@@ -58,17 +58,34 @@ export class ApiService {
   getAllGrades(): Observable<any> {
     return this.httpClient.get(environment.apiBaseUrl +'/grade/all' ).pipe(catchError(this.errorHandler));
   }
- 
-  updateExam(examId: string,term: string, postData: any): Observable<any> {
-    return this.httpClient.put(environment.apiBaseUrl + '/exam/' + examId,term, postData).pipe(catchError(this.errorHandler));
+
+  updateExam(examId: string, postData: any): Observable<any> {
+    postData['examId'] = examId;
+    return this.httpClient.put(environment.apiBaseUrl + '/exam', postData).pipe(catchError(this.errorHandler));
   }
   // certificate
   getCertificate(): Observable<any> {
     return this.httpClient.get(environment.apiBaseUrl +'/certificate/all' ).pipe(catchError(this.errorHandler));
   }
 
+  getStudentCertificate(filter: string): Observable<any>
+  {
+    let apiURL = filter.length ? '/certificate/student?' + filter : '/certificate/student';
+    return this.httpClient.get(environment.apiBaseUrl + apiURL).pipe(catchError(this.errorHandler));
+  }
+
+  getEmployeeCertificate(filter: string): Observable<any>
+  {
+    let apiURL = filter.length ? '/certificate/employee?' + filter : '/certificate/employee';
+    return this.httpClient.get(environment.apiBaseUrl + apiURL).pipe(catchError(this.errorHandler));
+  }
+
   createCertificate(postData: FormData): Observable<any> {
-    return this.httpClient.post(environment.apiBaseUrl + '/certificate' , postData);
+    return this.httpClient.post(environment.apiBaseUrl + '/certificate' , postData).pipe(catchError(this.errorHandler));
+  }
+
+  deleteCertificate(certId: string): Observable<any> {
+    return this.httpClient.delete(environment.apiBaseUrl + '/certificate/' + certId).pipe(catchError(this.errorHandler));
   }
 
   //Student Accounting
@@ -76,7 +93,7 @@ export class ApiService {
     return this.httpClient.post(environment.apiBaseUrl +'/feeType', postData).pipe(catchError(this.errorHandler));
   }
 
-  feeTypeList(){
+  feeTypeList(): Observable<any> {
   return this.httpClient.get(environment.apiBaseUrl +'/feeType/all/').pipe(catchError(this.errorHandler));
   }
   feeTypeGroup(){
@@ -181,10 +198,18 @@ export class ApiService {
       return this.httpClient.put(environment.apiBaseUrl + '/route/' + routeId, postData).pipe(catchError(this.errorHandler));
     }
     updategrade(gradeId: string, postData: any): Observable<any> {
-      return this.httpClient.put(environment.apiBaseUrl + '/grade/' + gradeId, postData).pipe(catchError(this.errorHandler));
+      postData['gradeId'] = gradeId;
+      return this.httpClient.put(environment.apiBaseUrl + '/grade', postData).pipe(catchError(this.errorHandler));
     }
+
+    updateFeeType(feeId: string, postData: any): Observable<any> {
+      postData['feeTypeId'] = feeId;
+      return this.httpClient.put(environment.apiBaseUrl + '/feeType', postData).pipe(catchError(this.errorHandler));
+    }
+
     updateFine(fineSetupId: string, postData: any): Observable<any> {
-      return this.httpClient.put(environment.apiBaseUrl + '/fineSetup/' + fineSetupId, postData).pipe(catchError(this.errorHandler));
+      postData['fineSetupId'] = fineSetupId;
+      return this.httpClient.put(environment.apiBaseUrl + '/fineSetup', postData).pipe(catchError(this.errorHandler));
     }
 
     deleteRoute(id: string): Observable<any> {
@@ -245,6 +270,41 @@ export class ApiService {
     // Student Details
     getAllStudents(): Observable<any> {
       return this.httpClient.get(environment.apiBaseUrl + '/student/all').pipe(catchError(this.errorHandler));
+    }
+
+    //Employees, Departments and Designations
+    getDepartments(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl + '/department/all').pipe(catchError(this.errorHandler));
+    }
+
+    addDepartment(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl + '/department', postData).pipe(catchError(this.errorHandler));
+    }
+
+    updateDepartment(deptId: string, postData: any): Observable<any> {
+      postData["id"] = deptId;
+      return this.httpClient.put(environment.apiBaseUrl + '/department', postData).pipe(catchError(this.errorHandler));
+    }
+
+    deleteDepartment(deptId: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl + '/department/' + deptId).pipe(catchError(this.errorHandler));
+    }
+
+    getDesignations(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl + '/designation/all').pipe(catchError(this.errorHandler));
+    }
+
+    addDesignation(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl + '/designation', postData).pipe(catchError(this.errorHandler));
+    }
+
+    updateDesignation(deptId: string, postData: any): Observable<any> {
+      postData["id"] = deptId;
+      return this.httpClient.put(environment.apiBaseUrl + '/designation', postData).pipe(catchError(this.errorHandler));
+    }
+
+    deleteDesignation(deptId: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl + '/designation/' + deptId).pipe(catchError(this.errorHandler));
     }
 
 

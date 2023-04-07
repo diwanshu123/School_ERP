@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class EditComponent {
 
-  
+
   isLoading: boolean;
   salaryForm: FormGroup;
   salary: any;
@@ -21,6 +21,7 @@ export class EditComponent {
   fineSetup: any
   fineSetupId: string
   editfine: any;
+  feeType: any[] = [];
 
   constructor(private api: ApiService, private toastr: ToastrService,
     private route: ActivatedRoute,
@@ -29,9 +30,8 @@ export class EditComponent {
         if(router.getCurrentNavigation()?.extras.state) {
           this.editfine = router.getCurrentNavigation()?.extras.state?.['data'];
           this.fineSetupId = this.editfine._id;
-         
-          
           this.createForm();
+          this.getFeeTypes();
         }
       });
   }
@@ -39,20 +39,33 @@ export class EditComponent {
     // this.patchFormData()
     // this.getFineTemplateById()
   }
-  createForm() { 
+
+  getFeeTypes()
+  {
+    this.api.feeTypeList().subscribe(resp => {
+      this.feeType = resp.feeTypes;
+      this.patchForm();
+    })
+  }
+
+  createForm() {
 
     this.fineSetupForm = new FormGroup({
-      group_name: new FormControl(this.editfine.group_name, [Validators.required]),
-      feeType: new FormControl(this.editfine.feeType.name, [Validators.required]),
-      fineType: new FormControl(this.editfine.fineType, [Validators.required]),
-      fineValue: new FormControl(this.editfine.fineValue, [Validators.required]),
-      lateFeeFrequency: new FormControl(this.editfine.lateFeeFrequency, [Validators.required]),
-
-
-
-
+      feeType: new FormControl('select', [Validators.required]),
+      fineType: new FormControl('select', [Validators.required]),
+      fineValue: new FormControl(0, [Validators.required]),
+      lateFeeFrequency: new FormControl('select', [Validators.required]),
     });
 
+  }
+
+  patchForm() {
+    this.fineSetupForm .patchValue({
+      feeType: this.editfine.feeType._id,
+      fineType: this.editfine.fineType,
+      fineValue: this.editfine.fineValue,
+      lateFeeFrequency: this.editfine.lateFeeFrequency,
+    });
   }
 
   update(){
@@ -66,20 +79,18 @@ export class EditComponent {
       this.isLoading = false;
       this.toastr.error(err, "fineSetupForm update failed");
     });
-  
-  
   }
-  
+
 
   getFineTemplateById()
   {
     console.log(this
       .templateId);
-    
+
     this.api.fineSetupListById(this.templateId).subscribe(resp => {
       this.fineSetup = resp;
       console.log("this.finesetup", resp);
-      
+
       this.patchFormData();
     })
   }
@@ -91,13 +102,13 @@ export class EditComponent {
       fineType:  this.fineSetup.fineType,
       fineValue: this.fineSetup.fineValue,
       lateFeeFrequency:  this.fineSetup.lateFeeFrequency
-      
+
     })
-   
-    
+
+
   }
 
- 
+
 
 
 }
