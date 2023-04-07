@@ -152,7 +152,14 @@ export class ApiService {
     getLeaveCategory(): Observable<any> {
       return this.httpClient.get(environment.apiBaseUrl + '/leavesCategory/all').pipe(catchError(this.errorHandler));
     }
+    getEmpDesignation(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl + '').pipe(catchError(this.errorHandler));
+    }
 
+    // emplye
+    getDesignaionsEmpl(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl + '/designation/all').pipe(catchError(this.errorHandler));
+    }
     getDesignaions(): Observable<any> {
       return this.httpClient.get(environment.apiBaseUrl + '/designation/all').pipe(catchError(this.errorHandler));
     }
@@ -266,6 +273,7 @@ export class ApiService {
     deleteAssignVehicle(id: string): Observable<any> {
       return this.httpClient.delete(environment.apiBaseUrl +'/vehicleroute/' + id).pipe(catchError(this.errorHandler));
     }
+    // employe /employee/designation/:designationId'
 
     // Student Details
     getAllStudents(): Observable<any> {
