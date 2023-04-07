@@ -6,15 +6,23 @@
     position: relative;
     width: 200px;
 
-    .profile-pic {
+    .profile-pic, .profile-pic img {
       height: 240px;
       width: 200px;
+    }
+
+    .profile-pic {
       background: #FFFFFF;
       border: 2px solid $color-primary;
       border-radius: 10px;
       position: absolute;
       margin-top: -43px;
-      left: 60px;
+      left: 20px;
+
+      img {
+        object-fit: cover;
+        padding: 10px;
+      }
     }
   }
 

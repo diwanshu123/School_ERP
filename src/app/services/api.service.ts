@@ -229,6 +229,11 @@ export class ApiService {
       return this.httpClient.delete(environment.apiBaseUrl +'/vehicleroute/' + id).pipe(catchError(this.errorHandler));
     }
 
+    // Student Details
+    getAllStudents(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl + '/student/all').pipe(catchError(this.errorHandler));
+    }
+
 
   errorHandler(error: {
     error: {

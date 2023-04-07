@@ -4,27 +4,27 @@
     <div class="profile-cont">
       <div class="profile-pic-cont">
         <div class="profile-pic">
-          <img src="" alt="">
+          <img class="img-fluid" [src]="student.image? student.image: 'assets/images/no-profile.jpg'" alt="">
         </div>
       </div>
       <div class="stud-name">
-        <h2>Radika</h2>
+        <h2>{{student.firstName + " " + student.lastName}}</h2>
       </div>
       <div class="stud-bio">
         <p class="position-relative d-flex">
-          Class: 7 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Section:A
+          Class: {{student.academic.studentClass}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Section: {{student.academic.section}}
           <br>
-          Reg No.:XYZ-101
+          Reg No.: {{student.registerNo}}
           <br>
-          Roll No.:04
+          Roll No.: {{student.rollNo}}
           <br>
-          21-07-2002
+          {{student.dob}}
           <br>
-          98888-77777
+          {{student.number}}
           <br>
-          radhika7a@school.com
+          {{student.email}}
           <br>
-          123, XYZ Street, Delhi
+          {{student.presentAddress}}
         </p>
       </div>
       <div class="align-self-end">
@@ -690,7 +690,7 @@
         </div>
 
         <!--Table Two-->
-      
+
         <div class="marks-table-cont border">
           <div class="title bg-light">
             <p> First term Examination(GPA) </p>
