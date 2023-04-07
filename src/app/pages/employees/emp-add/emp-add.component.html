@@ -1,5 +1,7 @@
 <app-layout>
   <div class="container p-5">
+    <form [formGroup]="addEmployee">
+
     <div class="heading mb-3">
       <h4>Academic Details</h4>
       <button class="btn" data-bs-toggle="modal" data-bs-target="#multipleImport">Multiple Import</button>
@@ -7,14 +9,19 @@
 
     <div class="row mb-3">
       <div class="col-4">
+     
+
         <label class="form-label">Role *</label>
-        <input type="text" class="form-control">
+        <select class="form-select" formControlName="role">
+          <option disabled value="select">Select</option>
+          <option *ngFor="let emp of employe_role" [value]="emp.id">{{emp.value}}</option>
+        </select>
       </div>
       <div class="col-4 offset-4">
         <label class="form-label">Joining Date *</label>
         <div class="input-group">
           <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-          <input type="text" class="form-control">
+          <input type="text" formControlName="joiningDate" class="form-control">
         </div>
       </div>
     </div>
@@ -22,7 +29,10 @@
     <div class="row mb-3">
       <div class="col-4">
         <label class="form-label">Designation *</label>
-        <input type="text" class="form-control">
+        <select class="form-select" formControlName="designation">
+          <option disabled value="select">Select</option>
+          <option *ngFor="let emp of employe_role" [value]="emp.id">{{emp.value}}</option>
+        </select>
       </div>
       <div class="col-4 offset-4">
         <label class="form-label">Department *</label>
@@ -255,7 +265,9 @@
     <div class="text-end my-4">
       <button class="btn">Save</button>
     </div>
+</form>
   </div>
+
 </app-layout>
 
 
