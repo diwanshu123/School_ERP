@@ -45,7 +45,6 @@ export class ApiService {
     return this.httpClient.delete(environment.apiBaseUrl +'/grade/' + id).pipe(catchError(this.errorHandler));
   }
 
-
   getExamTerms(): Observable<any> {
     return this.httpClient.get(environment.apiBaseUrl +'/examTerm/all' ).pipe(catchError(this.errorHandler));
   }
@@ -281,6 +280,10 @@ export class ApiService {
     }
 
     //Employees, Departments and Designations
+    addEmpployee(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl + '/employee', postData).pipe(catchError(this.errorHandler));
+    }
+
     getDepartments(): Observable<any> {
       return this.httpClient.get(environment.apiBaseUrl + '/department/all').pipe(catchError(this.errorHandler));
     }

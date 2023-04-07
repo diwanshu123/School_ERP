@@ -2,7 +2,6 @@
   <div class="container p-4">
     <div class="row">
       <div class="col-6 px-4">
-<<<<<<< HEAD
         <form [formGroup]="designForm" (ngSubmit)="addDesignation()">
           <h5 class="mb-4">Add Designation</h5>
           <div class="mb-3">
@@ -17,25 +16,8 @@
             </button>
           </div>
         </form>
-=======
-        <form [formGroup]="emplDesign">
-        <h5 class="mb-4">Add Designation</h5>
-        <div class="mb-3">
-          <label class="form-label">Designation Name *</label>
-          <input type="text "  formControlName="name" class="form-control">
-        </div>
-
-        <div class="text-end">
-          <button type="button" class="btn" (click)="addEmployeDesign()" [disabled]="isLoading ||
-          !emplDesign.valid || emplDesign.get('name')?.value == 'select'">
-          <span *ngIf="isLoading" class="spinner-border text-light"></span>
-          <span *ngIf="!isLoading">Save</span>
-          </button>
-        </div>
-      </form>
->>>>>>> 78bf2b5bcda22e42488182b66f569ad9d998c58d
       </div>
-    
+
       <div class="col-6 px-4">
         <h5 class="mb-4">Designation List</h5>
         <table class="table" [cellPadding]="0" [cellSpacing]="0">
@@ -60,30 +42,6 @@
                   <i class="fa-solid fa-trash-can"></i>
                 </button>
               </td>
-<<<<<<< HEAD
-=======
-              <td>
-                <button class="btn emp-edit me-1" data-bs-toggle="modal" data-bs-target="#editLeave"
-                  >
-                    <i class="fa-solid fa-pencil"></i>
-                  </button>
-                  <button class="btn emp-edit ms-1" data-bs-toggle="modal" data-bs-target="#deletePrompt"
-                ><i class="fa-solid fa-trash-can"></i></button>
-              </td>
-            </tr>
-
-            <tr>
-              <td>2</td>
-              <td>Dawud Khan</td>
-              <td>
-                <h4>VII-A</h4>
-                <p>Class</p></td>
-              <td>
-                <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
-                <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
-              </td>
-            </tr>
->>>>>>> 78bf2b5bcda22e42488182b66f569ad9d998c58d
           </tbody>
         </table>
       </div>
@@ -92,7 +50,6 @@
 </app-layout>
 
 
-<<<<<<< HEAD
 <!---Modal for Edit---->
 <div class="modal fade" id="editPrompt">
   <div class="modal-dialog modal-dialog-centered">
@@ -106,33 +63,11 @@
             <label class="form-label">Designation Name *</label>
             <input type="text" class="form-control" formControlName="name">
           </div>
-=======
-<!-- Modal for editing Leave Category -->
-<div class="modal fade" id="editLeave">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header"> 
-        <h5 class="modal-title">Edit Employee Designation</h5>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="editEmplDesign">
-          <div class="mb-3">
-            <label class="form-label">Add Designation *</label>
-            <input type="text" class="form-control" formControlName="name">
-          </div>
-         
-         
->>>>>>> 78bf2b5bcda22e42488182b66f569ad9d998c58d
         </form>
       </div>
       <div class="modal-footer">
         <button id="editModalDismissBtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-<<<<<<< HEAD
         <button type="button" class="btn btn-danger" [disabled]="isLoading || !editDesign.valid" (click)="updateDesignation()">
-=======
-        <button type="button" class="btn btn-danger" [disabled]="isLoading ||
-          !editEmplDesign.valid || editEmplDesign.get('name')?.value == 'select'" (click)="updatedesign()">
->>>>>>> 78bf2b5bcda22e42488182b66f569ad9d998c58d
           <span *ngIf="isLoading" class="spinner-border text-light"></span>
           <span *ngIf="!isLoading">Update</span>
         </button>
@@ -141,19 +76,11 @@
   </div>
 </div>
 
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> 78bf2b5bcda22e42488182b66f569ad9d998c58d
 <!---Modal for delete---->
 <div class="modal fade" id="deletePrompt">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-<<<<<<< HEAD
         <h5 class="modal-title">Delete Designation</h5>
       </div>
       <div class="modal-body">
@@ -162,24 +89,10 @@
       <div class="modal-footer">
         <button id="modalDismissBtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-danger" [disabled]="isLoading" (click)="deleteDesignation()">
-=======
-        <h5 class="modal-title">Delete  </h5>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to delete ?</p>
-      </div>
-      <div class="modal-footer">
-        <button id="modalDismissBtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger" [disabled]="isLoading" (click)="deleteEmpDesignation()">
->>>>>>> 78bf2b5bcda22e42488182b66f569ad9d998c58d
           <span *ngIf="isLoading" class="spinner-border text-light"></span>
           <span *ngIf="!isLoading">Delete</span>
         </button>
       </div>
     </div>
   </div>
-<<<<<<< HEAD
 </div>
-=======
-</div>
->>>>>>> 78bf2b5bcda22e42488182b66f569ad9d998c58d
