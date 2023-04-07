@@ -7,7 +7,7 @@ import { ApiService } from 'src/app/services/api.service';
   selector: 'app-salary-templete',
   templateUrl: './salary-templete.component.html',
   styleUrls: ['./salary-templete.component.scss']
-})
+}) 
 export class SalaryTempleteComponent implements OnInit {
 
   isLoading: boolean;

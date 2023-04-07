@@ -11,6 +11,7 @@ import { DisturbutionComponent } from './disturbution/disturbution.component';
 import { ExamSetupComponent } from './exam-setup/exam-setup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExamSetupEditComponent } from './exam-setup/exam-setup-edit/exam-setup-edit.component';
+import { GradeEditComponent } from './grade-range/grade-edit/grade-edit.component';
 
 
 
@@ -22,7 +23,8 @@ import { ExamSetupEditComponent } from './exam-setup/exam-setup-edit/exam-setup-
     ExamTermComponent,
     DisturbutionComponent,
     ExamSetupComponent,
-    ExamSetupEditComponent
+    ExamSetupEditComponent,
+    GradeEditComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -7,9 +10,31 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./cert-temp.component.scss']
 })
 export class CertTempComponent {
-
+  certiForm: FormGroup
   certi: any
-  constructor(private api: ApiService, ) { }
+  isLoading: boolean;
+  constructor(private api: ApiService,private toastr: ToastrService ,private route: Router  ) {
+    this.certiForm =  new FormGroup ({
+      name: new FormControl(null, [Validators.required]),
+      applicableStudent: new FormControl(null, [Validators.required]),
+      pageLayout: new FormControl(null, [Validators.required]),
+      userPhotoStyle: new FormControl(null, [Validators.required]),
+      userPhotoSize: new FormControl(null, [Validators.required]),
+      layoutSpacing:  new FormArray([
+        new FormGroup({
+          top:  new FormControl(null, [Validators.required]),
+          bottom: new FormControl(0, [Validators.required]),
+          right: new FormControl(0, [Validators.required]),
+          left: new FormControl(0, [Validators.required])
+
+        })
+      ]),
+      content: new FormControl(null, [Validators.required]),
+
+
+     
+    })
+   }
   
 
   ngOnInit(): void {
@@ -23,6 +48,26 @@ export class CertTempComponent {
       this.certi = res.data
       console.log(res, "certificates");
       
+    })
+  }
+  createCerti()
+  {
+    console.log(this.certiForm.value);
+    
+    this.isLoading = true;
+    this.api.createCertificate(this.certiForm.value).subscribe(resp => {
+      console.log(resp);
+      
+      this.isLoading = false;
+
+      this.toastr.success(resp.message, "exams  add success");
+      this.getCertificates();
+    ;
+    },
+    (err) => {
+      this.isLoading = false;
+      this.toastr.error(err, "exams  add failed");
+      console.error(err);
     })
   }
 }

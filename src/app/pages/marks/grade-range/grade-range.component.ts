@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -13,11 +14,13 @@ export class GradeRangeComponent {
   gradeForm : FormGroup
   grade: any;
   selectedGrade: any;
+  grades:any ;
+  selectedGarde: any;
 
 
   
 
-  constructor(private api: ApiService,private toastr: ToastrService  ) {
+  constructor(private api: ApiService,private toastr: ToastrService ,  private router: Router ) {
     this.gradeForm =  new FormGroup ({
       name: new FormControl(null, [Validators.required]),
       gradePoint: new FormControl(null, [Validators.required]),
@@ -27,25 +30,27 @@ export class GradeRangeComponent {
 
 
     })
+    
   }
 
 
   ngOnInit(): void {
     this.getAllGrade()
+  
  
 }
 
 addGrade() { 
  
   this.isLoading = true;
+  console.log(this.gradeForm.value);
+  
   this.api.createGrades(this.gradeForm.value).subscribe(resp => {
     console.log(resp);
     
     this.isLoading = false;
 
     this.toastr.success(resp.message, "exams  add success");
-  
-  ;
   },
   (err) => {
     this.isLoading = false;
@@ -54,10 +59,24 @@ addGrade() {
   })
 }
 
+editGrade(data: any){
+
+ {
+    this.selectedGarde = data;
+    const navExtras: NavigationExtras = {
+      state: {
+        data: this.selectedGarde
+      }
+    };
+
+    this.router.navigate(["/marks/grade-edit/", this.selectedGarde._id], navExtras);
+  }
+}
+
 getAllGrade(){
   this.api.getAllGrades().subscribe((res)=>{
-    this.grade = res.grade
-    console.log(this.grade, "first res");
+    this.grades = res.grades
+    console.log(this.grades, "grade res");
     
   })
 }
@@ -67,6 +86,7 @@ deleteGrade(){
     console.log(res);
     this.isLoading = false;
     document.getElementById('modalDismissBtn')?.click();
+ 
 
   },
   (err) => {

@@ -8,6 +8,7 @@ import { CertEmpComponent } from './cert-emp/cert-emp.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { QuillModule } from 'ngx-quill';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,8 @@ import { QuillModule } from 'ngx-quill';
     CommonModule,
     CertificateRoutingModule,
     MatTabsModule,
+    ReactiveFormsModule,
+
     QuillModule.forRoot(),
     SharedModule
   ]

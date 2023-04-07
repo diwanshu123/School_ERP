@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -11,29 +11,55 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class FeeTypeEditComponent {
   feeTypeForm: FormGroup;
-
+  fineSetupId: string
   isLoading: boolean;
   templateId: string
   feeType:  any
+  editfee: any;
 
-  constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute)
+  constructor(private api: ApiService, private toastr: ToastrService,
+    private route: ActivatedRoute,
+    private router: Router)
   {
+   
     route.params.subscribe(param => {
-      if(param['id']) {
-        this.templateId = param['id'];
-        this.getFeeTemplateById();
+      if(router.getCurrentNavigation()?.extras.state) {
+        this.editfee = router.getCurrentNavigation()?.extras.state?.['data'];
+        this.fineSetupId = this.editfee._id;
+       
+        
+        this.craeteForm();
       }
-    this.feeTypeForm = new FormGroup({
-      name: new FormControl(null, [Validators.required]),
-      description: new FormControl(null, [Validators.required]),
-      amount: new FormControl(null, [Validators.required]),
-      dueDate: new FormControl(null, [Validators.required]),
-
-
     });
-  });
 }
 
+
+craeteForm(){
+  this.feeTypeForm = new FormGroup({
+    name: new FormControl(this.editfee.name, [Validators.required]),
+    description: new FormControl(this.editfee.description, [Validators.required]),
+    amount: new FormControl(this.editfee.amount, [Validators.required]),
+    dueDate: new FormControl(this.editfee.dueDate, [Validators.required]),
+
+
+    
+
+  });
+}
+update(){
+
+  this.isLoading = true;
+  this.api.updateRoute(this.fineSetupId, this.feeTypeForm.value).subscribe(resp => {
+    this.isLoading = false;
+    this.toastr.success(resp.message, "Route update success");
+  },
+  (err) => {
+    this.isLoading = false;
+    this.toastr.error(err, "Route update failed");
+  });
+
+
+}
   getFeeTemplateById()
   {
     console.log(this.templateId);

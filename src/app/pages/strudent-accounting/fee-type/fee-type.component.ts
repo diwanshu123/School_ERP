@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 
 
-@Component({
+@Component({ 
   selector: 'app-fee-type',
   templateUrl: './fee-type.component.html',
   styleUrls: ['./fee-type.component.scss']
@@ -15,8 +16,11 @@ export class FeeTypeComponent {
   feeTypes: any[] = [];
   isLoading: boolean;
   selectedfee: any;
+  selectedFee: any;
 
-  constructor(private api: ApiService, private toastr: ToastrService)
+  constructor(private api: ApiService, private toastr: ToastrService,
+    private route: ActivatedRoute,
+    private router: Router)
   {
     this.feeTypeForm = new FormGroup({
       name: new FormControl(null, [Validators.required]),
@@ -70,6 +74,20 @@ export class FeeTypeComponent {
       this.feeTypes = res.feeTypes;
       console.log(res);
     })
+  }
+
+  editFeeType(route: any)
+  {
+    console.log(route);
+    
+    this.selectedFee = route;
+    const navExtras: NavigationExtras = {
+      state: {
+        data: this.selectedFee
+      }
+    };
+
+    this.router.navigate(["/student-acconting/fees-type/", this.selectedFee._id], navExtras);
   }
 
 }

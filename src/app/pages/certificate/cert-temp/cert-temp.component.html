@@ -66,60 +66,62 @@
           </div>
         </mat-tab>
         <mat-tab label="Add Certificate">
-
+          <form [formGroup]="certiForm" (ngSubmit)="createCerti()">
           <div class="mt-5">
             <div class="row mb-3">
               <div class="col-4">
                 <label class="form-label">Certificate Name *</label>
-                <input type="text" class="form-control">
+                <input type="text" formControlName="name" class="form-control">
               </div>
             </div>
 
             <div class="row mb-3">
               <div class="col-4">
                 <label class="form-label">Applicable User *</label>
-                <input type="text" class="form-control" placeholder="Layout Width (mm)">
+                <input type="text " formControlName="applicableStudent" class="form-control" placeholder="Layout Width (mm)">
               </div>
             </div>
 
             <div class="mb-3">
               <label class="form-label">Page Layout *</label>
-              <input type="text" class="form-control">
+              <input type="text" formControlName="pageLayout" class="form-control">
             </div>
 
             <div class="row mb-3">
               <label class="form-label">User Photo Style *</label>
               <div class="col-4">
-                <input type="text" class="form-control" placeholder="Square">
+                <input type="text" formControlName="userPhotoStyle"  class="form-control" placeholder="Square">
               </div>
               <div class="col-4 offset-4">
-                <input type="text" class="form-control" placeholder="Photo Size (px)">
+                <input type="text" formControlName="userPhotoSize" class="form-control" placeholder="Photo Size (px)">
               </div>
             </div>
-
+            <div class="row mb-3" formArrayName="layoutSpacing">
             <div class="row mb-3">
               <label class="form-label">Layout Spacing *</label>
               <div class="col-4">
-                <input type="text" class="form-control" placeholder="Top Space (px)">
+                <input type="text" formControlName="top" class="form-control" placeholder="Top Space (px)">
               </div>
               <div class="col-4 offset-4">
-                <input type="text" class="form-control" placeholder="Bottom Space (px)">
+                <input type="text" formControlName="bottom" class="form-control" placeholder="Bottom Space (px)">
               </div>
             </div>
 
             <div class="row mb-3">
               <div class="col-4">
-                <input type="text" class="form-control" placeholder="Right Space (px)">
+                <input type="text" formControlName="right" class="form-control" placeholder="Right Space (px)">
               </div>
               <div class="col-4 offset-4">
-                <input type="text" class="form-control" placeholder="Left Space (px)">
+                <input type="text" formControlName="left" class="form-control" placeholder="Left Space (px)">
               </div>
             </div>
+          </div>
+
 
             <div class="row mb-3">
               <div class="col-4">
                 <label class="form-label">Signature Image</label>
-                <input type="text" class="form-control" placeholder="Layout Width (mm)">
+                <input type="text" formControlName class="form-control" placeholder="Layout Width (mm)">
               </div>
 
               <div class="col-4">
@@ -135,15 +137,16 @@
 
             <div class="mb-3">
               <label class="form-label">Certificate Content</label>
-              <quill-editor></quill-editor>
+              <quill-editor formControlName="content"></quill-editor>
             </div>
 
             <div class="text-end">
               <button class="btn">Save</button>
             </div>
           </div>
-
+        </form>
         </mat-tab>
+   
       </mat-tab-group>
     </div>
   </div>

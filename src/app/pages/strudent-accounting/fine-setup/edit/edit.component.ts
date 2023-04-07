@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -19,29 +19,55 @@ export class EditComponent {
   fineSetupForm: FormGroup;
 
   fineSetup: any
+  fineSetupId: string
+  editfine: any;
 
-  constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute){
-
-    route.params.subscribe(param => {
-      if(param['id']) {
-        this.templateId = param['id'];
-        this.getFineTemplateById();
-      }
-      this.fineSetupForm = new FormGroup({
-        group_name: new FormControl(null, [Validators.required]),
-        feeType: new FormControl(null, [Validators.required]),
-        fineType: new FormControl(null, [Validators.required]),
-        fineValue: new FormControl(null, [Validators.required]),
-        lateFeeFrequency: new FormControl(null, [Validators.required]),
-  
-  
+  constructor(private api: ApiService, private toastr: ToastrService,
+    private route: ActivatedRoute,
+    private router: Router){
+      route.params.subscribe(param => {
+        if(router.getCurrentNavigation()?.extras.state) {
+          this.editfine = router.getCurrentNavigation()?.extras.state?.['data'];
+          this.fineSetupId = this.editfine._id;
+         
+          
+          this.createForm();
+        }
       });
-    });
   }
-
   ngOnInit(): void {
     // this.patchFormData()
     // this.getFineTemplateById()
+  }
+  createForm() { 
+
+    this.fineSetupForm = new FormGroup({
+      group_name: new FormControl(this.editfine.group_name, [Validators.required]),
+      feeType: new FormControl(this.editfine.feeType.name, [Validators.required]),
+      fineType: new FormControl(this.editfine.fineType, [Validators.required]),
+      fineValue: new FormControl(this.editfine.fineValue, [Validators.required]),
+      lateFeeFrequency: new FormControl(this.editfine.lateFeeFrequency, [Validators.required]),
+
+
+
+
+    });
+
+  }
+
+  update(){
+
+    this.isLoading = true;
+    this.api.updateFine(this.fineSetupId, this.fineSetupForm.value).subscribe(resp => {
+      this.isLoading = false;
+      this.toastr.success(resp.message, "fineSetupForm update success");
+    },
+    (err) => {
+      this.isLoading = false;
+      this.toastr.error(err, "fineSetupForm update failed");
+    });
+  
+  
   }
   
 
