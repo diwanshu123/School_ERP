@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
@@ -20,11 +20,19 @@ export class CertTempComponent {
       pageLayout: new FormControl(null, [Validators.required]),
       userPhotoStyle: new FormControl(null, [Validators.required]),
       userPhotoSize: new FormControl(null, [Validators.required]),
-      layoutSpacing: new FormControl(null, [Validators.required]),
+      layoutSpacing:  new FormArray([
+        new FormGroup({
+          top:  new FormControl(null, [Validators.required]),
+          bottom: new FormControl(0, [Validators.required]),
+          right: new FormControl(0, [Validators.required]),
+          left: new FormControl(0, [Validators.required])
+
+        })
+      ]),
       content: new FormControl(null, [Validators.required]),
 
 
-
+     
     })
    }
   
