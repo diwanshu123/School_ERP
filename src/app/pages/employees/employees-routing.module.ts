@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'add',
     component: EmpAddComponent
+  },
+  {
+    path: 'add/:id',
+    component: EmpAddComponent
   }
 ];
 

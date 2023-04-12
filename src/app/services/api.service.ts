@@ -279,14 +279,27 @@ export class ApiService {
       return this.httpClient.get(environment.apiBaseUrl + '/student/all').pipe(catchError(this.errorHandler));
     }
 
-    //Employees, Departments and Designations
-    addEmpployee(postData: any): Observable<any> {
+    //Employees, Departments and Designations  '/employee/all'  employee
+    addEmpployee(postData: any): Observable<any> { 
       return this.httpClient.post(environment.apiBaseUrl + '/employee', postData).pipe(catchError(this.errorHandler));
+    }
+    deleteEmploye(_id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl + '/employee/:id/'  +_id ).pipe(catchError(this.errorHandler));
+    }
+
+    updateEmpployee(postData: any, _id: String): Observable<any> { 
+      // postData["id"] = _id;
+
+      return this.httpClient.put(environment.apiBaseUrl + '/employee/', postData + _id).pipe(catchError(this.errorHandler));
     }
 
     getDepartments(): Observable<any> {
       return this.httpClient.get(environment.apiBaseUrl + '/department/all').pipe(catchError(this.errorHandler));
     }
+    getEmployess(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl + '/employee/all').pipe(catchError(this.errorHandler));
+    }
+
 
     addDepartment(postData: any): Observable<any> {
       return this.httpClient.post(environment.apiBaseUrl + '/department', postData).pipe(catchError(this.errorHandler));
@@ -318,7 +331,49 @@ export class ApiService {
       return this.httpClient.delete(environment.apiBaseUrl + '/designation/' + deptId).pipe(catchError(this.errorHandler));
     }
 
+    //Acadamic '/class'   /class/all
+    addAcadamic(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl + '/academic', postData).pipe(catchError(this.errorHandler));
+    }
+    
+    addClass(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl + '/class', postData).pipe(catchError(this.errorHandler));
+    }
 
+    addSection(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl + '/section', postData).pipe(catchError(this.errorHandler));
+    }
+    getAllSection(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl + '/section/all').pipe(catchError(this.errorHandler));
+    }
+    getAllClass(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl + '/class/all').pipe(catchError(this.errorHandler));
+    }
+
+    updateclass(postData: any): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl +'/class', postData).pipe(catchError(this.errorHandler));
+    }
+    updateSection(postData: any): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl +'/section', postData).pipe(catchError(this.errorHandler));
+    }
+    deleteClass(id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/class/' + id).pipe(catchError(this.errorHandler));
+    }
+    deleteSection(id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/section/' + id).pipe(catchError(this.errorHandler));
+    }
+    addSubject(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl + '/subject', postData).pipe(catchError(this.errorHandler));
+    }
+    getAllSubjects(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl + '/subject/all').pipe(catchError(this.errorHandler));
+    }
+    updateSubject(postData: any): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl +'/subject', postData).pipe(catchError(this.errorHandler));
+    }
+    deleteSubject(id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/subject/' + id).pipe(catchError(this.errorHandler));
+    }
   errorHandler(error: {
     error: {
         messge: string;

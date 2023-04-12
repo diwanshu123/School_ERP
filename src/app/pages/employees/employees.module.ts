@@ -11,6 +11,11 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxFileDropModule } from 'ngx-file-drop';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -30,7 +35,12 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     FormsModule,
     HttpClientModule,
     NgxFileDropModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatSelectModule
   ]
 })
 export class EmployeesModule { }
