@@ -24,6 +24,8 @@ export class SalaryAssignComponent implements OnInit {
   getAllEmployees()
   {
     this.api.getAllEmployees().subscribe(resp => {
+      console.log(this.employees);
+      
       this.employees = resp.employees;
       this.getAllSalaries();
     });

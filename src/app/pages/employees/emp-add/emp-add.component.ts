@@ -79,10 +79,7 @@ export class EmpAddComponent {
 	
 	];
 
-  lable= [
-    { id: '1 ', value: 'Save' },
-		{ id: '2', value: 'Update' },
-  ]
+ 
   addEmployee: FormGroup
   departments: any[] = [];
   designations: any[] = [];
@@ -140,12 +137,49 @@ abc: any
 
 
  
-  }
+  } 
 
 AddEmloyeForm(){
-  
+  if(!this.AddEmployeF || this.editEmploye._id){
+    this.addEmployee = new FormGroup({
+    employeeId: new FormControl(null, [Validators.required]),
+    joiningDate: new FormControl(null, [Validators.required]),
+    designation: new FormControl('select', [Validators.required]),
+    department: new FormControl('select', [Validators.required]),
+
+    qualification: new FormControl(null, [Validators.required]),
+    experienceDetails: new FormControl(null, [Validators.required]),
+    totalExperience: new FormControl(null, [Validators.required]),
+    name: new FormControl(null, [Validators.required]),
+    gender: new FormControl(null, [Validators.required]),
+    bloodGroup: new FormControl(null, [Validators.required]),
+    religion: new FormControl(null, [Validators.required]),
+    dob: new FormControl(null, [Validators.required]),
+    number: new FormControl(null, [Validators.required]),
+    email: new FormControl(null, [Validators.required]),
+
+    presentAddress: new FormControl(null, [Validators.required]),
+    permanentAddress: new FormControl(null, [Validators.required]),
+    userName: new FormControl(null, [Validators.required]),
+    password: new FormControl(null, [Validators.required]),
+    facebook: new FormControl(null, [Validators.required]),
+    twitter: new FormControl(null, [Validators.required]),
+    linkedin: new FormControl(null, [Validators.required]),
+    skipBankDetails: new FormControl(false, [Validators.required]),
+    bankName: new FormControl(null, [Validators.required]),
+    holderName: new FormControl(null, ),
+    bankBranch: new FormControl(null, [Validators.required]),
+    bankAddress: new FormControl(null, [Validators.required]),
+    ifscCode: new FormControl(null, [Validators.required]),
+    accountNumber: new FormControl(null, [Validators.required]),
+    abc: new FormControl(null, [Validators.required]),
+    image: new FormControl(null, [Validators.required]),
+
+  });
+
+  }
   this.addEmployee = new FormGroup({
-    // role: new FormControl(null, [Validators.required]),
+ 
     joiningDate: new FormControl(null, [Validators.required]),
     designation: new FormControl('select', [Validators.required]),
     department: new FormControl('select', [Validators.required]),
@@ -169,7 +203,7 @@ AddEmloyeForm(){
     facebook: new FormControl(null, [Validators.required]),
     twitter: new FormControl(null, [Validators.required]),
     linkedin: new FormControl(null, [Validators.required]),
-    skipBankDetails: new FormControl(null, [Validators.required]),
+    skipBankDetails: new FormControl(false, [Validators.required]),
     bankName: new FormControl(null, [Validators.required]),
     holderName: new FormControl(null, ),
     bankBranch: new FormControl(null, [Validators.required]),
@@ -177,7 +211,6 @@ AddEmloyeForm(){
     ifscCode: new FormControl(null, [Validators.required]),
     accountNumber: new FormControl(null, [Validators.required]),
     abc: new FormControl(null, [Validators.required]),
-    employeeId: new FormControl(null, [Validators.required]),
     image: new FormControl(null, [Validators.required]),
 
     
@@ -283,11 +316,8 @@ console.log(joiningDate);
   postData.append("gender", this.addEmployee.value.gender);
   postData.append("bloodGroup", this.addEmployee.value.bloodGroup);
   postData.append("religion", this.addEmployee.value.religion);
-
   postData.append("number", this.addEmployee.value.number);
   postData.append("email", this.addEmployee.value.email);
-  // postData.append("city", this.addEmployee.value.city);
-  // postData.append("state", this.addEmployee.value.state);
   postData.append("presentAddress", this.addEmployee.value.presentAddress);
   postData.append("permanentAddress", this.addEmployee.value.permanentAddress);
   postData.append("userName", this.addEmployee.value.userName);
@@ -314,12 +344,7 @@ console.log(joiningDate);
   this.startdateSelected = moment(this.addEmployee.value.start_date).format(
     'MM/DD/YYYY'
   );
-  // let API;
-	// 	if (this.editEmploye._id) {
-	// 		API =this.api.updateEmpployee(postData)  + this.editEmploye._id;
-	// 	} else {
-	// 		API =this.api.addEmpployee(postData);
-	// 	}
+ 
   console.log(postData);
   this.api.addEmpployee(postData).subscribe(resp => {
   console.log(resp);
@@ -343,9 +368,10 @@ console.log("clicked");
   console.log(this
     .employeeId);
   
-  this.api.updateEmpployee(this.employeeId, this.addEmployee.value).subscribe(resp => {
+  this.api.updateEmpployee( this.addEmployee.value).subscribe(resp => {
     this.isLoading = false;
     this.toastr.success(resp.message, " update success");
+    this.router.navigate(['/employee/list'])
   },
   (err) => {
     this.isLoading = false;
@@ -415,7 +441,7 @@ cancel(){
   this.router.navigate(['/employee/add'])
 }
 
-deleteLeave()
+deleteEmploye()
 {
 //   this.isLoading = true;
 //   this.api.deleteLeaveRequest(this.selectedLeave._id).subscribe(resp => {

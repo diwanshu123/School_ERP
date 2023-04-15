@@ -97,6 +97,94 @@
             </div>
           </form>
         </mat-tab>
+
+        <mat-tab label="Expense Report">
+          <form [formGroup]="ExpensForm" (ngSubmit)="AddExpense()">
+          <div class="my-5">
+            <div class="mb-3">
+              <label class="form-label">Vehicle *</label>
+              <select class="form-select" formControlName="vehicle">
+                <option disabled value="select">Select</option>
+                <option *ngFor="let vehicle of vehicles" [value]="vehicle._id">{{vehicle.vehicleNo}}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Expense Name </label>
+              <input type="text" formControlName="expenseName" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Expense value </label>
+              <input type="text" formControlName="expenseValue" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Expense Time </label>
+              <!-- <input type="text" formControlName="expenseTime"  class="form-control"> -->
+              <mat-datepicker-toggle  matSuffix [for]="picker1"></mat-datepicker-toggle>
+      
+              <input matInput class="form-control" [matDatepicker]="picker1"
+              placeholder="dd-mm-yyyy" formControlName="expenseTime" >
+            
+    
+         <mat-datepicker #picker1></mat-datepicker>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Description </label>
+              <input type="text" formControlName="description"  class="form-control">
+            </div>
+          </div>
+      
+          <div class="text-end mb-3">
+            <button class="btn">Save</button>
+          </div>
+      </form>
+          <div class="tab-container pt-4">
+            <div class="top-options">
+              <div class="search-area">
+                <div class="input-group pe-3">
+                  <input type="search" class="form-control" placeholder="Search here...">
+                  <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+                <div class="options">
+                  <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-excel.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-pdf.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-sheet.svg"></button>
+                  <button class="btn"><img src="assets/icons/opt-print.svg"></button>
+                </div>
+              </div>
+            </div>
+      
+            <table class="table mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">SL</th>
+                  <th scope="col">Student Name</th>
+                  <th scope="col">Registration No.</th>
+                  <th scope="col">Route Name</th>
+                  <th scope="col">Stop Page</th>
+                  <th scope="col">Route Fare</th>
+                  <th scope="col">Vehicle No.</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#001234</td>
+                  <td>111111</td>
+                  <td>111111</td>
+                  <td>111111</td>
+                  <td>5</td>
+                  <td>5</td>
+                  <td>5</td>
+                  <td>
+                    <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
+                    <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-tab>
       </mat-tab-group>
     </div>
   </div>

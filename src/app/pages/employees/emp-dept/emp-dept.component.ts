@@ -15,6 +15,12 @@ export class EmpDeptComponent {
   deptForm: FormGroup;
   editDept: FormGroup;
   selectedDept: any;
+  // designation
+  designations: any[] = [];
+
+  designForm: FormGroup;
+  editDesign: FormGroup;
+  selectedDesign: any;
 
   constructor(private api: ApiService, private toastr: ToastrService) {
     this.deptForm = new FormGroup({
@@ -24,10 +30,19 @@ export class EmpDeptComponent {
     this.editDept = new FormGroup({
       name: new FormControl(null, [Validators.required])
     });
+    this.designForm = new FormGroup({
+      name: new FormControl(null, [Validators.required])
+    });
+
+    this.editDesign = new FormGroup({
+      name: new FormControl(null, [Validators.required])
+    });
+  
   }
 
   ngOnInit(): void {
     this.getDepartments();
+    this.getDesignations();
   }
 
   getDepartments()
@@ -98,5 +113,72 @@ export class EmpDeptComponent {
     })
   }
 
+  getDesignations()
+  {
+    this.api.getDesignations().subscribe(resp => {
+      this.designations = resp.designations
+    });
+  }
+
+  addDesignation()
+  {
+    this.isLoading = true;
+    this.api.addDesignation(this.designForm.value).subscribe(resp => {
+      console.log(resp);
+
+      this.isLoading = false;
+
+      this.toastr.success(resp.message, "Department add success");
+      this.designForm.reset();
+      this.getDesignations();
+    ;
+    },
+    (err) => {
+      this.isLoading = false;
+      this.toastr.error(err, "Department add failed");
+      console.error(err);
+    })
+  }
+
+  setDesignation(dept: any)
+  {
+    this.selectedDesign = dept;
+    this.editDesign.patchValue({name: dept.name});
+  }
+
+  updateDesignation()
+  {
+    this.isLoading = true;
+    this.api.updateDesignation(this.selectedDesign._id, this.editDesign.value).subscribe(resp => {
+      console.log(resp);
+
+      this.isLoading = false;
+
+      document.getElementById('editModalDismissBtn')?.click();
+      this.toastr.success(resp.message, "Designations update success");
+      this.getDesignations();
+    ;
+    },
+    (err) => {
+      this.isLoading = false;
+      this.toastr.error(err, "Designations update failed");
+      console.error(err);
+    })
+  }
+
+  deleteDesignation()
+  {
+    this.isLoading = true;
+    this.api.deleteDesignation(this.selectedDesign._id).subscribe(resp => {
+      console.log(resp);
+      this.isLoading = false;
+      document.getElementById('modalDismissBtn')?.click();
+      this.getDesignations();
+    },
+    (err) => {
+      this.isLoading = false;
+      console.error(err);
+    })
+  }
 
 }

@@ -14,6 +14,7 @@ export class EmpListComponent {
   filteredEmp: any[] = []
   emplyee: any;
   isLoading: boolean;
+  selectedDesign: any;
 
   constructor(private api: ApiService,
      private toastr: ToastrService,
@@ -75,8 +76,10 @@ export class EmpListComponent {
 
   deleteLeave()
 {
+  console.log(this.emplyee._id);
+  
   this.isLoading = true;
-  this.api.deleteEmploye(this.emplyee._id).subscribe(resp => {
+  this.api.deleteEmployee(this.emplyee._id).subscribe(resp => {
     console.log(resp);
     this.isLoading = false;
     document.getElementById('modalDismissBtn')?.click();

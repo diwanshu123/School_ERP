@@ -82,9 +82,6 @@ export class ControlClassComponent {
       classNumeric: dept.classNumeric,
       sections: dept.sections[0]?.name,
 
-
-    
-    
     });
 
    

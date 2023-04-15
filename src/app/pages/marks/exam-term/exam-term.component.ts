@@ -15,6 +15,12 @@ export class ExamTermComponent {
   examTerms: any;
   selectedTerm: any;
 
+  disturbutionForm:  FormGroup
+  editDistForm: FormGroup
+
+  marksDistributions: any;
+  selectedDist: any;
+
 
   constructor(private api: ApiService,private toastr: ToastrService  ) {
     this.examTermForm =  new FormGroup ({
@@ -28,13 +34,25 @@ export class ExamTermComponent {
       name: new FormControl(null, [Validators.required]),
     
     });
+    this.disturbutionForm =  new FormGroup ({
+      name: new FormControl(null, [Validators.required]),
+    
+    });
+    this.editDistForm =  new FormGroup ({
+     
+      marksDistributionId: new FormControl(null, [Validators.required]),
+
+      name: new FormControl(null, [Validators.required]),
+    
+    });
 
 
  
 
   }
   exam:any
-  ngOnInit(): void {this.getExamTerms() }
+  ngOnInit(): void {this.getExamTerms() 
+    this.getMarksDiturbution() }
 
 
   addDExamTerm()
@@ -52,7 +70,7 @@ export class ExamTermComponent {
   this.getExamTerms();
     },
     (err) => {
-      this.isLoading = false;
+      this.isLoading = false; 
       this.toastr.error(err, "exams  term add failed");
       console.error(err);
     })
@@ -108,6 +126,84 @@ export class ExamTermComponent {
       console.error(err);
     })
   }
+  // Disturbution
+  
+
+  addDist()
+  {
+    console.log(this.disturbutionForm.value);
+    
+    this.isLoading = true;
+    this.api.marksDistribution(this.disturbutionForm.value).subscribe(resp => {
+      console.log(resp);
+      
+      this.isLoading = false;
+
+      this.toastr.success(resp.message, "exams Disturbution  add success");
+     
+  this.getMarksDiturbution();
+    },
+    (err) => {
+      this.isLoading = false;
+      this.toastr.error(err, "exams  Disturbution add failed");
+      console.error(err);
+    })
+  }
+
+  getMarksDiturbution(){
+    console.log("this");
+    
+    this.api.getAllMarksDistubutions().subscribe((res)=>{
+      this.marksDistributions = res.marksDistributions
+      console.log(this.marksDistributions, "first res");
+      
+    })
+  }
+  patchDistForm(dist:  any){
+   this.selectedDist=dist
+    this.editDistForm.patchValue({
+      marksDistributionId: dist._id,
+      name: dist.name,
+ 
+    });
+    
+  }
+  updateDistE(){
+    this.isLoading = true;
+    console.log(":this.editDistForm.value", this.editDistForm.value);
+    
+    this.api.updateMarksDistribution(this.editDistForm.value).subscribe(resp => {
+      console.log(resp);
+      
+      this.isLoading = false;
+      this.toastr.success(resp.message, "Exam  Disturbution  update success");
+      document.getElementById('editModalDismissBtn')?.click();
+      this.getMarksDiturbution();
+    },
+    (err) => {
+      this.isLoading = false;
+      this.toastr.error(err, "Exam  Disturbution update failed");
+    })
+
+  }
+  deleteDist(){
+
+    this.isLoading = true;
+    this.api.deleteMarksDistribution(this.selectedDist._id).subscribe(resp => {
+      console.log(resp);
+      this.isLoading = false;
+      document.getElementById('modalDismissBtn')?.click();
+      this.getMarksDiturbution()
+    },
+    (err) => {
+      this.isLoading = false;
+      console.error(err);
+    })
+  }
+
+  
+
+
 
   }
 
