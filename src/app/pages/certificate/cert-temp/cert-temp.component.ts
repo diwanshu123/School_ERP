@@ -25,8 +25,8 @@ export class CertTempComponent {
   constructor(private api: ApiService, private toastr: ToastrService, private router: Router) {
     this.certiForm =  new FormGroup ({
       name: new FormControl(null, [Validators.required]),
-      certType: new FormControl('select', [Validators.required]),
-      userId: new FormControl('select', [Validators.required]),
+      /* certType: new FormControl('select', [Validators.required]), */
+      applicableUser: new FormControl('select', [Validators.required]),
       pageLayout: new FormControl('select', [Validators.required]),
       userPhotoStyle: new FormControl('select', [Validators.required]),
       userPhotoSize: new FormControl(null, [Validators.required]),
@@ -38,11 +38,8 @@ export class CertTempComponent {
     });
    }
 
-  ngOnInit(): void
-  {
+  ngOnInit(): void {
     this.getCertificates();
-    this.getAllStudents();
-    this.getAllEmployees();
   }
 
   getCertificates()
@@ -50,20 +47,6 @@ export class CertTempComponent {
     this.api.getCertificate().subscribe((res)=>{
       this.certi = res.certificates
     });
-  }
-
-  getAllStudents()
-  {
-    this.api.getAllStudents().subscribe((resp) => {
-      this.students = resp.students;
-    })
-  }
-
-  getAllEmployees()
-  {
-    this.api.getAllEmployees().subscribe((resp) => {
-      this.employees = resp.employees;
-    })
   }
 
   onFilesDropped(files: NgxFileDropEntry[], imgType: string)
@@ -102,24 +85,20 @@ export class CertTempComponent {
 
     let postData = new FormData();
     postData.append("name", this.certiForm.value.name);
-    if(this.certiForm.value.certType == 'student') {
+    postData.append("applicableUser", this.certiForm.value.applicableUser);
+    /* if(this.certiForm.value.certType == 'student') {
       postData.append("applicableStudent", this.certiForm.value.userId);
     }
     else if(this.certiForm.value.certType == 'employee') {
       postData.append("applicableEmployee", this.certiForm.value.userId);
-    }
+    } */
     postData.append("pageLayout", this.certiForm.value.pageLayout);
     postData.append("userPhotoStyle", this.certiForm.value.userPhotoStyle);
     postData.append("userPhotoSize", this.certiForm.value.userPhotoSize);
-
-    const layoutSpacing = {
-      top: this.certiForm.value.top,
-      bottom: this.certiForm.value.bottom,
-      left: this.certiForm.value.left,
-      right: this.certiForm.value.right
-    };
-
-    postData.append("layoutSpacing", JSON.stringify(layoutSpacing));
+    postData.append("layoutSpacing[top]", this.certiForm.value.top);
+    postData.append("layoutSpacing[bottom]", this.certiForm.value.bottom);
+    postData.append("layoutSpacing[left]", this.certiForm.value.left);
+    postData.append("layoutSpacing[right]", this.certiForm.value.right);
     if(this.signImg) {
       postData.append("signatureImage", this.signImg);
     }
@@ -129,12 +108,13 @@ export class CertTempComponent {
     if(this.backImg) {
       postData.append("backgroundImage", this.backImg);
     }
+    postData.append("content", this.certiForm.value.content);
 
     this.api.createCertificate(postData).subscribe(resp => {
       console.log(resp);
 
       this.isLoading = false;
-
+      this.certiForm.reset();
       this.toastr.success(resp.message, "Certificate add success");
       this.getCertificates();
     },
@@ -169,5 +149,28 @@ export class CertTempComponent {
       this.isLoading = false;
       console.error(err);
     })
+  }
+
+  printPreview(cert: any)
+  {
+    this.selectedCert = cert;
+    const div = document.createElement('div');
+    div.innerHTML = this.selectedCert.content;
+    const wrapper = document.getElementById('print-wrapper');
+    if(wrapper?.children.length) {
+      wrapper.removeChild(wrapper.children[0]);
+    }
+
+    const printWrapper = wrapper?.appendChild(div) as HTMLElement;
+    printWrapper.style.backgroundImage = `url(${this.selectedCert.backgroundImage})`;
+    printWrapper.style.backgroundRepeat = 'no-repeat';
+    printWrapper.style.backgroundSize = '100% 100%';
+    printWrapper.style.backgroundPosition = 'center center';
+
+    printWrapper.style.margin = '10px';
+    printWrapper.style.paddingLeft = this.selectedCert.layoutSpacing.left + 'px';
+    printWrapper.style.paddingTop = this.selectedCert.layoutSpacing.top + 'px';
+    printWrapper.style.paddingRight = this.selectedCert.layoutSpacing.right + 'px';
+    printWrapper.style.paddingBottom = this.selectedCert.layoutSpacing.bottom + 'px';
   }
 }

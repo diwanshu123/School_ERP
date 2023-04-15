@@ -36,13 +36,18 @@
                 <tr *ngFor="let cert of certi; index as i">
                   <td>{{i + 1}}</td>
                   <td>{{cert.name}}</td>
-                  <td>{{cert.applicableEmployee ? 'Employee' : 'Student'}}</td>
+                  <td>{{cert.applicableUser}}</td>
                   <td>{{cert.pageLayout}}</td>
-                  <td>{{cert.backgroundImage}}</td>
+                  <td *ngIf="cert.backgroundImage; else noImage">
+                    <img class="img-fluid cert-bg" [src]="cert.backgroundImage">
+                  </td>
+                  <ng-template #noImage>
+                    <td>-</td>
+                  </ng-template>
                   <td>{{cert.createdAt}}</td>
                   <td>
-                    <button class="btn emp-edit me-1" data-bs-toggle="modal" data-bs-target="#quickView"
-                      (click)="selectedCert=cert;">
+                    <button class="btn emp-edit me-1" data-bs-toggle="modal" data-bs-target="#printPreview"
+                      (click)="printPreview(cert)">
                       <i class="fa-solid fa-grip"></i>
                     </button>
                     <button class="btn emp-edit me-1" (click)="editCert(cert)">
@@ -71,14 +76,14 @@
             <div class="row mb-3">
               <div class="col-6">
                 <label class="form-label">Applicable User *</label>
-                <select class="form-select" formControlName="certType">
+                <select class="form-select" formControlName="applicableUser">
                   <option disabled value="select">Select</option>
-                  <option value="student">Student</option>
-                  <option value="employee">Employee</option>
+                  <option value="Student">Student</option>
+                  <option value="Employee">Employee</option>
                 </select>
               </div>
 
-              <div class="col-6" *ngIf="certiForm.get('certType')?.value == 'student'">
+              <!-- <div class="col-6" *ngIf="certiForm.get('certType')?.value == 'student'">
                 <label class="form-label">Student Name *</label>
                 <select class="form-select" formControlName="userId">
                   <option disabled value="select">Select</option>
@@ -92,7 +97,7 @@
                   <option disabled value="select">Select</option>
                   <option *ngFor="let emp of employees" [value]="emp._id">{{emp.name}}</option>
                 </select>
-              </div>
+              </div> -->
             </div>
 
             <div class="mb-3">
@@ -114,26 +119,26 @@
                 </select>
               </div>
               <div class="col-4 offset-4">
-                <input type="text" formControlName="userPhotoSize" class="form-control" placeholder="Photo Size (px)">
+                <input type="number" formControlName="userPhotoSize" class="form-control" placeholder="Photo Size (px)">
               </div>
             </div>
             <div class="row mb-3">
             <div class="row mb-3">
               <label class="form-label">Layout Spacing *</label>
               <div class="col-4">
-                <input type="text" formControlName="top" class="form-control" placeholder="Top Space (px)">
+                <input type="number" formControlName="top" class="form-control" placeholder="Top Space (px)">
               </div>
               <div class="col-4 offset-4">
-                <input type="text" formControlName="bottom" class="form-control" placeholder="Bottom Space (px)">
+                <input type="number" formControlName="bottom" class="form-control" placeholder="Bottom Space (px)">
               </div>
             </div>
 
             <div class="row mb-3">
               <div class="col-4">
-                <input type="text" formControlName="right" class="form-control" placeholder="Right Space (px)">
+                <input type="number" formControlName="right" class="form-control" placeholder="Right Space (px)">
               </div>
               <div class="col-4 offset-4">
-                <input type="text" formControlName="left" class="form-control" placeholder="Left Space (px)">
+                <input type="number" formControlName="left" class="form-control" placeholder="Left Space (px)">
               </div>
             </div>
           </div>
@@ -202,7 +207,7 @@
 
             <div class="text-end">
               <button class="btn" [disabled]="isLoading || !certiForm.valid
-                || certiForm.get('certType')?.value == 'select' || certiForm.get('userId')?.value == 'select'
+                || certiForm.get('certType')?.value == 'select' || certiForm.get('applicableUser')?.value == 'select'
                 || certiForm.get('pageLayout')?.value == 'select' || certiForm.get('userPhotoStyle')?.value == 'select'">
                 <span *ngIf="isLoading" class="spinner-border text-light"></span>
                 <span *ngIf="!isLoading">Save</span>
@@ -217,6 +222,23 @@
   </div>
 </app-layout>
 
+
+<!---Modal for Print Preview---->
+<div class="modal fade" id="printPreview">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Preview Certificate</h5>
+      </div>
+      <div class="modal-body">
+        <div id="print-wrapper"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!---Modal for delete---->
 <div class="modal fade" id="deletePrompt">
