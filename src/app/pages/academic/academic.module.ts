@@ -11,6 +11,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ClassAssignComponent } from './class-assign/class-assign.component';
 import { ClassScheduleAddComponent } from './class-schedule-add/class-schedule-add.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditClassComponent } from './control-class/edit-class/edit-class.component';
+
 
 
 @NgModule({
@@ -21,13 +24,16 @@ import { ClassScheduleAddComponent } from './class-schedule-add/class-schedule-a
     ClassScheduleComponent,
     TeacherScheduleComponent,
     ClassAssignComponent,
-    ClassScheduleAddComponent
+    ClassScheduleAddComponent,
+    EditClassComponent
   ],
   imports: [
     CommonModule,
     AcademicRoutingModule,
     MatTabsModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AcademicModule { }

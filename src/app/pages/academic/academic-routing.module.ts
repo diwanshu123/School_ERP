@@ -5,6 +5,7 @@ import { ClassAssignComponent } from './class-assign/class-assign.component';
 import { ClassScheduleAddComponent } from './class-schedule-add/class-schedule-add.component';
 import { ClassScheduleComponent } from './class-schedule/class-schedule.component';
 import { ControlClassComponent } from './control-class/control-class.component';
+import { EditClassComponent } from './control-class/edit-class/edit-class.component';
 import { SubjectComponent } from './subject/subject.component';
 import { TeacherScheduleComponent } from './teacher-schedule/teacher-schedule.component';
 
@@ -36,7 +37,15 @@ const routes: Routes = [
   {
     path: "teacher-schedule",
     component: TeacherScheduleComponent
-  }
+  },
+  {
+    path: "editClass/:id",
+    component: EditClassComponent
+  },
+  {
+    path: "class/:id",
+    component: ControlClassComponent
+  },
 ];
 
 @NgModule({

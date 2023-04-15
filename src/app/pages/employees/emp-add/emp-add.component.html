@@ -1,6 +1,6 @@
 <app-layout>
   <div class="container p-5">
-    <form [formGroup]="addEmployee">
+    <form [formGroup]="addEmployee" >
 
     <div class="heading mb-3">
       <h4>Academic Details</h4>
@@ -10,48 +10,74 @@
     <div class="row mb-3">
       <div class="col-4">
      
-
-        <label class="form-label">Role *</label>
-        <select class="form-select" formControlName="role">
+        <!-- <div class="col-4"> -->
+          <label class="form-label">Designation *</label>
+          <select class="form-select" formControlName="designation" (change)="DisableDetails($event)">
+            <option disabled value="select">Select</option>
+            <option *ngFor="let designation of designations" [value]="designation._id">{{designation.name}}</option>
+          </select>
+          <!-- <mat-form-field appearance="fill">
+            <mat-label>Designation</mat-label>
+            <mat-select formControlName="designation" (change)="DisableDetails($event)" >
+              <mat-option  *ngFor="let designation of designations"  [value]="designation._id">
+                {{designation.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> -->
+       
+      </div>
+      <div class="col-4 offset-4">
+        <label class="form-label">Deaprtment *</label>
+        <select class="form-select" formControlName="department">
           <option disabled value="select">Select</option>
-          <option *ngFor="let emp of employe_role" [value]="emp.id">{{emp.value}}</option>
+          <option *ngFor="let deaprtmnets of departments" [value]="deaprtmnets._id">{{deaprtmnets.name}}</option>
         </select>
       </div>
       <div class="col-4 offset-4">
         <label class="form-label">Joining Date *</label>
         <div class="input-group">
-          <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-          <input type="text" formControlName="joiningDate" class="form-control">
+       
+          <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+      
+          <input matInput class="form-control" [matDatepicker]="picker"
+          placeholder="dd-mm-yyyy" formControlName="joiningDate" >
+
+     <mat-datepicker #picker></mat-datepicker>
+ 
         </div>
       </div>
     </div>
 
+
     <div class="row mb-3">
-      <div class="col-4">
+      <!-- <div class="col-4">
         <label class="form-label">Designation *</label>
         <select class="form-select" formControlName="designation">
           <option disabled value="select">Select</option>
-          <option *ngFor="let emp of employe_role" [value]="emp.id">{{emp.value}}</option>
+          <option *ngFor="let designation of designations" [value]="designation._id">{{designation.name}}</option>
         </select>
-      </div>
-      <div class="col-4 offset-4">
-        <label class="form-label">Department *</label>
-        <input type="text" class="form-control">
-      </div>
+      </div> -->
+      <!-- <div class="col-4 offset-4">
+        <label class="form-label">Deaprtment *</label>
+        <select class="form-select" formControlName="department">
+          <option disabled value="select">Select</option>
+          <option *ngFor="let deaprtmnets of departments" [value]="deaprtmnets._id">{{deaprtmnets.name}}</option>
+        </select>
+      </div> -->
     </div>
 
     <div class="row mb-3">
       <div class="col-4">
         <label class="form-label">Qualification *</label>
-        <input type="text" class="form-control">
+        <input type="text" formControlName="qualification" class="form-control">
       </div>
       <div class="col-4">
         <label class="form-label">Experience Details</label>
-        <input type="text" class="form-control">
+        <input type="text" formControlName="experienceDetails" class="form-control">
       </div>
       <div class="col-4">
         <label class="form-label">Total Experience</label>
-        <input type="text" class="form-control">
+        <input type="text" formControlName="totalExperience" class="form-control">
       </div>
     </div>
 
@@ -65,30 +91,38 @@
         <label class="form-label">Name *</label>
         <div class="input-group">
           <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-          <input type="text" class="form-control">
+          <input type="text"   formControlName="name" class="form-control">
         </div>
       </div>
 
       <div class="col-4 offset-4">
         <label class="form-label">Gender</label>
-        <input type="text" class="form-control">
+        <input type="text"  formControlName="gender" class="form-control">
       </div>
     </div>
 
     <div class="row mb-3">
       <div class="col-4">
         <label class="form-label">Religion</label>
-        <input type="text" class="form-control">
+        <input type="text" formControlName="religion" class="form-control">
       </div>
       <div class="col-4">
         <label class="form-label">Blood Group</label>
-        <input type="text" class="form-control">
+        <input type="text" formControlName="bloodGroup" class="form-control">
       </div>
       <div class="col-4">
         <label class="form-label">Date Of Birth</label>
+      
         <div class="input-group">
-          <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-          <input type="text" class="form-control">
+      
+          <mat-datepicker-toggle  matSuffix [for]="picker1"></mat-datepicker-toggle>
+      
+          <input matInput class="form-control" [matDatepicker]="picker1"
+          placeholder="dd-mm-yyyy" formControlName="dob" >
+        
+
+     <mat-datepicker #picker1></mat-datepicker>
+       
         </div>
       </div>
     </div>
@@ -98,7 +132,7 @@
         <label class="form-label">Phone No. *</label>
         <div class="input-group">
           <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-          <input type="text" class="form-control">
+          <input type="text" formControlName="number" class="form-control">
         </div>
       </div>
 
@@ -106,7 +140,7 @@
         <label class="form-label">Email Id</label>
         <div class="input-group">
           <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-          <input type="text" class="form-control">
+          <input type="text" formControlName="email" class="form-control">
         </div>
       </div>
     </div>
@@ -116,7 +150,7 @@
         <label class="form-label">Present Address *</label>
         <div class="input-group">
           <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-          <input type="text" class="form-control">
+          <input type="text"  formControlName="presentAddress" class="form-control">
         </div>
       </div>
 
@@ -124,27 +158,28 @@
         <label class="form-label">Permanent Address</label>
         <div class="input-group">
           <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-          <input type="text" class="form-control">
+          <input type="text" formControlName="permanentAddress" class="form-control">
         </div>
       </div>
     </div>
 
-    <!-- <div>
-      <label class="form-label">Profile Picture</label>
-      <div class="upload-cont">
+    <div>
+      <!-- <label class="form-label">Profile Picture</label> -->
+      <!-- <div class="upload-cont">
         <p class="text-center">
           <i class="fa-solid fa-cloud-arrow-up"></i>
           <br>
           Drag and drop a file here or click
         </p>
-      </div>
-    </div> -->
-    
+      </div> -->
+    </div>
+<!--     
     <div class="center">
+      <label class="form-label">Profile Picture</label>
       <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" 
       (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
           <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-            Optional custom content that replaces the the entire default content.
+            Drag and drop a file here or click
             <button type="button" (click)="openFileSelector()">Browse Files</button>
           </ng-template>
       </ngx-file-drop>
@@ -152,7 +187,7 @@
           <table class="table">
               <thead>
                   <tr>
-                      <th>Name</th>
+                      <th>Name of Photo</th>
                   </tr>
               </thead>
               <tbody class="upload-name-style">
@@ -163,32 +198,50 @@
           </table>
       </div>
   </div>
-  
+   -->
+
+   <div class="mb-3 py-2">
+    <label class="form-label">Profile Picture*</label>
+    <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event)">
+      <ng-template formControlName="file" ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+          <ng-container *ngIf="!fileData">
+            Drag and drop or
+            <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()">Browse Files</a>
+          </ng-container>
+          <ng-container *ngIf="fileData">
+            {{fileData.name}}
+            <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="fileData=null">
+              Remove
+            </a>
+          </ng-container>
+      </ng-template>
+    </ngx-file-drop>
+  </div>
 
     <!-- Login Details -->
-    <div class="my-5">
+    <div class="my-5" *ngIf="loginDeatils ==true">
       <h4>Login Details</h4>
     </div>
-    <div class="row mb-3">
+    <div class="row mb-3"  *ngIf="loginDeatils ==true">
       <div class="col-4">
         <label class="form-label">User Name *</label>
         <div class="input-group">
           <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-          <input type="text" class="form-control">
+          <input type="text" formControlName="userName" class="form-control">
         </div>
       </div>
       <div class="col-4">
         <label class="form-label">Password</label>
         <div class="input-group">
           <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-          <input type="password" class="form-control">
+          <input type="password" formControlName="password" class="form-control">
         </div>
       </div>
       <div class="col-4">
         <label class="form-label">Re-type Password</label>
         <div class="input-group">
           <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-          <input type="password" class="form-control">
+          <input type="password" formControlName="password" class="form-control">
         </div>
       </div>
     </div>
@@ -202,21 +255,21 @@
         <label class="form-label">Facebook</label>
         <div class="input-group">
           <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-          <input type="text" class="form-control">
+          <input type="text" formControlName="facebook" class="form-control">
         </div>
       </div>
       <div class="col-4">
         <label class="form-label">Twitter</label>
         <div class="input-group">
           <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-          <input type="password" class="form-control">
+          <input type="password" formControlName="twitter"  class="form-control">
         </div>
       </div>
       <div class="col-4">
         <label class="form-label">Linkedin</label>
         <div class="input-group">
           <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-          <input type="password" class="form-control">
+          <input type="password" formControlName="linkedin"  class="form-control">
         </div>
       </div>
     </div>
@@ -226,44 +279,61 @@
       <h4>Bank Details</h4>
     </div>
     <div class="form-check mb-3">
-      <input class="form-check-input" type="checkbox" value="" id="skipBank">
-      <label class="form-check-label" for="skipBank">
-        Skip Bank Details
-      </label>
+     
+
+      <section class="example-section">
+        <mat-checkbox class="example-margin" (click)="skipDetail($event)" formControlName="skipBankDetails">  Skip Bank Details!</mat-checkbox>
+      
+      </section>
     </div>
 
-    <div class="row mb-3">
+    <div class="row mb-3" *ngIf="skipBankDetails != true"  >
       <div class="col-4">
         <label class="form-label">Bank Name *</label>
-        <input type="text" class="form-control">
+        <input type="text" formControlName="bankName"  class="form-control">
       </div>
       <div class="col-4">
         <label class="form-label">Holder Name *</label>
-        <input type="text" class="form-control">
+        <input type="text" formControlName="holderName"  class="form-control">
       </div>
       <div class="col-4">
         <label class="form-label">Bank Branch *</label>
-        <input type="text" class="form-control">
+        <input type="text" formControlName="bankBranch"  class="form-control">
       </div>
     </div>
 
-    <div class="row mb-3">
+    <div class="row mb-3" *ngIf="skipBankDetails != true">
       <div class="col-4">
         <label class="form-label">Bank Address</label>
-        <input type="text" class="form-control">
+        <input type="text"  formControlName="bankAddress"  class="form-control">
       </div>
       <div class="col-4">
         <label class="form-label">IFSC Code</label>
-        <input type="text" class="form-control">
+        <input type="text" formControlName="ifscCode"  class="form-control">
       </div>
       <div class="col-4">
         <label class="form-label">Account Number *</label>
-        <input type="text" class="form-control">
+        <input type="text" formControlName="accountNumber"  class="form-control">
       </div>
     </div>
 
-    <div class="text-end my-4">
-      <button class="btn">Save</button>
+    <div class="text-end my-4" *ngIf="buttonSave==true">
+      <button class="btn" >
+        <span *ngIf="isLoading" class="spinner-border text-light"></span>
+        <span *ngIf="!isLoading" (click)="addEmployees()">Save</span>
+      </button>
+    </div>
+    <div class="text-end my-4" *ngIf="buttonUpdate==true">
+      <button class="btn" >
+        <span *ngIf="isLoading" class="spinner-border text-light"></span>
+        <span *ngIf="!isLoading" (click)="update()">Update</span>
+      </button>
+    </div>
+    <div class="text-end my-4" *ngIf="buttonUpdate==true">
+      <button class="btn"  (click)="cancel()">
+       
+        Cancel
+      </button>
     </div>
 </form>
   </div>
@@ -300,13 +370,21 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Designation *</label>
-          <input type="text" class="form-control">
+         
+            <label class="form-label">Designation *</label>
+            <select class="form-select" formControlName="designation">
+              <option disabled value="select">Select</option>
+              <option *ngFor="let designation of designations" [value]="designation._id">{{designation.name}}</option>
+            </select>
+  
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Department *</label>
-          <input type="text" class="form-control">
+          <label class="form-label">Deaprtment *</label>
+        <select class="form-select" formControlName="department">
+          <option disabled value="select">Select</option>
+          <option *ngFor="let deaprtmnets of departments" [value]="deaprtmnets._id">{{deaprtmnets.name}}</option>
+        </select>
         </div>
 
         <div class="mb-3">
@@ -323,3 +401,5 @@
     </div>
   </div>
 </div>
+
+

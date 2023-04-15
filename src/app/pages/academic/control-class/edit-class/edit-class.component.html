@@ -1,0 +1,92 @@
+<app-layout>
+    <div class="container p-4">
+        <div class="tab-container">
+            <nav mat-tab-nav-bar mat-stretch-tabs="false" mat-align-tabs="start" selectedIndex="2" [tabPanel]="tabPanel">
+                <a mat-tab-link routerLink="../">Fee type List</a>
+                <a mat-tab-link [active]="true">Edit Fee Type</a>
+            </nav> 
+            <mat-tab-nav-panel #tabPanel>
+
+                 <div class="container">
+                        <!-- <form [formGroup]="feeTypeForm" (ngSubmit)="update()"> -->
+                  
+
+                          <div class="mb-3 py-5">
+                              <label class="form-label">Name*</label>
+                              <input type="text" formControlName="name" class="form-control">
+                            </div>
+                            <div class="mb-3 py-2">
+                              <label class="form-label">Description*</label>
+                              <input type="text" formControlName="description" class="form-control">
+                            </div>
+  
+                            <!--  -->
+                            <div class="col-12">
+                              <div class="row">
+                                  <div class="col">
+              
+                                  </div>
+                                
+                                  <div class="row">
+                                      <div class="col-12">
+                                      <div class="col-12 ">
+                                          <table class="table mt-3">
+                                              <thead>
+                                                <tr>
+                                                  <th scope="col"><input type="checkbox" class="form-check-input"></th>
+                                                  <th scope="col">SL</th>
+                                         
+                                                  <th scope="col">Fees Type</th>
+                                     
+                                                  <th scope="col">Due Date</th>
+                                                  <th scope="col">Amount</th>
+                      
+                                             
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                <tr >
+                                                  <td scope="row"><input type="checkbox" class="form-check-input"></td>
+                                                  <td>hey</td>
+                                               
+                                                
+                                                  <td>hey</td>
+                                            
+                                                  <td>
+                                                    <!-- <input matInput class="form-control" [matDatepicker]="picker"
+                                                     placeholder="dd-mm-yyyy" formControlName="dueDate" >
+                                                <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker> -->
+                                                </td>
+                                                  <td><input formControlName ="amount" type="number" placeholder="0.00"></td>
+  
+                                                </tr>
+                                              </tbody>
+                                            </table> 
+                                           
+                                            
+                                                     
+                                                                 
+                                          </div> 
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                   
+                            <!--  -->
+                            <div class="text-end mb-3">
+                              <!-- <button class="btn" [disabled]="isLoading || !feeTypeForm.valid">
+                                <span *ngIf="isLoading" class="spinner-border text-light"></span>
+                                <span *ngIf="!isLoading">Save</span>
+                              </button> -->
+                            </div>
+                          <!-- </form> -->
+                     
+                          </div>
+            </mat-tab-nav-panel>
+
+
+
+        </div>
+    </div>
+           </app-layout>

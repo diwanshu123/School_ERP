@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -11,8 +12,14 @@ export class EmpListComponent {
 
   employees: any[] = [];
   filteredEmp: any[] = []
+  emplyee: any;
+  isLoading: boolean;
 
-  constructor(private api: ApiService, private toastr: ToastrService) {
+  constructor(private api: ApiService,
+     private toastr: ToastrService,
+      
+     private router: Router
+     ) {
 
   }
 
@@ -24,6 +31,8 @@ export class EmpListComponent {
   {
     this.api.getAllEmployees().subscribe(resp => {
       this.employees = resp.employees;
+      console.log(this.employees);
+      
       this.filteredEmp = this.employees.filter(emp => emp.designation?.name == 'Admin');
     });
   }
@@ -47,5 +56,36 @@ export class EmpListComponent {
       this.filteredEmp = this.employees.filter(emp => emp.designation?.name == 'Receptionist')
     }
   }
+
+  editTeacherEm(route: any)
+  {
+    console.log("tevdafgc");
+    
+    console.log(route);
+    
+    this.emplyee = route;
+    const navExtras: NavigationExtras = {
+      state: {
+        data: this.emplyee
+      }
+    };
+
+    this.router.navigate(["/employee/add", this.emplyee._id], navExtras);
+  }
+
+  deleteLeave()
+{
+  this.isLoading = true;
+  this.api.deleteEmploye(this.emplyee._id).subscribe(resp => {
+    console.log(resp);
+    this.isLoading = false;
+    document.getElementById('modalDismissBtn')?.click();
+    // this.getLeaveApplication();
+  },
+  (err) => {
+    this.isLoading = false;
+    console.error(err);
+  })
+}
 
 }
