@@ -1,23 +1,53 @@
 <app-layout>
   <div class="container p-4">
     <div class="row mt-5 mb-3">
-      <div class="col-4">
+      <div class="col-3">
+        <label class="form-label">Academic Year</label>
+        <select class="form-select" [(ngModel)]="filter.academicYear">
+          <option value="select">Select</option>
+          <option value="2022-2023">2022-2023</option>
+          <option value="2021-2022">2021-2022</option>
+          <option value="2020-2021">2020-2021</option>
+          <option value="2019-2020">2019-2020</option>
+        </select>
+      </div>
+      <div class="col-3">
         <label class="form-label">Class</label>
-        <input type="text" class="form-control" [(ngModel)]="filter.class">
+        <select class="form-select" [(ngModel)]="filter.studentClass">
+          <option value="select">Select</option>
+          <option value="7th">7th</option>
+          <option value="8th">8th</option>
+          <option value="9th">9th</option>
+          <option value="10th">10th</option>
+        </select>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <label class="form-label">Section</label>
-        <input type="text" class="form-control" [(ngModel)]="filter.section">
+        <select class="form-select" [(ngModel)]="filter.section">
+          <option value="select">Select</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+        </select>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <label class="form-label">Template</label>
-        <input type="text" class="form-control" [(ngModel)]="filter.template">
+        <select class="form-select" [(ngModel)]="filter.template">
+          <option *ngFor="let cert of certTemplates" [value]="cert.name">{{cert.name}}</option>
+        </select>
       </div>
     </div>
     <div class="text-end mb-5">
-      <button class="btn" (click)="getCertificates()">Filter</button>
+      <button class="btn" (click)="getFilteredStudents()">Filter</button>
     </div>
 
+    <div class="row">
+      <div class="col-3">
+        <label class="form-label">Print Date</label>
+        <input type="date" class="form-control" [(ngModel)]="filter.printDate">
+      </div>
+    </div>
     <table class="table mt-3">
       <thead>
         <tr>
@@ -27,18 +57,44 @@
           <th scope="col">Register No.</th>
           <th scope="col">Roll</th>
           <th scope="col">Mobile No.</th>
+          <th scope="col">Generate</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let cert of certi; index as i">
+        <tr *ngFor="let stud of students; index as i">
           <td>{{i + 1}}</td>
-          <td>{{cert.applicableStudent.firstName + ' ' + cert.applicableStudent.lastName}}</td>
-          <td></td>
-          <td>{{cert.applicableStudent.registerNo}}</td>
-          <td></td>
-          <td>{{cert.applicableStudent.number}}</td>
+          <td>{{stud.firstName + ' ' + stud.lastName}}</td>
+          <td>{{stud.caste}}</td>
+          <td>{{stud.registerNo}}</td>
+          <td>{{stud.rollNo}}</td>
+          <td>{{stud.number}}</td>
+          <td><button class="btn emp-edit me-1"
+            (click)="printPreview(stud)" data-bs-toggle="modal" data-bs-target="#printPreview">
+            <i class="fa-solid fa-file-pdf" style="font-size: 16pt;"></i>
+          </button></td>
         </tr>
       </tbody>
     </table>
   </div>
 </app-layout>
+
+<!---Modal for Print Preview---->
+<div class="modal fade" id="printPreview">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Preview Certificate</h5>
+      </div>
+      <div class="modal-body">
+        <div id="print-wrapper"></div>
+      </div>
+      <div class="modal-footer">
+        <button id="modalDismissBtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" [disabled]="isLoading">
+          <span *ngIf="isLoading" class="spinner-border text-light"></span>
+          <span *ngIf="!isLoading">Print</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

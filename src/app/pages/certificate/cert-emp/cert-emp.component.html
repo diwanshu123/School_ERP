@@ -3,15 +3,20 @@
     <div class="row mt-5 mb-3">
       <div class="col-4">
         <label class="form-label">Role</label>
-        <input type="text" class="form-control" [(ngModel)]="filter.role">
+        <select class="form-select" [(ngModel)]="filter.role">
+          <option value="select">Select</option>
+          <option *ngFor="let design of designations" [value]="design._id">{{design.name}}</option>
+        </select>
       </div>
       <div class="col-4 offset-4">
         <label class="form-label">Template</label>
-        <input type="text" class="form-control" [(ngModel)]="filter.template">
+        <select class="form-select" [(ngModel)]="filter.template">
+          <option *ngFor="let cert of certTemplates" [value]="cert.name">{{cert.name}}</option>
+        </select>
       </div>
     </div>
     <div class="text-end mb-5">
-      <button class="btn" (click)="getCertificates()">Filter</button>
+      <button class="btn" (click)="getFilteredEmployees()">Filter</button>
     </div>
 
     <p class="table-heading">Employee List</p>
@@ -24,18 +29,46 @@
           <th scope="col">Department</th>
           <th scope="col">Designation</th>
           <th scope="col">Mobile No.</th>
+          <th scope="col">Print Pdf</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let cert of certi; index as i">
+        <tr *ngFor="let emp of employees; index as i">
           <td>{{i + 1}}</td>
-          <td>{{cert.applicableEmployee.name}}</td>
-          <td>{{cert.applicableEmployee._id | slice:-7}}</td>
-          <td>{{cert.applicableEmployee.department.name}}</td>
-          <td>{{cert.applicableEmployee.designation.name}}</td>
-          <td>{{cert.applicableEmployee.number}}</td>
+          <td>{{emp.name}}</td>
+          <td>{{emp._id | slice:-7}}</td>
+          <td>{{emp.department?.name}}</td>
+          <td>{{emp.designation?.name}}</td>
+          <td>{{emp.number}}</td>
+          <td><button class="btn emp-edit me-1"
+            (click)="printPreview(emp)" data-bs-toggle="modal" data-bs-target="#printPreview">
+            <i class="fa-solid fa-file-pdf" style="font-size: 16pt;"></i>
+          </button></td>
         </tr>
       </tbody>
     </table>
   </div>
 </app-layout>
+
+
+<!---Modal for Print Preview---->
+<div class="modal fade" id="printPreview">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Preview Certificate</h5>
+      </div>
+      <div class="modal-body">
+        <div id="print-wrapper"></div>
+      </div>
+      <div class="modal-footer">
+        <button id="modalDismissBtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" [disabled]="isLoading">
+          <span *ngIf="isLoading" class="spinner-border text-light"></span>
+          <span *ngIf="!isLoading">Print</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

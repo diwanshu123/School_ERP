@@ -55,8 +55,8 @@
         <td>{{i + 1}}</td>
         <td>{{emp._id | slice:-4}}</td>
         <td>{{emp.name}}</td>
-        <td>{{emp.designation.name}}</td>
-        <td>{{emp.department.name}}</td>
+        <td>{{emp.designation?.name}}</td>
+        <td>{{emp.department?.name}}</td>
         <td>
           <select class="form-select" [ngModel]="emp.salaryGrade ? emp.salaryGrade : 'select'"
             (change)="updateEmpSal(emp._id, $event)">

@@ -83,8 +83,24 @@ export class ApiService {
     return this.httpClient.post(environment.apiBaseUrl + '/certificate' , postData).pipe(catchError(this.errorHandler));
   }
 
+  updateCertificate(id:string, postData: FormData): Observable<any> {
+    return this.httpClient.put(environment.apiBaseUrl + '/certificate/' + id , postData).pipe(catchError(this.errorHandler));
+  }
+
   deleteCertificate(certId: string): Observable<any> {
     return this.httpClient.delete(environment.apiBaseUrl + '/certificate/' + certId).pipe(catchError(this.errorHandler));
+  }
+
+  getApplicableCertificates(userType: string): Observable<any> {
+    return this.httpClient.get(environment.apiBaseUrl + '/certificate/' + userType).pipe(catchError(this.errorHandler));
+  }
+
+  studentSearch(postData: any): Observable<any> {
+    return this.httpClient.post(environment.apiBaseUrl + '/student/search', postData).pipe(catchError(this.errorHandler));
+  }
+
+  getEmployeeByRole(roleId: string): Observable<any> {
+    return this.httpClient.get(environment.apiBaseUrl + '/employee/designation/' + roleId).pipe(catchError(this.errorHandler));
   }
 
   //Student Accounting

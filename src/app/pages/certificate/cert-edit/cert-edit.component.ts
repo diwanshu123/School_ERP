@@ -29,48 +29,43 @@ export class CertEditComponent {
     private router: Router
   )
   {
+    this.certiForm =  new FormGroup ({
+      name: new FormControl(null, [Validators.required]),
+      /* certType: new FormControl('select', [Validators.required]), */
+      applicableUser: new FormControl('select', [Validators.required]),
+      pageLayout: new FormControl('select', [Validators.required]),
+      userPhotoStyle: new FormControl('select', [Validators.required]),
+      userPhotoSize: new FormControl(null, [Validators.required]),
+      top:  new FormControl(null, [Validators.required]),
+      bottom: new FormControl(null, [Validators.required]),
+      right: new FormControl(null, [Validators.required]),
+      left: new FormControl(null, [Validators.required]),
+      content: new FormControl(null, [Validators.required]),
+    });
+
     route.params.subscribe(param => {
       if(router.getCurrentNavigation()?.extras.state) {
         this.certi = router.getCurrentNavigation()?.extras.state?.['data'];
-        this.createForm();
+        this.patchForm();
       }
     });
   }
 
-  ngOnInit(): void {
-    this.getAllStudents();
-  }
+  ngOnInit(): void {}
 
-  getAllStudents()
+  patchForm()
   {
-    this.api.getAllStudents().subscribe((resp) => {
-      this.students = resp.students;
-      this.getAllEmployees();
-    })
-  }
-
-  getAllEmployees()
-  {
-    this.api.getAllEmployees().subscribe((resp) => {
-      this.employees = resp.employees;
-      this.createForm();
-    })
-  }
-
-  createForm()
-  {
-    this.certiForm =  new FormGroup ({
-      name: new FormControl(this.certi.name, [Validators.required]),
-      certType: new FormControl(this.certi.name, [Validators.required]),
-      userId: new FormControl(this.certi.name, [Validators.required]),
-      pageLayout: new FormControl(this.certi.pageLayout, [Validators.required]),
-      userPhotoStyle: new FormControl(this.certi.userPhotoStyle, [Validators.required]),
-      userPhotoSize: new FormControl(this.certi.userPhotoSize, [Validators.required]),
-      top:  new FormControl(this.certi.layout.top, [Validators.required]),
-      bottom: new FormControl(this.certi.layout.bottom, [Validators.required]),
-      right: new FormControl(this.certi.layout.right, [Validators.required]),
-      left: new FormControl(this.certi.layout.left, [Validators.required]),
-      content: new FormControl(this.certi.layout.top, [Validators.required]),
+    this.certiForm.patchValue({
+      name: this.certi.name,
+      applicableUser: this.certi.applicableUser,
+      pageLayout: this.certi.pageLayout,
+      userPhotoStyle: this.certi.userPhotoStyle,
+      userPhotoSize: this.certi.userPhotoSize,
+      top:  this.certi.layoutSpacing.top,
+      bottom: this.certi.layoutSpacing.bottom,
+      right: this.certi.layoutSpacing.right,
+      left: this.certi.layoutSpacing.left,
+      content: this.certi.content,
     });
   }
 
@@ -102,7 +97,7 @@ export class CertEditComponent {
     }
   }
 
-  createCerti()
+  updateCerti()
   {
     console.log(this.certiForm.value);
 
@@ -110,24 +105,20 @@ export class CertEditComponent {
 
     let postData = new FormData();
     postData.append("name", this.certiForm.value.name);
-    if(this.certiForm.value.certType == 'student') {
+    postData.append("applicableUser", this.certiForm.value.applicableUser);
+    /* if(this.certiForm.value.certType == 'student') {
       postData.append("applicableStudent", this.certiForm.value.userId);
     }
     else if(this.certiForm.value.certType == 'employee') {
       postData.append("applicableEmployee", this.certiForm.value.userId);
-    }
+    } */
     postData.append("pageLayout", this.certiForm.value.pageLayout);
     postData.append("userPhotoStyle", this.certiForm.value.userPhotoStyle);
     postData.append("userPhotoSize", this.certiForm.value.userPhotoSize);
-
-    const layoutSpacing = {
-      top: this.certiForm.value.top,
-      bottom: this.certiForm.value.bottom,
-      left: this.certiForm.value.left,
-      right: this.certiForm.value.right
-    };
-
-    postData.append("layoutSpacing", JSON.stringify(layoutSpacing));
+    postData.append("layoutSpacing[top]", this.certiForm.value.top);
+    postData.append("layoutSpacing[bottom]", this.certiForm.value.bottom);
+    postData.append("layoutSpacing[left]", this.certiForm.value.left);
+    postData.append("layoutSpacing[right]", this.certiForm.value.right);
     if(this.signImg) {
       postData.append("signatureImage", this.signImg);
     }
@@ -137,8 +128,9 @@ export class CertEditComponent {
     if(this.backImg) {
       postData.append("backgroundImage", this.backImg);
     }
+    postData.append("content", this.certiForm.value.content);
 
-    this.api.createCertificate(postData).subscribe(resp => {
+    this.api.updateCertificate(this.certi._id, postData).subscribe(resp => {
       console.log(resp);
 
       this.isLoading = false;
