@@ -40,7 +40,7 @@ export class ControlClassComponent {
     });
     this.editClass = new FormGroup({
        
-       classId: new FormControl(null, [Validators.required]),
+      //  classId: new FormControl(null, [Validators.required]),
 
       className: new FormControl(null, [Validators.required]),
     
@@ -77,7 +77,7 @@ export class ControlClassComponent {
     this.selectedDesign = dept;
 
     this.editClass.patchValue({
-      classId: dept._id,
+      // classId: dept._id,
       className: dept.className,
       classNumeric: dept.classNumeric,
       sections: dept.sections[0]?.name,
@@ -197,7 +197,7 @@ export class ControlClassComponent {
     this.isLoading = true;
     console.log(":this.editDistForm.value", this.editClass.value);
     
-    this.api.updateclass(this.editClass.value).subscribe(resp => {
+    this.api.updateclass(this.selectedDesign._id, this.editClass.value).subscribe(resp => {
       console.log(resp);
       
       this.isLoading = false;

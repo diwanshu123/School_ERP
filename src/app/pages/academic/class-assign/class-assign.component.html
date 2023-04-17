@@ -47,19 +47,30 @@
       <mat-tab label="Assign">
         <div class="row mt-5 mb-3">
           <div class="col-4">
+            <!-- <label class="form-label">Class *</label>
+            <input type="text" class="form-control"> -->
             <label class="form-label">Class *</label>
-            <input type="text" class="form-control">
+            <select class="form-select" formControlName="class">
+              <option disabled value="select">Select</option>
+              <option *ngFor="let sec of classes" [value]="sec._id">{{sec.className}}</option>
+            </select>
           </div>
           <div class="col-4 offset-4">
             <label class="form-label">Section *</label>
-            <input type="text" class="form-control">
+            <select class="form-select" formControlName="sections">
+              <option disabled value="select">Select</option>
+              <option *ngFor="let sec of sections" [value]="sec._id">{{sec.name}}</option>
+            </select>
           </div>
         </div>
 
         <div class="row mt-5 mb-3">
           <div class="col-4">
             <label class="form-label">Subject *</label>
-            <input type="text" class="form-control">
+            <select class="form-select" formControlName="sections">
+              <option disabled value="select">Select</option>
+              <option *ngFor="let sec of subjects" [value]="sec._id">{{sec.subjectName}}</option>
+            </select>
           </div>
         </div>
         <div class="text-end mb-5">

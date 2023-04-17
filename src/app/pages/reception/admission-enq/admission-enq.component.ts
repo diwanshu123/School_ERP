@@ -13,20 +13,43 @@ export class AdmissionEnqComponent {
 
   addEnquiryForm: FormGroup
   isLoading: boolean;
-
+  enquiries: any[]= []
+  selectedEnq: any;
+  editEnq: FormGroup;
   
   constructor(private api: ApiService,private toastr: ToastrService  ) {
     this.addEnquiryForm =  new FormGroup ({
       name: new FormControl(null, [Validators.required]),
+      gender: new FormControl(null, [Validators.required]),
+      dob: new FormControl(null, [Validators.required]),
+      fatherName: new FormControl(null, [Validators.required]),
+      motherName: new FormControl(null, [Validators.required]),
+      mobileNo: new FormControl(null, [Validators.required]),
+      email: new FormControl(null, [Validators.required]),
+      assigned: new FormControl(null, [Validators.required]),
+      response: new FormControl(null, [Validators.required]),
+      classApplyFor: new FormControl(null, [Validators.required]),
+
+
     
     });
-    // this.editTermForm =  new FormGroup ({
+    this.editEnq =  new FormGroup ({
      
-    //   examTermId: new FormControl(null, [Validators.required]),
+      // examTermId: new FormControl(null, [Validators.required]),
 
-    //   name: new FormControl(null, [Validators.required]),
+      name: new FormControl(null, [Validators.required]),
+      gender: new FormControl(null, [Validators.required]),
+      dob: new FormControl(null, [Validators.required]),
+      fatherName: new FormControl(null, [Validators.required]),
+      motherName: new FormControl(null, [Validators.required]),
+      mobileNo: new FormControl(null, [Validators.required]),
+      email: new FormControl(null, [Validators.required]),
+      assigned: new FormControl(null, [Validators.required]),
+      response: new FormControl(null, [Validators.required]),
+      classApplyFor: new FormControl(null, [Validators.required]),
+
     
-    // });
+    });
    
 
 
@@ -35,11 +58,20 @@ export class AdmissionEnqComponent {
   }
   exam:any
   ngOnInit(): void {
-    // this.getExamTerms() 
+    this.getEnqu() 
     // this.getMarksDiturbution() 
   }
 
+  getEnqu(){
+   
+  
+    this.api.getEnquery().subscribe(resp => {
+      console.log(resp);
+      
+      this.enquiries = resp.enquiries
+    });
 
+}
   addDEnquery()
   {
     // console.log(this.examTermForm.value);
@@ -61,13 +93,59 @@ export class AdmissionEnqComponent {
     })
   }
 
-  getEnquery(){
-    console.log("this");
+  setEnq(enq: any)
+  {
+    this.selectedEnq = enq;
+    this.editEnq.patchValue({name: enq.name,
     
-  //   this.api.getExamTerms().subscribe((res)=>{
-  //     this.examTerms = res.examTerms
-  //     console.log(this.examTerms, "first res");
+      gender: enq.gender,
+      dob: enq.dob,
+      fatherName: enq.fatherName,
+      motherName: enq.motherName,
+      mobileNo: enq.mobileNo,
+      email: enq.email,
+      assigned: enq.assigned,
+      response: enq.assigned,
+      classApplyFor: enq.classApplyFor,
+
       
-  //   })
+    
+    });
   }
-}
+
+  updateEnq(){
+
+    this.isLoading = true;
+    this.api.updateEnq(this.selectedEnq._id, this.editEnq.value).subscribe(resp => {
+      console.log(resp);
+
+      this.isLoading = false;
+
+      document.getElementById('editModalDismissBtn')?.click();
+      this.toastr.success(resp.message, "enquiry update success");
+      this.getEnqu();
+    ;
+    },
+    (err) => {
+      this.isLoading = false;
+      this.toastr.error(err, "Enquiry update failed");
+      console.error(err);
+    })
+
+  }
+
+  delete(){
+    this.isLoading = true;
+    this.api.deleteenquiry(this.selectedEnq._id).subscribe(resp => {
+      console.log(resp);
+      this.isLoading = false;
+      document.getElementById('modalDismissBtn')?.click();
+      this.getEnqu();
+    },
+    (err) => {
+      this.isLoading = false;
+      console.error(err);
+    })
+  }
+  }
+

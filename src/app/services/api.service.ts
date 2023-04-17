@@ -368,8 +368,8 @@ export class ApiService {
       return this.httpClient.get(environment.apiBaseUrl + '/class/all').pipe(catchError(this.errorHandler));
     }
 
-    updateclass(postData: any): Observable<any> {
-      return this.httpClient.put(environment.apiBaseUrl +'/class', postData).pipe(catchError(this.errorHandler));
+    updateclass(postData: any , ClassID : String): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl +'/class', +ClassID, postData, ).pipe(catchError(this.errorHandler));
     }
     updateSection(postData: any): Observable<any> {
       return this.httpClient.put(environment.apiBaseUrl +'/section', postData).pipe(catchError(this.errorHandler));
@@ -403,8 +403,51 @@ export class ApiService {
       // postData["id"] = vehicleId;
       return this.httpClient.post(environment.apiBaseUrl +'/enquiry', postData ).pipe(catchError(this.errorHandler));
     }
+    getEnquery( ): Observable<any> {
+      // postData["id"] = vehicleId;
+      return this.httpClient.get(environment.apiBaseUrl +'/enquiry/all' ).pipe(catchError(this.errorHandler));
+    }
+    updateEnq(enquiryID: string, postData: any): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl + '/enquiry/' + enquiryID, postData).pipe(catchError(this.errorHandler));
+    }
+
+    deleteenquiry(id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/enquiry/' + id).pipe(catchError(this.errorHandler));
+    }
+
+    addCallLog(postData: any  ): Observable<any> {
+      // postData["id"] = vehicleId;
+      return this.httpClient.post(environment.apiBaseUrl +'/calllog', postData ).pipe(catchError(this.errorHandler)); 
+    }
+    getAllCallLogs( ): Observable<any> {
+      // postData["id"] = vehicleId;
+      return this.httpClient.get(environment.apiBaseUrl +'/calllog/all' ).pipe(catchError(this.errorHandler));
+    }
+    updateCall(callID: string, postData: any): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl + '/calllog/' + callID, postData).pipe(catchError(this.errorHandler));
+    }
+    deletCall(id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/calllog/' + id).pipe(catchError(this.errorHandler));
+    }
+
+    addVisitorLog(postData: any  ): Observable<any> {
+      // postData["id"] = vehicleId;
+      return this.httpClient.post(environment.apiBaseUrl +'/visitorlog', postData ).pipe(catchError(this.errorHandler)); 
+    }
+    getAllVisitor( ): Observable<any> {
+      // postData["id"] = vehicleId;
+      return this.httpClient.get(environment.apiBaseUrl +'/visitorlog/all' ).pipe(catchError(this.errorHandler));
+    }
+    updateVisitor(visitorID: string, postData: any): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl + '/visitorlog/' + visitorID, postData).pipe(catchError(this.errorHandler));
+    }
+    deleteVisitor(id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/visitorlog/' + id).pipe(catchError(this.errorHandler));
+    }
+
+
     
-  errorHandler(error: {
+  errorHandler(error: { 
     error: {
         messge: string;
     };status: any;message: any;
