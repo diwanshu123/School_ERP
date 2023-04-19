@@ -100,43 +100,108 @@
 
         <mat-tab label="Expense Report">
           <form [formGroup]="ExpensForm" (ngSubmit)="AddExpense()">
-          <div class="my-5">
-            <div class="mb-3">
-              <label class="form-label">Vehicle *</label>
-              <select class="form-select" formControlName="vehicle">
-                <option disabled value="select">Select</option>
-                <option *ngFor="let vehicle of vehicles" [value]="vehicle._id">{{vehicle.vehicleNo}}</option>
-              </select>
+            <div class="my-5">
+              <div class="row mb-3">
+                <div class="col-6">
+                  <label class="form-label">Vehicle *</label>
+                  <select class="form-select" formControlName="vehicleId">
+                    <option disabled value="select">Select</option>
+                    <option *ngFor="let vehicle of vehicles" [value]="vehicle._id">
+                      {{vehicle.vehicleNo}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <label class="form-label">Expense Name </label>
+                  <input type="text" formControlName="expenseName" class="form-control">
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-4">
+                  <label class="form-label">Description </label>
+                <input type="text" formControlName="description"  class="form-control">
+                </div>
+                <div class="col-4">
+                  <label class="form-label">Expense value </label>
+                  <input type="number" formControlName="expenseValue" class="form-control">
+                </div>
+                <div class="col-4">
+                  <label class="form-label">Expense Time </label>
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
+                  <input type="text" class="date-picker-input" [matDatepicker]="picker"
+                    (click)="picker.open()" formControlName="expenseTime">
+                </div>
+                <mat-datepicker #picker></mat-datepicker>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-4">
+                  <label class="form-label">Expense Doc 1</label>
+                  <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'doc1')">
+                    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                        <ng-container *ngIf="!doc1">
+                          Drag and drop or
+                          <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()">Browse Files</a>
+                        </ng-container>
+                        <ng-container *ngIf="doc1">
+                          {{doc1.name}}
+                          <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="doc1=null">
+                            Remove
+                          </a>
+                        </ng-container>
+                    </ng-template>
+                  </ngx-file-drop>
+                </div>
+
+                <div class="col-4">
+                  <label class="form-label">Expense Doc 2</label>
+                  <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'doc2')">
+                    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                        <ng-container *ngIf="!doc2">
+                          Drag and drop or
+                          <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()">Browse Files</a>
+                        </ng-container>
+                        <ng-container *ngIf="doc2">
+                          {{doc2.name}}
+                          <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="doc2=null">
+                            Remove
+                          </a>
+                        </ng-container>
+                    </ng-template>
+                  </ngx-file-drop>
+                </div>
+
+                <div class="col-4">
+                  <label class="form-label">Expense Doc 3</label>
+                  <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'doc3')">
+                    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                        <ng-container *ngIf="!doc3">
+                          Drag and drop or
+                          <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()">Browse Files</a>
+                        </ng-container>
+                        <ng-container *ngIf="doc3">
+                          {{doc3.name}}
+                          <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="doc3=null">
+                            Remove
+                          </a>
+                        </ng-container>
+                    </ng-template>
+                  </ngx-file-drop>
+                </div>
+              </div>
             </div>
-            <div class="mb-3">
-              <label class="form-label">Expense Name </label>
-              <input type="text" formControlName="expenseName" class="form-control">
+
+            <div class="text-end mb-3">
+              <button class="btn" [disabled]="isLoading || !ExpensForm.valid || ExpensForm.get('vehicleId')?.value == 'select'">
+                <span *ngIf="isLoading" class="spinner-border text-light"></span>
+                <span *ngIf="!isLoading">Save</span>
+              </button>
             </div>
-            <div class="mb-3">
-              <label class="form-label">Expense value </label>
-              <input type="text" formControlName="expenseValue" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Expense Time </label>
-              <!-- <input type="text" formControlName="expenseTime"  class="form-control"> -->
-              <mat-datepicker-toggle  matSuffix [for]="picker1"></mat-datepicker-toggle>
-      
-              <input matInput class="form-control" [matDatepicker]="picker1"
-              placeholder="dd-mm-yyyy" formControlName="expenseTime" >
-            
-    
-         <mat-datepicker #picker1></mat-datepicker>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Description </label>
-              <input type="text" formControlName="description"  class="form-control">
-            </div>
-          </div>
-      
-          <div class="text-end mb-3">
-            <button class="btn">Save</button>
-          </div>
-      </form>
+        </form>
+
           <div class="tab-container pt-4">
             <div class="top-options">
               <div class="search-area">
@@ -153,7 +218,7 @@
                 </div>
               </div>
             </div>
-      
+
             <table class="table mt-3">
               <thead>
                 <tr>

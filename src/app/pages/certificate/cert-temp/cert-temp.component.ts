@@ -115,6 +115,7 @@ export class CertTempComponent {
 
       this.isLoading = false;
       this.certiForm.reset();
+      this.signImg = this.logoImg = this.backImg = null;
       this.toastr.success(resp.message, "Certificate add success");
       this.getCertificates();
     },
