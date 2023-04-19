@@ -18,6 +18,7 @@ import { StopEditComponent } from './stop-page/stop-edit/stop-edit.component';
 import { AssignEditComponent } from './assign-vehicle/assign-edit/assign-edit.component';
 import { ExpenseReportComponent } from './expense-report/expense-report.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { NgxFileDropModule } from 'ngx-file-drop';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     SharedModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    NgxFileDropModule,
     NgxMaterialTimepickerModule
   ]
 })

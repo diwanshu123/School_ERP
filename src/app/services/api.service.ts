@@ -296,14 +296,14 @@ export class ApiService {
     }
 
     //Employees, Departments and Designations  '/employee/all'  employee
-    addEmpployee(postData: any): Observable<any> { 
+    addEmpployee(postData: any): Observable<any> {
       return this.httpClient.post(environment.apiBaseUrl + '/employee', postData).pipe(catchError(this.errorHandler));
     }
     deleteEmploye(_id: string): Observable<any> {
       return this.httpClient.delete(environment.apiBaseUrl + '/employee/:id/'  +_id ).pipe(catchError(this.errorHandler));
     }
 
-    updateEmpployee(postData: any): Observable<any> { 
+    updateEmpployee(postData: any): Observable<any> {
       // postData["id"] = _id;
 
       return this.httpClient.put(environment.apiBaseUrl + '/employee/', postData ).pipe(catchError(this.errorHandler));
@@ -353,7 +353,7 @@ export class ApiService {
     addAcadamic(postData: any): Observable<any> {
       return this.httpClient.post(environment.apiBaseUrl + '/academic', postData).pipe(catchError(this.errorHandler));
     }
-    
+
     addClass(postData: any): Observable<any> {
       return this.httpClient.post(environment.apiBaseUrl + '/class', postData).pipe(catchError(this.errorHandler));
     }
@@ -395,9 +395,8 @@ export class ApiService {
     addTeacher(postData: any): Observable<any> {
       return this.httpClient.post(environment.apiBaseUrl + '/academic/teacher/add', postData).pipe(catchError(this.errorHandler));
     }
-    addExpensReport(postData: any  ): Observable<any> {
-      // postData["id"] = vehicleId;
-      return this.httpClient.post(environment.apiBaseUrl +'/expense/', postData ).pipe(catchError(this.errorHandler));
+    addExpensReport(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl +'/vehicle/expense', postData ).pipe(catchError(this.errorHandler));
     }
     addEnquery(postData: any  ): Observable<any> {
       // postData["id"] = vehicleId;
@@ -417,7 +416,7 @@ export class ApiService {
 
     addCallLog(postData: any  ): Observable<any> {
       // postData["id"] = vehicleId;
-      return this.httpClient.post(environment.apiBaseUrl +'/calllog', postData ).pipe(catchError(this.errorHandler)); 
+      return this.httpClient.post(environment.apiBaseUrl +'/calllog', postData ).pipe(catchError(this.errorHandler));
     }
     getAllCallLogs( ): Observable<any> {
       // postData["id"] = vehicleId;
@@ -432,7 +431,7 @@ export class ApiService {
 
     addVisitorLog(postData: any  ): Observable<any> {
       // postData["id"] = vehicleId;
-      return this.httpClient.post(environment.apiBaseUrl +'/visitorlog', postData ).pipe(catchError(this.errorHandler)); 
+      return this.httpClient.post(environment.apiBaseUrl +'/visitorlog', postData ).pipe(catchError(this.errorHandler));
     }
     getAllVisitor( ): Observable<any> {
       // postData["id"] = vehicleId;
@@ -446,8 +445,8 @@ export class ApiService {
     }
 
 
-    
-  errorHandler(error: { 
+
+  errorHandler(error: {
     error: {
         messge: string;
     };status: any;message: any;

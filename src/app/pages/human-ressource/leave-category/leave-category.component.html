@@ -9,7 +9,7 @@
               <input type="text" class="form-control" formControlName="name">
             </div>
             <div class="mb-3">
-              <label class="form-label">Role *</label>
+              <label class="form-label">Designation *</label>
               <select class="form-select" formControlName="designation">
                 <option disabled value="select">Select</option>
                 <option *ngFor="let designation of designations" [value]="designation._id">
@@ -32,11 +32,11 @@
         <div class="col-6 px-4">
           <h5 class="mb-4">Leave Category List</h5>
           <table class="table" [cellPadding]="0" [cellSpacing]="0">
-            <thead> 
+            <thead>
               <tr>
                 <th scope="col">SL</th>
                 <th scope="col">Name</th>
-                <th scope="col">Role</th>
+                <th scope="col">Designation</th>
                 <th scope="col">Days</th>
 
                 <th scope="col">Action</th>
@@ -55,7 +55,7 @@
                   </button>
                   <button class="btn emp-edit ms-1" data-bs-toggle="modal" data-bs-target="#deletePrompt"
                     (click)="selectedLeave=leave"><i class="fa-solid fa-trash-can"></i></button>
-                </td> 
+                </td>
               </tr>
             </tbody>
           </table>
@@ -69,7 +69,7 @@
 <div class="modal fade" id="editLeave">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header"> 
+      <div class="modal-header">
         <h5 class="modal-title">Edit Leave Category</h5>
       </div>
       <div class="modal-body">
