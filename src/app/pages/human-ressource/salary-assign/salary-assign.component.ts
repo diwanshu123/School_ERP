@@ -12,15 +12,26 @@ export class SalaryAssignComponent implements OnInit {
   employees: any[] = [];
   salaries: any[] = [];
   empSal: any[] = [];
+  designations: any[] = [];
   isLoading: boolean;
 
   constructor(private api: ApiService, private toastr: ToastrService)
   {}
 
   ngOnInit(): void {
-    this.getAllEmployees()
-  }
+    this.getAllEmployees();
+    this.getDesignations()
 
+  }
+  getDesignations()
+  {
+  
+    this.api.getDesignations().subscribe(resp => {
+      this.designations = resp.designations
+      console.log(this.designations);
+      
+    });
+  }
   getAllEmployees()
   {
     this.api.getAllEmployees().subscribe(resp => {

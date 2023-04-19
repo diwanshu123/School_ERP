@@ -10,11 +10,15 @@
     <!-- <div class="col">
         <label class="form-label">Role *</label>
         <input type="text" class="form-control"><br>
-    </div> -->
+    </div> --> 
     <div class="col">
         <div class="col">
             <label class="form-label">Designation *</label>
-            <input type="text" class="form-control"><br>
+            <!-- <label class="form-label">Class *</label> -->
+            <select class="form-select" formControlName="">
+              <option disabled value="select">Select</option>
+              <option *ngFor="let sec of designations" [value]="sec._id">{{sec.name}}</option>
+            </select>
         </div>
     </div>
 

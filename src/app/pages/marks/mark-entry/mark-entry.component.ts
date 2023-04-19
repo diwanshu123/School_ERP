@@ -13,6 +13,10 @@ export class MarkEntryComponent {
   exams: any
   marksEntryForm: FormGroup;
   isLoading: boolean;
+  classes:  any
+  sections: any[] = [];
+  subjects: any[] = [];
+
   constructor(private api: ApiService,private toastr: ToastrService  ) {
 
     this.marksEntryForm =  new FormGroup ({
@@ -29,6 +33,30 @@ export class MarkEntryComponent {
 
   ngOnInit(): void {
   this.getAllExam()
+  this.getAllClass()
+  this.getAllSection()
+  this.getSubject()
+
+
+}
+getSubject(){
+
+  this.api.getAllSubjects().subscribe(resp => {
+    console.log(resp);
+    
+    this.subjects = resp.subjects
+  });
+
+}
+getAllSection(){
+   
+  
+  this.api.getAllSection().subscribe(resp => {
+    console.log(resp);
+    
+    this.sections = resp.sections
+  });
+
 }
 
 
@@ -60,4 +88,14 @@ createMarks(){
       
     })
   }
+  getAllClass(){
+   
+  
+    this.api.getAllClass().subscribe(resp => {
+      console.log(resp);
+      
+      this.classes = resp.classes
+    });
+
+}
 }

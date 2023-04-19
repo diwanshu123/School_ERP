@@ -11,12 +11,24 @@ export class SalaryPaymentComponent {
   employees: any[] = [];
   salaries: any[] = [];
   empSal: any[] = [];
-
+  designations: any[] = [];
   constructor(private api: ApiService)
   {}
 
   ngOnInit(): void {
     this.getAllEmployees()
+    this.getDesignations()
+
+  }
+
+  getDesignations()
+  {   
+  
+    this.api.getDesignations().subscribe(resp => {
+      this.designations = resp.designations
+      console.log(this.designations);
+      
+    });
   }
 
   getAllEmployees()

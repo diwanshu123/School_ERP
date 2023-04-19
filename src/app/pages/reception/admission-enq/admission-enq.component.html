@@ -84,76 +84,61 @@
          <mat-datepicker #picker1></mat-datepicker>
             </div>
 
-            <div class="mb-3">
+            <!-- <div class="mb-3">
               <label class="form-label">Previous School</label>
               <input type="text" class="form-control">
-            </div>
+            </div> -->
 
             <div class="row mb-3">
-              <div class="col-4">
+              <div class="col-3">
                 <label class="form-label">Father Name *</label>
                 <input type="text" formControlName="fatherName" class="form-control">
               </div>
-              <div class="col-4 offset-4">
+              <div class="col-3">
                 <label class="form-label">Mother Name *</label>
                 <input type="text" formControlName="motherName" class="form-control">
               </div>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-4">
+              <div class="col-3">
                 <label class="form-label">Mobile No. *</label>
-                <input type="text" formControlName="mobileNo" class="form-control">
+                <input type="number" formControlName="mobileNo" class="form-control">
               </div>
-              <div class="col-4 offset-4">
+              <div class="col-3 ">
                 <label class="form-label">E-mail *</label>
                 <input type="text" formControlName="email" class="form-control">
               </div>
             </div>
 
-            <div class="mb-3">
-              <label class="form-label">Address</label>
-              <textarea class="form-control" rows="5"></textarea>
-            </div>
+        
+        
 
-            <div class="row mb-3">
-              <div class="col-4">
-                <label class="form-label">No. Of Child</label>
-                <input type="text " class="form-control">
-              </div>
-              <div class="col-4 offset-4">
-                <label class="form-label">Assigned *</label>
-                <input type="text" formControlName="assigned" class="form-control">
-              </div>
-            </div>
 
-            <div class="row mb-3">
-              <div class="col-4">
-                <label class="form-label">Reference</label>
-                <input type="text"  class="form-control">
-              </div>
-              <div class="col-4 offset-4">
-                <label class="form-label">Response *</label>
-                <input type="text" formControlName="response" class="form-control">
-              </div>
-            </div>
+          
 
-            <div class="mb-3">
-              <label class="form-label">Note</label>
-              <input type="text" class="form-control">
-            </div>
+           
+      
 
-            <div class="row mb-3">
-              <div class="col-4">
-                <label class="form-label">Date</label>
-                <input type="text"  class="form-control">
-              </div>
-              <div class="col-4 offset-4">
-                <label class="form-label">Class Apply For *</label>
-                <input type="text" formControlName="classApplyFor" class="form-control">
-              </div>
-            </div>
+          <div class="row mb-3">
+
+            <div class="col-4">
+              <label class="form-label">Assigned *</label>
+              <input type="text" formControlName="assigned" class="form-control">
+
           </div>
+          <div class="col-4">
+            <label class="form-label">Response *</label>
+            <input type="text" formControlName="response" class="form-control">
+
+        </div>
+        <div class="col-4">
+          <label class="form-label">Class Apply For *</label>
+          <input type="number" formControlName="classApplyFor" class="form-control">
+
+      </div>
+
+
+
+          </div>
+        </div>
 
           <div class="text-end mb-3">
             <button class="btn">Save</button>
@@ -234,7 +219,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Delete Wnquiry</h5>
+        <h5 class="modal-title">Delete Enquiry</h5>
       </div>
       <div class="modal-body">
         <p>Are you sure you want to delete this Qnquiry?</p>
