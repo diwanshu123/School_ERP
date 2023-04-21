@@ -24,6 +24,7 @@ export class AssignVehicleComponent {
   doc1: any;
   doc2: any;
   doc3: any;
+  selectedEnqaa: any;
 
   constructor(private api: ApiService, private toastr: ToastrService, private router: Router)
   {
@@ -41,19 +42,27 @@ export class AssignVehicleComponent {
       description: new FormControl(null, [Validators.required]),
     });
   }
-
+data:any
   ngOnInit(): void {
     this.getAllVehicleAssigns();
     this.getAllRoutes();
+    this.getAllVehicles()
+    this.selectedEnq(this.data)
   }
 
   getAllVehicleAssigns()
   {
-    this.api.getAllVehicleAssigns().subscribe(resp => {
+    this.api.getAllVehicleAssigns().subscribe(resp => { 
       this.assigns = resp.vehicleRoutes;
     });
   }
-
+  // getAllVehicleExpense()
+  // {
+  //   this.api.getAllExapense().subscribe(resp => {
+  //     this.assigns = resp.vehicleRoutes;
+  //   });
+  // }
+ 
   onFilesDropped(files: NgxFileDropEntry[], imgType: string)
   {
     console.log(files);
@@ -139,7 +148,16 @@ export class AssignVehicleComponent {
   {
     this.api.getAllVehicles().subscribe(resp => {
       this.vehicles = resp.vehicles;
+      
+      console.log(this.vehicles);
+      
     });
+  }
+  selectedEnq(vehd : any){
+    this.selectedEnqaa 
+    console.log(this.selectedEnqaa);
+    
+
   }
 
   assignVehicle()

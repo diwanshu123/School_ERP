@@ -14,10 +14,14 @@
 </div>
 <div class="row">
     <div class="col">
-        <div class="mb-3">
-            <label class="form-label">Designation *</label>
-            <input type="text" class="form-control">
-          </div>
+      <div class="col">
+        <label class="form-label">Designation *</label>
+        <!-- <label class="form-label">Class *</label> -->
+        <select class="form-select" formControlName="">
+          <option disabled value="select">Select</option>
+          <option *ngFor="let sec of designations" [value]="sec._id">{{sec.name}}</option>
+        </select>
+    </div>
     </div>
 
     <div class="col-12 text-end px-0 pt-4">

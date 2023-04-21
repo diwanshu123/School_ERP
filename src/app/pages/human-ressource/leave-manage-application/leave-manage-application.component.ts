@@ -37,8 +37,18 @@ export class LeaveManageApplicationComponent implements OnInit {
   ngOnInit(): void {
     this.getLeaveApplication();
     this.getLeavesCategory();
-  }
+    this.getDesignations();
 
+  }
+  getDesignations()
+  {
+ 
+    this.api.getDesignations().subscribe(resp => {
+      this.designations = resp.designations
+      console.log(this.designations);
+      
+    });
+  }
   getLeaveApplication()
   {
     this.api.getLeaveApplication().subscribe(resp => {

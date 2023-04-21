@@ -12,10 +12,21 @@ export class AssignTeacherComponent {
   isLoading: boolean;
 
   TeacherForm: FormGroup
+  sections: any[] = [];
+  classes: any[] = [];
+  designations: any[] = [];
+  employees: any[] = [];
+  filteredEmp: any[] = []
+
   
   constructor(private api: ApiService, private toastr: ToastrService) {
     this.TeacherForm = new FormGroup({
-      name: new FormControl(null, [Validators.required])
+      academicYear: new FormControl(null, [Validators.required]),
+      studentClass: new FormControl(null, [Validators.required]),
+      section: new FormControl(null, [Validators.required]),
+      teacher: new FormControl(null, [Validators.required])
+  
+
     });
 
   //   this.editDesign = new FormGroup({
@@ -24,19 +35,79 @@ export class AssignTeacherComponent {
   }
 
   ngOnInit(): void {
-    // this.getDesignations();
+    this.getAllSection();
+    this.getAllClass();
+    this.getDesignations();
+    this.getEmployees()
+
   }
 
-  getTeacherList()
+  getEmployees()
   {
-  //   this.api.getDesignations().subscribe(resp => {
-  //     this.designations = resp.designations
-    // });
+    this.api.getAllEmployees().subscribe(resp => {
+      this.employees = resp.employees;
+      console.log(this.employees);
+      
+      this.filteredEmp = this.employees.filter(emp => emp.designation?.name == 'Teacher');
+      console.log(this.filteredEmp);
+      
+    });
   }
+
+  filterEmployee(event: any)
+  {
+    const tabIndex = event.index;
+    if(tabIndex == 0) {
+      this.filteredEmp = this.employees.filter(emp => emp.designation?.name == 'Admin')
+    }
+    else if(tabIndex == 1) {
+      this.filteredEmp = this.employees.filter(emp => emp.designation?.name == 'Teacher')
+    }
+    else if(tabIndex == 2) {
+      this.filteredEmp = this.employees.filter(emp => emp.designation?.name == 'Accountant')
+    }
+    else if(tabIndex == 3) {
+      this.filteredEmp = this.employees.filter(emp => emp.designation?.name == 'Librarian')
+    }
+    else if(tabIndex == 4) {
+      this.filteredEmp = this.employees.filter(emp => emp.designation?.name == 'Receptionist')
+    }
+  }
+  getAllSection(){
+   
+  
+    this.api.getAllSection().subscribe(resp => {
+      console.log(resp);
+      
+      this.sections = resp.sections
+    });
+
+}
+getDesignations()
+{
+  this.api.getDesignations().subscribe(resp => {
+    console.log(resp);
+    this.designations = resp.designations
+  });
+}
+
+
+  getAllClass(){
+   
+  
+    this.api.getAllClass().subscribe(resp => {
+      console.log(resp);
+      
+      this.classes = resp.classes
+    });
+
+}
 
   addTeachernew()
   {
     this.isLoading = true;
+    console.log(this.TeacherForm.value);
+    
     this.api.addTeacher(this.TeacherForm.value).subscribe(resp => {
       console.log(resp);
 
@@ -44,12 +115,12 @@ export class AssignTeacherComponent {
 
       this.toastr.success(resp.message, " add success");
       this.TeacherForm.reset();
-      this.getTeacherList();
+
     ;
     },
     (err) => {
       this.isLoading = false;
-      this.toastr.error(err, "Department add failed");
+      this.toastr.error(err, "Assign Teacher  failed");
       console.error(err);
     })
   }
