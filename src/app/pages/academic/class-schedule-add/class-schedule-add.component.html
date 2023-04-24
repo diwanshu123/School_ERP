@@ -1,45 +1,127 @@
 <app-layout>
-  <div class="container p-4">
-    <div class="row mt-5 mb-3">
-      <div class="col-4">
-        <label class="form-label">Class *</label>
-        <input type="text" class="form-control">
+  <form [formGroup]="addForm">
+    <div class="container p-4">
+      <div class="row mt-5 mb-3">
+        <div class="col-3">
+          <label class="form-label">Class <span class="error">*</span></label>
+          <select class="form-select" formControlName="class" (change)="onChangeClass($event)">
+            <option disabled value="select">Select</option>
+            <option *ngFor="let sec of classes" value="{{sec._id}}">{{sec.className}}</option>
+          </select>
+        </div>
+        <div class="col-3">
+          <label class="form-label">Section <span class="error">*</span></label>
+          <select class="form-select" formControlName="section">
+            <option disabled value="select">Select</option>
+            <option *ngFor="let sec of sections" value="{{sec._id}}">{{sec.name}}</option>
+          </select>
+        </div>
+        <div class="col-3">
+          <label class="form-label">Day <span class="error">*</span></label>
+          <select class="form-select" formControlName="day">
+            <option disabled value="select">Select</option>
+            <option *ngFor="let day of dayOption" value="{{day.name}}">{{day.name}}</option>
+          </select>
+        </div>
+        <div class="col-3">
+          <label class="form-label">Year <span class="error">*</span></label>
+          <select class="form-select" formControlName="year">
+            <option disabled value="select">Select</option>
+            <option *ngFor="let day of aceYear" value="{{day._id}}">{{day.name}}</option>
+          </select>
+        </div>
       </div>
-      <div class="col-4">
-        <label class="form-label">Section *</label>
-        <input type="text" class="form-control">
-      </div>
-      <div class="col-4">
-        <label class="form-label">Day *</label>
-        <input type="text" class="form-control">
-      </div>
-    </div>
     <div class="text-end mb-5">
-      <button class="btn">Filter</button>
-    </div>
+        <button class="btn" (click)="false">Filter</button>
+      </div>
+      <div class="scheduler-sec">
+        <h6 class="table-heading mb-3">Add Schedule</h6>
 
-    <h6 class="table-heading mb-3">Add Schedule</h6>
-    <table class="table mt-3">
-      <thead>
-        <tr>
-          <th scope="col">Break</th>
-          <th scope="col">Subject</th>
-          <th scope="col">Teacher</th>
-          <th scope="col">Starting Time </th>
-          <th scope="col">Ending Time </th>
-          <th scope="col">Classroom</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td></td>
-          <td>Six</td>
-          <td>A</td>
-          <td>A</td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+        <table class="table mt-3">
+          <thead>
+            <tr>
+             <!-- <th scope="col">Break</th> -->
+              <th scope="col">Subject <span class="error">*</span></th>
+              <th scope="col">Teacher <span class="error">*</span></th>
+              <th scope="col">Starting Time <span class="error">*</span> </th>
+              <th scope="col">Ending Time <span class="error">*</span> </th>
+              <th scope="col">Classroom</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of addForm.get('rows')['controls'];let index = index;">
+              <!--<td> <input type="checkbox" class="form-check-input" [formControl]="row.get('break')"></td>-->
+              <td>
+                <select class="form-select w-125" [formControl]="row.get('subject')">
+                  <option value="">Select</option>
+                  <option *ngFor="let sub of subjectOption" [value]="sub._id">{{ sub.subjectName }}</option>
+                </select>
+                <div *ngIf="row.controls.subject.invalid && (row.controls.subject.dirty ||row.controls.subject.touched)"
+                  class="error f-12 mt-2">
+                  <div *ngIf="row.controls.subject.errors['required']">
+                    Subject is required.
+                  </div>
+                </div>
+
+              </td>
+              <td> <select class="form-select w-125" [formControl]="row.get('teacher')">
+                <option value="">Select</option>
+                  <option *ngFor="let tea of teacherOption" [value]="tea._id">{{ tea.name }}</option>
+                </select>
+                <div *ngIf="row.controls.teacher.invalid && (row.controls.teacher.dirty ||row.controls.teacher.touched)"
+                  class="error f-12 mt-2">
+                  <div *ngIf="row.controls.teacher.errors['required']">
+                    Teacher is required.
+                  </div>
+                </div>
+              </td>
+              <td>
+                <select class="form-select col-md-6" [formControl]="row.get('startTime')">
+                  <option *ngFor="let option of hrs" [value]="option">{{option}}
+                  </option>
+                </select>
+                <div
+                  *ngIf="row.controls.startTime.invalid && (row.controls.startTime.dirty ||row.controls.startTime.touched)"
+                  class="error f-12 mt-2">
+                  <div *ngIf="row.controls.startTime.errors['required']">
+                    Start time is required
+                  </div>
+                </div>
+              </td>
+              <td>
+                <select class="form-select col-md-6" [formControl]="row.get('endTime')">
+                  <option *ngFor="let option of hrs" [value]="option">{{option}}
+                  </option>
+                </select>
+                <div *ngIf="row.controls.endTime.invalid && (row.controls.endTime.dirty ||row.controls.endTime.touched)"
+                  class="error f-12 mt-2">
+                  <div *ngIf="row.controls.endTime.errors['required']">
+                    End time is required
+                  </div>
+                </div>
+              </td>
+              <td>
+                <input type="text" class="form-control w-70" [formControl]="row.get('classRoom')">
+
+              </td>
+              <td>
+                <button  class="btn emp-edit ms-1" (click)="onRemoveRow(index)"><i  class="fa-solid fa-trash-can"></i></button>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col-md-4">
+            <button (click)="onAddRow()" class="btn">Add Row</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-end me-4">
+          <button (click)="saveScheduleRecord(addForm)" class="btn ps-4 pe-4" [disabled]="!addForm.valid">Save</button>
+        </div>
+      </div>      
+    </div>
+  </form>
 </app-layout>

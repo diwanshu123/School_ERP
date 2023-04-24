@@ -1,67 +1,48 @@
 <app-layout>
   <div class="container tab-container p-4">
+    <form [formGroup]="addForm">
     <div class="row mt-3 mb-3">
       <div class="text-end mb-3">
         <button class="btn" routerLink="add">Add Schedule</button>
       </div>
       <div class="col-4">
-        <label class="form-label">Class *</label>
-        <input type="text" class="form-control">
+        <label class="form-label">Class <span class="error">*</span></label>
+        <select class="form-select" formControlName="class" (change)="onChangeClass($event)">
+          <option disabled value="select">Select</option>
+          <option *ngFor="let sec of classes" value="{{sec._id}}">{{sec.className}}</option>
+        </select>
       </div>
-      <div class="col-4 offset-4">
-        <label class="form-label">Section *</label>
-        <input type="text" class="form-control">
+      <div class="col-4">
+        <label class="form-label">Section <span class="error">*</span></label>
+        <select class="form-select" formControlName="section">
+          <option disabled value="select">Select</option>
+          <option *ngFor="let sec of sections" value="{{sec._id}}">{{sec.name}}</option>
+        </select>
+      </div>
+      <div class="col-4">
+        <label class="form-label">Year <span class="error">*</span></label>
+        <select class="form-select" formControlName="year">
+          <option disabled value="select">Select</option>
+          <option *ngFor="let day of aceYear" value="{{day._id}}">{{day.name}}</option>
+        </select>
       </div>
     </div>
     <div class="text-end mb-5">
-      <button class="btn">Filter</button>
+      <button class="btn" (click)="clickFilter(addForm)">Filter</button>
     </div>
-
+  </form>
     <h6 class="table-heading mb-4">Schedule List</h6>
-    <table class="table mt-3">
-      <thead>
-        <tr>
-          <th scope="col">Sunday</th>
-          <th scope="col">English<br>
-            (10:00 AM - 10:30 AM)<br>
-            Teacher : Summer Simpson</th>
-          <th scope="col">Physics<br>
-            (10:30 AM - 11:00 AM)<br>
-            Teacher : Jose McKinley</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>Monday</th>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>Tuesday</th>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>Wednesday</th>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>Thursday</th>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>Friday</th>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>Saturday</th>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
+    
+      <ng-container *ngFor="let  data of scheduleArr">
+        <div class="row">
+          <div class="col border border-dark">{{data.day}}</div>
+          <div class="col border border-dark" *ngFor="let  row of data.activities">
+            <div class="w-100 text-center"><b>{{row?.subject?.subjectName}}</b></div>  
+            <div class="w-100  text-center"> ({{row?.time}})</div>  
+            <div class="w-100  text-center"> Teacher:{{row?.teacher?.name}}</div>  
+          </div>
+        </div>
+      </ng-container>
+    
   </div>
 </app-layout>

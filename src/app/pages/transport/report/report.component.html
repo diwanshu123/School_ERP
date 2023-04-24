@@ -1,27 +1,35 @@
 <app-layout>
   <div class="container p-4">
-    <div class="my-5">
-      <div class="mb-3">
+    <form [formGroup]="reportForm">
+    <div class="row my-5">
+      <div class="mb-3 col-md-4">
         <label class="form-label">Class *</label>
      
-        <select class="form-select" formControlName="">
+        <select class="form-select" formControlName="studentClass">
           <option disabled value="select">Select</option>
           <option *ngFor="let sec of classes" [value]="sec._id">{{sec.className}}</option>
         </select>
       </div>
 
-      <div class="mb-3">
+      <div class="mb-3 col-md-4">
         <label class="form-label">Section *</label>
       
-        <select class="form-select" formControlName="">
+        <select class="form-select" formControlName="section">
           <option disabled value="select">Select</option>
           <option *ngFor="let sec of sections" [value]="sec._id">{{sec.name}}</option>
         </select>
       </div>
+      <div class="mb-3 col-md-4">
+        <label class="form-label">Year *</label>
+        <select class="form-select" formControlName="academicYear">
+          <option disabled value="select">Select</option>
+          <option *ngFor="let year of aceYear" [value]="year._id">{{year.name}}</option>
+        </select>
+      </div>
     </div>
-
+</form>
     <div class="text-end mb-3">
-      <button class="btn">Save</button>
+      <button class="btn" (click)="callReport(reportForm)" [disabled]="!reportForm.valid">Save</button>
     </div>
 
     <div class="tab-container pt-4">
@@ -44,30 +52,33 @@
       <table class="table mt-3">
         <thead>
           <tr>
-            <th scope="col">SL</th>
-            <th scope="col">Student Name</th>
-            <th scope="col">Registration No.</th>
-            <th scope="col">Route Name</th>
-            <th scope="col">Stop Page</th>
-            <th scope="col">Route Fare</th>
-            <th scope="col">Vehicle No.</th>
-            <th scope="col">Action</th>
+            <th width="5%" >SL</th>
+            <th width="15%">Student Name</th>
+            <th width="16%">Registration No.</th>
+            <th width="12%">Route Name</th>
+            <th width="15%">Stop Place</th>
+            <th width="10%">Route Fare</th>
+            <th width="12%">Vehicle No.</th>
+            <th >Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>#001234</td>
-            <td>111111</td>
-            <td>111111</td>
-            <td>111111</td>
-            <td>5</td>
-            <td>5</td>
-            <td>5</td>
-            <td>
-              <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
-              <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
-            </td>
-          </tr>
+          <ng-container *ngFor="let row of reportData; let i = index">
+            <tr>
+              <td>{{i+1}}</td>
+              <td>{{row?.firstName}} {{row?.lastName}}</td>
+              <td>{{row?.registerNo}}</td>
+              <td>{{row?.vehicleRoute?.route?.routeName}}</td>
+              <td>{{row?.vehicleRoute?.stoppage?.stoppageName}}</td>
+              <td>{{row?.vehicleRoute?.stoppage?.routeFare}}</td>
+              <td>{{row?.vehicleRoute?.vehicle?.vehicleNo}}</td>
+              
+              <td>
+                <!--<button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>-->
+                <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+              </td>
+            </tr>
+          </ng-container>         
         </tbody>
       </table>
     </div>

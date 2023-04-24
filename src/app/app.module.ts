@@ -14,14 +14,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HumanRessourceComponent } from './pages/human-ressource/human-ressource.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { ToastrModule } from 'ngx-toastr';
-
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 @NgModule({
     declarations: [
       AppComponent,
       HumanRessourceComponent,
       ReportsComponent,
     ],
-    providers: [],
+    providers: [BsModalService],
     bootstrap: [AppComponent],
     imports: [
       BrowserModule,
@@ -35,6 +35,7 @@ import { ToastrModule } from 'ngx-toastr';
       MatIconModule,
       SharedModule,
       ToastrModule.forRoot({positionClass: 'toast-center-center'}),
+      ModalModule.forRoot()
     ]
 })
 export class AppModule { }

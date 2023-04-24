@@ -9,6 +9,7 @@ import { CategoryComponent } from './category/category.component';
 import { MultipleImportComponent } from './multiple-import/multiple-import.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AdmissionComponent } from './admission.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AdmissionComponent } from './admission.component';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     AdmissionRoutingModule,
     SharedModule
   ]

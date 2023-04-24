@@ -9,18 +9,20 @@
                 <div class="modal-header">
                   <h6 class="modal-title"><i class="bi bi-pencil-square mx-2"></i> Add category </h6>
                 </div>
+                <form [formGroup]="categoryForm">
                 <div class="modal-body bg-white">
-                  <form>
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">Company name <span class="text-danger">*</span></label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <label for="exampleInputEmail1" class="form-label">Category Name <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" formControlName="categoryName">
                     </div>
-                  </form>
+                 
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="save_button">Save</button>
+                  <button type="button" class="save_button btn" (click)="addCategory(categoryForm)" [disabled]="!categoryForm.valid">Save</button>
                 </div>
+              </form>
               </div>
+            
             </div>
             <div class="col-12 col-md-7 mt-4">
               <div class="cards_common bg-light">
@@ -31,47 +33,68 @@
                   <table>
                     <tr>
                       <!-- <th>Branch</th> -->
-                      <th>Id</th>
-                      <th>Name</th>
+                      <th width="25%">Id</th>
+                      <th width="45%">Name</th>
                       <th>Action</th>
                     </tr>
-                    <tr>
-                      <!-- <td>Oxford International</td> -->
-                      <td>6</td>
-                      <td>Germany</td>
-                      <td><i class="bi bi-gear-wide setting_icon me-1"></i> <i class="bi bi-trash-fill delete_icon"></i></td>
+                    <tr *ngFor="let row of categoryData;  let i = index">
+                      <td>{{i+1}}</td>
+                      <td>{{row.categoryName}}</td>
+                      <td>
+                        <button class="btn emp-edit me-1" (click)="openModal(template, row)"><i class="fa-solid fa-pencil"></i></button>
+                        <button class="btn emp-edit ms-1" (click)="openDeleteModal(deletemplate, row)"><i class="fa-solid fa-trash-can"></i></button>
+                      </td>
                     </tr>
-                    <tr>
-                      <!-- <td>Oxford International</td> -->
-                      <td>7</td>
-                      <td>Austria</td>
-                      <td><i class="bi bi-gear-wide setting_icon me-1"></i> <i class="bi bi-trash-fill delete_icon"></i></td>
-                    </tr>
-                    <tr>
-                      <!-- <td>Oxford International</td> -->
-                      <td>8</td>
-                      <td>UK</td>
-                      <td><i class="bi bi-gear-wide setting_icon me-1"></i> <i class="bi bi-trash-fill delete_icon"></i></td>
-                    </tr>
-                    <tr>
-                      <!-- <td>Oxford International</td> -->
-                      <td>9</td>
-                      <td>Canada</td>
-                      <td><i class="bi bi-gear-wide setting_icon me-1"></i> <i class="bi bi-trash-fill delete_icon"></i></td>
-                    </tr>
-                    <tr>
-                      <!-- <td>Oxford International</td> -->
-                      <td>10</td>
-                      <td>Italy</td>
-                      <td><i class="bi bi-gear-wide setting_icon me-1"></i> <i class="bi bi-trash-fill delete_icon"></i></td>
-                    </tr>
+                    
                   </table>
                 </div>
                 </div>
-            </div>
+            </div>            
           </div>
         </div>
     <!-- *************************************************************************************************** -->
 
 </div>
 </app-layout>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Edit Category</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="closePopup()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="categoryForm">
+      <div class="modal-body bg-white">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Category Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" formControlName="categoryName">
+          </div>
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="save_button btn" (click)="updateCategory(categoryForm)" [disabled]="!categoryForm.valid">Save</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<ng-template #deletemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Delete Confirmation</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="closePopup()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <span class="text-justify">Are you sure, You Want To Delete This Information?</span>
+      </div>
+    </div>
+       
+      <div class="modal-footer mt-4">
+        <button type="button" class="save_button btn" (click)="deletePopup()">Yes, Continue</button>
+        <button type="button" class="save_button btn" (click)="closePopup()">Cancle</button>
+      </div>
+  </div>
+</ng-template>

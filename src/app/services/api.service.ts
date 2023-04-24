@@ -98,6 +98,9 @@ export class ApiService {
   studentSearch(postData: any): Observable<any> {
     return this.httpClient.post(environment.apiBaseUrl + '/student/search', postData).pipe(catchError(this.errorHandler));
   }
+  allocationReportSearch(postData: any): Observable<any> {
+    return this.httpClient.post(environment.apiBaseUrl + '/student/vehicleRoutes/search', postData).pipe(catchError(this.errorHandler));
+  }
 
   getEmployeeByRole(roleId: string): Observable<any> {
     return this.httpClient.get(environment.apiBaseUrl + '/employee/designation/' + roleId).pipe(catchError(this.errorHandler));
@@ -454,8 +457,31 @@ export class ApiService {
      
       return this.httpClient.post(environment.apiBaseUrl +'/teacher/add', postData ).pipe(catchError(this.errorHandler));
     }
-
-
+    //admision category
+    getClassAllSchedule(data): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl +'/schedule/academics', data).pipe(catchError(this.errorHandler));
+    }
+    addSchedule(data): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl +'/schedule', data).pipe(catchError(this.errorHandler));
+    }
+    getSalaryMonthWise(month, year): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl +'/salaryReceipt/'+ month +'/'+year).pipe(catchError(this.errorHandler));
+    }
+    updateSalaryReceipt(data): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl +'/salaryReceipt', data).pipe(catchError(this.errorHandler));
+    }
+    getCategory(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl +'/category/all' ).pipe(catchError(this.errorHandler));
+    }
+    saveCategory(postData: any  ): Observable<any> {     
+      return this.httpClient.post(environment.apiBaseUrl +'/category', postData ).pipe(catchError(this.errorHandler));
+    }
+    updateCategory(postData: any): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl + '/category', postData).pipe(catchError(this.errorHandler));
+    }
+    deleteCategory(id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/category/' + id).pipe(catchError(this.errorHandler));
+    }
   errorHandler(error: {
     error: {
         messge: string;
