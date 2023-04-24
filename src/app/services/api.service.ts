@@ -458,6 +458,9 @@ export class ApiService {
       return this.httpClient.post(environment.apiBaseUrl +'/teacher/add', postData ).pipe(catchError(this.errorHandler));
     }
     //admision category
+    getTeacherSchedule(data): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl +'/schedule/teacher', data).pipe(catchError(this.errorHandler));
+    }
     getClassAllSchedule(data): Observable<any> {
       return this.httpClient.post(environment.apiBaseUrl +'/schedule/academics', data).pipe(catchError(this.errorHandler));
     }
