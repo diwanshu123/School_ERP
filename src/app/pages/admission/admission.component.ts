@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { NgxFileDropEntry } from 'ngx-file-drop';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
@@ -24,8 +25,6 @@ export class AdmissionComponent {
   doc5: any;
   doc6: any;
   profile: any
-
-
   aceYear = [{ _id: "2020-2021", name: "2020-2021" }, { _id: "2021-2022", name: "2021-2022" }, { _id: "2022-2023", name: "2022-2023" }];
   gender=[{
     _id: "1",
@@ -37,15 +36,14 @@ export class AdmissionComponent {
 }
 ]
   guardianFields: boolean = false;
-  DOCS1: any;
-  DOCS2: any;
-  DOCS3: any;
-  DOCS4: any;
-  DOCS5: any;
-  DOCS6: any;
+ 
   ProfileIMG: any;
   guardianPicture: any
   isLoading: boolean;
+  image: any;
+  idCardDocument: any;
+  GuardianImage: any;
+  guardianProf: any;
 
 
 constructor(private api: ApiService, private toastr: ToastrService, private router: Router){
@@ -161,10 +159,15 @@ AddAdm(){
   postData.append("category", this._form.value.category);
   postData.append("studentClass", this._form.value.studentClass);
   postData.append("registerNo", this._form.value.registerNo);
-  postData.append("admissionDate", this._form.value.admissionDate);
+  // postData.append("admissionDate", this._form.value.admissionDate);
+  postData.append("admissionDate", moment(this._form.value.admissionDate).format("YYYY-MM-DD"));
   postData.append("firstName", this._form.value.firstName);
+  postData.append("rollNo", this._form.value.rollNo);
+
   postData.append("type", this._form.value.type);
-  postData.append("dob", this._form.value.dob);
+  // postData.append("dob", this._form.value.dob);
+  postData.append("dob", moment(this._form.value.dob).format("YYYY-MM-DD"));
+
   postData.append("number", this._form.value.number);
   postData.append("email", this._form.value.email);
   postData.append("lastName", this._form.value.lastName);
@@ -195,28 +198,21 @@ AddAdm(){
   postData.append("guardian[state]", this._form.value.state);
   postData.append("guardian[permanentAddress]", this._form.value.permanentAddress);
 
-  if(this.DOCS1) {
-    postData.append("signatureImage", this.DOCS1);
+  if(this.image) {
+    postData.append("image", this.image);
   }
-  if(this.DOCS2) {
-    postData.append("logoImage", this.DOCS2);
+  if(this.idCardDocument) {
+    postData.append("idCardDocument", this.idCardDocument);
   }
-  if(this.DOCS3) {
-    postData.append("backgroundImage", this.DOCS3);
+  if(this.GuardianImage) {
+    postData.append("guardian.image", this.GuardianImage);
   } 
-  if(this.DOCS4) {
-    postData.append("backgroundImage1", this.DOCS4);
-  } if(this.DOCS5) {
-    postData.append("backgroundImage2", this.DOCS5);
-  } if(this.DOCS6) {
-    postData.append("backgroundImage3", this.DOCS6);
-  } if(this.ProfileIMG) {
-    postData.append("ProfileIMG", this.ProfileIMG);
-  }
-  if(this.guardianPicture) {
-    postData.append("guardianPicture", this.guardianPicture);
-  }
+  if(this.guardianProf) {
+    postData.append("guardian.idProofDocument", this.guardianProf);
+  } 
 
+  console.log(this.image, this.idCardDocument, this.GuardianImage, this.guardianProf);
+  
   let postData2 = new FormData();
 
 
@@ -254,29 +250,22 @@ onFilesDropped(files: NgxFileDropEntry[], imgType: string)
     for(const droppedFile of files) {
       if(droppedFile.fileEntry.isFile)
       {
+
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         fileEntry.file((file: File) => {
-          if(imgType == 'doc1') {
-            this.doc1 = file;
+          if(imgType == 'image') {
+            this.image = file;
           }
-          else if(imgType == 'doc2') {
-            this.doc2 = file;
+          else if(imgType == 'idCardDocument') {
+            this.idCardDocument = file;
           }
-          else if(imgType == 'doc3') {
-            this.doc3 = file;
+          else if(imgType == 'GuardianImage') {
+            this.GuardianImage = file;
           }
-          else if(imgType == 'doc4') {
-            this.doc4 = file;
+          else if(imgType == 'guardianProf') {
+            this.guardianProf = file;
           }
-          else if(imgType == 'doc5') {
-            this.doc5 = file;
-          }
-          else if(imgType == 'doc6') {
-            this.doc6 = file;
-          }
-          else if(imgType == 'profile') {
-            this.profile = file;
-          }
+         
         })
       }
     }

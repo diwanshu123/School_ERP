@@ -57,23 +57,25 @@
       <div class="row pb-3">
         <div class="col-4">
           <div class="form-group">
-            <!-- <label>Class</label>
-            <input type="text" class="form-control"  formControlName="studentClass"> -->
-            <label class="form-label">Class <span class="error">*</span></label>
-            <select class="form-select" formControlName="studentClass" (change)="onChangeClass($event)">
+            <label>Class</label>
+            <input type="text" class="form-control"  formControlName="studentClass">
+            <!-- <label class="form-label">Class <span class="error">*</span></label> -->
+            <!-- <select class="form-select" formControlName="studentClass" (change)="onChangeClass($event)">
               <option disabled value="select">Select</option>
               <option *ngFor="let sec of classes" value="{{sec._id}}">{{sec.className}}</option>
-            </select>
+            </select> -->
           </div>
         </div>
 
         <div class="col-4">
           <div class="form-group">
             <label class="form-label">Section <span class="error">*</span></label>
-            <select class="form-select" formControlName="section">
+            <!-- <select class="form-select" formControlName="section">
               <option disabled value="select">Select</option>
               <option *ngFor="let sec of sections" value="{{sec._id}}">{{sec.name}}</option>
-            </select>
+            </select> -->
+            <input type="text" class="form-control"  formControlName="section">
+
           </div>
         </div>
 
@@ -115,10 +117,13 @@
         <div class="col-4">
           <div class="form-group">
             <label class="form-label">Gender <span class="error">*</span></label>
-            <select class="form-select" formControlName="gender">
+            <!-- <select class="form-select" formControlName="gender">
               <option disabled value="select">Select</option>
               <option *ngFor="let gen of gender" value="{{gen._id}}">{{gen.name}}</option>
-            </select>
+            </select> -->
+
+            <input type="text" class="form-control" formControlName="gender" >
+
           </div>
         </div>
       </div>
@@ -222,34 +227,34 @@
           <div class="col-2">
          
        
-            <div class="upload-cont">
-              <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'doc1')">
+            <!-- <div class="upload-cont">
+              <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'image')">
                 <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-                    <ng-container *ngIf="!doc1">
+                    <ng-container *ngIf="!image">
                    drop
                       <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()"> Files</a>
                     </ng-container>
                     <ng-container *ngIf="doc1">
-                      {{doc1.name}}
-                      <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="doc1=null">
+                      {{image.name}}
+                      <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="image=null">
                         Remove
                       </a>
                     </ng-container>
                 </ng-template>
               </ngx-file-drop>
-            </div>
+            </div> -->
           </div>
           <div class="col-2">
             <div class="upload-cont">
-              <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'doc2')">
+              <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'idCardDocument')">
                 <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-                    <ng-container *ngIf="!doc2">
+                    <ng-container *ngIf="!idCardDocument">
                    drop
                       <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()"> Files</a>
                     </ng-container>
-                    <ng-container *ngIf="doc2">
-                      {{doc2.name}}
-                      <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="doc2=null">
+                    <ng-container *ngIf="idCardDocument">
+                      {{idCardDocument.name}}
+                      <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="idCardDocument=null">
                         Remove
                       </a>
                     </ng-container>
@@ -257,7 +262,7 @@
               </ngx-file-drop>
             </div>
           </div>
-          <div class="col-2">
+          <!-- <div class="col-2">
             <div class="upload-cont">
               <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'doc3')">
                 <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
@@ -274,8 +279,8 @@
                 </ng-template>
               </ngx-file-drop>
             </div>
-          </div>
-          <div class="col-2">
+          </div> -->
+          <!-- <div class="col-2">
             <div class="upload-cont">
               <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'doc4')">
                 <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
@@ -292,8 +297,8 @@
                 </ng-template>
               </ngx-file-drop>
             </div>
-          </div>
-          <div class="col-2">
+          </div> -->
+          <!-- <div class="col-2">
             <div class="upload-cont">
               <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'doc5')">
                 <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
@@ -310,18 +315,18 @@
                 </ng-template>
               </ngx-file-drop>
             </div>
-          </div>
+          </div> -->
           <div class="col-2">
             <div class="upload-cont">
-              <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'doc6')">
+              <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'guardianProf')">
                 <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-                    <ng-container *ngIf="!doc6">
+                    <ng-container *ngIf="!guardianProf">
                    drop
                       <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()"> Files</a>
                     </ng-container>
-                    <ng-container *ngIf="doc6">
-                      {{doc6.name}}
-                      <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="doc6=null">
+                    <ng-container *ngIf="guardianProf">
+                      {{guardianProf.name}}
+                      <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="guardianProf=null">
                         Remove
                       </a>
                     </ng-container>
@@ -337,15 +342,15 @@
       <div class="profile-cont">
         <h2>Profile Picture</h2>
         <!-- <i><i class="fa-solid fa-user-plus"></i></i> -->
-        <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'profile')">
+        <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'image')">
           <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-              <ng-container *ngIf="!profile">
+              <ng-container *ngIf="!image">
             Upload  Profile
                 <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()"> Files</a>
               </ng-container>
-              <ng-container *ngIf="profile">
-                {{profile.name}}
-                <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="profile=null">
+              <ng-container *ngIf="image">
+                {{image.name}}
+                <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="image=null">
                   Remove
                 </a>
               </ng-container>
@@ -495,15 +500,15 @@
         <h2 >Guardian Picture</h2>
         <!-- <i><i class="fa-solid fa-user-plus"></i></i> -->
 
-        <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'guardianPicture')">
+        <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'GuardianImage')">
           <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-              <ng-container *ngIf="!guardianPicture">
+              <ng-container *ngIf="!GuardianImage">
             Upload  Profile
                 <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()"> Files</a>
               </ng-container>
-              <ng-container *ngIf="guardianPicture">
-                {{guardianPicture.name}}
-                <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="guardianPicture=null">
+              <ng-container *ngIf="GuardianImage">
+                {{GuardianImage.name}}
+                <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="GuardianImage=null">
                   Remove
                 </a>
               </ng-container>
