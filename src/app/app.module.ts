@@ -15,6 +15,8 @@ import { HumanRessourceComponent } from './pages/human-ressource/human-ressource
 import { ReportsComponent } from './pages/reports/reports.component';
 import { ToastrModule } from 'ngx-toastr';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 @NgModule({
     declarations: [
       AppComponent,
@@ -34,6 +36,8 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
       MatButtonModule,
       MatIconModule,
       SharedModule,
+      MatDatepickerModule,
+      MatNativeDateModule,
       ToastrModule.forRoot({positionClass: 'toast-center-center'}),
       ModalModule.forRoot()
     ]

@@ -36,7 +36,7 @@ export class AdmissionComponent {
 }
 ]
   guardianFields: boolean = false;
- 
+
   ProfileIMG: any;
   guardianPicture: any
   isLoading: boolean;
@@ -47,7 +47,7 @@ export class AdmissionComponent {
 
 
 constructor(private api: ApiService, private toastr: ToastrService, private router: Router){
-  
+
 
   this._form = new FormGroup({
     academicYear: new FormControl(null, [Validators.required]),
@@ -90,8 +90,8 @@ constructor(private api: ApiService, private toastr: ToastrService, private rout
     previousSchoolName: new FormControl(null, [Validators.required]),
     previousQualification: new FormControl(null, [Validators.required]),
     userName: new FormControl(null, [Validators.required]),
-  
-   
+
+
 
 
 
@@ -131,9 +131,9 @@ ngOnInit(): void {
 
 AddAdm(){
 
- 
+
   console.log(this._form.value);
-  
+
   let value = ""
 
   for(let key in this._form.value){
@@ -147,10 +147,10 @@ AddAdm(){
     value2 +=this._form2.value[key]
   }
   console.log(value2);
-  
-  let addmissionData = value + value2 
+
+  let addmissionData = value + value2
   console.log(addmissionData);
-  
+
 
   let postData = new FormData();
 
@@ -180,14 +180,13 @@ AddAdm(){
   postData.append("state", this._form.value.state);
   postData.append("presentAddress", this._form.value.presentAddress);
   postData.append("permanentAddress", this._form.value.permanentAddress);
-  
+
   postData.append("guardian[previousSchoolName]", this._form.value.previousSchoolName);
   postData.append("guardian[previousQualification]", this._form.value.previousQualification);
   postData.append("guardian[userName]", this._form.value.userName);
   postData.append("guardian[password]", this._form.value.password);
   postData.append("guardian[firstName]", this._form.value.firstName);
   postData.append("guardian[relation]", this._form.value.relation);
-  postData.append("guardian[firstName]", this._form.value.firstName);
   postData.append("guardian[fatherName]", this._form.value.fatherName);
   postData.append("guardian[motherName]", this._form.value.motherName);
   postData.append("guardian[alreadyExists]", this._form.value.alreadyExists);
@@ -206,13 +205,13 @@ AddAdm(){
   }
   if(this.GuardianImage) {
     postData.append("guardian.image", this.GuardianImage);
-  } 
+  }
   if(this.guardianProf) {
     postData.append("guardian.idProofDocument", this.guardianProf);
-  } 
+  }
 
   console.log(this.image, this.idCardDocument, this.GuardianImage, this.guardianProf);
-  
+
   let postData2 = new FormData();
 
 
@@ -238,7 +237,7 @@ console.log(postData);
 
 }
 
- 
+
 onFilesDropped(files: NgxFileDropEntry[], imgType: string)
 {
   console.log(files);
@@ -265,7 +264,7 @@ onFilesDropped(files: NgxFileDropEntry[], imgType: string)
           else if(imgType == 'guardianProf') {
             this.guardianProf = file;
           }
-         
+
         })
       }
     }
@@ -275,7 +274,7 @@ getAllCateogy(){
   this.api.getCategory().subscribe(data =>{
     this.categoryData = data.categories;
     console.log(this.categoryData);
-    
+
    });
 }
 
@@ -292,8 +291,8 @@ guardian(event: any){
   if(event.target.checked){
     this.guardianFields = true
   }
-  
-  
+
+
 }
 
 onChangeClass(event){
