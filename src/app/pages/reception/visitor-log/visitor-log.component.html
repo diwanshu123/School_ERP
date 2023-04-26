@@ -87,11 +87,14 @@
 
             <div class="mb-3">
               <label class="form-label">Date</label>
-              <!-- <input type="text" formControlName="date"  class="form-control"> -->
-                      <mat-datepicker-toggle  matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-      
-              <input matInput class="form-control" [matDatepicker]="picker2"
-              placeholder="dd-mm-yyyy" formControlName="date" >
+              
+
+
+              <div class="input-group flex-nowrap">
+            
+                <input type="text" class="date-picker-input" [matDatepicker]="picker2"
+                  (click)="picker2.open()" formControlName="date">
+              </div>
               <mat-datepicker #picker2></mat-datepicker>
             </div>
 

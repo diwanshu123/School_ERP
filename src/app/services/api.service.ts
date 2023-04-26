@@ -404,6 +404,9 @@ export class ApiService {
     updateExpense(expenseId: string, postData: any): Observable<any> {
       return this.httpClient.put(environment.apiBaseUrl + '/vehicle/expense/' + expenseId, postData).pipe(catchError(this.errorHandler));
     }
+    deleteVehicleExpense(id: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/vehicle/:id/expense/' + id).pipe(catchError(this.errorHandler));
+    }
     getAllExapense(vehicleId: String): Observable<any> {
       return this.httpClient.get(environment.apiBaseUrl + '/vehicle/'  + vehicleId ).pipe(catchError(this.errorHandler));
     }
@@ -485,6 +488,12 @@ export class ApiService {
     deleteCategory(id: string): Observable<any> {
       return this.httpClient.delete(environment.apiBaseUrl +'/category/' + id).pipe(catchError(this.errorHandler));
     }
+    // admission
+
+    addAdmission(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl +'/student/admission', postData ).pipe(catchError(this.errorHandler));
+    }
+
   errorHandler(error: {
     error: {
         messge: string;

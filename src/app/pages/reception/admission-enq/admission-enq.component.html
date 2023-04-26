@@ -73,15 +73,27 @@
 
             <div class="mb-3">
               <label class="form-label">Date Of Birth *</label>
-              <!-- <input type="text" formControlName="dob" class="form-control"> -->
-
+          
+<!-- 
               <mat-datepicker-toggle  matSuffix [for]="picker1"></mat-datepicker-toggle>
       
               <input matInput class="form-control" [matDatepicker]="picker1"
               placeholder="dd-mm-yyyy" formControlName="dob" >
             
     
-         <mat-datepicker #picker1></mat-datepicker>
+         <mat-datepicker #picker1></mat-datepicker> -->
+
+       
+          
+           
+       
+            <div class="input-group flex-nowrap">
+            
+              <input type="text" class="date-picker-input" [matDatepicker]="picker1"
+                (click)="picker1.open()" formControlName="dob">
+            </div>
+            <mat-datepicker #picker1></mat-datepicker>
+  
             </div>
 
             <!-- <div class="mb-3">

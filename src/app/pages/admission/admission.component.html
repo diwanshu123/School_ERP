@@ -1,5 +1,6 @@
 <app-layout>
   <div class="container p-5">
+    <form [formGroup]="_form" (ngSubmit)="AddAdm()">
     <div class="mb-5">
       <div class="f-heading">
         <h4>
@@ -11,29 +12,44 @@
       <div class="row pb-3">
         <div class="col-3">
           <div class="form-group">
-            <label>Academic Year</label>
-            <input type="text" class="form-control" >
+            <label class="form-label">Year <span class="error">*</span></label>
+            <select class="form-select" formControlName="academicYear">
+              <option disabled value="select">Select</option>
+              <option *ngFor="let day of aceYear" value="{{day._id}}">{{day.name}}</option>
+            </select>
           </div>
         </div>
 
         <div class="col-3">
           <div class="form-group">
             <label>Register</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control"  formControlName="registerNo">
           </div>
         </div>
 
         <div class="col-3">
           <div class="form-group">
             <label>Roll</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control"  formControlName="rollNo">
           </div>
         </div>
-
+        <div class="col-3">
+          <div class="form-group">
+            <label>Type</label>
+            <input type="text" class="form-control"  formControlName="type">
+          </div>
+        </div>
         <div class="col-3">
           <div class="form-group">
             <label>Admission Date</label>
-            <input type="text" class="form-control" >
+           
+       
+            <div class="input-group flex-nowrap">
+            
+              <input type="text" class="date-picker-input" [matDatepicker]="picker"
+                (click)="picker.open()" formControlName="admissionDate">
+            </div>
+            <mat-datepicker #picker></mat-datepicker>
           </div>
         </div>
       </div>
@@ -41,22 +57,33 @@
       <div class="row pb-3">
         <div class="col-4">
           <div class="form-group">
-            <label>Class</label>
-            <input type="text" class="form-control" >
+            <!-- <label>Class</label>
+            <input type="text" class="form-control"  formControlName="studentClass"> -->
+            <label class="form-label">Class <span class="error">*</span></label>
+            <select class="form-select" formControlName="studentClass" (change)="onChangeClass($event)">
+              <option disabled value="select">Select</option>
+              <option *ngFor="let sec of classes" value="{{sec._id}}">{{sec.className}}</option>
+            </select>
           </div>
         </div>
 
         <div class="col-4">
           <div class="form-group">
-            <label>Section</label>
-            <input type="text" class="form-control" >
+            <label class="form-label">Section <span class="error">*</span></label>
+            <select class="form-select" formControlName="section">
+              <option disabled value="select">Select</option>
+              <option *ngFor="let sec of sections" value="{{sec._id}}">{{sec.name}}</option>
+            </select>
           </div>
         </div>
 
         <div class="col-4">
           <div class="form-group">
-            <label>Category</label>
-            <input type="text" class="form-control" >
+            <label class="form-label">Category <span class="error">*</span></label>
+            <select class="form-select" formControlName="category">
+              <option disabled value="select">Select</option>
+              <option *ngFor="let cat of categoryData" value="{{cat._id}}">{{cat.categoryName}}</option>
+            </select>
           </div>
         </div>
       </div>
@@ -74,21 +101,24 @@
         <div class="col-4">
           <div class="form-group">
             <label>First Name</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control"  formControlName="firstName">
           </div>
         </div>
 
         <div class="col-4">
           <div class="form-group">
             <label>Last Name</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control" formControlName="lastName" >
           </div>
         </div>
-
+        
         <div class="col-4">
           <div class="form-group">
-            <label>Gender</label>
-            <input type="text" class="form-control" >
+            <label class="form-label">Gender <span class="error">*</span></label>
+            <select class="form-select" formControlName="gender">
+              <option disabled value="select">Select</option>
+              <option *ngFor="let gen of gender" value="{{gen._id}}">{{gen.name}}</option>
+            </select>
           </div>
         </div>
       </div>
@@ -97,14 +127,20 @@
         <div class="col-6">
           <div class="form-group">
             <label>Blood group</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control"   formControlName="bloodGroup">
           </div>
         </div>
 
         <div class="col-6">
           <div class="form-group">
-            <label>Date of birth</label>
-            <input type="text" class="form-control" >
+            <label> Date of Birth</label>
+       
+            <div class="input-group flex-nowrap">
+           
+              <input type="text" class="date-picker-input" [matDatepicker]="picker2"
+                (click)="picker2.open()" formControlName="dob">
+            </div>
+            <mat-datepicker #picker2></mat-datepicker>
           </div>
         </div>
       </div>
@@ -113,21 +149,21 @@
         <div class="col-4">
           <div class="form-group">
             <label>Mother Tongue</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control"  formControlName="motherTongue">
           </div>
         </div>
 
         <div class="col-4">
           <div class="form-group">
             <label>Religion</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control"  formControlName="religion">
           </div>
         </div>
 
         <div class="col-4">
           <div class="form-group">
             <label>Caste</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control" formControlName="caste">
           </div>
         </div>
       </div>
@@ -136,28 +172,28 @@
         <div class="col-3">
           <div class="form-group">
             <label>Mobile No</label>
-            <input type="text" class="form-control" >
+            <input type="number" class="form-control" formControlName="number" >
           </div>
         </div>
 
         <div class="col-3">
           <div class="form-group">
             <label>Email</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control"  formControlName="email">
           </div>
         </div>
 
         <div class="col-3">
           <div class="form-group">
             <label>City</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control"  formControlName="city">
           </div>
         </div>
 
         <div class="col-3">
           <div class="form-group">
             <label>State</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control"  formControlName="state">
           </div>
         </div>
       </div>
@@ -166,14 +202,14 @@
         <div class="col-6">
           <div class="form-group">
             <label>Permanent address</label>
-            <textarea type="text" class="form-control" > </textarea>
+            <textarea type="text" class="form-control"  formControlName="permanentAddress" > </textarea>
           </div>
         </div>
 
         <div class="col-6">
           <div class="form-group">
             <label>Present address</label>
-            <textarea type="text" class="form-control" > </textarea>
+            <textarea type="text" class="form-control" formControlName="presentAddress" > </textarea>
           </div>
         </div>
       </div>
@@ -184,33 +220,113 @@
         <legend>Upload Document</legend>
         <div class="row upload-cont-row">
           <div class="col-2">
+         
+       
             <div class="upload-cont">
-              <i class="fa-solid fa-plus"></i>
+              <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'doc1')">
+                <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                    <ng-container *ngIf="!doc1">
+                   drop
+                      <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()"> Files</a>
+                    </ng-container>
+                    <ng-container *ngIf="doc1">
+                      {{doc1.name}}
+                      <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="doc1=null">
+                        Remove
+                      </a>
+                    </ng-container>
+                </ng-template>
+              </ngx-file-drop>
             </div>
           </div>
           <div class="col-2">
             <div class="upload-cont">
-              <i class="fa-solid fa-plus"></i>
+              <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'doc2')">
+                <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                    <ng-container *ngIf="!doc2">
+                   drop
+                      <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()"> Files</a>
+                    </ng-container>
+                    <ng-container *ngIf="doc2">
+                      {{doc2.name}}
+                      <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="doc2=null">
+                        Remove
+                      </a>
+                    </ng-container>
+                </ng-template>
+              </ngx-file-drop>
             </div>
           </div>
           <div class="col-2">
             <div class="upload-cont">
-              <i class="fa-solid fa-plus"></i>
+              <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'doc3')">
+                <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                    <ng-container *ngIf="!doc3">
+                   drop
+                      <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()"> Files</a>
+                    </ng-container>
+                    <ng-container *ngIf="doc3">
+                      {{doc3.name}}
+                      <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="doc3=null">
+                        Remove
+                      </a>
+                    </ng-container>
+                </ng-template>
+              </ngx-file-drop>
             </div>
           </div>
           <div class="col-2">
             <div class="upload-cont">
-              <i class="fa-solid fa-plus"></i>
+              <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'doc4')">
+                <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                    <ng-container *ngIf="!doc4">
+                   drop
+                      <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()"> Files</a>
+                    </ng-container>
+                    <ng-container *ngIf="doc4">
+                      {{doc4.name}}
+                      <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="doc4=null">
+                        Remove
+                      </a>
+                    </ng-container>
+                </ng-template>
+              </ngx-file-drop>
             </div>
           </div>
           <div class="col-2">
             <div class="upload-cont">
-              <i class="fa-solid fa-plus"></i>
+              <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'doc5')">
+                <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                    <ng-container *ngIf="!doc5">
+                   drop
+                      <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()"> Files</a>
+                    </ng-container>
+                    <ng-container *ngIf="doc5">
+                      {{doc5.name}}
+                      <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="doc5=null">
+                        Remove
+                      </a>
+                    </ng-container>
+                </ng-template>
+              </ngx-file-drop>
             </div>
           </div>
           <div class="col-2">
             <div class="upload-cont">
-              <i class="fa-solid fa-plus"></i>
+              <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'doc6')">
+                <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                    <ng-container *ngIf="!doc6">
+                   drop
+                      <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()"> Files</a>
+                    </ng-container>
+                    <ng-container *ngIf="doc6">
+                      {{doc6.name}}
+                      <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="doc6=null">
+                        Remove
+                      </a>
+                    </ng-container>
+                </ng-template>
+              </ngx-file-drop>
             </div>
           </div>
         </div>
@@ -220,34 +336,58 @@
     <div class="mb-5">
       <div class="profile-cont">
         <h2>Profile Picture</h2>
-        <i><i class="fa-solid fa-user-plus"></i></i>
+        <!-- <i><i class="fa-solid fa-user-plus"></i></i> -->
+        <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'profile')">
+          <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+              <ng-container *ngIf="!profile">
+            Upload  Profile
+                <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()"> Files</a>
+              </ng-container>
+              <ng-container *ngIf="profile">
+                {{profile.name}}
+                <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="profile=null">
+                  Remove
+                </a>
+              </ng-container>
+          </ng-template>
+        </ngx-file-drop>
       </div>
     </div>
 
+<!-- <form [formGroup]="_form2" (ngSubmit)="AddAdm()"> -->
     <div class="mb-5">
       <div class="f-heading guardian">
         <h4 style="color: rgb(220, 215, 80) !important;">
           <i class="fa-solid fa-graduation-cap"></i>
+
           Guardian Details
         </h4>
       </div>
+
+    
+
       <div class="form-check py-2 guard-check">
-        <input class="form-check-input" type="checkbox" value="" style="color: aqua!important;" id="flexCheckDefault">
+        <!-- <input class="form-check-input" type="checkbox" value="" style="color: aqua!important;" id="flexCheckDefault">
+         -->
+         <mat-checkbox class="example-margin"></mat-checkbox>
         <label class="form-check-label" for="flexCheckDefault" style="color: aqua;">Guardian already exist</label>
       </div>
+
+      <div  >
+        <!-- *ngIf="guardianFields ==true" -->
 
       <div class="row pb-3">
         <div class="col-6">
           <div class="form-group">
             <label>First Name</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control"  formControlName="firstName">
           </div>
         </div>
 
         <div class="col-6">
           <div class="form-group">
             <label>Relation</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control"  formControlName="relation">
           </div>
         </div>
       </div>
@@ -256,14 +396,14 @@
         <div class="col-6">
           <div class="form-group">
             <label>Father name</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control" formControlName="fatherName" >
           </div>
         </div>
 
         <div class="col-6">
           <div class="form-group">
             <label>Mother name</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control"  formControlName="motherName">
           </div>
         </div>
       </div>
@@ -272,21 +412,21 @@
         <div class="col-4">
           <div class="form-group">
             <label>Occupation</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control"  formControlName="occupation">
           </div>
         </div>
 
         <div class="col-4">
           <div class="form-group">
             <label>Income</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control" formControlName>
           </div>
         </div>
 
         <div class="col-4">
           <div class="form-group">
             <label>Education</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control" formControlName>
           </div>
         </div>
       </div>
@@ -295,49 +435,84 @@
         <div class="col-3">
           <div class="form-group">
             <label>Mobile no</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control" formControlName="number">
           </div>
         </div>
 
         <div class="col-3">
           <div class="form-group">
             <label>Email</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control"  formControlName="email">
           </div>
         </div>
 
         <div class="col-3">
           <div class="form-group">
             <label>City</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control" formControlName="city" >
           </div>
         </div>
 
         <div class="col-3">
           <div class="form-group">
             <label>State</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control" formControlName="state">
           </div>
         </div>
+
+        <div class="col-3">
+          <div class="form-group">
+            <label>previous Qualification</label>
+            <input type="text" class="form-control" formControlName="previousQualification" >
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <label>previous SchoolName</label>
+            <input type="text" class="form-control" formControlName="previousSchoolName" >
+          </div>
+        </div>
+
       </div>
 
       <div class="row pb-3">
         <div class="col-12">
           <div class="form-group">
             <label>Permanent address</label>
-            <textarea type="text" class="form-control" ></textarea>
+            <textarea type="text" class="form-control"  formControlName="permanentAddress"></textarea>
           </div>
         </div>
       </div>
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" class="form-control"  formcontrolName="userName">
+      </div>
+   
     </div>
 
     <div class="mb-5">
       <div class="profile-cont">
         <h2 >Guardian Picture</h2>
-        <i><i class="fa-solid fa-user-plus"></i></i>
+        <!-- <i><i class="fa-solid fa-user-plus"></i></i> -->
+
+        <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'guardianPicture')">
+          <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+              <ng-container *ngIf="!guardianPicture">
+            Upload  Profile
+                <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()"> Files</a>
+              </ng-container>
+              <ng-container *ngIf="guardianPicture">
+                {{guardianPicture.name}}
+                <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="guardianPicture=null">
+                  Remove
+                </a>
+              </ng-container>
+          </ng-template>
+        </ngx-file-drop>
       </div>
     </div>
 
+  </div>
     <div class="mb-5">
       <div class="f-heading login">
         <h4 style="color: greenyellow !important;">
@@ -350,14 +525,14 @@
         <div class="col-4">
           <div class="form-group">
             <label>Username</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control"  formcontrolName="userName">
           </div>
         </div>
 
         <div class="col-4">
           <div class="form-group">
             <label>Password</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control" formControlName="password">
           </div>
         </div>
 
@@ -461,5 +636,5 @@
     <div class="mb-5 text-end">
       <button class="btn btn-lg btn-success">Save</button>
     </div>
-  </div>
+  </form> </div>
 </app-layout>

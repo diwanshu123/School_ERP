@@ -16,8 +16,10 @@ export class AssignVehicleComponent {
   assigns: any[] = []
   routes: any[] = [];
   vehicles: any[] = [];
-  stopPages: any[] = [];
+  stopPages: any[] = []; 
   vAssignForm: FormGroup;
+  editExpense: FormGroup;
+
   selectedAssign: any;
   isLoading: boolean;
   ExpensForm :FormGroup
@@ -25,6 +27,12 @@ export class AssignVehicleComponent {
   doc2: any;
   doc3: any;
   selectedEnqaa: any;
+  // cart_detail: Array<any> = [];
+  getVehcileID:  string;
+  vehiclesId: String;
+  selectedExpense: any;
+  expenseData: any;
+
 
   constructor(private api: ApiService, private toastr: ToastrService, private router: Router)
   {
@@ -41,6 +49,17 @@ export class AssignVehicleComponent {
       expenseTime: new FormControl(null, [Validators.required]),
       description: new FormControl(null, [Validators.required]),
     });
+    this.editExpense = new FormGroup({
+      // vehicleId: new FormControl("select", [Validators.required]),
+
+      expenseId: new FormControl("select", [Validators.required]),
+      expenseName: new FormControl(null, [Validators.required]),
+      expenseValue: new FormControl(null, [Validators.required]),
+      expenseTime: new FormControl(null, [Validators.required]),
+      description: new FormControl(null, [Validators.required]),
+      // description: new FormControl(null, [Validators.required]),
+
+    })
   }
 data:any
   ngOnInit(): void {
@@ -48,6 +67,9 @@ data:any
     this.getAllRoutes();
     this.getAllVehicles()
     this.selectedEnq(this.data)
+    // this.getAllVehicleExoense()
+    console.log(this.getVehcileID);
+
   }
 
   getAllVehicleAssigns()
@@ -149,17 +171,60 @@ data:any
     this.api.getAllVehicles().subscribe(resp => {
       this.vehicles = resp.vehicles;
       
-      console.log(this.vehicles);
-      
+    console.log(this.vehicles);
+    
     });
+          
+  
   }
+  getEdit(data){
+    console.log(data);
+
+    this.selectedExpense=data.expenses[0]._id
+    this.expenseData = data.expenses[0]
+    console.log(this.selectedExpense);
+    console.log(this.expenseData._id);
+
+
+    this.editExpense.patchValue({
+
+      expenseId: this.expenseData._id,
+      vehicleId: this.selectedExpense.vehicleNo,
+
+      expenseName: data.expenses[0].name,
+
+      expenseValue: this.expenseData.amount,
+      expenseTime: this.expenseData.time ,
+      description: this.expenseData.description,
+    
+    
+  })
+  }
+  
+
+  // getAllVehicleExoense()
+  // {
+  //   // this.cart_detail = this.vehiclesId
+    
+  //   this.api.getAllExapense(this.getVehcileID).subscribe(resp => {
+  //   console.log(this.getVehcileID);
+  //     this.vehicles = resp.vehicles;
+      
+  //     console.log(this.vehicles);
+      
+  //   });
+  // }
   selectedEnq(vehd : any){
+
+    
     this.selectedEnqaa 
     console.log(this.selectedEnqaa);
+
+  
+
+  
     
-
-  }
-
+}
   assignVehicle()
   {
     this.isLoading = true;
@@ -200,5 +265,42 @@ data:any
       this.isLoading = false;
       console.error(err);
     })
+  }
+  
+  deleteVehicleExpen()
+  {
+    this.isLoading = true;
+    this.api.deleteVehicleExpense(this.expenseData._id).subscribe(resp => {
+      console.log(resp);
+      this.isLoading = false;
+      document.getElementById('modalDismissBtn')?.click();
+      this.getAllVehicleAssigns();
+    },
+    (err) => {
+      this.isLoading = false;
+      console.error(err);
+    })
+  }
+  updateExpense(){
+    this.expenseData 
+    console.log(this.expenseData._id);
+    
+
+    this.isLoading = true;
+    console.log(":this.editDistForm.value", this.editExpense.value);
+    
+    this.api.updateExpense(this.editExpense.value, this.expenseData._id).subscribe(resp => {
+      console.log(resp);
+      
+      this.isLoading = false;
+      this.toastr.success(resp.message, "  update success");
+      document.getElementById('editModalDismissBtn')?.click();
+      this.getAllVehicles();
+    },
+    (err) => {
+      this.isLoading = false;
+      this.toastr.error(err, "E update failed");
+    })
+  
   }
 }
