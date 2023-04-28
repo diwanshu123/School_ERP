@@ -488,11 +488,26 @@ export class ApiService {
     deleteCategory(id: string): Observable<any> {
       return this.httpClient.delete(environment.apiBaseUrl +'/category/' + id).pipe(catchError(this.errorHandler));
     }
-    // admission
+    // admission 
 
     addAdmission(postData: any): Observable<any> {
       return this.httpClient.post(environment.apiBaseUrl +'/student/admission', postData ).pipe(catchError(this.errorHandler));
     }
+
+    uploadCSV(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl +'/student/uploadcsv', postData ).pipe(catchError(this.errorHandler));
+    }
+    AssignSubject(postData: any): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl +'/academic/subjects/add', postData ).pipe(catchError(this.errorHandler));
+    }
+
+    getAllStudent(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl +'/student/all' ).pipe(catchError(this.errorHandler));
+    }
+    getAllAcademic(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl +'/academic/all' ).pipe(catchError(this.errorHandler));
+    }
+
 
   errorHandler(error: {
     error: {

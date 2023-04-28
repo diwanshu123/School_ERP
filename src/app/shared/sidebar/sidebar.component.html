@@ -347,6 +347,24 @@
   </mat-expansion-panel>
 
 
+  
+  <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/reception') ? true : false">
+    <mat-expansion-panel-header>
+      <mat-list-item [ngClass]="currentUrl.includes('/reception') ? 'active' : ''">
+        <mat-icon matListItemIcon>photo_alum</mat-icon> App Settings
+      </mat-list-item>
+    </mat-expansion-panel-header>
+    <!--Sub Menu-->
+    <div class="sub-menu-cont">
+      <mat-list-item class="sub-menu" [routerLink]="routes.PARENTAPP" routerLinkActive="sub-active">
+   Parent App
+      </mat-list-item>
+   
+   
+    </div>
+  </mat-expansion-panel>
+
+
   <mat-list-item routerLink="{{routes.CAREERS}}" routerLinkActive="active">
     <mat-icon matListItemIcon>library_books</mat-icon> Reports
   </mat-list-item>

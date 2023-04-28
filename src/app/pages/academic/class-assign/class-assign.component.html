@@ -45,37 +45,62 @@
       </mat-tab>
 
       <mat-tab label="Assign">
+        <form [formGroup]="classAssignForm"  (ngSubmit)="AssignClassTeacher()">
         <div class="row mt-5 mb-3">
-          <div class="col-4">
-            <!-- <label class="form-label">Class *</label>
-            <input type="text" class="form-control"> -->
+        
+          <div class="col-3">
+        
+            <label class="form-label">Academic Year *</label>
+            <select class="form-select" formControlName="academicYear">
+              <option disabled value="select">Select</option>
+              <!-- <option *ngFor="let stud of students" ></option> -->
+              <option *ngFor="let stud of academics" [value]="stud._id" >{{stud.academicYear}}</option>
+
+            </select>
+          </div>
+          <div class="col-3">
+        
             <label class="form-label">Class *</label>
-            <select class="form-select" formControlName="class">
+            <select class="form-select" formControlName="studentClass">
               <option disabled value="select">Select</option>
               <option *ngFor="let sec of classes" [value]="sec._id">{{sec.className}}</option>
             </select>
           </div>
-          <div class="col-4 offset-4">
+          <div class="col-3 ">
             <label class="form-label">Section *</label>
-            <select class="form-select" formControlName="sections">
+            <select class="form-select" formControlName="section">
               <option disabled value="select">Select</option>
               <option *ngFor="let sec of sections" [value]="sec._id">{{sec.name}}</option>
             </select>
           </div>
         </div>
 
-        <div class="row mt-5 mb-3">
-          <div class="col-4">
+        <!-- <div class="row mt-5 mb-3"> -->
+          <div class="col-3">
             <label class="form-label">Subject *</label>
-            <select class="form-select" formControlName="sections">
-              <option disabled value="select">Select</option>
-              <option *ngFor="let sec of subjects" [value]="sec._id">{{sec.subjectName}}</option>
-            </select>
+     
+<!-- 
+            <ng-select  style="border-color: aqua;" [multiple]="true">
+              <ng-option  class="selectbox" formControlName="subjects"
+               placeholder="Select subjects" 
+               *ngFor="let sec of subjects"
+               bindValue="_id"
+                [value]="sec.id">{{sec.subjectName}}</ng-option>
+           </ng-select> -->
+           <mat-form-field appearance="fill">
+            <mat-label>Select Subjects</mat-label>
+            <mat-select formControlName="subjects" multiple>
+              <mat-option *ngFor="let sec of subjects" [value]="sec._id">{{sec.subjectName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        
           </div>
-        </div>
+        <!-- </div> -->
         <div class="text-end mb-5">
           <button class="btn">Save</button>
         </div>
+        </form>
       </mat-tab>
     </mat-tab-group>
   </div>

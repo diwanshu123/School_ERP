@@ -41,6 +41,8 @@ export class LeaveCategoryComponent implements OnInit {
   {
     this.api.getLeaveCategory().subscribe(resp => {
       this.leaveCategories = resp.leavesCategory;
+      console.log(this.leaveCategories);
+      
       this.getDesignaions();
     })
   }
@@ -49,14 +51,20 @@ export class LeaveCategoryComponent implements OnInit {
   {
     this.api.getDesignaions().subscribe(resp => {
       this.designations = resp.designations;
+      console.log(this.designations);
+      
       this.mapLeaveDesignation();
     });
-  }
+  }  
 
   mapLeaveDesignation()
   {
     this.leaveCategories.forEach(leave => {
+      console.log(leave);
+      
       leave["designationDetail"] = this.designations.find(d => d._id == leave.designation);
+      console.log(leave.d);
+      
     });
   }
 

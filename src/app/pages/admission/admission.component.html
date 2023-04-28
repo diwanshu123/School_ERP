@@ -58,8 +58,7 @@
         <div class="col-4">
           <div class="form-group">
             <label>Class</label>
-            <!-- <input type="text" class="form-control"  formControlName="studentClass"> -->
-            <!-- <label class="form-label">Class <span class="error">*</span></label> -->
+     
             <select class="form-select" formControlName="studentClass" (change)="onChangeClass($event)">
               <option disabled value="select">Select</option>
               <option *ngFor="let sec of classes" value="{{sec._id}}">{{sec.className}}</option>
@@ -566,14 +565,27 @@
         <div class="col-6">
           <div class="form-group">
             <label >Transport route</label>
-            <input type="text" class="form-control" >
+           
+             
+             <select class="form-select" formControlName="academicYear">
+               <option disabled value="select">Select</option>
+               <option *ngFor="let day of routes" value="{{day._id}}">{{day.routeName}}</option>
+             </select>
           </div>
         </div>
+
+ 
 
         <div class="col-6">
           <div class="form-group">
             <label>Vehicle no</label>
-            <input type="text" class="form-control" >
+        
+           
+             
+            <select class="form-select" formControlName="academicYear">
+              <option disabled value="select">Select</option>
+              <option *ngFor="let day of vehicles" value="{{day._id}}">{{day.vehicleNo}}</option>
+            </select>
           </div>
         </div>
       </div>

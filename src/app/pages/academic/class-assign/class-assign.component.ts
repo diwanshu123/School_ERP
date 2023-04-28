@@ -15,6 +15,11 @@ classAssignForm: FormGroup
   classes: any[] = [];
   sections: any[] = [];
   subjects: any[] = [];
+  students: any[]=[]
+  academics:  any=[]
+  aceYear = [{ _id: "2020-2021", name: "2020-2021" }, { _id: "2021-2022", name: "2021-2022" }, { _id: "2022-2023", name: "2022-2023" }];
+  acdamic: any;
+  academic: any[]=[];
 
 
   constructor(private api: ApiService, private toastr: ToastrService, private router: Router)
@@ -22,10 +27,10 @@ classAssignForm: FormGroup
    
     this.classAssignForm = new FormGroup({
       // vehicleId: new FormControl("select", [Validators.required]),
-      expenseName: new FormControl(null, [Validators.required]),
-      expenseValue: new FormControl(null, [Validators.required]),
-      expenseTime: new FormControl(null, [Validators.required]),
-      description: new FormControl(null, [Validators.required]),
+      academicYear: new FormControl(null, [Validators.required]),
+      studentClass: new FormControl(null, [Validators.required]),
+      section: new FormControl(null, [Validators.required]),
+      subjects: new FormControl(null, [Validators.required]),
 
     });
   }
@@ -35,6 +40,9 @@ classAssignForm: FormGroup
     this.getAllSection();
     this.getAllClass();
     this.getSubject();
+    this.getAllStudent()
+    this.getAllAcademics()
+  
 
   }
   getSubject(){
@@ -57,6 +65,8 @@ classAssignForm: FormGroup
     });
 
 }
+
+
   getAllClass(){
    
   
@@ -64,7 +74,53 @@ classAssignForm: FormGroup
       console.log(resp);
       
       this.classes = resp.classes
+
     });
+
+}
+
+mapAcademicYear()
+{
+  console.log(",-----------");
+
+  this.students.forEach(stud => {
+console.log(stud);
+
+    
+stud["academicYear"] = this.academics.find(d => d._id == stud.academic);
+ 
+    
+  });
+
+  
+}
+
+
+
+getAllAcademics(){
+   
+  
+  this.api.getAllAcademic().subscribe(resp => {
+
+    
+    this.academics = resp.academics
+    console.log(this.academics);
+    
+ this.mapAcademicYear()
+
+  });
+
+}
+getAllStudent(){
+   
+  
+  this.api.getAllStudent().subscribe(resp => {
+    console.log(resp);
+    
+    this.students = resp.students
+    // this.mapAcademicYear()
+
+  });
 
 }
   AssignClassTeacher(){
@@ -73,11 +129,11 @@ classAssignForm: FormGroup
    
    
     // console.log(postData);
-    this.api.addExpensReport(this.classAssignForm.value ).subscribe(resp => {
+    this.api.AssignSubject(this.classAssignForm.value ).subscribe(resp => {
     console.log(resp);
   
       this.isLoading = false;
-      this.toastr.success(resp.message, "Add Expense  success");
+      this.toastr.success(resp.message, "Add  success");
    
   
      
