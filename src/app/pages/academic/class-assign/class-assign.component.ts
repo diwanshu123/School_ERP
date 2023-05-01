@@ -88,6 +88,8 @@ console.log(stud);
 
     
 stud["academicYear"] = this.academics.find(d => d._id == stud.academic);
+console.log(stud.academic._id);
+
  
     
   });
@@ -106,7 +108,7 @@ getAllAcademics(){
     this.academics = resp.academics
     console.log(this.academics);
     
- this.mapAcademicYear()
+//  this.mapAcademicYear()
 
   });
 
@@ -118,7 +120,7 @@ getAllStudent(){
     console.log(resp);
     
     this.students = resp.students
-    // this.mapAcademicYear()
+    this.mapAcademicYear()
 
   });
 

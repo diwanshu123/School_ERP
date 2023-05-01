@@ -59,7 +59,9 @@ export class ClassScheduleComponent {
       section:s_section
     }
     this.api.getClassAllSchedule(payload).subscribe(resp => {
-      this.scheduleArr = resp.schedule;
+      console.log(resp);
+      
+      this.scheduleArr = resp.marks;
     });
   }
   

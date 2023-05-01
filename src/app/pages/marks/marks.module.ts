@@ -12,6 +12,7 @@ import { ExamSetupComponent } from './exam-setup/exam-setup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExamSetupEditComponent } from './exam-setup/exam-setup-edit/exam-setup-edit.component';
 import { GradeEditComponent } from './grade-range/grade-edit/grade-edit.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -33,7 +34,7 @@ import { GradeEditComponent } from './grade-range/grade-edit/grade-edit.componen
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-   
+    MatCheckboxModule
     
  
   ]

@@ -503,9 +503,19 @@ export class ApiService {
 
     getAllStudent(): Observable<any> {
       return this.httpClient.get(environment.apiBaseUrl +'/student/all' ).pipe(catchError(this.errorHandler));
-    }
+    } 
     getAllAcademic(): Observable<any> {
       return this.httpClient.get(environment.apiBaseUrl +'/academic/all' ).pipe(catchError(this.errorHandler));
+    }
+
+ 
+
+    getMarksAll(data): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl +'/marks/all',  data ).pipe(catchError(this.errorHandler));
+    }
+
+    getMarksAllById(data): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl +'/marks/student',  data ).pipe(catchError(this.errorHandler));
     }
 
 
