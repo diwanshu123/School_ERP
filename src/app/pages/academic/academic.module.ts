@@ -13,8 +13,6 @@ import { ClassAssignComponent } from './class-assign/class-assign.component';
 import { ClassScheduleAddComponent } from './class-schedule-add/class-schedule-add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditClassComponent } from './control-class/edit-class/edit-class.component';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { NgSelectModule } from '@ng-select/ng-select';
 import {MatSelectModule} from '@angular/material/select';
 
 
@@ -37,8 +35,6 @@ import {MatSelectModule} from '@angular/material/select';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    NgMultiSelectDropDownModule,
-    NgSelectModule,
     MatSelectModule
   ]
 })

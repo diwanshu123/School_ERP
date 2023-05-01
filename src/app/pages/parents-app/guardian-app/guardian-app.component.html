@@ -2,43 +2,183 @@
 <app-layout>
     <div class="container p-4">
       <div class="tab-container">
-        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" (selectedTabChange)="tabChange($event)">
           <mat-tab label="Banner">
-            <h4>Banner Data</h4>
-        <!-- code here for Banner -->
-        
+            <form [formGroup]="bannerForm" (ngSubmit)="addBanner()">
+              <div class="mb-3" style="width:20%; margin-top: 5%;" >
+                <label for="exampleInputEmail1" class="form-label">Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  width="200px"
+                  formControlName="title"
+                />
+              </div>
+              <div class="mb-3">
+                <div class="input-group mb-3" style="width:20%; ">
+                  <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'banner')">
+                    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                        <ng-container *ngIf="!bannerFile">
+                          Drag and drop or
+                          <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()">Browse Files</a>
+                        </ng-container>
+                        <ng-container *ngIf="bannerFile">
+                          {{bannerFile.name}}
+                          <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="bannerFile=bannerImage=null;">
+                            Remove
+                          </a>
+                        </ng-container>
+                    </ng-template>
+                  </ngx-file-drop>
+                </div>
+                <img *ngIf="bannerImage" [src]="bannerImage" class="img-fluid" alt="Responsive image" height="150px" width="250px">
+              </div>
+
+              <button type="submit" class="btn btn-primary" [disabled]="!bannerForm.valid || isLoading || !bannerFile">
+                <span *ngIf="isLoading" class="spinner-border text-light"></span>
+                <span *ngIf="!isLoading">Save</span>
+              </button>
+            </form>
           </mat-tab>
+
           <mat-tab label="Notice Board">
-        <!-- code here for Notice Board -->
-        <h4>Notice Data</h4>
-
-
+            <form [formGroup]="noticeForm" (ngSubmit)="addNotice()">
+              <div class="mb-3" style="width:20%; margin-top: 5%;" >
+                <label for="exampleInputEmail1" class="form-label">Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  width="200px"
+                  formControlName="name"
+                />
+              </div>
+              <div class="mb-3">
+                <div class="input-group mb-3" style="width:20%; ">
+                  <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'notice')">
+                    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                        <ng-container *ngIf="!noticeFile">
+                          Drag and drop or
+                          <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()">Browse Files</a>
+                        </ng-container>
+                        <ng-container *ngIf="noticeFile">
+                          {{noticeFile.name}}
+                          <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="noticeFile=noticeImage=null;">
+                            Remove
+                          </a>
+                        </ng-container>
+                    </ng-template>
+                  </ngx-file-drop>
+                </div>
+                <img *ngIf="noticeImage" [src]="noticeImage" class="img-fluid" alt="Responsive image" height="150px" width="250px">
+              </div>
+              <div class="mb-3" style="width:20%;" >
+                <label for="exampleInputEmail1" class="form-label">Description</label>
+                <textarea class="form-control col-md-6 input-lg" id="exampleFormControlTextarea2" rows="5"
+                  formControlName="description"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" [disabled]="!noticeForm.valid || isLoading || !noticeFile">
+                <span *ngIf="isLoading" class="spinner-border text-light"></span>
+                <span *ngIf="!isLoading">Save</span>
+              </button>
+            </form>
           </mat-tab>
 
-        
-           <mat-tab label=" Notification">
-        <!-- code here for Notification -->
-        <h4>Notificsation Data</h4>
+          <mat-tab label=" Notification">
+            <form [formGroup]="notificationForm" (ngSubmit)="addNotification()">
+              <div class="mb-3" style="width:20%; margin-top: 5%;" >
+                <label for="exampleInputEmail1" class="form-label">Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  width="200px"
+                  formControlName="title"
+                />
+              </div>
+              <div class="mb-3" style="width:20%;" >
+                <label for="exampleInputEmail1" class="form-label">Description</label>
+                <textarea class="form-control col-md-6 input-lg" id="exampleFormControlTextarea2" rows="5"
+                  formControlName="description"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" [disabled]="!notificationForm.valid || isLoading">
+                <span *ngIf="isLoading" class="spinner-border text-light"></span>
+                <span *ngIf="!isLoading">Push</span>
+              </button>
+            </form>
+        </mat-tab>
 
-           
-          </mat-tab> 
-           <mat-tab label="Raised Ticket ">
-        <!-- code here for Raised Ticket -->
-        <h4>Banner Data</h4>
+        <mat-tab label="Raised Ticket ">
+          <div class="mb-3" style="width:15%; margin-top: 5%;" >
+            <label for="exampleInputEmail1" class="form-label">Search By Date</label>
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              width="200px"
+            />
+          </div>
 
-           
-          </mat-tab> 
-          
-          <mat-tab label=" Leave">
-        <!-- code here for Leave -->
-        <h4>leave Data</h4>
+          <table class="table mt-3">
+            <thead>
+              <tr>
+                <th scope="col">To</th>
+                <th scope="col">Support Type</th>
+                <th scope="col">View Details</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ticket of raisedTickets; index as i">
+                <td>{{ticket.sendTo}}</td>
+                <td>{{ticket.supportType}}</td>
+                <td>{{ticket.description}}</td>
+                <td>{{ticket.status}}</td>
+              </tr>
+            </tbody>
+            </table>
+        </mat-tab>
 
-           
-          </mat-tab> 
+         <mat-tab label=" Leave">
+          <div class="mb-3" style="width:15%; margin-top: 5%;" >
+            <label for="exampleInputEmail1" class="form-label">Search By Date</label>
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              width="200px"
+            />
+          </div>
+
+          <table class="table mt-3">
+            <thead>
+              <tr>
+                <th scope="col">Leave Type</th>
+                <th scope="col">Date Range</th>
+                <th scope="col">View Details</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let leave of leaves; index as i">
+                <td>{{leave.leaveType?.name}}</td>
+                <td>{{leave.days}}</td>
+                <td>{{leave.reason}}</td>
+                <td>{{leave.status}}</td>
+              </tr>
+            </tbody>
+            </table>
+
+        </mat-tab>
         </mat-tab-group>
       </div>
       </div>
       </app-layout>
-  
-  
-  
+
+

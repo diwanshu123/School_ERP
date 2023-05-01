@@ -457,7 +457,7 @@ export class ApiService {
       return this.httpClient.delete(environment.apiBaseUrl +'/visitorlog/' + id).pipe(catchError(this.errorHandler));
     }
     assignClassTeacher(postData: any  ): Observable<any> {
-     
+
       return this.httpClient.post(environment.apiBaseUrl +'/teacher/add', postData ).pipe(catchError(this.errorHandler));
     }
     //admision category
@@ -479,7 +479,7 @@ export class ApiService {
     getCategory(): Observable<any> {
       return this.httpClient.get(environment.apiBaseUrl +'/category/all' ).pipe(catchError(this.errorHandler));
     }
-    saveCategory(postData: any  ): Observable<any> {     
+    saveCategory(postData: any  ): Observable<any> {
       return this.httpClient.post(environment.apiBaseUrl +'/category', postData ).pipe(catchError(this.errorHandler));
     }
     updateCategory(postData: any): Observable<any> {
@@ -488,7 +488,7 @@ export class ApiService {
     deleteCategory(id: string): Observable<any> {
       return this.httpClient.delete(environment.apiBaseUrl +'/category/' + id).pipe(catchError(this.errorHandler));
     }
-    // admission 
+    // admission
 
     addAdmission(postData: any): Observable<any> {
       return this.httpClient.post(environment.apiBaseUrl +'/student/admission', postData ).pipe(catchError(this.errorHandler));
@@ -503,12 +503,12 @@ export class ApiService {
 
     getAllStudent(): Observable<any> {
       return this.httpClient.get(environment.apiBaseUrl +'/student/all' ).pipe(catchError(this.errorHandler));
-    } 
+    }
     getAllAcademic(): Observable<any> {
       return this.httpClient.get(environment.apiBaseUrl +'/academic/all' ).pipe(catchError(this.errorHandler));
     }
 
- 
+
 
     getMarksAll(data): Observable<any> {
       return this.httpClient.get(environment.apiBaseUrl +'/marks/all',  data ).pipe(catchError(this.errorHandler));
@@ -516,6 +516,23 @@ export class ApiService {
 
     getMarksAllById(data): Observable<any> {
       return this.httpClient.post(environment.apiBaseUrl +'/marks/student',  data ).pipe(catchError(this.errorHandler));
+    }
+
+    // App Settings---Banner, Notice Board
+    addBanner(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl +'/banner', postData ).pipe(catchError(this.errorHandler));
+    }
+
+    addNotice(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl +'/noticeBoard', postData ).pipe(catchError(this.errorHandler));
+    }
+
+    addNotification(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl +'/createNotification', postData ).pipe(catchError(this.errorHandler));
+    }
+
+    getRaisedTickets(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl +'/raiseTicket/all').pipe(catchError(this.errorHandler));
     }
 
 

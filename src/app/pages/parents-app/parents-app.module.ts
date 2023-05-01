@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ParentsAppRoutingModule } from './parents-app-routing.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GuardianAppComponent } from './guardian-app/guardian-app.component';
+import { NgxFileDropModule } from 'ngx-file-drop';
 
 // import { ParentsAppRoutingModule } from './parents-app-routing.module';
 
@@ -12,7 +13,7 @@ import { GuardianAppComponent } from './guardian-app/guardian-app.component';
 @NgModule({
   declarations: [
     GuardianAppComponent
- 
+
   ],
   imports: [
     CommonModule,
@@ -20,6 +21,8 @@ import { GuardianAppComponent } from './guardian-app/guardian-app.component';
     MatTabsModule,
     SharedModule,
     FormsModule,
+    ReactiveFormsModule,
+    NgxFileDropModule
   ]
 })
 export class ParentsAppModule { }
