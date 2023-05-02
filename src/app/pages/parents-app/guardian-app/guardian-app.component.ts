@@ -16,8 +16,15 @@ export class GuardianAppComponent {
   bannerForm: FormGroup;
   noticeForm: FormGroup;
   notificationForm: FormGroup;
-  raisedTickets: any[];
-  leaves: any[];
+  ticketStatus: FormGroup;
+  leaveStatus: FormGroup;
+  banners: any[] = [];
+  notices: any[] = [];
+  notifications: any[] = [];
+  raisedTickets: any[] = [];
+  leaves: any[] = [];
+  selectedTicket: any;
+  selectedLeave: any;
   isLoading: boolean;
   bannerFile: any;
   noticeFile: any;
@@ -39,9 +46,26 @@ export class GuardianAppComponent {
       title: new FormControl(null, [Validators.required]),
       description: new FormControl(null, [Validators.required])
     });
+
+    this.ticketStatus = new FormGroup({
+      status: new FormControl(null, [Validators.required]),
+    });
+
+    this.leaveStatus = new FormGroup({
+      status: new FormControl(null, [Validators.required]),
+    });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void
+  {
+    this.getBanners();
+  }
+
+  getBanners() {
+    this.api.getBanners().subscribe(resp => {
+      this.banners = resp.allBanner;
+    });
+  }
 
   addBanner()
   {
@@ -140,12 +164,30 @@ export class GuardianAppComponent {
   }
 
   tabChange(event: MatTabChangeEvent) {
-    if(event.index === 3) {
+    if(event.index == 1) {
+      this.getNotices();
+    }
+    else if(event.index == 2) {
+      this.getNotifications();
+    }
+    else if(event.index === 3) {
       this.getRaisedTickets();
     }
     else if(event.index === 4) {
       this.getAllLeaves();
     }
+  }
+
+  getNotices() {
+    this.api.getNotices().subscribe(resp => {
+      this.notices = resp.noticeBoard;
+    });
+  }
+
+  getNotifications() {
+    this.api.getNotifications().subscribe(resp => {
+      this.notifications = resp.notification;
+    });
   }
 
   getRaisedTickets() {
@@ -157,6 +199,50 @@ export class GuardianAppComponent {
   getAllLeaves() {
     this.api.getLeaveApplication().subscribe(resp => {
       this.leaves = resp.leavesRequest;
+    });
+  }
+
+  setTicket(ticket) {
+    this.selectedTicket = ticket;
+    this.ticketStatus.patchValue({status: this.selectedTicket.status});
+  }
+
+  updateTicketStatus()
+  {
+    this.isLoading = true;
+    const postData = this.ticketStatus.value;
+    postData['raiseATicketId'] = this.selectedTicket._id;
+    this.api.updateTicketStatus(postData).subscribe(resp => {
+      this.isLoading = false;
+      this.toastr.success(resp.message, "Status update success");
+      document.getElementById('updateStatusModal').click();
+      this.getRaisedTickets();
+    },
+    (err) => {
+      this.isLoading = false;
+      this.toastr.error(err, "Status update failed");
+    });
+  }
+
+  setLeave(leave) {
+    this.selectedLeave = leave;
+    this.leaveStatus.patchValue({status: this.selectedLeave.status});
+  }
+
+  updateLeaveStatus()
+  {
+    this.isLoading = true;
+    const postData = this.leaveStatus.value;
+    postData['leavesRequestId'] = this.selectedLeave._id;
+    this.api.updateLeaveStatus(postData).subscribe(resp => {
+      this.isLoading = false;
+      this.toastr.success(resp.message, "Status update success");
+      document.getElementById('updateLeaveStatusModal').click();
+      this.getAllLeaves();
+    },
+    (err) => {
+      this.isLoading = false;
+      this.toastr.error(err, "Status update failed");
     });
   }
 

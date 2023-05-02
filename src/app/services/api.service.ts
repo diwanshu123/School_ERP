@@ -519,6 +519,19 @@ export class ApiService {
     }
 
     // App Settings---Banner, Notice Board
+
+    getBanners(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl +'/banner/all').pipe(catchError(this.errorHandler));
+    }
+
+    getNotices(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl +'/noticeBoard/all').pipe(catchError(this.errorHandler));
+    }
+
+    getNotifications(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl +'/notification/all').pipe(catchError(this.errorHandler));
+    }
+
     addBanner(postData: any): Observable<any> {
       return this.httpClient.post(environment.apiBaseUrl +'/banner', postData ).pipe(catchError(this.errorHandler));
     }
@@ -533,6 +546,14 @@ export class ApiService {
 
     getRaisedTickets(): Observable<any> {
       return this.httpClient.get(environment.apiBaseUrl +'/raiseTicket/all').pipe(catchError(this.errorHandler));
+    }
+
+    updateTicketStatus(postData): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl +'/raiseTicket/status', postData ).pipe(catchError(this.errorHandler));
+    }
+
+    updateLeaveStatus(postData): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl +'/leavesRequest/status', postData ).pipe(catchError(this.errorHandler));
     }
 
 
