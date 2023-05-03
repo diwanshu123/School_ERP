@@ -173,9 +173,9 @@ export class GuardianAppComponent {
     else if(event.index === 3) {
       this.getRaisedTickets();
     }
-    else if(event.index === 4) {
+    /* else if(event.index === 4) {
       this.getAllLeaves();
-    }
+    } */
   }
 
   getNotices() {
@@ -196,11 +196,11 @@ export class GuardianAppComponent {
     });
   }
 
-  getAllLeaves() {
+  /* getAllLeaves() {
     this.api.getLeaveApplication().subscribe(resp => {
       this.leaves = resp.leavesRequest;
     });
-  }
+  } */
 
   setTicket(ticket) {
     this.selectedTicket = ticket;
@@ -224,7 +224,7 @@ export class GuardianAppComponent {
     });
   }
 
-  setLeave(leave) {
+  /* setLeave(leave) {
     this.selectedLeave = leave;
     this.leaveStatus.patchValue({status: this.selectedLeave.status});
   }
@@ -244,6 +244,6 @@ export class GuardianAppComponent {
       this.isLoading = false;
       this.toastr.error(err, "Status update failed");
     });
-  }
+  } */
 
 }

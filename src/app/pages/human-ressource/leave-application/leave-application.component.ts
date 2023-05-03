@@ -42,6 +42,7 @@ export class LeaveApplicationComponent implements OnInit {
   {
     this.api.getLeaveApplication().subscribe(resp => {
       this.leaveApps = resp.leavesRequest;
+      this.leaveApps = this.leaveApps.filter(leave => leave.employee || leave.student);
     });
   }
 

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable, throwError  } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { environment } from './src/environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -496,35 +496,35 @@ export class ApiService {
     editStudent(postData: any, id:any ): Observable<any> {
       return this.httpClient.put(environment.apiBaseUrl +'/student/'+id, postData ).pipe(catchError(this.errorHandler));
     }
-    deleteTransportationRecord(id): Observable<any> {	
-      return this.httpClient.delete(environment.apiBaseUrl +'/student/vehicleRoutes/remove/' ,{body:id}).pipe(catchError(this.errorHandler));	
-    }	
-    getHomeWorkSubmissionList(postData: any  ): Observable<any> {     	
-      return this.httpClient.post(environment.apiBaseUrl +'/homework-submission/filter', postData ).pipe(catchError(this.errorHandler));	
-    }	
-    getHomeWorkList(postData: any  ): Observable<any> {     	
-      return this.httpClient.post(environment.apiBaseUrl +'/homework/academic/range/search', postData ).pipe(catchError(this.errorHandler));	
-    }	
-    addHomeWork(postData: any  ): Observable<any> {     	
-      return this.httpClient.post(environment.apiBaseUrl +'/homework', postData ).pipe(catchError(this.errorHandler));	
-    }	
-    updateHomeWork(postData: any  ): Observable<any> {     	
-      return this.httpClient.put(environment.apiBaseUrl +'/homework', postData ).pipe(catchError(this.errorHandler));	
-    }	
-    deleteHomeWork(id: any  ): Observable<any> {     	
-      return this.httpClient.delete(environment.apiBaseUrl +'/homework/'+id).pipe(catchError(this.errorHandler));	
+    deleteTransportationRecord(id): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/student/vehicleRoutes/remove/' ,{body:id}).pipe(catchError(this.errorHandler));
     }
-    studentList(postData:any){      
+    getHomeWorkSubmissionList(postData: any  ): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl +'/homework-submission/filter', postData ).pipe(catchError(this.errorHandler));
+    }
+    getHomeWorkList(postData: any  ): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl +'/homework/academic/range/search', postData ).pipe(catchError(this.errorHandler));
+    }
+    addHomeWork(postData: any  ): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl +'/homework', postData ).pipe(catchError(this.errorHandler));
+    }
+    updateHomeWork(postData: any  ): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl +'/homework', postData ).pipe(catchError(this.errorHandler));
+    }
+    deleteHomeWork(id: any  ): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl +'/homework/'+id).pipe(catchError(this.errorHandler));
+    }
+    studentList(postData:any){
       return this.httpClient.post(environment.apiBaseUrl +'/student/search', postData ).pipe(catchError(this.errorHandler));
     }
-    getStudentById(id:any){      
+    getStudentById(id:any){
       return this.httpClient.get(environment.apiBaseUrl +'/student/fetch/'+ id).pipe(catchError(this.errorHandler));
     }
     updateStudentRoute(postData: any){
-      return this.httpClient.post(environment.apiBaseUrl +'/student/vehicleRoutes', postData ).pipe(catchError(this.errorHandler));	
+      return this.httpClient.post(environment.apiBaseUrl +'/student/vehicleRoutes', postData ).pipe(catchError(this.errorHandler));
     }
     getMarksByAcademicAndStudentId(postData:any){
-      return this.httpClient.post(environment.apiBaseUrl +'/marks/student', postData ).pipe(catchError(this.errorHandler));	
+      return this.httpClient.post(environment.apiBaseUrl +'/marks/student', postData ).pipe(catchError(this.errorHandler));
     }
     uploadCSV(postData: any): Observable<any> {
       return this.httpClient.post(environment.apiBaseUrl +'/student/uploadcsv', postData ).pipe(catchError(this.errorHandler));

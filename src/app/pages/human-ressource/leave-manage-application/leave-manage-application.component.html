@@ -17,7 +17,7 @@
       <div class="col">
         <label class="form-label">Designation *</label>
         <!-- <label class="form-label">Class *</label> -->
-        <select class="form-select" formControlName="">
+        <select class="form-select" [value]="'select'">
           <option disabled value="select">Select</option>
           <option *ngFor="let sec of designations" [value]="sec._id">{{sec.name}}</option>
         </select>
@@ -74,8 +74,8 @@
       <tbody>
       <tr *ngFor="let leave of leaveApps; index as i">
         <td>{{i + 1}}</td>
-        <td>{{leave.employee.designation.name}}</td>
-        <td>{{leave.employee.name}}</td>
+        <td>{{leave.employee ? leave.employee.designation.name : 'Student'}}</td>
+        <td>{{leave.employee ? leave.employee.name : leave.student.firstName}}</td>
         <td>{{leave.leaveType.name}}</td>
         <td>{{leave.fromDate | date}}</td>
         <td>{{leave.toDate | date}}</td>
@@ -217,12 +217,12 @@
             </div>
           </div>
           <div class="col-9">
-            <div>
-              {{selectedLeave?.employee.name}}
+            <div *ngIf="selectedLeave?.employee || selectedLeave?.student">
+              {{selectedLeave?.employee ? selectedLeave.employee.name : selectedLeave.student.firstName + ' ' + selectedLeave.student.lastName}}
               <br>
-              {{selectedLeave?.employee.name}}
+              {{selectedLeave?.employee ? selectedLeave.employee.name : selectedLeave.student.firstName + ' ' + selectedLeave.student.lastName}}
               <br>
-              {{selectedLeave?.employee._id | slice:-7}}
+              {{selectedLeave?.employee ? (selectedLeave.employee._id | slice:-7) : (selectedLeave.student._id | slice:-7)}}
               <br>
               {{selectedLeave?.leaveType.name}}
               <br>

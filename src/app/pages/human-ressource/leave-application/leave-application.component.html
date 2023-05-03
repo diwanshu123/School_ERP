@@ -30,7 +30,7 @@
                         <tbody>
                           <tr *ngFor="let leave of leaveApps; index as i">
                             <td>{{i + 1}}</td>
-                            <td>{{leave.employee.name}}</td>
+                            <td>{{leave.employee? leave.employee.name : leave.student.firstName + ' ' + leave.student.lastName}}</td>
                             <td>{{leave.leaveType.name}}</td>
                             <td>{{leave.fromDate | date}}</td>
                             <td>{{leave.toDate | date}}</td>
@@ -38,9 +38,9 @@
                             <td>-</td>
                             <td><button  class="badge rounded-pill">{{leave.status}}</button></td>
                             <td>
-                              <button class="btn emp-edit me-1">
+                              <!-- <button class="btn emp-edit me-1">
                                 <i class="fa-solid fa-pencil"></i>
-                              </button>
+                              </button> -->
                               <button class="btn emp-edit ms-1" data-bs-toggle="modal" data-bs-target="#deletePrompt"
                                 (click)="selectedLeave=leave;">
                                 <i class="fa-solid fa-trash-can"></i>

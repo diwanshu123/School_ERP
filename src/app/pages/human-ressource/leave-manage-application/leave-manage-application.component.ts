@@ -37,22 +37,26 @@ export class LeaveManageApplicationComponent implements OnInit {
   ngOnInit(): void {
     this.getLeaveApplication();
     this.getLeavesCategory();
-    this.getDesignations();
-
   }
   getDesignations()
   {
- 
+
     this.api.getDesignations().subscribe(resp => {
       this.designations = resp.designations
+      this.leaveApps.forEach((leave, index) => {
+        if(leave.employee) {
+          leave.employee.designation = this.designations.find(design => design._id === leave.employee?.designation);
+        }
+      });
       console.log(this.designations);
-      
     });
   }
   getLeaveApplication()
   {
     this.api.getLeaveApplication().subscribe(resp => {
       this.leaveApps = resp.leavesRequest;
+      this.leaveApps = this.leaveApps.filter(leave => leave.employee || leave.student);
+      this.getDesignations();
     });
   }
 
