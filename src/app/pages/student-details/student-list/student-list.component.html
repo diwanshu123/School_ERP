@@ -2,195 +2,175 @@
 
     <div class="container tab-container p-5">
 
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-2 py-3">
-                    <div>
-                        <img class="capimg" src="../../../../assets/images/capimg.png" alt="">
-                        Student list</div>
-                </div>
-                <div class="col-10">
-                    <div class="border"></div>
-                </div>
-
+      <form [formGroup]="reportForm">
+        <div class="row mt-3">
+          <div class="mb-3 col-md-4">
+            <label class="form-label">Class <span class="error">*</span></label>
+         
+            <select class="form-select" formControlName="studentClass" (change)="onChangeClass($event)">
+              <option disabled value="select">Select</option>
+              <option *ngFor="let sec of classes" [value]="sec._id">{{sec.className}}</option>
+            </select>
+            <div *ngIf="reportForm.controls['studentClass'].invalid && (reportForm.controls['studentClass'].dirty || reportForm.controls['studentClass'].touched)"
+            class="error mt-2">
+            <div *ngIf="reportForm.controls['studentClass'].errors['required']">
+              Class is required.
             </div>
-            <div class="row first_box mb-4">
-                <div class="col-12 px-0">
-                    <p class="border__botton ps-2">Select Ground</p>
-
-                </div>
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col">
-                            <p>Class<sup class="red">*</sup></p>
-                            <select class="form-select rounded-pill" aria-label="Default select example">
-                                <option selected>Select</option>
-                                <option value="1">Select</option>
-                                <option value="2">Six</option>
-                                <option value="3">Seven</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <p>Section</p>
-                            <select class="form-select rounded-pill " aria-label="Default select example">
-                                <option selected>A</option>
-                                <option value="1">A</option>
-                                <option value="2">B</option>
-                                <option value="3">C</option>
-                            </select>
-                        </div>
-                        <div class="col-12 text-end px-0 pt-4">
-
-                            <div class="button pe-5 pt-1 pb-1"><button type="button"
-                                    class="btn button_color">Filter</button></div>
-
-                        </div>
-                    </div>
-                </div>
+          </div></div>
+    
+          <div class="mb-3 col-md-4">
+            <label class="form-label">Section <span class="error">*</span></label>
+          
+            <select class="form-select" formControlName="section">
+              <option disabled value="select">Select</option>
+              <option *ngFor="let sec of sections" [value]="sec._id">{{sec.name}}</option>
+            </select>
+            <div *ngIf="reportForm.controls['section'].invalid && (reportForm.controls['section'].dirty || reportForm.controls['section'].touched)"
+            class="error mt-2">
+            <div *ngIf="reportForm.controls['section'].errors['required']">
+              Section is required.
             </div>
-
-
-            <div class="row second_box mt-2">
-                <div class="col-12 px-0">
-                    <p class="border__botton ps-2">
-                        <img class="capimg" src="../../../../assets/images/capimg.png" alt="">
-                        Student List</p>
-
-                </div>
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col">
-
-                        </div>
-                        <div class="col">
-                            <div class="input-group rounded pb-3">
-                                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                                    aria-describedby="search-addon" />
-
-                            </div>
-                        </div>
-                      <div class="col-12">
-                        <div class="row">
-                            <div class="col-12 ">
-                                <table class="table table-bordered">
-                                    <thead class="bg-gray">
-                                      <tr>
-                                        <th scope="col"> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-                                        <th scope="col">Photo</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Class</th>
-                                        <th scope="col">Section</th>
-                                        <th scope="col">Register No</th>
-                                        <th scope="col">Roll</th>
-                                        <th scope="col">Age</th>
-                                        <th scope="col">Guardian Name</th>
-                                        <th scope="col">Fees Pregress</th>
-                                        <th scope="col">Action</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr *ngFor="let student of students; index as i">
-                                        <th scope="row"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-                                        <td class="text-center">
-                                          <img class="image" [src]="student?.image? student.image: 'assets/images/no-profile.jpg'"
-                                            alt="">
-                                        </td>
-                                        <td>{{student.firstName + " " + student.lastName}}</td>
-                                        <td>{{student.academic.studentClass}}</td>
-                                        <td>{{student.academic.section}}</td>
-                                        <td>{{student.registerNo}}</td>
-                                        <td>{{student.rollNo}}</td>
-                                        <td>{{student.dob}}</td>
-                                        <td>{{student.guardian.firstName}}</td>
-                                        <td><div class="progress">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                <span>0%</span>
-                                            </div>
-                                          </div></td>
-                                        <td>
-                                          <button class="btn emp-edit me-1" data-bs-toggle="modal" data-bs-target="#quickView"
-                                            (click)="selectedStud=student;">
-                                            <i class="fa-solid fa-grip"></i>
-                                          </button>
-                                          <button class="btn emp-edit me-1" (click)="viewStudInfo(student)">
-                                            <i class="fa-regular fa-circle-right"></i>
-                                          </button>
-                                          <button class="btn emp-edit ms-1" data-bs-toggle="modal" data-bs-target="#deletePrompt"
-                                            (click)="selectedStud=student;">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                          </button>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-            </div>
+          </div>
+          </div>
+          <div class="mb-3 col-md-4">
+            <label class="form-label">Year <span class="error">*</span></label>
+            <select class="form-select" formControlName="academicYear">
+              <option disabled value="select">Select</option>
+              <option *ngFor="let year of aceYear" [value]="year._id">{{year.name}}</option>
+            </select>
+            <div *ngIf="reportForm.controls['academicYear'].invalid && (reportForm.controls['academicYear'].dirty || reportForm.controls['academicYear'].touched)"
+            class="error mt-2">
+            <div *ngIf="reportForm.controls['academicYear'].errors['required']">
+              Year is required.
+            </div></div>
+          </div>
         </div>
+       
+      <div class="text-end mb-5">
+        <button class="btn" (click)="callReport(reportForm)"  [disabled]="!reportForm.valid">Filter</button>
+      </div>
+    </form>
+    <p class="table-heading"> Student List</p>
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Photo</th>
+            <th scope="col" style="width:110px;">Name</th>
+            <th scope="col">Class</th>
+            <th scope="col">Section</th>
+            <th scope="col">Register No</th>
+            <th scope="col">Roll</th>
+            <th scope="col">DOB</th>
+            <th scope="col">Guardian Name</th>
+            <th scope="col">Fees Pregress</th>
+            <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let student of studentData; let i = index">
+          <tr>
+          <td>  <img class="image" [src]="student?.image? student.image: 'assets/images/no-profile.jpg'"
+            alt=""></td>
+          <td>{{student.firstName + " " + student.lastName}}</td>         
+          <td>{{student.class}}</td>
+          <td>{{student.section}}</td>
+          <td>{{student.registerNo}}</td>
+          <td>{{student.rollNo}}</td>
+          <td>{{student.dob | date :"MM/dd/yyyy"}}</td>
+          <td>{{student.guardian.firstName}}</td>
+          <td><div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                <span>0%</span>
+            </div>
+          </div></td>
+          <td>
+            <button class="btn emp-edit me-1" (click)="openQuickModal(quicktemplate, student)"><i class="fa-solid fa-grip"></i></button>
+            <button class="btn emp-edit me-1" (click)="editClick(student)"><i class="fa-regular fa-circle-right"></i></button>
+          <!-- <button class="btn emp-edit ms-1" (click)="openDeleteModal(deletemplate, student)"><i class="fa-solid fa-trash-can"></i></button>-->
+          </td>
+        </tr>
+        </ng-container>
+      </tbody>
+    </table>
+
 
     </div>
 </app-layout>
-
-
-<!---Modal for delete---->
-<div class="modal fade" id="quickView">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Quick View</h5>
+<ng-template #quicktemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Quick View</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="closePopup()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="profile text-center">
+        <img class="img-fluid" [src]="studentSelRow.image? studentSelRow.image : 'assets/images/no-profile.jpg'" alt="">
+        <h4 class="my-2">{{studentSelRow.firstName + " " + studentSelRow.lastName}}</h4>
+        <p>Student / {{studentSelRow.caste}}</p>
       </div>
-      <div class="modal-body" *ngIf="selectedStud">
-        <div class="profile text-center">
-          <img class="img-fluid" [src]="selectedStud.image? selectedStud.image : 'assets/images/no-profile.jpg'" alt="">
-          <h4 class="my-2">{{selectedStud.firstName + " " + selectedStud.lastName}}</h4>
-          <p>Student / {{selectedStud.caste}}</p>
-        </div>
-
-        <table class="table table-striped table-bordered">
-          <tbody>
-            <tr>
-              <th>Register No</th>
-              <td>{{selectedStud.registerNo}}</td>
-              <th>Roll</th>
-              <td>{{selectedStud.rollNo}}</td>
-            </tr>
-            <tr>
-              <th>Admission Date</th>
-              <td>{{selectedStud.admissionDate | date}}</td>
-              <th>Date Of Birth</th>
-              <td>{{selectedStud.dob}}</td>
-            </tr>
-            <tr>
-              <th>Blood Group</th>
-              <td>{{selectedStud.bloodGroup}}</td>
-              <th>Religion</th>
-              <td>{{selectedStud.religion}}</td>
-            </tr>
-            <tr>
-              <th>Email</th>
-              <td colspan="3">{{selectedStud.email}}</td>
-            </tr>
-            <tr>
-              <th>Mobile No</th>
-              <td>{{selectedStud.number}}</td>
-              <th>State</th>
-              <td>{{selectedStud.state}}</td>
-            </tr>
-            <tr>
-              <th>Address</th>
-              <td colspan="3">{{selectedStud.presentAddress}}</td>
-            </tr>
-          </tbody>
-        </table>
-
+      <table class="table table-striped table-bordered">
+        <tbody>
+          <tr>
+            <th>Register No</th>
+            <td>{{studentSelRow.registerNo}}</td>
+            <th>Roll</th>
+            <td>{{studentSelRow.rollNo}}</td>
+          </tr>
+          <tr>
+            <th>Admission Date</th>
+            <td>{{studentSelRow.admissionDate | date}}</td>
+            <th>Date Of Birth</th>
+            <td>{{studentSelRow.dob}}</td>
+          </tr>
+          <tr>
+            <th>Blood Group</th>
+            <td>{{studentSelRow.bloodGroup}}</td>
+            <th>Religion</th>
+            <td>{{studentSelRow.religion}}</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td colspan="3">{{studentSelRow.email}}</td>
+          </tr>
+          <tr>
+            <th>Mobile No</th>
+            <td>{{studentSelRow.number}}</td>
+            <th>State</th>
+            <td>{{studentSelRow.state}}</td>
+          </tr>
+          <tr>
+            <th>Address</th>
+            <td colspan="3">{{studentSelRow.presentAddress}}</td>
+          </tr>
+        </tbody>
+      </table> 
+    </div>
+       
+      <div class="modal-footer mt-4">
+          <button type="button" class="save_button btn" (click)="closePopup()">Close</button>
       </div>
-      <div class="modal-footer">
-        <button id="modalDismissBtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+  </div>
+  
+</ng-template>
+<ng-template #deletemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Delete Confirmation</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="closePopup()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <span class="text-justify">Are you sure, You Want To Delete This Information?</span>
       </div>
     </div>
+       
+      <div class="modal-footer mt-4">
+        <button type="button" class="save_button btn" (click)="deletePopup()">Yes, Continue</button>
+        <button type="button" class="save_button btn" (click)="closePopup()">Cancle</button>
+      </div>
   </div>
-</div>
+</ng-template>

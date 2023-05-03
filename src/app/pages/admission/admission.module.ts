@@ -15,6 +15,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { CreateStudentComponent } from './create-student/create-student.component';
 
 
 
@@ -24,18 +25,19 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
   declarations: [
     AdmissionComponent,
     CategoryComponent,
-    MultipleImportComponent
+    MultipleImportComponent,
+    CreateStudentComponent
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    AdmissionRoutingModule,
-    SharedModule,
+    ReactiveFormsModule,    
     MatDatepickerModule,
     MatNativeDateModule,
     NgxMaterialTimepickerModule,
     NgxFileDropModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    AdmissionRoutingModule,
+    SharedModule,
 
   ]
 })

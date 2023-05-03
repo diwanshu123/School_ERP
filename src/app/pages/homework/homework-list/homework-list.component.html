@@ -3,25 +3,100 @@
     <div class="text-end">
       <button class="btn" role="navigation" routerLink="add">Add Homework</button>
     </div>
-    <div class="row mt-5 mb-3">
-      <div class="col-4">
-        <label class="form-label">Class *</label>
-        <input type="text" class="form-control">
+    <form [formGroup]="reportForm">
+      <div class="row mt-3">
+        <div class="mb-3 col-md-3">
+          <label class="form-label">Class <span class="error">*</span></label>
+       
+          <select class="form-select" formControlName="studentClass">
+            <option disabled value="select">Select</option>
+            <option *ngFor="let sec of classes" [value]="sec._id">{{sec.className}}</option>
+          </select>
+          <div *ngIf="reportForm.controls['studentClass'].invalid && (reportForm.controls['studentClass'].dirty || reportForm.controls['studentClass'].touched)"
+          class="error mt-2">
+          <div *ngIf="reportForm.controls['studentClass'].errors['required']">
+            Class is required.
+          </div>
+        </div></div>
+  
+        <div class="mb-3 col-md-3">
+          <label class="form-label">Section <span class="error">*</span></label>
+        
+          <select class="form-select" formControlName="section">
+            <option disabled value="select">Select</option>
+            <option *ngFor="let sec of sections" [value]="sec._id">{{sec.name}}</option>
+          </select>
+          <div *ngIf="reportForm.controls['section'].invalid && (reportForm.controls['section'].dirty || reportForm.controls['section'].touched)"
+          class="error mt-2">
+          <div *ngIf="reportForm.controls['section'].errors['required']">
+            Section is required.
+          </div>
+        </div>
+        </div>
+        <div class="mb-3 col-md-3">
+          <label class="form-label">Year <span class="error">*</span></label>
+          <select class="form-select" formControlName="academicYear">
+            <option disabled value="select">Select</option>
+            <option *ngFor="let year of aceYear" [value]="year._id">{{year.name}}</option>
+          </select>
+          <div *ngIf="reportForm.controls['academicYear'].invalid && (reportForm.controls['academicYear'].dirty || reportForm.controls['academicYear'].touched)"
+          class="error mt-2">
+          <div *ngIf="reportForm.controls['academicYear'].errors['required']">
+            Year is required.
+          </div></div>
+        </div>
+        <div class="mb-3 col-md-3">
+          <label class="form-label">Subject <span class="error">*</span></label>
+          <select class="form-select" formControlName="subject">
+            <option disabled value="select">Select</option>
+            <option *ngFor="let sub of subjects" [value]="sub._id">{{sub.subjectName}}</option>
+          </select>
+          <div *ngIf="reportForm.controls['subject'].invalid && (reportForm.controls['subject'].dirty || reportForm.controls['subject'].touched)"
+          class="error mt-2">
+          <div *ngIf="reportForm.controls['subject'].errors['required']">
+            Subject is required.
+          </div></div>
+        </div>
       </div>
-      <div class="col-4">
-        <label class="form-label">Section *</label>
-        <input type="text" class="form-control">
-      </div>
-      <div class="col-4">
-        <label class="form-label">Subject *</label>
-        <input type="text" class="form-control">
-      </div>
-    </div>
+      <div class="row">
+        <div class="mb-3 col-md-3">
+          <label class="form-label">Start Date <span class="error">*</span></label>
+          <div class="input-group ">
+               <input matInput class="form-control me-3" [matDatepicker]="picker"
+               placeholder="dd-mm-yyyy"  formControlName="startDate">
+               <div class="mr-2 tooglePicker">  
+                <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle >
+                </div>
+          <mat-datepicker #picker></mat-datepicker>
+             </div>
+             <div *ngIf="reportForm.controls['startDate'].invalid && (reportForm.controls['startDate'].dirty || reportForm.controls['startDate'].touched)"
+          class="error mt-2">
+          <div *ngIf="reportForm.controls['startDate'].errors['required']">
+            Start Date is required.
+          </div></div>
+        </div>
+        <div class="mb-3 col-md-3">
+          <label class="form-label">End Date <span class="error">*</span></label>
+          <div class="input-group ">
+               <input matInput class="form-control me-3" [matDatepicker]="picker2"
+               placeholder="dd-mm-yyyy" formControlName="endDate"  >
+               <div class="mr-2 tooglePicker">  
+                <mat-datepicker-toggle  matSuffix [for]="picker2"></mat-datepicker-toggle >
+                </div>
+          <mat-datepicker #picker2></mat-datepicker>
+             </div>
+             <div *ngIf="reportForm.controls['endDate'].invalid && (reportForm.controls['endDate'].dirty || reportForm.controls['endDate'].touched)"
+          class="error mt-2">
+          <div *ngIf="reportForm.controls['endDate'].errors['required']">
+            End Date is required.
+          </div></div>
+        </div>
+      </div>  
     <div class="text-end mb-5">
-      <button class="btn">Save</button>
+      <button class="btn" (click)="callReport(reportForm)"  [disabled]="!reportForm.valid">Filter</button>
     </div>
-
-    <p class="table-heading">Homework</p>
+  </form>
+    <p class="table-heading">Homework List</p>
     <table class="table mt-3">
       <thead>
         <tr>
@@ -31,31 +106,47 @@
           <th scope="col">Section</th>
           <th scope="col">Date of Homework</th>
           <th scope="col">Date of Submission</th>
-          <th scope="col">SMS Notification</th>
-          <th scope="col">Status</th>
           <th scope="col">Scheduled At</th>
-          <th scope="col">Create By</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>#001234</td>
-          <td>Maths</td>
-          <td>Six</td>
-          <td>A</td>
-          <td>111111111</td>
-          <td>11</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <ng-container *ngFor="let row of reportData; let i = index">
+          <tr>
+          <td>{{i+1}}</td>
+          <td>{{row?.subject?.subjectName}}</td>
+          <td>{{row?.class}}</td>
+          <td>{{row?.section}}</td>
+          <td>{{row?.dateOfHomework | date: 'dd-MM-YYYY'}}</td>
+          <td>{{row?.dateOfSubmission | date: 'dd-MM-YYYY'}}</td>        
+          <td>{{row?.scheduleDate | date: 'dd-MM-YYYY'}}</td>
           <td>
-            <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
-            <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+            <button class="btn emp-edit me-1" (click)="editHomeWorkClick(row)"><i class="fa-solid fa-pencil"></i></button>
+            <button class="btn emp-edit ms-1"  (click)="openDeleteModal(deletemplate, row)"><i class="fa-solid fa-trash-can"></i></button>
           </td>
         </tr>
+        </ng-container>
       </tbody>
     </table>
   </div>
 </app-layout>
+<ng-template #deletemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Delete Confirmation</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="closePopup()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <span class="text-justify">Are you sure, You Want To Delete This Information?</span>
+      </div>
+    </div>
+       
+      <div class="modal-footer mt-4">
+        <button type="button" class="save_button btn" (click)="deletePopup()">Yes, Continue</button>
+        <button type="button" class="save_button btn" (click)="closePopup()">Cancle</button>
+      </div>
+  </div>
+</ng-template>

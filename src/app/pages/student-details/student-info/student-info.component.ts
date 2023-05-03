@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class StudentInfoComponent implements OnInit {
 
   student: any
-
+  studentId:any;
   constructor(
     private api: ApiService,
     private toastr: ToastrService,
@@ -20,13 +20,17 @@ export class StudentInfoComponent implements OnInit {
   )
   {
     route.params.subscribe(param => {
-      if(router.getCurrentNavigation()?.extras.state) {
-        this.student = router.getCurrentNavigation()?.extras.state?.['student'];
-      }
+     this.studentId = param['id'];
     });
   }
 
   ngOnInit(): void {
+    this.getStudentData();
+  }
+  getStudentData(){
+    this.api.getStudentById(this.studentId).subscribe(resp => {
+      this.student = resp['student'];
+    });
   }
 
 }

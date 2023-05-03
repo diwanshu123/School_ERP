@@ -1,0 +1,41 @@
+<ng-container *ngIf="isFormLoaded">
+<form [formGroup]="vehicleForm">
+    <div class="row">
+        <div class="col-md-12 header-txt" >
+            <span>Transport Details</span>
+        </div>
+    </div>
+
+    <div class="row mt-3 mb-3" >
+        <div class="col-4">
+            <label class="form-label">Route <span class="error">*</span></label>
+            <select class="form-select" formControlName="routeId" >
+              <option disabled value="select">Select</option>
+              <option *ngFor="let sec of vehicleRouteList" value="{{sec?._id}}">{{sec?.route?.routeName}}</option>
+            </select>
+          </div>
+          <div class="col-4">
+              <label class="form-label">Vehicle <span class="error">*</span></label>
+              <select class="form-select" formControlName="vehicleNo">
+                <option disabled value="select">Select</option>
+                <option *ngFor="let sec of vehicleRouteList" value="{{sec?.vehicle?._id}}">{{sec?.vehicle?.vehicleNo}}</option>
+              </select>
+          </div>
+          <div class="col-4">
+            <label class="form-label">Stoppage <span class="error">*</span></label>
+            <select class="form-select" formControlName="stoppageId">
+              <option disabled value="select">Select</option>
+              <option *ngFor="let sec of vehicleRouteList" value="{{sec?.stoppage?._id}}">{{sec?.stoppage?.stoppageName}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="header-txt col-md-12"></div>
+    <div class="row mt-3 mb-3 ">
+        <div class="col-md-10"></div>
+        <div class="col-md-2">
+            <button type="button" class="save_button btn" (click)="updateInfo(vehicleForm)" [disabled]="!vehicleForm.valid">Save</button>
+        </div>
+      
+    </div>
+</form>
+</ng-container>

@@ -1,0 +1,129 @@
+<app-layout>
+    <form [formGroup]="homeWorkForm">
+    <div class="container tab-container p-4">
+      <div class="row mt-5 mb-3">
+        <div class="col-3">
+          <label class="form-label">Class <span class="error">*</span></label>
+            <select class="form-select" formControlName="studentClass">
+              <option disabled value="select">Select</option>
+              <option *ngFor="let sec of classes" [value]="sec._id">{{sec.className}}</option>
+            </select>
+            <div *ngIf="homeWorkForm.controls['studentClass'].invalid && (homeWorkForm.controls['studentClass'].dirty || homeWorkForm.controls['studentClass'].touched)"
+            class="error mt-2">
+            <div *ngIf="homeWorkForm.controls['studentClass'].errors['required']">
+              Class is required.
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <label class="form-label">Section <span class="error">*</span></label>
+          
+          <select class="form-select" formControlName="section">
+            <option disabled value="select">Select</option>
+            <option *ngFor="let sec of sections" [value]="sec._id">{{sec.name}}</option>
+          </select>
+          <div *ngIf="homeWorkForm.controls['section'].invalid && (homeWorkForm.controls['section'].dirty || homeWorkForm.controls['section'].touched)"
+          class="error mt-2">
+          <div *ngIf="homeWorkForm.controls['section'].errors['required']">
+            Section is required.
+          </div>
+        </div>
+        </div>
+        <div class="col-3">
+          <label class="form-label">Year <span class="error">*</span></label>
+          <select class="form-select" formControlName="academicYear">
+            <option disabled value="select">Select</option>
+            <option *ngFor="let year of aceYear" [value]="year._id">{{year.name}}</option>
+          </select>
+          <div *ngIf="homeWorkForm.controls['academicYear'].invalid && (homeWorkForm.controls['academicYear'].dirty || homeWorkForm.controls['academicYear'].touched)"
+          class="error mt-2">
+          <div *ngIf="homeWorkForm.controls['academicYear'].errors['required']">
+            Year is required.
+          </div></div>
+        </div>
+        <div class="col-3">
+          <label class="form-label">Subject <span class="error">*</span></label>
+          <select class="form-select" formControlName="subject">
+            <option disabled value="select">Select</option>
+            <option *ngFor="let sub of subjects" [value]="sub._id">{{sub.subjectName}}</option>
+          </select>
+          <div *ngIf="homeWorkForm.controls['subject'].invalid && (homeWorkForm.controls['subject'].dirty || homeWorkForm.controls['subject'].touched)"
+          class="error mt-2">
+          <div *ngIf="homeWorkForm.controls['subject'].errors['required']">
+            Subject is required.
+          </div></div>
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-3">
+          <label class="form-label">Date of Homework *</label>
+          <div class="input-group ">
+            <input matInput class="form-control me-3" [matDatepicker]="picker"
+            placeholder="dd-mm-yyyy"  formControlName="homeWorkDate">
+            <div class="mr-2 tooglePicker">  
+             <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle >
+             </div>
+       <mat-datepicker #picker></mat-datepicker>
+          </div>
+          <div *ngIf="homeWorkForm.controls['homeWorkDate'].invalid && (homeWorkForm.controls['homeWorkDate'].dirty || homeWorkForm.controls['homeWorkDate'].touched)"
+       class="error mt-2">
+       <div *ngIf="homeWorkForm.controls['homeWorkDate'].errors['required']">
+        Date of Homework is required.
+       </div></div>
+        </div>
+        <div class="col-3">
+          <label class="form-label">Date of Submission *</label>
+          <div class="input-group ">
+            <input matInput class="form-control me-3" [matDatepicker]="picker2"
+            placeholder="dd-mm-yyyy" formControlName="submissionDate"  >
+            <div class="mr-2 tooglePicker">  
+             <mat-datepicker-toggle  matSuffix [for]="picker2"></mat-datepicker-toggle >
+             </div>
+       <mat-datepicker #picker2></mat-datepicker>
+          </div>
+          <div *ngIf="homeWorkForm.controls['submissionDate'].invalid && (homeWorkForm.controls['submissionDate'].dirty || homeWorkForm.controls['submissionDate'].touched)"
+       class="error mt-2">
+       <div *ngIf="homeWorkForm.controls['submissionDate'].errors['required']">
+        Date of Submission is required.
+       </div></div>
+        </div>
+        <div class="col-3">
+          <label class="form-label">Schedule Date *</label>
+          <div class="input-group ">
+            <input matInput class="form-control me-3" [matDatepicker]="picker3"
+            placeholder="dd-mm-yyyy" formControlName="scheduleDate"  >
+            <div class="mr-2 tooglePicker">  
+             <mat-datepicker-toggle  matSuffix [for]="picker3"></mat-datepicker-toggle >
+             </div>
+       <mat-datepicker #picker3></mat-datepicker>
+          </div>
+          <div *ngIf="homeWorkForm.controls['scheduleDate'].invalid && (homeWorkForm.controls['scheduleDate'].dirty || homeWorkForm.controls['scheduleDate'].touched)"
+       class="error mt-2">
+       <div *ngIf="homeWorkForm.controls['scheduleDate'].errors['required']">
+        DSchedule Date is required.
+       </div></div>
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Homework *</label>
+        <quill-editor class="'d-block'" formControlName="description"></quill-editor>
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Attachment File</label>
+        <input type="file" class="form-control" formControlName="attachement">
+      </div>
+  <!--      <div class="notif-check mb-3">
+        <input type="checkbox" class="form-check-input me-4" id="demo" formControlName="smsNotification">
+        <label for="demo" class="form-label">Send Notification SMS</label>
+      </div> -->
+  
+      <div class="text-end">
+        <button class="btn" (click)="submitDate(homeWorkForm)"  [disabled]="!homeWorkForm.valid">Save</button>
+      </div>
+    </div>
+    </form>
+  </app-layout>
+  

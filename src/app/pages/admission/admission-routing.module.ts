@@ -3,10 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdmissionComponent } from './admission.component';
 import { CategoryComponent } from './category/category.component';
 import { MultipleImportComponent } from './multiple-import/multiple-import.component';
+import { CreateStudentComponent } from './create-student/create-student.component';
+
 
 const routes: Routes = [
   {
     path: 'create',
+    component:CreateStudentComponent 
+  },
+  {
+    path: 'create-student',
     component: AdmissionComponent
   },
   {

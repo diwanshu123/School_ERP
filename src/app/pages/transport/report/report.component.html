@@ -29,7 +29,7 @@
     </div>
 </form>
     <div class="text-end mb-3">
-      <button class="btn" (click)="callReport(reportForm)" [disabled]="!reportForm.valid">Save</button>
+      <button class="btn" (click)="callReport(reportForm)" [disabled]="!reportForm.valid">Filter</button>
     </div>
 
     <div class="tab-container pt-4">
@@ -75,7 +75,7 @@
               
               <td>
                 <!--<button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>-->
-                <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
+                <button class="btn emp-edit ms-1" (click)="openDeleteModal(deleteRec,row)"><i class="fa-solid fa-trash-can"></i></button>
               </td>
             </tr>
           </ng-container>         
@@ -84,3 +84,16 @@
     </div>
   </div>
 </app-layout>
+<ng-template #deleteRec>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closePopup()"></button>
+  </div>
+  <div class="modal-body">
+   Are you sure you want to delete this Record?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  (click)="closePopup()">Cancel</button>
+    <button type="button" class="btn btn-primary"  (click)="deleteConfirm(deleteRecId)">Confirm</button>
+  </div>
+</ng-template>

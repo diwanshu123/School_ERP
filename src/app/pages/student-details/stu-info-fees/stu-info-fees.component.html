@@ -1,0 +1,31 @@
+
+<table class="table mt-3">
+  <thead>
+    <tr>
+      <th scope="col">S.No.</th>
+      <th scope="col">Fee Type</th>
+      <th scope="col">Due</th>
+      <th scope="col">Status</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Discount</th>
+      <th scope="col">Fine</th>
+      <th scope="col">Paid</th>
+      <th scope="col">Balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let row of studentFee; let i = index">
+      <tr>
+      <td>{{i+1}}</td>
+      <td>{{row?.feeType?.name}}</td>
+      <td>{{row?.feeType?.dueDate | date: 'MM/dd/yyyy'}}</td>
+      <td>{{row?.status}}</td>
+      <td>{{row?.totalAmount}}</td>
+      <td>{{row?.discount}}</td>        
+      <td>{{row?.fine}}</td>
+      <td>{{row?.paidAmount}}</td>
+      <td>{{row?.balance}}</td>
+    </tr>
+    </ng-container>    
+  </tbody>
+</table>

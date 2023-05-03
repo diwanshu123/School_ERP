@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 @Component({
@@ -12,9 +13,11 @@ export class ReportComponent {
   sections: any[] = [];
   classes: any[] = [];
   reportForm: FormGroup;
+  modalRef!: BsModalRef;
   reportData: any[];
+  deleteRecId : any;
   aceYear = [{ _id: "2020-2021", name: "2020-2021" }, { _id: "2021-2022", name: "2021-2022" }, { _id: "2022-2023", name: "2022-2023" }];
-  constructor(private api: ApiService, private toastr: ToastrService, private router: Router) {
+  constructor(private api: ApiService, private toastr: ToastrService, private router: Router,private modalService: BsModalService) {
     this.getAllClass();
     this.getAllSection();
     this.addForm();
@@ -54,5 +57,30 @@ export class ReportComponent {
       this.reportData =[];
       this.toastr.error(err);
     })
+  }
+  
+  openDeleteModal(template: TemplateRef<any>, item){
+    this.deleteRecId = item._id;
+    this.modalRef = this.modalService.show(template, {
+      class: 'modal-dialog-centered'
+    });
+  }
+  deleteConfirm(deleteRecId) {
+   const payload = {
+    studentId: deleteRecId
+   }
+     this.api.deleteTransportationRecord(payload).subscribe(res => {
+      this.closePopup();
+      this.toastr.success(res[0].msg, "Deleted success");
+      this.callReport(this.reportForm);
+      
+    }, err => {
+      this.closePopup();
+      this.toastr.error(err, " update failed");
+      console.error("catch", err);
+     });
+  }  
+  closePopup(){
+    this.modalRef.hide();
   }
 }
