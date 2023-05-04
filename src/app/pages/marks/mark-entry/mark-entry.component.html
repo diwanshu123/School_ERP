@@ -1,72 +1,61 @@
 <app-layout>
   <div class="container p-4">
-        <form [formGroup]="marksEntryForm">
     <div class="row mt-5 mb-3">
-  
+
       <div class="col-4">
         <label class="form-label">Exam *</label>
-        <select class="form-select" formControlName="examId">
+        <select class="form-select" [(ngModel)]="filter.examId">
           <option disabled value="select">Select</option>
-          <option *ngFor="let exam of exams" [value]="exam._id"> 
+          <option *ngFor="let exam of exams" [value]="exam._id">
             {{exam.name}}
           </option>
         </select>
       </div>
       <div class="col-4">
         <label class="form-label">Class *</label>
-     
-        <select class="form-select" formControlName="studentClass"  (change)="onChangeClass($event)">
+
+        <select class="form-select" [(ngModel)]="filter.class"  (change)="onChangeClass($event)">
           <option disabled value="select">Select</option>
-          <option *ngFor="let class of classes" [value]="class._id">  
+          <option *ngFor="let class of classes" [value]="class._id">
             {{class.className}}
           </option>
         </select>
       </div>
       <div class="col-4">
         <label class="form-label">Academic Year *</label>
-     
-        <select class="form-select" formControlName="academicYear">
+
+        <select class="form-select" [(ngModel)]="filter.academicYear">
           <option disabled value="select">Select</option>
-          <option *ngFor="let class of academics" [value]="class._id">  
+          <option *ngFor="let class of academics" [value]="class._id">
             {{class.academicYear}}
           </option>
         </select>
       </div>
     </div>
-    <div class="row mt-5 mb-3">
+    <div class="row mb-3">
       <div class="col-4">
         <label class="form-label">Section *</label>
-        <select class="form-select" formControlName="section">
+        <select class="form-select" [(ngModel)]="filter.section">
           <option disabled value="select">Select</option>
-          <option *ngFor="let sec of sections" [value]="sec._id"> 
+          <option *ngFor="let sec of sections" [value]="sec._id">
             {{sec.name}}
           </option>
         </select>
       </div>
 
       <div class="col-4">
-        <label class="form-label">Student  *</label>
-        <select class="form-select" formControlName="studentId">
-          <option disabled value="select">Select</option>
-          <option *ngFor="let sec of students" [value]="sec._id"> 
-            {{sec.firstName}}
-          </option>
-        </select>
-      </div>
-      <div class="col-4">
         <label class="form-label">Subject *</label>
-        <select class="form-select" formControlName="subject">
+        <select class="form-select" [(ngModel)]="filter.subject">
           <option disabled value="select">Select</option>
-          <option *ngFor="let class of subjects" [value]="class._id">  
+          <option *ngFor="let class of subjects" [value]="class._id">
             {{class.subjectName}}
           </option>
         </select>
       </div>
     </div>
     <div class="text-end mb-5">
-      <button class="btn"   (click)="clickFilter(marksEntryForm)">Filter </button>
+      <button class="btn" (click)="clickFilter()">Filter </button>
     </div>
-    </form>
 
     <p class="table-heading">Marks Entries</p>
     <table class="table mt-3">
@@ -80,31 +69,38 @@
           <th scope="col">Is Absent</th>
           <th scope="col">Practical (40)</th>
           <th scope="col">Written (60)</th>
+          <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>#001234</td>
-          <td>Fanny Siregar</td>
-          <td>General</td>
-          <td>111111</td>
-          <td>11</td>
+        <tr *ngFor="let marks of filteredMarks; index as i">
+          <td>{{i + 1}}</td>
+          <td>{{marks.student.firstName + ' ' + marks.student.lastName}}</td>
+          <td>{{marks.student.caste}}</td>
+          <td>{{marks.student.registerNo}}</td>
+          <td>{{marks.student.rollNo}}</td>
           <td>
-            <mat-checkbox class="example-margin">Checked</mat-checkbox>
+            <mat-checkbox class="example-margin" [checked]="marks.isAbsent" (change)="marks.isAbsent = !marks.isAbsent"></mat-checkbox>
           </td>
           <td>
-            <input class="form-control marks" type="number">
+            <input class="form-control marks" type="number" [(ngModel)]="marks.practical">
           </td>
           <td>
-            <input class="form-control marks" type="number">
+            <input class="form-control marks" type="number" [(ngModel)]="marks.written">
+          </td>
+          <td>
+            <button class="btn" (click)="marks.isLoading=true; updateMarks(marks);" [disabled]="marks.isLoading">
+              <span *ngIf="marks.isLoading" class="spinner-border text-light"></span>
+              <span *ngIf="!marks.isLoading">Save</span>
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
 
-    <div class="text-end mb-5">
+    <!-- <div class="text-end mb-5">
       <button class="btn">Save </button>
-    </div>
+    </div> -->
   </div>
 
 

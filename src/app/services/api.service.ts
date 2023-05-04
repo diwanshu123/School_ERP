@@ -542,12 +542,16 @@ export class ApiService {
 
 
 
-    getMarksAll(data): Observable<any> {
-      return this.httpClient.get(environment.apiBaseUrl +'/marks/all',  data ).pipe(catchError(this.errorHandler));
+    getMarksAll(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl +'/marks/all').pipe(catchError(this.errorHandler));
     }
 
     getMarksAllById(data): Observable<any> {
       return this.httpClient.post(environment.apiBaseUrl +'/marks/student',  data ).pipe(catchError(this.errorHandler));
+    }
+
+    updateMarks(postData): Observable<any> {
+      return this.httpClient.put(environment.apiBaseUrl +'/marks', postData).pipe(catchError(this.errorHandler));
     }
 
     // App Settings---Banner, Notice Board

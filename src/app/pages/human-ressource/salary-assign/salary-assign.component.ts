@@ -10,10 +10,12 @@ import { ApiService } from 'src/app/services/api.service';
 export class SalaryAssignComponent implements OnInit {
 
   employees: any[] = [];
+  filteredEmployees: any[] = [];
   salaries: any[] = [];
   empSal: any[] = [];
   designations: any[] = [];
   isLoading: boolean;
+  designFilter: string = 'select';
 
   constructor(private api: ApiService, private toastr: ToastrService)
   {}
@@ -25,21 +27,27 @@ export class SalaryAssignComponent implements OnInit {
   }
   getDesignations()
   {
-  
+
     this.api.getDesignations().subscribe(resp => {
       this.designations = resp.designations
       console.log(this.designations);
-      
+
     });
   }
   getAllEmployees()
   {
     this.api.getAllEmployees().subscribe(resp => {
       console.log(this.employees);
-      
+
       this.employees = resp.employees;
+      this.filteredEmployees = resp.employees;
       this.getAllSalaries();
     });
+  }
+
+  getFilteredEmployees()
+  {
+    this.filteredEmployees = this.employees.filter(emp => emp.designation?._id === this.designFilter);
   }
 
   getAllSalaries()
@@ -52,7 +60,7 @@ export class SalaryAssignComponent implements OnInit {
 
   patchEmpSal()
   {
-    this.employees.forEach(emp => {
+    this.filteredEmployees.forEach(emp => {
       if(emp.salaryGrade) {
         if(!this.empSal.some(e => e._id == emp._id)) {
           this.empSal.push({

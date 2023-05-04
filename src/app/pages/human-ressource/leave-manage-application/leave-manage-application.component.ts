@@ -13,6 +13,7 @@ import { NgxFileDropEntry } from 'ngx-file-drop';
 export class LeaveManageApplicationComponent implements OnInit {
 
   leaveApps: any[] = [];
+  filteredLeaveApps: any[] = [];
   leaveCats: any[] = [];
   employees: any[] = [];
   designations: any[] = [];
@@ -21,6 +22,7 @@ export class LeaveManageApplicationComponent implements OnInit {
   selectedLeave: any;
   isLoading: boolean;
   fileData: any;
+  designFilter: string = 'select';
 
   constructor(private api: ApiService, private toastr: ToastrService)
   {
@@ -38,12 +40,13 @@ export class LeaveManageApplicationComponent implements OnInit {
     this.getLeaveApplication();
     this.getLeavesCategory();
   }
+
   getDesignations()
   {
 
     this.api.getDesignations().subscribe(resp => {
       this.designations = resp.designations
-      this.leaveApps.forEach((leave, index) => {
+      this.filteredLeaveApps.forEach((leave, index) => {
         if(leave.employee) {
           leave.employee.designation = this.designations.find(design => design._id === leave.employee?.designation);
         }
@@ -51,13 +54,25 @@ export class LeaveManageApplicationComponent implements OnInit {
       console.log(this.designations);
     });
   }
+
   getLeaveApplication()
   {
     this.api.getLeaveApplication().subscribe(resp => {
       this.leaveApps = resp.leavesRequest;
-      this.leaveApps = this.leaveApps.filter(leave => leave.employee || leave.student);
+      this.filteredLeaveApps = resp.leavesRequest;
+      this.filteredLeaveApps = this.filteredLeaveApps.filter(leave => leave.employee || leave.student);
       this.getDesignations();
     });
+  }
+
+  getFilteredLeaves()
+  {
+    if(this.designFilter === 'student') {
+      this.filteredLeaveApps = this.leaveApps.filter(leave => leave.student);
+    }
+    else {
+      this.filteredLeaveApps = this.leaveApps.filter(leave => leave.employee?.designation?._id === this.designFilter);
+    }
   }
 
   getLeavesCategory()

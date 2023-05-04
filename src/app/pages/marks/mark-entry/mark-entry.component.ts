@@ -9,182 +9,162 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./mark-entry.component.scss']
 })
 export class MarkEntryComponent {
-  marksArr = [];
+  marksEntries: any[] = [];
+  filteredMarks: any[] = [];
   exams: any
   marksEntryForm: FormGroup;
   isLoading: boolean;
   classes:  any
   sections: any[] = [];
   subjects: any[] = [];
-  students:  any[] = []
-  academics:  any[] = []
+  students:  any[] = [];
+  academics:  any[] = [];
+  filter = {
+    examId: "select",
+    class: "select",
+    academicYear: "select",
+    section: "select",
+    subject: "select"
+  };
+
+
   constructor(private api: ApiService,private toastr: ToastrService  ) {
 
-    this.marksEntryForm =  new FormGroup ({
-      examId: new FormControl(null, [Validators.required]),
-      academicYear: new FormControl(null, [Validators.required]),
-
-      subject: new FormControl(null, [Validators.required]),
-      studentId: new FormControl(null, [Validators.required]),
-      practical: new FormControl(null, [Validators.required]),
-      written: new FormControl(null, [Validators.required]),
-      studentClass: new FormControl(null, [Validators.required]),
-      section: new FormControl(null, [Validators.required]),
-
-
-
-      
-
-
-    })
   }
 
 
-  ngOnInit(): void {
-  this.getAllExam()
-  this.getAllClass()
-  this.getAllSection()
-  this.getSubject()
-  this.getAllStudent()
-  this.getAllAcademics();
-
-
-}
+  ngOnInit(): void
+  {
+    this.getAllMarks();
+    this.getAllExam();
+    this.getAllClass();
+    this.getAllSection();
+    this.getSubject();
+    this.getAllStudent();
+    this.getAllAcademics();
+  }
 getAllAcademics(){
-   
-  
+
+
   this.api.getAllAcademic().subscribe(resp => {
 
-    
+
     this.academics = resp.academics
     console.log(this.academics);
-    
+
 //  this.mapAcademicYear()
 
   });
 
 }
-getAllStudent(){
-   
-  
+
+getAllStudent()
+{
   this.api.getAllStudent().subscribe(resp => {
     console.log(resp);
-    
+
     this.students = resp.students
-
-
   });
 
 }
-getSubject(){
+
+getSubject()
+{
 
   this.api.getAllSubjects().subscribe(resp => {
     console.log(resp);
-    
     this.subjects = resp.subjects
   });
 
 }
+
 getAllSection(){
-   
-  
   this.api.getAllSection().subscribe(resp => {
     console.log(resp);
-    
+
     this.sections = resp.sections
   });
 
 }
 
 
-clickFilter(form:any){
-  console.log(form.value);
-  
-  const s_year = form.value.academicYear;
-  // const s_class = form.value.studentClass;
-  // const s_section = form.value.section;
-  // const s_exam = form.value.examId;
-  // const s_subject = form.value.subject;
-  const s_student= form.value.studentId;
-  // const s_student= form.value.studentId;
-
-
-  // this.getAllMarks(s_class,s_section, s_exam,s_subject );
-  this.getAllMarks(s_year,s_student  );
+clickFilter()
+{
+  console.log(this.filter);
+  this.filteredMarks = this.marksEntries.filter(mark => mark.examId === this.filter.examId &&
+                                                        mark.subject === this.filter.subject &&
+                                                        mark.student.academic._id === this.filter.academicYear &&
+                                                        mark.student.academic.studentClass === this.filter.class &&
+                                                        mark.student.academic.subjects.includes(this.filter.subject));
 
 }
 
-// getAllMarks(s_class,s_section, s_exam,s_subject ){
-getAllMarks(s_year,s_student  ){
+getAllMarks()
+{
 
-  const payload ={
-    academicYear:s_year,
-    // studentClass:s_class, 
-    // section:s_section,
-    // examId: s_exam,
-    // subject: s_subject,
-    studentId: s_student
-    
-
-  }
-  console.log(payload);
-  
-  this.api.getMarksAllById(payload).subscribe(resp => {
-    console.log(resp);
-    
-    this.marksArr = resp.schedule;
-    console.log(this.marksArr);
-    
+  this.api.getMarksAll().subscribe(resp => {
+    this.marksEntries = resp.marks;
+    this.filteredMarks = resp.marks;
+    this.patchStudent();
   });
 }
 
-createMarks(){
-  console.log(this.marksEntryForm.value);
-    
-  this.isLoading = true;
-  this.api.createMarksEntry(this.marksEntryForm.value).subscribe(resp => {
-    console.log(resp);
-    
-    this.isLoading = false;
+  patchStudent()
+  {
+    this.api.getAllStudents().subscribe(resp => {
+      const students = resp.students;
+      this.filteredMarks.forEach(mark => {
+        mark.student = students.find(stud => stud._id === mark.student);
+        mark['isLoading'] = false;
+      });
+    });
+  }
 
-    this.toastr.success(resp.message, "marksEntryForm  add success");
-    this.getAllExam();
-  ;
-  },
-  (err) => {
-    this.isLoading = false;
-    this.toastr.error(err, "marksEntryForm  add failed");
-    console.error(err);
-  })
-}
-  getAllExam(){
+  getAllExam() {
     console.log("this");
-    
+
     this.api.getAllExam().subscribe((res)=>{
       this.exams = res.exams
       console.log(this.exams, "first res");
-      
+
     })
   }
-  getAllClass(){
-   
-  
+
+  getAllClass() {
     this.api.getAllClass().subscribe(resp => {
       console.log(resp);
-      
+
       this.classes = resp.classes
     });
+  }
 
-}
-
-onChangeClass(event){
+ onChangeClass(event) {
   this.sections =[];
-  this.marksEntryForm.patchValue({section: 'select'});
+  this.filter.section = 'select'
   const id = event.target.value;
   this.classes.forEach(element => {
       if(element._id === id) {
         this.sections = element.sections;
       }
   });
-}
+ }
+
+  updateMarks(marks)
+  {
+    this.isLoading = true;
+    const postData = marks;
+    postData['marksId'] = postData._id;
+    console.log(marks);
+    this.api.updateMarks(postData).subscribe(resp => {
+      this.isLoading = false;
+      this.getAllMarks();
+      this.toastr.success(resp.message, "Marks update success");
+    },
+    (err) => {
+      this.isLoading = false;
+      postData['isLoading'] = false;
+      this.toastr.error(err, "Marks update failed");
+      console.error(err);
+    })
+  }
 }

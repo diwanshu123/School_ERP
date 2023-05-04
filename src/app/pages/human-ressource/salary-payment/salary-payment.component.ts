@@ -9,9 +9,12 @@ import { ApiService } from 'src/app/services/api.service';
 export class SalaryPaymentComponent {
 
   employees: any[] = [];
+  filteredEmployees: any[] = [];
   salaries: any[] = [];
   empSal: any[] = [];
   designations: any[] = [];
+  designFilter: string = 'select';
+
   constructor(private api: ApiService)
   {}
 
@@ -22,12 +25,12 @@ export class SalaryPaymentComponent {
   }
 
   getDesignations()
-  {   
-  
+  {
+
     this.api.getDesignations().subscribe(resp => {
       this.designations = resp.designations
       console.log(this.designations);
-      
+
     });
   }
 
@@ -35,8 +38,14 @@ export class SalaryPaymentComponent {
   {
     this.api.getAllEmployees().subscribe(resp => {
       this.employees = resp.employees;
+      this.filteredEmployees = resp.employees;
       this.getAllSalaries();
     });
+  }
+
+  getFilteredEmployees()
+  {
+    this.filteredEmployees = this.employees.filter(emp => emp.designation?._id === this.designFilter);
   }
 
   getAllSalaries()
@@ -49,7 +58,7 @@ export class SalaryPaymentComponent {
 
   patchEmpSal()
   {
-    this.employees.forEach(emp => {
+    this.filteredEmployees.forEach(emp => {
       if(emp.salaryGrade) {
        emp.salaryDetails = this.salaries.find(sal => sal._id == emp.salaryGrade);
       }
