@@ -27,6 +27,7 @@
                 <thead>
                   <tr> 
                     <th scope="col">SL</th>
+                    <th style="width: 18%">Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Action</th>
                   </tr>
@@ -34,6 +35,8 @@
                 <tbody>
                   <tr *ngFor="let dept of departments; index as i">
                     <td>{{i + 1}}</td>
+                    <td>{{dept._id}}</td>
+
                     <td>{{dept.name}}</td>
                     <td>
                       <button class="btn emp-edit me-1" data-bs-toggle="modal" data-bs-target="#editPrompt"
@@ -78,6 +81,8 @@
                 <thead>
                   <tr>
                     <th scope="col">SL</th>
+                    <th scope="col">Id</th>
+
                     <th scope="col">Name</th>
                     <th scope="col">Action</th>
                   </tr>
@@ -85,6 +90,7 @@
                 <tbody>
                   <tr *ngFor="let design of designations; index as i">
                     <td>{{i + 1}}</td>
+                    <td>{{design._id}}</td>
                     <td>{{design.name}}</td>
                     <td>
                       <button class="btn emp-edit me-1" data-bs-toggle="modal" data-bs-target="#editPrompt"

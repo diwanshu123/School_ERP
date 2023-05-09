@@ -29,6 +29,8 @@ export class StudentDetailAllComponent {
   }
   getStudentData(){
     this.api.getStudentById(this.studentId).subscribe(resp => {
+      console.log(resp);
+      
       this.student = resp['student'];
     });
   }

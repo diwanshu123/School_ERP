@@ -45,6 +45,18 @@ classAssignForm: FormGroup
   
 
   }
+
+  onChangeClass(event){
+    this.sections =[];
+    this.classAssignForm.patchValue({section: 'select'});
+    const id = event.target.value;
+    this.classes.forEach(element => {
+        if(element._id === id) {
+          this.sections = element.sections;
+        }
+    });
+  }
+
   getSubject(){
 
     this.api.getAllSubjects().subscribe(resp => {

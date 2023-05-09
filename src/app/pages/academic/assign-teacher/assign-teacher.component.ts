@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { elementAt } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -17,6 +18,13 @@ export class AssignTeacherComponent {
   designations: any[] = [];
   employees: any[] = [];
   filteredEmp: any[] = []
+  academics:  any=[]
+
+  abc: any;
+  academicsId: String
+  beeni: any;
+  letter: any;
+  value: any;
 
   
   constructor(private api: ApiService, private toastr: ToastrService) {
@@ -33,23 +41,27 @@ export class AssignTeacherComponent {
   //     name: new FormControl(null, [Validators.required])
   //   });
   }
-
+data: any
   ngOnInit(): void {
+    this.getAllAcademics();
     this.getAllSection();
     this.getAllClass();
     this.getDesignations();
-    this.getEmployees()
+    this.getEmployees();
+   
+    this.getAcdemicsDeatails(this.data);
 
   }
+ 
 
   getEmployees()
   {
     this.api.getAllEmployees().subscribe(resp => {
       this.employees = resp.employees;
-      console.log(this.employees);
+      // console.log(this.employees);
       
       this.filteredEmp = this.employees.filter(emp => emp.designation?.name == 'Teacher');
-      console.log(this.filteredEmp);
+      // console.log(this.filteredEmp);
       
     });
   }
@@ -77,39 +89,87 @@ export class AssignTeacherComponent {
    
   
     this.api.getAllSection().subscribe(resp => {
-      console.log(resp);
+      // console.log(resp);
       
       this.sections = resp.sections
     });
 
 }
+x
 getDesignations()
 {
   this.api.getDesignations().subscribe(resp => {
-    console.log(resp);
+    // console.log(resp);
     this.designations = resp.designations
   });
 }
 
 
   getAllClass(){
-   
+  
   
     this.api.getAllClass().subscribe(resp => {
-      console.log(resp);
+      // console.log(resp);
       
       this.classes = resp.classes
     });
+
+}
+ arrayA: any[] = []
+  commentArray = [];
+getAcdemicsDeatails(data){
+  console.log("data",data[0]._id);
+  // this.beeni = data._id
+  // const value = data.values();
+   this.value = data.values();
+for(let i=0; i<data.length; i++){
+  console.log(data[i]._id);
+  
+this.value = data[i]._id
+}
+  // for(this.letter of this.value ){
+  // console.log(this.letter._id);
+
+    
+  // }
+  console.log(this.value);
+
+
+  this.api.getAcademics(this.letter._id).subscribe(resp => {
+    console.log("=======",resp);
+    
+    this.academics = resp.academics
+    console.log(this.academics);
+    
+  });
+
+}
+emptyArr = []
+getAllAcademics(){
+   
+  
+  this.api.getAllAcademic().subscribe(resp => {
+
+  console.log(resp);
+  this.getAcdemicsDeatails(resp.academics) 
+  
+    
+    this.academics = resp.academics
+  
+console.log(this.academics);
+
+  });
+
 
 }
 
   addTeachernew()
   {
     this.isLoading = true;
-    console.log(this.TeacherForm.value);
+    // console.log(this.TeacherForm.value);
     
     this.api.addTeacher(this.TeacherForm.value).subscribe(resp => {
-      console.log(resp);
+      // console.log(resp);
 
       this.isLoading = false;
 
@@ -121,7 +181,7 @@ getDesignations()
     (err) => {
       this.isLoading = false;
       this.toastr.error(err, "Assign Teacher  failed");
-      console.error(err);
+      // console.error(err);
     })
   }
 

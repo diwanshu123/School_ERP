@@ -223,6 +223,8 @@ AddEmloyeForm(){
   getDesignations()
   {
     this.api.getDesignations().subscribe(resp => {
+      console.log(resp);
+      
       this.designations = resp.designations
     });
   }
@@ -230,6 +232,9 @@ AddEmloyeForm(){
   {
     this.api.getDepartments().subscribe(resp => {
       this.departments = resp.departments
+      console.log(this
+        .departments);
+      
     });
   }
 

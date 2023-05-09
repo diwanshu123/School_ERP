@@ -12,5 +12,8 @@ export class StudInfoPictureComponent {
   }
  ngOnInit() {
   this.student = this.studentData;
+  console.log(this.student);
+  
  }
+ 
 }

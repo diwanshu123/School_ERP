@@ -48,6 +48,8 @@ export class EmpDeptComponent {
   getDepartments()
   {
     this.api.getDepartments().subscribe(resp => {
+      console.log(resp);
+      
       this.departments = resp.departments
     });
   }
@@ -116,6 +118,8 @@ export class EmpDeptComponent {
   getDesignations()
   {
     this.api.getDesignations().subscribe(resp => {
+      console.log(resp);
+      
       this.designations = resp.designations
     });
   }

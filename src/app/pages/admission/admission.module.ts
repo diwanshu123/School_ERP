@@ -16,6 +16,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { CreateStudentComponent } from './create-student/create-student.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 
 
@@ -38,6 +39,7 @@ import { CreateStudentComponent } from './create-student/create-student.componen
     MatCheckboxModule,
     AdmissionRoutingModule,
     SharedModule,
+    ScrollingModule
 
   ]
 })
