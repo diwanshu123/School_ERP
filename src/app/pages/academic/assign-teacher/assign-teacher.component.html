@@ -5,19 +5,18 @@
       <h6>Class Teacher  Allocation</h6>
       <div class="col-3">
         <label class="form-label">Academic Year *</label>
-        <input type="text" formControlName="academicYear" class="form-control"> 
-        <!-- <input matInput [matDatepicker]="picker1">
-  <mat-hint>MM/DD/YYYY</mat-hint>
-  <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
-  <mat-datepicker #picker1></mat-datepicker> - <input matInput [matDatepicker]="picker2">
-  <mat-hint>MM/DD/YYYY</mat-hint>
-  <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
-  <mat-datepicker #picker2></mat-datepicker> -->
+       
+        <select class="form-select" formControlName="academicYear">
+          <option disabled value="select">Select</option>
+          <!-- <option *ngFor="let stud of students" ></option> -->
+          <option *ngFor="let stud of academics" [value]="stud.academicYear"   >{{stud.academicYear}}</option>
+
+        </select>
       </div>
       <div class="col-3">
         <label class="form-label">Student Class *</label>
       
-        <label class="form-label">Class *</label>
+        <!-- <label class="form-label">Class *</label> -->
         <select class="form-select" formControlName="studentClass">
           <option disabled value="select">Select</option>
           <option *ngFor="let sec of classes" [value]="sec._id">{{sec.className}}</option>
@@ -73,12 +72,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>#001234</td>
-          <td>Six</td>
-          <td>A</td>
-          <td>A</td>
-          <td>111111</td>
+        <tr *ngFor=" let assign of academics;  index as i">
+          <!-- <td>{{i +1}}</td>
+          <td>{{assign.subjects[0].subjectAuthor}}</td>
+          <td>{{assign.subjects[0]?.subjectCode}}</td>
+          <td>{{assign.subjects[0]?.subjectName}}</td>
+          <td>{{assign.subjects[0]?.subjectType}}</td> -->
+
+      
           <td>
             <button class="btn emp-edit me-1"><i class="fa-solid fa-pencil"></i></button>
             <button class="btn emp-edit ms-1"><i class="fa-solid fa-trash-can"></i></button>
