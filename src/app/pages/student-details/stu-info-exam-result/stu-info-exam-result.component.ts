@@ -24,9 +24,10 @@ export class StuInfoExamResultComponent {
     academic:this.studentData?.academic?._id
   }
   this.api.getMarksByAcademicAndStudentId(payload).subscribe(resp => {
-    this.studentExamArr1 = resp['marks']['Second Semester Exams'];
-    this.studentExamArr2 = resp['marks']['First Semester Exams'];
-    console.log(this.studentExamArr1);
+    if(resp.hasOwnProperty('marks')) {
+      this.studentExamArr1 = resp['marks']['Second Semester Exams'];
+      this.studentExamArr2 = resp['marks']['First Semester Exams'];
+    }
   },
   (err) => {
    // this.toastr.error(err, " update failed");

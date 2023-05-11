@@ -553,6 +553,9 @@ export class ApiService {
     updateMarks(postData): Observable<any> {
       return this.httpClient.put(environment.apiBaseUrl +'/marks', postData).pipe(catchError(this.errorHandler));
     }
+    getGuardianAll(): Observable<any> {
+      return this.httpClient.get(environment.apiBaseUrl +'/guardian/all').pipe(catchError(this.errorHandler));
+    }
 
     // App Settings---Banner, Notice Board
 

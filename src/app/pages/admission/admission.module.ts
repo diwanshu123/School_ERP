@@ -17,7 +17,7 @@ import { NgxFileDropModule } from 'ngx-file-drop';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { CreateStudentComponent } from './create-student/create-student.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
-
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 
 
@@ -39,8 +39,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     MatCheckboxModule,
     AdmissionRoutingModule,
     SharedModule,
-    ScrollingModule
-
+    ScrollingModule,
+    SelectDropDownModule
   ]
 })
 export class AdmissionModule { }
