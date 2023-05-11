@@ -40,7 +40,7 @@
             <div class="row mt-3 mb-3">
                 <div class="col-3">
                     <label class="form-label">Register No <span class="error">*</span></label>
-                    <input type="text" class="form-control"  formControlName="registerNo">
+                    <input type="text" class="form-control"  formControlName="registerNo" readonly>
                 </div>
                 <div class="col-3">
                     <label class="form-label">RollNo No <span class="error">*</span></label>
@@ -58,7 +58,7 @@
                       </div>
                 </div>
                 <div class="col-3">
-                    <label class="form-label">Type <span class="error">*</span></label>
+                    <label class="form-label">Type</label>
                     <select class="form-select" formControlName="type">
                         <option disabled value="select">Select</option>
                         <option *ngFor="let tdata of typeList" value="{{tdata._id}}">{{tdata.name}}</option>
@@ -215,9 +215,23 @@
                     <i _ngcontent-dan-c162="" class="fa-solid fa-graduation-cap"></i>&nbsp;&nbsp;<span>Guardian Details</span>
                 </div>
             </div>
-            <ng-container formGroupName="guardian">
             <div class="row mt-3 mb-3" >
-                <div class="col-6">
+                <div class="col-5">
+                    <mat-checkbox  formControlName="isGuardianExist"></mat-checkbox>
+                    <label>Guardian already exist</label>                      
+                </div> 
+                
+                <div class="col-6" *ngIf="studentForm.controls['isGuardianExist'].value">
+                    <label class="form-label"> Guardian</label>
+                    <ngx-select-dropdown [instanceId]="'dropdown_1'" (searchChange)="searchChange($event)" tabindex="0"
+                    [multiple]="false" [config]="config" [options]="options" (change)="selectedGua($event)" ></ngx-select-dropdown>
+                   
+                </div>            
+            </div>
+            <ng-container formGroupName="guardian">
+           
+            <div class="row mt-3 mb-3" >
+                <div class="col-5">
                     <label class="form-label">Name <span class="error">*</span></label>
                     <input type="text" class="form-control"  formControlName="name">
                 </div>             
@@ -321,6 +335,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="row" >
                 <div class="col-md-12 header-txt" >
                     <i _ngcontent-dan-c162="" class="fa-solid fa-graduation-cap"></i>&nbsp;&nbsp;<span>Login Details</span>

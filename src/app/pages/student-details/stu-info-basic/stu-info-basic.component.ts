@@ -106,6 +106,7 @@ onChangeClass(event){
       state: [this.studentBasic?.state, Validators.required],
       previousQualification:[this.studentBasic?.previousSchoolName],
       previousSchoolName:[this.studentBasic?.previousQualification],
+      previousRemarks:[this.studentBasic?.previousRemarks],
       guardian: this.fb.group({
            id:[this.studentBasic?.guardian?._id],
            name: [this.studentBasic?.guardian?.firstName],
@@ -167,6 +168,7 @@ onChangeClass(event){
     number:formData.value.mobileNumber,
     previousQualification:formData.value.previousQualification,
     previousSchoolName:formData.value.previousSchoolName,
+    previousRemarks:formData.value.previousRemarks,
     guardian:guardianArr
   }
   this.api.editStudent(payload,this.studentBasic._id).subscribe(resp => {

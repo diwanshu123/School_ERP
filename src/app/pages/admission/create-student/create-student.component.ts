@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { StudentService } from '../../student-details/student.service';
 import { NgxFileDropEntry } from 'ngx-file-drop';
+import { SelectDropDownService } from "ngx-select-dropdown";
 import * as moment from 'moment';
 @Component({
   selector: 'app-create-student',
@@ -27,11 +28,32 @@ export class CreateStudentComponent {
   relationShipList:any[] =[];
   occupationsList:any[] = [];
   educationList:any[] =[];
+  guardinList:any[] =[];
   image: any;
   idCardDocument: any;
   GuardianImage: any;
   guardianProf: any;
-  constructor(private api: ApiService, private toastr: ToastrService, private router: Router,public fb: FormBuilder, private studentService:StudentService) {
+  singleSelect: any = [];
+  config = {
+    displayKey: "userName",
+    height: "250px",
+    search: true,
+    placeholder: "Select",
+    searchPlaceholder: "Search...",
+    limitTo: 0,
+    customComparator: undefined,
+    noResultsFound: "No results found!",
+    moreText: "more",
+    searchOnKey: "userName",
+    clearOnSelection: false,
+    inputDirection: "ltr",
+    selectAllLabel: "Select all",
+    enableSelectAll: false
+  }
+  guadianList: any[] = [];
+  options:any[] = [];
+  constructor(private api: ApiService, private toastr: ToastrService, private router: Router,public fb: FormBuilder,
+    private drodownService: SelectDropDownService, private studentService:StudentService) {
     this.aceYear = this.studentService.aceYear;
     this.genderList = this.studentService.genderList;
     this.bloodGrList = this.studentService.bloodGrList;
@@ -42,11 +64,21 @@ export class CreateStudentComponent {
     this.relationShipList = this.studentService.relationShipList;
     this.occupationsList = this.studentService.occupationsList;
     this.educationList = this.studentService.educationList;
+
+    
   }
  ngOnInit() {
   this.getAllClass();
   this.getAllCateogy();
+  this.getGuardenList();
   this.createForm();
+ }
+
+ getGuardenList(){
+  this.api.getGuardianAll().subscribe(resp => {
+    this.guadianList = resp.guardians;
+    this.options  = this.guadianList;
+  });
  }
  getAllSection() {
   this.api.getAllSection().subscribe(resp => {
@@ -80,10 +112,10 @@ onChangeClass(event){
       studentClass: ['', Validators.required],
       section: ['', Validators.required],
       category: ['', Validators.required],      
-      registerNo: ['', Validators.required],
+      registerNo: ['VXPIS'],
       rollNo: ['', Validators.required],
       admissionDate: ['', Validators.required],
-      type: ['', Validators.required],
+      type: [''],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       gender: ['', Validators.required],
@@ -98,6 +130,7 @@ onChangeClass(event){
       state: ['', Validators.required],
       previousQualification:['',Validators.required],
       previousSchoolName:['',Validators.required],
+      isGuardianExist:[false],
       guardian: this.fb.group({
            name: ['',Validators.required],
            relation:['',Validators.required],
@@ -117,6 +150,24 @@ onChangeClass(event){
       presentAddress: ['', Validators.required],
       permanentAddress: ['', Validators.required],
     });
+ }
+ selectedGua(event){
+  const data = event.value;
+  this.studentForm.controls['guardian'].patchValue({
+    name:data.firstName,
+    relation: data.relation,
+    fatherName: data.fatherName,
+    motherName: data.motherName,
+    occupation: data.occupation,
+    mobileNumber: data.number,
+    email: data.email,
+    city: data.city,
+    state: data.state,
+    permanentAddress: data.permanentAddress,
+    userName: data.userName,
+    password: data.password,
+    alreadyExists: data.alreadyExists,
+  });
  }
  onFilesDropped(files: NgxFileDropEntry[], imgType: string)
 {
@@ -236,6 +287,9 @@ createInfo(_form){
     })
 
 
+}
+searchChange($event) {
+  console.log($event);
 }
  
 }
