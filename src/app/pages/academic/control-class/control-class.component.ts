@@ -133,14 +133,14 @@ export class ControlClassComponent {
 
       this.isLoading = false;
 
-      this.toastr.success(resp.message, "Department add success");
+      this.toastr.success(resp.message, "Class add success");
       // this.designForm.reset();
       // this.getDesignations();
     ;
     },
     (err) => {
       this.isLoading = false;
-      this.toastr.error(err, "Department add failed");
+      this.toastr.error(err, "Class add failed");
       console.error(err);
     })
   }
@@ -166,6 +166,7 @@ export class ControlClassComponent {
   }
 
   deleteClass(){
+console.log(this.selectedDesign._id);
 
     this.isLoading = true;
     this.api.deleteClass(this.selectedDesign._id).subscribe(resp => {

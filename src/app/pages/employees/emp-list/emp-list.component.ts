@@ -56,6 +56,10 @@ export class EmpListComponent {
     else if(tabIndex == 4) {
       this.filteredEmp = this.employees.filter(emp => emp.designation?.name == 'Receptionist')
     }
+    else if(tabIndex == 5) {
+      this.filteredEmp = this.employees.filter(emp => emp.designation?.name )
+    }
+  
   }
 
   editTeacherEm(route: any)
@@ -74,7 +78,7 @@ export class EmpListComponent {
     this.router.navigate(["/employee/add", this.emplyee._id], navExtras);
   }
 
-  deleteLeave()
+  deleteEmpl()
 {
   console.log(this.emplyee._id);
   
