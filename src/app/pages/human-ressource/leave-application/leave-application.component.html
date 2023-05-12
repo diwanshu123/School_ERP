@@ -18,6 +18,7 @@
                           <tr>
                             <th scope="col">SL</th>
                             <th scope="col">Applicant</th>
+                            <th scope="col">Class</th>
                             <th scope="col">Leave Category</th>
                             <th scope="col">Date of Start</th>
                             <th scope="col">Date of End</th>
@@ -31,6 +32,8 @@
                           <tr *ngFor="let leave of leaveApps; index as i">
                             <td>{{i + 1}}</td>
                             <td>{{leave.employee? leave.employee.name : leave.student.firstName + ' ' + leave.student.lastName}}</td>
+                            <td>{{leave.student? leave.student.academic?.studentClass?.className + '-' +
+                                                 leave.student.academic?.section?.name : '-'}}</td>
                             <td>{{leave.leaveType.name}}</td>
                             <td>{{leave.fromDate | date}}</td>
                             <td>{{leave.toDate | date}}</td>
