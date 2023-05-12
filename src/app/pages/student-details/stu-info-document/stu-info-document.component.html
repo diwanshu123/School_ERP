@@ -1,14 +1,78 @@
 <div class="row">
     <div class="col-md-4">
         <span class="lbl-txt">IdCard Document</span>
-        <img [src]="idcard? idcard: 'assets/images/no-profile.jpg'" width="200" class="img-thumbnail">
+        <img [src]="idcard_pre? idcard_pre: 'assets/images/no-profile.jpg'" width="200" class="img-thumbnail">
     </div>
     <div class="col-md-4">
-        <span class="lbl-txt">Guardian Image</span>
-        <img [src]="guardianImg? guardianImg: 'assets/images/no-profile.jpg'" width="200" class="img-thumbnail">
+        <span class="lbl-txt">Guardian Proof</span>
+        <img [src]="guardianImg_pre? guardianImg_pre: 'assets/images/no-profile.jpg'" width="200" class="img-thumbnail">
     </div>
     <div class="col-md-4">
         <span class="lbl-txt">Guardian Document</span>
-        <img [src]="guardianDocu? guardianDocu: 'assets/images/no-profile.jpg'" width="200" class="img-thumbnail">
+        <img [src]="guardianDocu_pre? guardianDocu_pre: 'assets/images/no-profile.jpg'" width="200" class="img-thumbnail">
     </div>
+</div>
+<div class="row mt-3 mb-3">
+    <div class="col-md-4">
+        <span class="lbl-txt">IdCard Document</span>
+        <div class="upload-cont">
+          <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'idCardDocument')">
+            <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                <ng-container *ngIf="!idCardDocument">
+               drop
+                  <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()"> Files</a>
+                </ng-container>
+                <ng-container *ngIf="idCardDocument">
+                  {{idCardDocument.name}}
+                  <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="idCardDocument=null">
+                    Remove
+                  </a>
+                </ng-container>
+            </ng-template>
+          </ngx-file-drop>
+        </div>
+      </div>
+   
+    <div class="col-md-4">
+        <label class="lbl-txt">Guardian Proof</label>
+        <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'GuardianImage')">
+            <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                <ng-container *ngIf="!GuardianImage">
+              Upload  Profile
+                  <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()"> Files</a>
+                </ng-container>
+                <ng-container *ngIf="GuardianImage">
+                  {{GuardianImage.name}}
+                  <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="GuardianImage=null">
+                    Remove
+                  </a>
+                </ng-container>
+            </ng-template>
+          </ngx-file-drop>
+    </div>
+    <div class="col-md-4">    
+      <label class="lbl-txt">Guardian Image</label>                    
+        <div class="upload-cont">
+          <ngx-file-drop [multiple]="false" [directory]="false" (onFileDrop)="onFilesDropped($event, 'guardianProf')">
+            <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                <ng-container *ngIf="!guardianProf">
+               drop
+                  <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()"> Files</a>
+                </ng-container>
+                <ng-container *ngIf="guardianProf">
+                  {{guardianProf.name}}
+                  <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="guardianProf=null">
+                    Remove
+                  </a>
+                </ng-container>
+            </ng-template>
+          </ngx-file-drop>
+        </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3 mt-3">
+    <button type="button" class="save_button btn" (click)="saveInfo()" >Upload Image</button>
+  </div>
+    
 </div>

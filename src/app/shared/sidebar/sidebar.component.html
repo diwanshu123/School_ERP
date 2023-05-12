@@ -56,20 +56,27 @@
     </div>
   </mat-expansion-panel>
 
-  <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/student-details') ? true : false">
+  <mat-expansion-panel hideToggle="true" [expanded]="currentUrl.includes('/student-details/student-list') ? true : false">
     <mat-expansion-panel-header>
-      <mat-list-item matListItemIcon [routerLink]="routes.STUDNT_DETAIL" routerLinkActive="active">
-        <mat-icon matListItemIcon>photo_alum</mat-icon>Student Details
+      <mat-list-item matListItemIcon [routerLink]="routes.STUDNT_LIST" routerLinkActive="active">
+        <mat-icon matListItemIcon>photo_alum</mat-icon>Student List
       </mat-list-item>
+
+      <!--<mat-list-item matListItemIcon [routerLink]="routes.STUDNT_DETAIL" routerLinkActive="active">
+        <mat-icon matListItemIcon>photo_alum</mat-icon>Student Details
+      </mat-list-item>-->
     </mat-expansion-panel-header>
     <!--Sub Menu-->
     <div class="sub-menu-cont">
+    <!-- 
+      
+      
       <mat-list-item class="sub-menu" [routerLink]="routes.STUDNT_LIST" routerLinkActive="sub-active">
         Student List
       </mat-list-item>
       <mat-list-item class="sub-menu">
         Login Deactivate
-      </mat-list-item>
+      </mat-list-item>-->
     </div>
   </mat-expansion-panel>
 

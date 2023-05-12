@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 @NgModule({
     declarations: [
       AppComponent,
@@ -38,6 +39,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
       SharedModule,
       MatDatepickerModule,
       MatNativeDateModule,
+      SelectDropDownModule,
       ToastrModule.forRoot({positionClass: 'toast-center-center'}),
       ModalModule.forRoot()
     ]

@@ -145,16 +145,6 @@
     </div>
     <div class="row mt-3 mb-3">
         <div class="col-6">
-            <label class="form-label">Previous School <span class="error">*</span></label>
-            <input type="text" class="form-control"  formControlName="previousSchoolName">
-        </div>
-        <div class="col-6">
-            <label class="form-label">Previous Qualification <span class="error">*</span></label>
-            <input type="text" class="form-control"  formControlName="previousQualification">
-        </div>
-    </div>
-    <div class="row mt-3 mb-3">
-        <div class="col-6">
             <label class="form-label">Present Address <span class="error">*</span></label>
             <textarea type="text" class="form-control"  rows="3"  formControlName="presentAddress" > </textarea>
         </div>
@@ -235,13 +225,35 @@
             <input type="text" class="form-control"  formControlName="permanentAddress">
         </div>
     </div>
-    <div class="header-txt col-md-12"></div>
-    <div class="row mt-3 mb-3 ">
-        <div class="col-md-10"></div>
-        <div class="col-md-2">
-            <button type="button" class="save_button btn" (click)="updateInfo(studentForm)" [disabled]="!studentForm.valid">Save</button>
-        </div>
-      
-    </div>
 </ng-container>
+<div class="row" >
+    <div class="col-md-12 header-txt" >
+        <span>Previous School Details</span>
+    </div>
+</div>
+<div class="row mt-3 mb-3">
+    <div class="col-6">
+        <label class="form-label">School Name </label>
+        <input type="text" class="form-control"  rows="3"  formControlName="previousSchoolName" > 
+    </div>
+    <div class="col-6">
+        <label class="form-label">Qualification </label>
+        <input type="text" class="form-control"  rows="3"  formControlName="previousQualification" > 
+    </div>
+</div>
+<div class="row mt-3 mb-3">
+    <div class="col-12">
+        <label class="form-label">Remarks </label>
+        <textarea type="text" class="form-control"  rows="3"  formControlName="previousRemarks" > </textarea>
+    </div>
+</div>
+
+<div class="header-txt col-md-12"></div>
+<div class="row mt-3 mb-3 ">
+    <div class="col-md-10"></div>
+    <div class="col-md-2">
+        <button type="button" class="save_button btn" (click)="updateInfo(studentForm)" [disabled]="!studentForm.valid">Save</button>
+    </div>
+  
+</div>
 </form>
