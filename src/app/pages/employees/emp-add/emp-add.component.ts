@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import * as moment from 'moment';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentService } from '../../student-details/student.service';
 
 
 
@@ -14,6 +15,10 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./emp-add.component.scss']
 })
 export class EmpAddComponent {
+  bloodGrList: any[] = [];
+  genderList: any[] = [];
+  religionList: any[] = [];
+
   
   public files: NgxFileDropEntry[] = [];
   isLoading: boolean;
@@ -89,11 +94,14 @@ export class EmpAddComponent {
 abc: any
 
   constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute,
-    private router: Router)
+    private router: Router,
+    private studentService:StudentService, )
 
     
   {
-
+    this.genderList = this.studentService.genderList;
+    this.bloodGrList = this.studentService.bloodGrList;
+    this.religionList = this.studentService.religionList;
     route.params.subscribe(param => {
       if(router.getCurrentNavigation()?.extras.state) {
         this.editEmploye = router.getCurrentNavigation()?.extras.state?.['data'];
@@ -155,7 +163,9 @@ AddEmloyeForm(){
     bloodGroup: new FormControl(null, [Validators.required]),
     religion: new FormControl(null, [Validators.required]),
     dob: new FormControl(null, [Validators.required]),
-    number: new FormControl(null, [Validators.required]),
+    // number: new FormControl(null, [Validators.required]),
+    number: new FormControl (['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]] ) ,
+  
     email: new FormControl(null, [Validators.required]),
 
     presentAddress: new FormControl(null, [Validators.required]),
@@ -238,23 +248,29 @@ AddEmloyeForm(){
     });
   }
 
+ 
   skipDetail(event:any){
-    // console.log(event.target.checked);
-    // console.log(event.target.unchecked);
-
-    // console.log(this.skipBankDetails);
+   
+    console.log(event.checked);
     
-if(!event.target.checked){
-  console.log("inside if", event.target.checked);
+    if(event.checked)
+    {
+      this.skipBankDetails = true;
+    }
+    else{
+      this.skipBankDetails=false
+    }
+// if(!event.target.checked){
+//   console.log("inside if", event.target.checked);
 
-  this.skipBankDetails=true
-  console.log(this.skipBankDetails);
+//   this.skipBankDetails=true
+//   console.log(this.skipBankDetails);
 
-}else
-{
-  this.skipBankDetails=false
+// }else
+// {
+//   this.skipBankDetails=false
 
-}
+// }
 
 
 

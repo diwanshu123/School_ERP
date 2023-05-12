@@ -1,15 +1,15 @@
 <app-layout>
   <div class="container tab-container p-4">
-    <form [formGroup]="TeacherForm" (ngSubmit)="addTeachernew()">
+    <form [formGroup]="TeacherForm">
     <div class="row mt-5 mb-3">
       <h6>Class Teacher  Allocation</h6>
       <div class="col-3">
         <label class="form-label">Academic Year *</label>
        
-        <select class="form-select" formControlName="academicYear">
+        <select class="form-select" (change)="abaac($event,selectedAcdemic=stud)" (change)="selectedAcdemic=stud" formControlName="academicYear">
           <option disabled value="select">Select</option>
           <!-- <option *ngFor="let stud of students" ></option> -->
-          <option *ngFor="let stud of academics" [value]="stud.academicYear"   >{{stud.academicYear}}</option>
+          <option *ngFor="let stud of academics"  [value]="stud.academicYear" >{{stud.academicYear}}</option>
 
         </select>
       </div>
@@ -41,7 +41,10 @@
       </div>
     </div>
     <div class="text-end mb-5">
-      <button class="btn">Save</button>
+      <button class="btn" (click)="addTeachernew()">Save</button>
+    </div>
+    <div class="text-end mb-5">
+      <button (click) = "clickFilter()" class="btn">filter</button>
     </div>
 </form>
     <h6 class="table-heading mb-3">Class Teacher List</h6>

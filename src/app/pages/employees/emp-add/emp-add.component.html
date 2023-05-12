@@ -97,18 +97,30 @@
 
       <div class="col-4 offset-4">
         <label class="form-label">Gender</label>
-        <input type="text"  formControlName="gender" class="form-control">
+        <select class="form-select" formControlName="gender">
+            <option disabled value="select">Select</option>
+            <option *ngFor="let genderD of genderList" value="{{genderD._id}}">{{genderD.name}}</option>
+          </select>
       </div>
     </div>
 
     <div class="row mb-3">
       <div class="col-4">
         <label class="form-label">Religion</label>
-        <input type="text" formControlName="religion" class="form-control">
+       
+        <select class="form-select" formControlName="religion">
+            <option disabled value="select">Select</option>
+            <option *ngFor="let day of religionList" value="{{day._id}}">{{day.name}}</option>
+          </select>
       </div>
       <div class="col-4">
-        <label class="form-label">Blood Group</label>
-        <input type="text" formControlName="bloodGroup" class="form-control">
+        <!-- <label class="form-label">Blood Group</label>
+        <input type="text" formControlName="bloodGroup" class="form-control"> -->
+        <label class="form-label">Blood group <span class="error">*</span></label>
+        <select class="form-select" formControlName="bloodGroup">
+            <option disabled value="select">Select</option>
+            <option *ngFor="let day of bloodGrList" value="{{day._id}}">{{day.name}}</option>
+          </select>
       </div>
       <div class="col-4">
         <label class="form-label">Date Of Birth</label>
@@ -132,7 +144,7 @@
         <label class="form-label">Phone No. *</label>
         <div class="input-group">
           <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-          <input type="text" formControlName="number" class="form-control">
+          <input type="text"  formControlName="number" class="form-control">
         </div>
       </div>
 
@@ -283,7 +295,7 @@
      
 
       <section class="example-section">
-        <mat-checkbox class="example-margin" (click)="skipDetail($event)" formControlName="skipBankDetails">  Skip Bank Details!</mat-checkbox>
+        <mat-checkbox class="example-margin" (change)="skipDetail($event)" formControlName="skipBankDetails">  Skip Bank Details!</mat-checkbox>
       
       </section>
     </div>

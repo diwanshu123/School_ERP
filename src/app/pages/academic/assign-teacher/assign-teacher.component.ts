@@ -19,14 +19,16 @@ export class AssignTeacherComponent {
   employees: any[] = [];
   filteredEmp: any[] = []
   academics:  any=[]
+  selectedAcdemic: any
 
   abc: any;
   academicsId: String
   beeni: any;
   letter: any;
   value: any;
+  selectedItem
 
-  
+  stud: any
   constructor(private api: ApiService, private toastr: ToastrService) {
     this.TeacherForm = new FormGroup({
       academicYear: new FormControl(null, [Validators.required]),
@@ -37,23 +39,27 @@ export class AssignTeacherComponent {
 
     });
 
-  //   this.editDesign = new FormGroup({
-  //     name: new FormControl(null, [Validators.required])
-  //   });
+ 
   }
-data: any
+
   ngOnInit(): void {
+    
     this.getAllAcademics();
     this.getAllSection();
     this.getAllClass();
     this.getDesignations();
     this.getEmployees();
-   
-    this.getAcdemicsDeatails(this.data);
+    console.log(this.selectedAcdemic);
+    
+this.getAcdemicsDeatails()
 
   }
- 
 
+abaac(selectedAcdemic, event){
+  console.log(selectedAcdemic._id);
+  
+
+}
   getEmployees()
   {
     this.api.getAllEmployees().subscribe(resp => {
@@ -117,25 +123,11 @@ getDesignations()
 }
  arrayA: any[] = []
   commentArray = [];
-getAcdemicsDeatails(data){
-  console.log("data",data[0]._id);
-  // this.beeni = data._id
-  // const value = data.values();
-   this.value = data.values();
-for(let i=0; i<data.length; i++){
-  console.log(data[i]._id);
-  
-this.value = data[i]._id
-}
-  // for(this.letter of this.value ){
-  // console.log(this.letter._id);
-
-    
-  // }
-  console.log(this.value);
+getAcdemicsDeatails(){
+ console.log(this.selectedAcdemic._id);
 
 
-  this.api.getAcademics(this.letter._id).subscribe(resp => {
+  this.api.getAcademics(this.selectedAcdemic._id).subscribe(resp => {
     console.log("=======",resp);
     
     this.academics = resp.academics
@@ -151,7 +143,7 @@ getAllAcademics(){
   this.api.getAllAcademic().subscribe(resp => {
 
   console.log(resp);
-  this.getAcdemicsDeatails(resp.academics) 
+  // this.getAcdemicsDeatails(resp.academics) 
   
     
     this.academics = resp.academics
@@ -161,6 +153,16 @@ console.log(this.academics);
   });
 
 
+}
+
+
+
+clickFilter(){
+
+  
+  this.selectedAcdemic
+  console.log(this.selectedItem);
+  
 }
 
   addTeachernew()
