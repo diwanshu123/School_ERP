@@ -349,8 +349,8 @@ export class ApiService {
     deleteDesignation(deptId: string): Observable<any> {
       return this.httpClient.delete(environment.apiBaseUrl + '/designation/' + deptId).pipe(catchError(this.errorHandler));
     }
-    deleteEmployee(id: string): Observable<any> {
-      return this.httpClient.delete(environment.apiBaseUrl + '/employee/' + id).pipe(catchError(this.errorHandler));
+    deleteEmployee(deptId: string): Observable<any> {
+      return this.httpClient.delete(environment.apiBaseUrl + '/employee/' + deptId).pipe(catchError(this.errorHandler));
     }
     //Acadamic '/class'   /class/all
     addAcadamic(postData: any): Observable<any> {
@@ -380,7 +380,6 @@ export class ApiService {
     deleteClass(id: string): Observable<any> {
       return this.httpClient.delete(environment.apiBaseUrl +'/class/' + id).pipe(catchError(this.errorHandler));
     }
-  
     deleteSection(id: string): Observable<any> {
       return this.httpClient.delete(environment.apiBaseUrl +'/section/' + id).pipe(catchError(this.errorHandler));
     }
@@ -602,7 +601,9 @@ export class ApiService {
     feeAllocation(postData: any): Observable<any> {
       return this.httpClient.post(environment.apiBaseUrl +'/student/allocate', postData ).pipe(catchError(this.errorHandler));
     }
-
+    uploadCSVEmploye(postData: any): Observable<any> {
+      return this.httpClient.post(environment.apiBaseUrl +'/employee/uploadcsv', postData ).pipe(catchError(this.errorHandler));
+    }
 
   errorHandler(error: {
     error: {

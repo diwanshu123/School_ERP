@@ -57,9 +57,28 @@ export class EmpListComponent {
       this.filteredEmp = this.employees.filter(emp => emp.designation?.name == 'Receptionist')
     }
     else if(tabIndex == 5) {
-      this.filteredEmp = this.employees.filter(emp => emp.designation?.name )
+      this.filteredEmp = this.employees.filter(emp => emp.designation?.name !=  'Teacher'  ) 
+
+
     }
-  
+    else if(tabIndex == 5) {
+      this.filteredEmp = this.employees.filter(emp => emp.designation?.name !=  'Admin'  ) 
+
+
+    }   else if(tabIndex == 5) {
+      this.filteredEmp = this.employees.filter(emp => emp.designation?.name !=  'Accountant'  ) 
+
+
+    }   else if(tabIndex == 5) {
+      this.filteredEmp = this.employees.filter(emp => emp.designation?.name !=  'Librarian'  ) 
+
+
+    }   else if(tabIndex == 5) {
+      this.filteredEmp = this.employees.filter(emp => emp.designation?.name !=  'Receptionist'  ) 
+
+
+    }
+
   }
 
   editTeacherEm(route: any)
