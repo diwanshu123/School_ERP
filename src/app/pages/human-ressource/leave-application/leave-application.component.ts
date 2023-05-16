@@ -4,6 +4,7 @@ import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import * as moment from 'moment';
+import { Observable, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-leave-application',
@@ -43,6 +44,40 @@ export class LeaveApplicationComponent implements OnInit {
     this.api.getLeaveApplication().subscribe(resp => {
       this.leaveApps = resp.leavesRequest;
       this.leaveApps = this.leaveApps.filter(leave => leave.employee || leave.student);
+      this.mapStudentClass();
+    });
+  }
+
+  mapStudentClass()
+  {
+    const observables: Observable<any>[] = [];
+    observables.push(this.api.getAllAcademic());
+    observables.push(this.api.getAllClass());
+    observables.push(this.api.getAllSection());
+
+    let academics = [], classes = [], sections = [];
+    forkJoin(observables).subscribe(response => {
+      academics = response[0].academics;
+      classes = response[1].classes;
+      sections = response[2].sections;
+
+      academics.forEach(academic => {
+        if(academic.studentClass) {
+          academic.studentClass = classes.find(c => c._id === academic.studentClass);
+        }
+
+        if(academic.section) {
+          academic.section = sections.find(s => s._id === academic.section);
+        }
+      });
+
+      this.leaveApps.forEach(leave => {
+        if(leave.student) {
+          leave.student.academic = academics.find(a => a._id === leave.student.academic);
+        }
+      })
+
+      console.log(this.leaveApps);
     });
   }
 

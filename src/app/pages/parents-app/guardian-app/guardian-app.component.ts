@@ -4,6 +4,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import * as moment from 'moment';
 import { NgxFileDropEntry } from 'ngx-file-drop';
 import { ToastrService } from 'ngx-toastr';
+import { Observable, forkJoin } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -193,6 +194,44 @@ export class GuardianAppComponent {
   getRaisedTickets() {
     this.api.getRaisedTickets().subscribe(resp => {
       this.raisedTickets = resp.raiseATicket;
+      this.mapStudents();
+    });
+  }
+
+  mapStudents()
+  {
+    const observables: Observable<any>[] = [];
+    observables.push(this.api.getAllStudents());
+    observables.push(this.api.getAllAcademic());
+    observables.push(this.api.getAllClass());
+    observables.push(this.api.getAllSection());
+
+    let students = [], academics = [], classes = [], sections = [];
+    forkJoin(observables).subscribe(response => {
+      students = response[0].students;
+      academics = response[1].academics;
+      classes = response[2].classes;
+      sections = response[3].sections;
+
+      academics.forEach(academic => {
+        if(academic.studentClass) {
+          academic.studentClass = classes.find(c => c._id === academic.studentClass);
+        }
+
+        if(academic.section) {
+          academic.section = sections.find(s => s._id === academic.section);
+        }
+      });
+
+      this.raisedTickets.forEach(ticket => {
+        if(ticket.student)
+        {
+          ticket.student = students.find(s => s._id === ticket.student);
+          ticket.student.academic = academics.find(a => a._id === ticket.student.academic._id);
+        }
+      })
+
+      console.log(this.raisedTickets);
     });
   }
 

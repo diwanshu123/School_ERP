@@ -189,6 +189,8 @@
             <thead>
               <tr>
                 <th scope="col">To</th>
+                <th scope="col">From</th>
+                <th scope="col">Class</th>
                 <th scope="col">Support Type</th>
                 <th scope="col">View Details</th>
                 <th scope="col">Status</th>
@@ -198,6 +200,8 @@
             <tbody>
               <tr *ngFor="let ticket of raisedTickets; index as i">
                 <td>{{ticket.sendTo}}</td>
+                <td>{{ticket.student.firstName + " " + ticket.student.lastName}}</td>
+                <td>{{ticket.student.academic?.studentClass?.className + '-' + ticket.student.academic?.section?.name}}</td>
                 <td>{{ticket.supportType}}</td>
                 <td>{{ticket.description}}</td>
                 <td>{{ticket.status}}</td>
