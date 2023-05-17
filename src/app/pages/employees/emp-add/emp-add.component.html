@@ -362,10 +362,10 @@
       </div>
       <div class="modal-body px-4">
         <div class="text-end">
-          <button class="btn">
+          <!-- <button class="btn">
             <i class="fa-regular fa-circle-down"></i>
             Download Sample Import File
-          </button>
+          </button> -->
         </div>
 
         <h6>Instructions</h6>
@@ -377,10 +377,7 @@
           </li>
         </ol>
 
-        <div class="mb-3">
-          <label class="form-label">Role *</label>
-          <input type="text" class="form-control">
-        </div>
+       <form [formGroup]="csvForm">
 
         <div class="mb-3">
          
@@ -399,17 +396,39 @@
           <option *ngFor="let deaprtmnets of departments" [value]="deaprtmnets._id">{{deaprtmnets.name}}</option>
         </select>
         </div>
-
+      </form>
         <div class="mb-3">
           <label class="form-label">Select CSV File *</label>
           <div class="upload-cont">
-            <p class="text-center">
-              <i class="fa-solid fa-cloud-arrow-up"></i>
-              <br>
-              Drag and drop a file here or click
-            </p>
+            <div class="upload-cont">
+
+
+
+              <ngx-file-drop [multiple]="false" [directory]="false" [accept]="acceptedFileTypes" (onFileDrop)="onFilesDroppedCsv($event)">
+                <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                    <ng-container *ngIf="!fileDataCsv">
+                      Drag and drop or
+                      <a class="p-1 btn btn-link" type="button" (click)="openFileSelector()">Browse Files</a>
+                    </ng-container>
+                    <ng-container *ngIf="fileDataCsv">
+                      {{fileDataCsv.name}}
+                      <a class="p-1 btn btn-link" style="color: #F44336;" type="button" (click)="fileDataCsv=null">
+                        Remove
+                      </a>
+                    </ng-container>
+                </ng-template>
+              </ngx-file-drop>
+              
+                                </div>
+          
           </div>
                  </div>
+                 <div class="text-end my-4" >
+                  <button class="btn" >
+                 
+                    <span (click)="multipleImportCsv()">Save</span>
+                  </button>
+                </div>
       </div>
     </div>
   </div>
