@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
+
+  private dataSubject = new BehaviorSubject<any>(null);
+  public data$ = this.dataSubject.asObservable();
+
   aceYear = [{ _id: "2020-2021", name: "2020-2021" }, { _id: "2021-2022", name: "2021-2022" }, { _id: "2022-2023", name: "2022-2023" }];
   genderList = [{_id:"Male", name:"Male"}, {_id:"Female", name:"Female"},{_id:"Other", name:"Other"}];
 
@@ -29,4 +34,8 @@ export class StudentService {
   educationList= [{_id:"School", name:"School"},{_id:"Graduate", name:"Graduate"},{_id:"Post Graduate", name:"Post Graduate"},{_id:"Others", name:"Others"}];
   
    constructor() { }
+
+   setData(data: any) {
+    this.dataSubject.next(data);
+  } 
 }

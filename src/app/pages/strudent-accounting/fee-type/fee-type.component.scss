@@ -1,6 +1,58 @@
+.input-group{
+    width: 200px;
+}
+.selectYear{
+    width: 40%;
+    text-align: center;
+    height:40px;
+    margin-left: 10px;
+}
 .but-save{
     width: 139px;
     border-radius: 35px;
     height: 34px;
     margin-left: 94%;
 }
+
+.inlineDatePicker{
+    display: flex;
+    
+}
+.dateInput{
+    width: 50%;
+    margin-left: 7%;
+   }
+.inlineDatePicker input {
+    margin-right: 10px; 
+  }
+
+ .yearSelect{
+    text-align: center;
+
+ } 
+ .hikeSelect{
+    display: flex;
+    margin-top: 35px;
+    text-align: center;
+ }
+.hikeInput{
+    width: 40%;
+    height: 45px;
+    margin-left: 10px;
+}
+.addTableRow{
+    width: 100%;   
+}
+// .datahead{
+//     width:16%;
+// }
+ .yearSelectDropdown{
+ }
+
+ .submitFees{
+    display: flex;
+    place-content: space-around;
+
+ }
+
+  

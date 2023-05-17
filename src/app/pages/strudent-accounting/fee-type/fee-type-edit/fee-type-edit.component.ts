@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { StudentService } from 'src/app/pages/student-details/student.service';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -9,17 +10,24 @@ import { ApiService } from 'src/app/services/api.service';
   templateUrl: './fee-type-edit.component.html',
   styleUrls: ['./fee-type-edit.component.scss']
 })
-export class FeeTypeEditComponent {
+export class FeeTypeEditComponent implements OnInit {
   feeTypeForm: FormGroup;
   fineSetupId: string
   isLoading: boolean;
   templateId: string
   feeType:  any
   editfee: any;
-
+  getTypes: any = []
+  AcedmicYearList : any[] = [
+    {year: "2023-2024"},
+    {year: "2024-2025"},
+    {year: "2025-2026"},
+    {year: "2026-2027"},
+    
+  ];
   constructor(private api: ApiService, private toastr: ToastrService,
     private route: ActivatedRoute,
-    private router: Router)
+    private router: Router, private studentService: StudentService)
   {
 
     route.params.subscribe(param => {
@@ -33,6 +41,20 @@ export class FeeTypeEditComponent {
     });
 }
 
+ngOnInit(): void {
+ console.log("get", this.feeTypeForm);
+  this.studentService.data$.subscribe((res) => {
+    
+    if(res != undefined) {
+      this.getTypes = res;
+      console.log("sdsdsddsdsdsdsd", this.getTypes);
+   
+    //  this.feeTypeForm.setValue({
+    //   name: res.
+    //  })
+    }
+  })
+}
 
 craeteForm(){
   this.feeTypeForm = new FormGroup({
@@ -49,6 +71,8 @@ craeteForm(){
 update(){
 
   this.isLoading = true;
+  console.log("value", this.feeTypeForm.value);
+  
   this.api.updateFeeType(this.fineSetupId, this.feeTypeForm.value).subscribe(resp => {
     this.isLoading = false;
     this.toastr.success(resp.message, "Fine type update success");

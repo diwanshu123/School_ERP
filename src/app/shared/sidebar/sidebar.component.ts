@@ -15,7 +15,7 @@ export class SidebarComponent {
 
   constructor(private router: Router)
   {
-    router.events.subscribe(evt => {
+    this.router.events.subscribe(evt => {
       if(evt instanceof NavigationEnd) {
         this.currentUrl = evt.url;
       }

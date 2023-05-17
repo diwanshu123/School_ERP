@@ -7,8 +7,12 @@
                       <div class="top-options">
                         <div class="search-area">
                           <div class="input-group pe-3">
-                            <input type="search" class="form-control" placeholder="Search here...">
-                            <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <select name="" class="selectYear">
+                              <option *ngFor="let year of AcedmicYearList" value="year.year" >{{year.year}}</option>
+                            </select>
+                            <!-- <input type="search" class="form-control" placeholder="Search here..."> -->
+                            
+                            <!-- <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span> -->
                           </div>
                           <div class="options">
                             <button class="btn"><img src="assets/icons/opt-copy.svg"></button>
@@ -24,19 +28,19 @@
 
                       <table class="table mt-3">
                         <thead>
-                          <tr >
+                          <tr class="addTableRow">
 
                             <th scope="col">SL</th>
 
-                            <th scope="col">Name</th>
+                            <!-- <th scope="col">Acedmic Year</th> -->
 
-                            <th scope="col">Fee Code</th>
+                            <th scope="col">Classes</th>
                             <th scope="col">Amount</th>
-                            <th scope="col">Due Date</th>
+                            <th scope="col">id</th>
 
 
-                            <th scope="col">Discription</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Remarks</th>
+                            <!-- <th scope="col">Action</th> -->
                           </tr>
                         </thead>
                         <tbody>
@@ -45,25 +49,25 @@
                             <td>{{i +1}}</td>
 
 
-                            <td>{{fee.name}}</td>
-                            <td>{{fee.code}}</td>
-                            <td>{{fee.amount}}</td>
-                            <td>{{fee.dueDate}}</td>
+                            <!-- <td>{{fee.AcedmicYear}}</td> -->
+                            <td>{{fee.class}}</td>
+                            <td>RS {{fee.amount}}</td>
+                            <td>{{fee.id}}</td>
 
 
 
-                            <td>{{fee.description}}</td>
+                            <td>{{fee.remarks}}</td>
 
 
 
-                            <td>
+                            <!-- <td>
                               <button class="btn emp-edit me-1" (click)="editFeeType(fee)"  [routerLink]="'./' + fee._id" ><i class="fa-solid fa-pencil"></i></button>
                      
                               <button class="btn emp-edit ms-1" data-bs-toggle="modal" data-bs-target="#deletePrompt"
                               (click)="selectedfee=fee">
                               <i class="fa-solid fa-trash-can"></i>
                             </button>
-                            </td>
+                            </td> -->
                           </tr>
                         </tbody>
                       </table>
@@ -89,18 +93,30 @@
                           </div>
                         </form>
                     </div> -->
-                    <mat-tab label="Add Fee Type">
+                    <mat-tab label="Add Next Year">
                       <div class="container">
                         <form [formGroup]="feeTypeForm" (ngSubmit)="addFeeType()">
-                          <div class="mb-3 py-5">
-                              <label class="form-label">Name*</label>
-                              <input type="text" formControlName="name" class="form-control">
+                          <div class="row">
+                            <div class="col-md-6 col-sm-12 mb-3 py-5 yearSelect">
+                               <label class="form-label">Please Select Year</label>
+                              <!-- <input type="text" formControlName="name" class="form-control"> -->
+                              <select name="" class="selectYear">
+                                <option *ngFor="let year of AcedmicYearList" value="year.year" class="yearSelectDropdown">{{year.year}}</option>
+                              </select>
+                              <!-- <div *ngIf="feeTypeForm.controls['name'].errors['required'] && (feeTypeForm.controls['name'].dirty || feeTypeForm.controls['name'].touched)"></div> -->
                             </div>
-                            <div class="mb-3 py-2">
-                              <label class="form-label">Description*</label>
-                              <input type="text" formControlName="description" class="form-control">
+                            <div class="col-md-6 col-sm-12 mb-3 py-2 hikeSelect">
+                              <label class="form-label">Add Hike</label>
+                              <input type="text"  class="form-control hikeInput">
+                              <!-- <div *ngIf="feeTypeForm.controls['description'].errors['required'] && (feeTypeForm.controls['description'].dirty || feeTypeForm.controls['description'].touched)"></div> -->
+
                             </div>
   
+                          </div>
+                          <div class="submitFees">
+                            <button type="submit">Add Hike</button> 
+                      
+                          </div>
                             <!--  -->
                             <div class="col-12">
                               <div class="row">
@@ -114,35 +130,38 @@
                                           <table class="table mt-3">
                                               <thead>
                                                 <tr>
-                                                  <th scope="col"><input type="checkbox" class="form-check-input"></th>
-                                                  <th scope="col">SL</th>
+                                                  <!-- <th scope="col"><input type="checkbox" class="form-check-input"></th> -->
+                                                  <th scope="col"  class="datahead">SL</th>
                                          
-                                                  <th scope="col">Fees Type</th>
+                                                  <th scope="col" class="datahead">Class</th>
                                      
-                                                  <th scope="col">Due Date</th>
-                                                  <th scope="col">Amount</th>
+                                                  <th scope="col" class="datahead">Amount</th>
+                                                  <th scope="col" class="datahead">Updated Amount</th>
                       
+                                                  <th scope="col" class="datahead">Id</th>
+                                                  <th scope="col" class="datahead">Remarks</th>
                                              
                                                 </tr>
                                               </thead>
                                               <tbody>
                                                 <tr *ngFor="let fee of feeTypes; let i = index">
-                                                  <td scope="row"><input type="checkbox" class="form-check-input"></td>
+                                                  <!-- <td scope="row"><input type="checkbox" class="form-check-input"></td> -->
                                                   <td>{{i+1}}</td>
                                                
                                                 
-                                                  <td>{{fee.name}}</td>
-                                            
-                                                  <td>
-                                                    <input matInput class="form-control" [matDatepicker]="picker"
-                                                     placeholder="dd-mm-yyyy" formControlName="dueDate" >
-                                                <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
-                                                <mat-datepicker #picker></mat-datepicker>
-                                                </td>
-                                                  <td><input formControlName ="amount" type="number" placeholder="0.00"></td>
+                                                  <td>{{fee.class}}</td>
+                                                  <td>RS {{fee.amount}}</td>
+                                                  <td>RS {{fee.updatedAmount}}</td>
+                                                  <td>{{fee.id}}</td>
+                                                  <td>{{fee.remarks}}</td>
+                      
+                      
+                      
   
                                                 </tr>
                                               </tbody>
+                                              <!-- <div *ngIf="(feeTypeForm.controls['amount'].errors['required'] || feeTypeForm.controls['dueDate'].errors['required']) && (feeTypeForm.controls['amount'].dirty || feeTypeForm.controls['dueDate'].touched || feeTypeForm.controls['dueDate'].dirty || feeTypeForm.controls['amount'].touched)"></div> -->
+
                                             </table> 
                                            
                                             
@@ -153,17 +172,14 @@
                                 </div>
                               </div>
                           </div>
-                          <mat-paginator [length]="100"
+                          <!-- <mat-paginator [length]="100"
                           [pageSize]="10"
                           #paginator
                           [pageSizeOptions]="[ 10, 25, 100]"
                           aria-label="Select page">
-            </mat-paginator>
+            </mat-paginator> -->
                             <!--  -->
-                            <div class="text-end">
-                              <button type="submit"> Save</button> 
-                        
-                            </div>
+                            
                           </form>
                      
                           </div>

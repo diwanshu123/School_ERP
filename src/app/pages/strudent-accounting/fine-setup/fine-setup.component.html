@@ -31,12 +31,12 @@
 
                             <!-- <th scope="col"> Group Name</th> -->
 
-                            <th scope="col">Fee Type Name</th>
-                            <th scope="col">Fine type</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Date Range</th>
 
-                            <th scope="col">Fine Value</th>
-                            <th scope="col">Late Fee Frequency</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Id</th>
+                            <th scope="col">Amount Fees</th>
+                            <!-- <th scope="col">Action</th> -->
 
 
                           </tr>
@@ -57,14 +57,14 @@
                             <td>{{fine.fineValue}}</td>
                             <td>{{fine.lateFeeFrequency}}</td>
 
-                            <td>
+                            <!-- <td>
                               <button class="btn emp-edit me-1" (click)="editFine(fine)" [routerLink]="'./' + fine._id" ><i class="fa-solid fa-pencil"></i></button>
 
                                <button class="btn emp-edit ms-1" data-bs-toggle="modal" data-bs-target="#deletePrompt"
                                (click)="selectedfine=fine">
                                <i class="fa-solid fa-trash-can"></i>
                              </button>
-                            </td>
+                            </td> -->
                           </tr>
                         </tbody>
                       </table>
